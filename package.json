@@ -1,5 +1,5 @@
 {
-  "name": "ivanreese.ca",
+  "name": "ivanreese",
   "main": "app.js",
   "repository": {
     "type": "git",
@@ -7,8 +7,5 @@
   },
   "dependencies": {
     "express": "^4.12.3"
-  },
-  "engines": {
-    "iojs": "2.x"
   }
 }
