@@ -1,6 +1,10 @@
 {
   "name": "ivanreese.ca",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ivanreese/ivanreese.git"
+  },
   "dependencies": {
     "express": "^4.12.3"
   },
