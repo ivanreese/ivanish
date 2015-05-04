@@ -1,0 +1,10 @@
+info {
+  display: block;
+  margin: .5rem 0;
+  font-size: 0.8rem;
+  
+  & > * {
+    display: inline-block;
+    margin-right: 1em;
+  }
+}
