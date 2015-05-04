@@ -1,3 +1,3 @@
-# ivanreese.ca
+# ivanreese
 
 A personal website.
