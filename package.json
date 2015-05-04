@@ -1,0 +1,7 @@
+{
+  "name": "ivanreese.ca",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
