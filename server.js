@@ -3,8 +3,6 @@ var express = require('express'),
     path = require('path'),
     app = express();
 
-// Remember: The order of the middleware matters!
-
 // Everything in public will be accessible from '/'
 app.use(express.static(path.join(__dirname, 'public')));
 
