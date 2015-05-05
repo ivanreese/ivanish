@@ -1,0 +1,15 @@
+#height {
+  font-size: 0;
+  
+  img {
+    width:100%;
+    margin:0;
+    padding:0;
+    border:0;
+    
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: optimizeSpeed;
+  }
+}

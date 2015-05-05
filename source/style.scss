@@ -4,6 +4,8 @@
 @import "style/vars.scss";
 
 @import "style/class/column.scss";
+@import "style/class/columns.scss";
+@import "style/class/hide.scss";
 
 @import "style/custom/info.scss";
 
@@ -11,9 +13,10 @@
 @import "style/element/body.scss";
 @import "style/element/center-block.scss";
 @import "style/element/headings.scss";
+@import "style/element/img.scss";
 @import "style/element/p.scss";
 @import "style/element/section.scss";
 @import "style/element/title.scss";
 
-@import "style/id/bio.scss";
 @import "style/id/categories.scss";
+@import "style/id/height.scss";

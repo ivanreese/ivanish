@@ -1,11 +1,5 @@
-#bio {
-  .columns {
-    columns: 20em;
-  }
-  
-  .columns + .columns {
-    margin-top: 2em;
-  }
+.columns {
+  columns: 20em;
   
   p span {
     display: block;
@@ -17,4 +11,8 @@
   p + p {
     margin-top: 1em;
   }
+}
+
+.columns + .columns {
+  margin-top: 2em;
 }
