@@ -1,0 +1,13 @@
+.hero {
+  display: block;
+  text-align: center;
+  margin: 3em 0;
+  
+  img {
+    max-width: 100%;
+  }
+}
+
+title + .hero {
+  margin-top: 0;
+}
