@@ -25,6 +25,7 @@
     .thumb {
       flex: 0 0 auto;
       margin-top: .5rem;
+      margin-right: .5rem;
       img {
         border: 1px solid #302;
       }
@@ -32,16 +33,15 @@
     
     .beside {
       flex: 0 1 auto;
-      margin-left: .5rem;
       
       h1 {
-        margin: -2px 0 .5rem -2px;
+        margin: -2px 0 .5rem 1px;
         display: inline-block;
         border-bottom: 2px solid #302;
       }
       
       p {
-        min-height: 43px;
+        min-height: 45px;
       }
     }
 
