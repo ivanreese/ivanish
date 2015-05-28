@@ -1,9 +1,8 @@
 p {
   max-width: $maxLineLength;
   margin: 0 auto;
-  line-height: 1.5em;
 }
 
 p + p {
-  margin: 2em 0 0;
+  margin: 2.5em 0 0;
 }

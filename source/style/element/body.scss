@@ -1,9 +1,19 @@
 body {
   font-family: "sofia pro light", sans-serif;
-  font-size: 14px;
-  color: #302;
+  font-size: 16px;
+  line-height: 1.5em;
+  color: $black;
+  animation: fade-in .5s linear .05s both;
   
   &.full {
     padding: 0;
   }
+  
+  // This makes the header look a little nicer on iPhone 5-
+  @media (max-width: 374px) { font-size: 14px; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
 }

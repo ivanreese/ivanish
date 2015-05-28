@@ -1,0 +1,40 @@
+#time {
+  
+  section {
+    display: flex;
+    
+    .thumb {
+      flex: 0 0 auto;
+      margin-right: .5rem;
+      img {
+        border: 1px solid $black;
+      }
+    }
+    
+    .beside {
+      flex: 0 1 auto;
+    }
+    
+    p {
+      margin: 1rem 0 0;
+    }
+    
+    .continue {
+      display: inline-block;
+      margin: 0 0.25em;
+      padding: 0 0.75em;
+      font-size: 0.625em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      color: white;
+      background-color: rgba($black, 0.1);
+      transition: .2s background-color;
+      
+      &:hover {
+        background-color: $black;
+      }
+    }
+  }
+}
