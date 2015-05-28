@@ -3,7 +3,7 @@
   section {
     display: flex;
     
-    .thumb {
+    & > a {
       flex: 0 0 auto;
       margin-right: .5rem;
       img {
@@ -11,7 +11,7 @@
       }
     }
     
-    .beside {
+    & > div {
       flex: 0 1 auto;
     }
     
