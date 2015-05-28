@@ -1,7 +1,9 @@
 info {
   display: block;
-  margin: .5rem 0;
-  font-size: 0.8rem;
+  margin: .25rem 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  clear: left;
   
   & > * {
     display: inline-block;

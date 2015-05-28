@@ -1,18 +1,4 @@
 .columns {
   columns: 20em;
-  
-  p span {
-    display: block;
-    font-weight: bold;
-    text-transform: lowercase;
-    font-variant: small-caps;
-  }
-  
-  p + p {
-    margin-top: 1em;
-  }
-}
-
-.columns + .columns {
-  margin-top: 2em;
+  margin-bottom: 2em;
 }

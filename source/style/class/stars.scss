@@ -1,0 +1,16 @@
+.stars {
+  padding: 1rem .5rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+  color: white;
+  background-color: black;
+  background-image: url("http://ivanreese.s3.amazonaws.com/gui-stars.jpg");
+  background-size: 1024px;
+  
+  text-shadow: 0 0 3px #2F0028;
+  
+  a, a:visited {
+    color: white;
+  }
+}
