@@ -9,15 +9,15 @@ epsilon = 0.0001
 fadeHeader = ()->
   opacity = 1 - document.body.scrollTop / header.offsetHeight
   opacity = opacity * opacity * opacity
-  if 0 <= opacity <= 1
-    headerTarget = opacity
+  opacity = Math.min(1, Math.max(0, opacity))
+  headerTarget = opacity
 
 fadeFooter = ()->
   scrollBottom = document.body.scrollTop + window.innerHeight
   opacity = (scrollBottom - document.body.scrollHeight + footer.offsetHeight) / footer.offsetHeight
   opacity = opacity * opacity * opacity
-  if 0 <= opacity <= 1
-    footerTarget = opacity
+  opacity = Math.min(1, Math.max(0, opacity))
+  footerTarget = opacity
 
 update = ()->
   dirty = false

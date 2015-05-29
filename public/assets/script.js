@@ -20,9 +20,8 @@
     var opacity;
     opacity = 1 - document.body.scrollTop / header.offsetHeight;
     opacity = opacity * opacity * opacity;
-    if ((0 <= opacity && opacity <= 1)) {
-      return headerTarget = opacity;
-    }
+    opacity = Math.min(1, Math.max(0, opacity));
+    return headerTarget = opacity;
   };
 
   fadeFooter = function() {
@@ -30,9 +29,8 @@
     scrollBottom = document.body.scrollTop + window.innerHeight;
     opacity = (scrollBottom - document.body.scrollHeight + footer.offsetHeight) / footer.offsetHeight;
     opacity = opacity * opacity * opacity;
-    if ((0 <= opacity && opacity <= 1)) {
-      return footerTarget = opacity;
-    }
+    opacity = Math.min(1, Math.max(0, opacity));
+    return footerTarget = opacity;
   };
 
   update = function() {
