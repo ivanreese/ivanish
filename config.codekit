@@ -1757,6 +1757,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 1
 		},
+	"\/source\/style\/id\/bio.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 1,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/source\/style\/id\/bio.scss",
+		"outputAbbreviatedPath": "\/source\/style\/public\/bio.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 3,
+		"shouldRunAutoprefixer": 1,
+		"shouldRunBless": 0,
+		"useLibsass": 1
+		},
 	"\/source\/style\/id\/height.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
