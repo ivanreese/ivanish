@@ -1382,7 +1382,7 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/source\/script.coffee",
-		"minifyOutput": 0,
+		"minifyOutput": 1,
 		"outputAbbreviatedPath": "\/public\/assets\/script.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
