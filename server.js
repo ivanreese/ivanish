@@ -1,3 +1,4 @@
+var compression = require('compression');
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -5,7 +6,7 @@ var path = require('path');
 var maxAge = 1000 * 60 * 60 * 24;
 var app = express();
 
-app.use(express.compress());
+app.use(compression());
 
 // Everything in public will be accessible from '/'
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: maxAge }));
