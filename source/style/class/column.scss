@@ -1,4 +1,5 @@
 .column {
-  width: $maxLineLength;
+  width: 100%;
+  max-width: $maxLineLength;
   margin: 0 auto;
 }
