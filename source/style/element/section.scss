@@ -1,8 +1,7 @@
 section {
   margin: 10vh 0;
-  // padding: 5vh 0;
 }
 
-section + section {
-  // border-top: 4px solid $black;
+title + section {
+  margin-top: 0;
 }

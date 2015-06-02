@@ -25,7 +25,7 @@ do ()->
       # Setup & Locals
       context = canvas.getContext "2d"
       width = canvas.width = window.innerWidth * 2
-      height = canvas.height = parseInt(window.getComputedStyle(canvas).height) * 2
+      console.log height = canvas.height = canvas.getAttribute("set-height") * 2
       
       # DRAW BACKGROUND
       # context.fillStyle = "white"

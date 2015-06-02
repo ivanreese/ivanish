@@ -1,12 +1,11 @@
 .info {
-  display: block;
   font-size: 0.75rem;
-  margin-top: 0.5rem;
-  text-transform: uppercase;
-  clear: left;
   
-  & > * {
-    display: inline-block;
-    margin-right: 1em;
+  a {
+    margin-right: 0.25em;
+  }
+  
+  span {
+    margin-left: 0.25em;
   }
 }

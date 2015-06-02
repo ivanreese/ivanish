@@ -11,3 +11,7 @@
 title + .hero {
   margin-top: 0;
 }
+
+title + section > .hero:first-child {
+  margin-top: 0;
+}
