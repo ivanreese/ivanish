@@ -3,7 +3,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 
-var maxAge = 1000 * 60 * 60 * 24;
+var maxAge = 1000 * 60 * 60 * 24 * 7; // Cache for 7 days
 var app = express();
 
 app.use(compression());
