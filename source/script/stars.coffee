@@ -1,6 +1,5 @@
-
 do ()->
-  OUTER = performance.now()
+  OUTER = performance.now() if performance?
   TAU = Math.PI * 2
   size = 4096
   seed = 754873
@@ -36,7 +35,7 @@ do ()->
       # for n, i in randTable
       #   context.fillRect(i/size * width, height - n/size * height, 2, 2)
       
-      INNER = performance.now()
+      INNER = performance.now() if performance?
       
       # Background Smudges
       # nBackgroundSmudges = width/20
@@ -231,7 +230,7 @@ do ()->
           context.arc(x, y, r * r * r, 0, TAU)
           context.fill()
     
-    # console.log Math.ceil(performance.now() - INNER), Math.ceil(performance.now() - OUTER)
+    # console.log Math.ceil(performance.now() - INNER), Math.ceil(performance.now() - OUTER) if performance?
   
   window.addEventListener "DOMContentLoaded", redraw
   window.addEventListener "resize", redraw
