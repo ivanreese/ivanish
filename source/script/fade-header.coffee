@@ -32,12 +32,12 @@ do ()->
     if Math.abs(footerDelta) > epsilon
       footer.style.opacity = footerCurrent = footerCurrent + footerDelta
       requestUpdate()
-
+  
   requestUpdate = ()->
     unless dirty
       dirty = true
       window.requestAnimationFrame(update)
-    
+  
   window.addEventListener "scroll", ()->
     fadeHeader()
     fadeFooter()

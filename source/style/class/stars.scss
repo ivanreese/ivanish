@@ -2,11 +2,9 @@
   position: relative;
   padding: 1rem;
   padding-right: 0;
-  border-top: 1px solid $black;
-  border-bottom: 1px solid $black;
   color: white;
+  background: $black;
   text-shadow: 0 0 3px $black;
-  -webkit-font-smoothing: subpixel-antialiased;
   
   a, a:visited {
     color: white;
@@ -18,7 +16,11 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -1;
+  }
+  
+  div {
+    position: relative;
+    z-index: 2;
   }
   
   @media (max-width: 330px) {
