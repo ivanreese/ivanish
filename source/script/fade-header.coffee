@@ -1,6 +1,7 @@
 do ()->
   header = document.querySelector("header")
   footer = document.querySelector("footer")
+  return unless header? and footer?
   header.style.opacity = headerTarget = headerCurrent = 1
   footer.style.opacity = footerTarget = footerCurrent = 0
   headerDelta = footerDelta = 0

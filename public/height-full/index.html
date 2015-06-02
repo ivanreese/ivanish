@@ -6,28 +6,38 @@
 <link rel="stylesheet" href="/assets/style.css">
 <script defer src="/assets/script.js"></script>
 
-<body class="full">
-
-  <main>
-    
-    <title class="hide">Height</title>
-
-    <img src="http://ivanreese.s3.amazonaws.com/height1a.png">
-    <img src="http://ivanreese.s3.amazonaws.com/height1b.png">
-    <img src="http://ivanreese.s3.amazonaws.com/height1c.png">
-    <img src="http://ivanreese.s3.amazonaws.com/height1d.png">
-    <img src="http://ivanreese.s3.amazonaws.com/height2.png">
-    <img src="http://ivanreese.s3.amazonaws.com/height3.png">
-    <img src="http://ivanreese.s3.amazonaws.com/height4.png">
-
-  </main>
+<main class="full">
   
-</body>
+  <style>
+    main {
+      font-size: 0;
+    }
+    
+    title {
+      display: none;
+    }
+    
+    img {
+      width:100%;
+      margin:0;
+      padding:0;
+      border:0;
+      
+      -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: optimizeSpeed;
+    }
+  </style>
+  
+  <title>Height</title>
 
-<footer class="stars">
-  <canvas set-height="80"></canvas>
-  <div>
-    Thanks for visiting.<br>
-    Need anything? Sing birdsong! <a href="https://twitter.com/spiralganglion">@spiralganglion</a>
-  </div>
-</footer>
+  <img src="http://ivanreese.s3.amazonaws.com/height1a.png">
+  <img src="http://ivanreese.s3.amazonaws.com/height1b.png">
+  <img src="http://ivanreese.s3.amazonaws.com/height1c.png">
+  <img src="http://ivanreese.s3.amazonaws.com/height1d.png">
+  <img src="http://ivanreese.s3.amazonaws.com/height2.png">
+  <img src="http://ivanreese.s3.amazonaws.com/height3.png">
+  <img src="http://ivanreese.s3.amazonaws.com/height4.png">
+
+</main>
