@@ -73,6 +73,15 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1
 		},
+	"\/pages\/2006.kit": {
+		"fileType": 2048,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/pages\/2006.kit",
+		"outputAbbreviatedPath": "\/public\/2006\/index.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/pages\/2007.kit": {
 		"fileType": 2048,
 		"ignore": 0,
@@ -250,6 +259,15 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/pages\/correspondence.kit",
 		"outputAbbreviatedPath": "\/public\/correspondence\/index.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/pages\/dedication-albums.kit": {
+		"fileType": 2048,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/pages\/dedication-albums.kit",
+		"outputAbbreviatedPath": "\/public\/dedication-albums\/index.html",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
@@ -845,6 +863,15 @@
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/correspondence\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/public\/dedication-albums\/index.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/dedication-albums\/index.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -1485,6 +1512,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 1
 		},
+	"\/source\/style\/class\/hide.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 1,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/source\/style\/class\/hide.scss",
+		"outputAbbreviatedPath": "\/source\/style\/public\/hide.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 3,
+		"shouldRunAutoprefixer": 1,
+		"shouldRunBless": 0,
+		"useLibsass": 1
+		},
 	"\/source\/style\/class\/info.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
@@ -1741,15 +1784,15 @@
 		"shouldRunBless": 0,
 		"useLibsass": 1
 		},
-	"\/source\/style\/id\/bio.scss": {
+	"\/source\/style\/id\/index.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 1,
 		"fileType": 4,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/source\/style\/id\/bio.scss",
-		"outputAbbreviatedPath": "\/source\/style\/public\/bio.css",
+		"inputAbbreviatedPath": "\/source\/style\/id\/index.scss",
+		"outputAbbreviatedPath": "\/source\/style\/public\/index.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 3,
