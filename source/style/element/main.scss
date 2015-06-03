@@ -3,7 +3,7 @@ main {
   width: 100%;
   max-width: $maxLineLength;
   margin: 0 auto;
-  padding: 1rem 1rem 8rem;
+  padding: 2vh 1rem 16vh;
 
   @media (max-width: 330px) {
     padding-left: 0.5rem;
