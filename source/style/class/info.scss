@@ -1,11 +1,7 @@
 .info {
   font-size: 0.75rem;
   
-  a {
-    margin-right: 0.25em;
-  }
-  
-  span {
-    margin-left: 0.25em;
+  span:last-child {
+    margin-left: 1em;
   }
 }
