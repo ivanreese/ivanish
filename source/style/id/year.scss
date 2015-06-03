@@ -21,7 +21,7 @@
       
       h2 {
         line-height: normal;
-        margin-top: -0.15em;
+        // margin-top: -0.15em;
       }
     }
     
@@ -45,8 +45,6 @@
   }
   
   .related {
-    border-top: 4px solid $black;
-    
     a {
       display: inline-block;
       font-size: 1.2em;
