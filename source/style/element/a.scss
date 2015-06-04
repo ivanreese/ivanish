@@ -4,9 +4,9 @@ a {
 }
 
 a:visited {
-  color: #508;
+  color: inherit;
 }
 
 a:hover {
-  color: #907;
+  color: $active;
 }

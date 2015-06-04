@@ -235,5 +235,5 @@ do ()->
     if debug
       console.log Math.ceil(performance.now() - INNER), Math.ceil(performance.now() - OUTER)
   
-  window.addEventListener "DOMContentLoaded", redraw
+  ready(redraw)
   window.addEventListener "resize", redraw

@@ -1,0 +1,28 @@
+$TIME: 2000ms;
+
+.chomp-away {
+  position: absolute;
+  // Top will be set dynamically
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+  
+  &.hiding {
+    opacity: 0;
+    transform: translateX(-53%);
+    transition: transform $TIME ease-in, opacity $TIME;
+  }
+}
+
+.chomp-on {
+  transform: translateX(3%);
+  opacity: 0;
+  -webkit-font-smoothing: subpixel-antialiased;
+  
+  &.showing {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: transform $TIME ease-out, opacity $TIME;
+  }
+}
