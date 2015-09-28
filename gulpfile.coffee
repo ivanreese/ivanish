@@ -37,10 +37,9 @@ gulp.task "kit", ()->
   gulp.src paths.kit.source
     # .pipe gulp_using() # Uncomment for debug
     .pipe gulp_kit()
-    .pip gulp_rename "index.html"
-    .pipe gulp.dest (vinylFile)->
-      console.log vinylFile.path
-      vinylFile.base
+    .pipe gulp_rename (file)->
+      file.basename + "/index.html"
+    .pipe gulp.dest "public"
     .pipe browser_sync.stream match: "**/*.html"
 
 
