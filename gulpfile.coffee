@@ -37,8 +37,13 @@ gulp.task "kit", ()->
   gulp.src paths.kit.source
     # .pipe gulp_using() # Uncomment for debug
     .pipe gulp_kit()
-    .pipe gulp_rename (file)->
-      file.basename + "/index.html"
+    .pipe gulp_rename (path)->
+      if path.basename is "index"
+        path.dirname = ""
+      else
+        path.dirname = path.basename
+        path.basename = "index"
+      path
     .pipe gulp.dest "public"
     .pipe browser_sync.stream match: "**/*.html"
 
