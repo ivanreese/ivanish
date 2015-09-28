@@ -4,6 +4,7 @@ gulp_autoprefixer = require "gulp-autoprefixer"
 gulp_coffee = require "gulp-coffee"
 gulp_concat = require "gulp-concat"
 gulp_kit = require "gulp-kit"
+gulp_rename = require "gulp-rename"
 gulp_sass = require "gulp-sass"
 gulp_sourcemaps = require "gulp-sourcemaps"
 gulp_using = require "gulp-using"
@@ -14,8 +15,8 @@ paths =
     source: "{bower_components,source}/**/*.coffee"
     watch: "{bower_components,source}/**/*.coffee"
   kit:
-    source: "source/index.kit"
-    watch: "{bower_components,source}/**/*.{kit,html}"
+    source: "source/pages/*.kit"
+    watch: "source/pages/*.kit"
   sass:
     source: "source/styles.scss"
     watch: "{bower_components,source}/**/*.scss"
@@ -36,7 +37,10 @@ gulp.task "kit", ()->
   gulp.src paths.kit.source
     # .pipe gulp_using() # Uncomment for debug
     .pipe gulp_kit()
-    .pipe gulp.dest "public"
+    .pip gulp_rename "index.html"
+    .pipe gulp.dest (vinylFile)->
+      console.log vinylFile.path
+      vinylFile.base
     .pipe browser_sync.stream match: "**/*.html"
 
 
