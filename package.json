@@ -1,10 +1,5 @@
 {
   "name": "ivanreese",
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ivanreese/ivanreese.git"
-  },
   "dependencies": {
     "compression": "^1.4.4",
     "express": "^4.12.3"
