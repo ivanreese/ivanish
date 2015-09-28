@@ -32,7 +32,7 @@ gulp.task "coffee", ()->
     .pipe gulp_concat "scripts.coffee"
     .pipe gulp_coffee().on "error", gulp_util.log
     .pipe gulp_sourcemaps.write "."
-    .pipe gulp.dest "public/assets"
+    .pipe gulp.dest "public/_assets"
     .pipe browser_sync.stream match: "**/*.js"
 
 
@@ -64,7 +64,7 @@ gulp.task "sass", ()->
       cascade: false
       remove: false
     .pipe gulp_sourcemaps.write "."
-    .pipe gulp.dest "public/assets"
+    .pipe gulp.dest "public/_assets"
     .pipe browser_sync.stream match: "**/*.css"
 
 
