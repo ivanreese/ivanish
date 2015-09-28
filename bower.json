@@ -1,9 +1,0 @@
-{
-  "name": "ivanreese.ca",
-  "authors": [
-    "Ivan Reese <ivanreese@gmail.com>"
-  ],
-  "devDependencies": {
-    "cd-reset": "cdig/cd-reset",
-  }
-}

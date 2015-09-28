@@ -1,5 +1,7 @@
 {
   "name": "ivanreese",
+  "version": "1.0.0",
+  "description": "A personal website for Ivan Reese",
   "dependencies": {
     "compression": "^1.4.4",
     "express": "^4.12.3"
@@ -16,5 +18,7 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-using": "0.0.1",
     "gulp-util": "^3.0.6"
-  }
+  },
+  "license": "UNLICENSED",
+  "private": true
 }
