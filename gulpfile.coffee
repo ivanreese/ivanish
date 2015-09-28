@@ -12,7 +12,10 @@ gulp_util = require "gulp-util"
 
 paths =
   coffee:
-    source: "{bower_components,source}/**/*.coffee"
+    source: [
+      "source/script/ready.coffee"
+      "{bower_components,source}/**/*.coffee"
+    ]
     watch: "{bower_components,source}/**/*.coffee"
   kit:
     source: "source/pages/*.kit"
@@ -29,7 +32,7 @@ gulp.task "coffee", ()->
     .pipe gulp_concat "scripts.coffee"
     .pipe gulp_coffee().on "error", gulp_util.log
     .pipe gulp_sourcemaps.write "."
-    .pipe gulp.dest "public"
+    .pipe gulp.dest "public/assets"
     .pipe browser_sync.stream match: "**/*.js"
 
 
@@ -60,8 +63,8 @@ gulp.task "sass", ()->
       browsers: "last 2 Chrome versions, last 2 ff versions, IE >= 10, Safari >= 8, iOS >= 8"
       cascade: false
       remove: false
-    .pipe gulp_sourcemaps.write "public"
-    .pipe gulp.dest "public"
+    .pipe gulp_sourcemaps.write "."
+    .pipe gulp.dest "public/assets"
     .pipe browser_sync.stream match: "**/*.css"
 
 
