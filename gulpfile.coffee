@@ -33,7 +33,7 @@ gulp.task "coffee", ()->
     .pipe gulp_coffee().on "error", gulp_util.log
     .pipe gulp_sourcemaps.write "."
     .pipe gulp.dest "public/_assets"
-    .pipe browser_sync.stream match: "**/*.js"
+    .pipe browser_sync.stream match: "public/assets/scripts.js"
 
 
 gulp.task "kit", ()->
@@ -48,7 +48,7 @@ gulp.task "kit", ()->
         path.basename = "index"
       path
     .pipe gulp.dest "public"
-    .pipe browser_sync.stream match: "**/*.html"
+    .pipe browser_sync.stream match: "public/**/*.html"
 
 
 gulp.task "sass", ()->
@@ -65,13 +65,12 @@ gulp.task "sass", ()->
       remove: false
     .pipe gulp_sourcemaps.write "."
     .pipe gulp.dest "public/_assets"
-    .pipe browser_sync.stream match: "**/*.css"
+    .pipe browser_sync.stream match: "public/assets/styles.css"
 
 
 gulp.task "serve", ()->
   browser_sync.init
     ghostMode: false
-    logLevel: "silent"
     server: baseDir: "public"
     ui: false
 
