@@ -1,6 +1,14 @@
 (function() {
   var ready;
 
+  ready = function(fn) {
+    if (document.readyState === "loading") {
+      return document.addEventListener("DOMContentLoaded", parseEm);
+    } else {
+      return fn();
+    }
+  };
+
   (function() {
     var HEADER_HEIGHT, TIME, chompLink, dirty, done, epsilon, holder, kill, loadPage, oldMain, parseEm, scrollTarget, show, swapPage;
     TIME = 2000;
@@ -146,14 +154,6 @@
       return requestUpdate();
     });
   })();
-
-  ready = function(fn) {
-    if (document.readyState === "loading") {
-      return document.addEventListener("DOMContentLoaded", parseEm);
-    } else {
-      return fn();
-    }
-  };
 
   (function() {
     var OUTER, TAU, debug, k, randTable, redraw, results, seed, size, swap;
