@@ -14,7 +14,6 @@ server.route
   handler:
     directory:
       path: 'public'
-      redirectToSlash: false
       index: true
 
 server.route
