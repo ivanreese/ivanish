@@ -3,8 +3,9 @@ Path = require('path')
 
 logErr = (err)-> console.log(err) if err
 
-server = new Hapi.Server()
-server.connection(port: 3000)
+server = new Hapi.Server
+  connections: routes: files: relativeTo: Path.join __dirname, 'public'
+server.connection(port: process.env.PORT or 3000)
 server.register require('inert'), logErr
 server.register require('vision'), logErr
 
@@ -13,7 +14,7 @@ server.route
   path: '/{param*}'
   handler:
     directory:
-      path: 'public'
+      path: '.'
       index: true
 
 server.route
