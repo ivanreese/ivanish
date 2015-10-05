@@ -10,15 +10,13 @@
   };
 
   (function() {
-    var dirty, epsilon, fadeFooter, fadeHeader, footer, footerCurrent, footerDelta, footerTarget, header, headerCurrent, headerDelta, headerTarget, requestUpdate, update;
+    var dirty, epsilon, fadeHeader, header, headerCurrent, headerDelta, headerTarget, requestUpdate, update;
     header = document.querySelector("header");
-    footer = document.querySelector("footer");
-    if (!((header != null) && (footer != null))) {
+    if (header == null) {
       return;
     }
     header.style.opacity = headerTarget = headerCurrent = 1;
-    footer.style.opacity = footerTarget = footerCurrent = 0;
-    headerDelta = footerDelta = 0;
+    headerDelta = 0;
     dirty = false;
     epsilon = 0.0001;
     fadeHeader = function() {
@@ -28,24 +26,11 @@
       opacity = Math.min(1, Math.max(0, opacity));
       return headerTarget = opacity;
     };
-    fadeFooter = function() {
-      var opacity, scrollBottom;
-      scrollBottom = document.body.scrollTop + window.innerHeight;
-      opacity = (scrollBottom - document.body.scrollHeight + footer.offsetHeight) / footer.offsetHeight;
-      opacity = opacity * opacity * opacity;
-      opacity = Math.min(1, Math.max(0, opacity));
-      return footerTarget = opacity;
-    };
     update = function() {
       dirty = false;
       headerDelta = (headerTarget - headerCurrent) / 5;
       if (Math.abs(headerDelta) > epsilon) {
         header.style.opacity = headerCurrent = headerCurrent + headerDelta;
-        requestUpdate();
-      }
-      footerDelta = (footerTarget - footerCurrent) / 5;
-      if (Math.abs(footerDelta) > epsilon) {
-        footer.style.opacity = footerCurrent = footerCurrent + footerDelta;
         return requestUpdate();
       }
     };
@@ -57,7 +42,6 @@
     };
     return window.addEventListener("scroll", function() {
       fadeHeader();
-      fadeFooter();
       return requestUpdate();
     });
   })();
