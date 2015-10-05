@@ -8,12 +8,24 @@
       font-size: 3em;
       line-height: 1.3em;
     }
-    
-    #index #bio h1 {
-      margin-left: -6px;
+
+    #index .hero img {
+      width: 100%;
+      max-width: 30em;
+      border-radius: 100%;
     }
     
-    #index #cv h1 {
+    @media (max-width: 550px) {
+      #index .hero img {
+        border-radius: 0;
+      }
+    }
+    
+    #index #bio h1 {
+      margin-left: -4px;
+    }
+    
+    #index #contact h1 {
       margin-left: -3px;
     }
     
@@ -24,18 +36,19 @@
   
   <title class="hide">Ivan Reese</title>
   
+  <div class="hero">
+    <img src="http://ivanreese.s3.amazonaws.com/index/bio-portrait.jpg">
+  </div>
+  
   <section id="announcing">
     <h1>Announcing</h1>
-    <p>Welcome to my website. It's an online archive of the many projects that I've cranked out over the years, from my <a href="/3d-studio-max">early 3D art</a>, various <a href="/a-shrinking-feeling">music releases</a>, to the occasional <a href="/are-we-small-yet">code experiment</a>. The glue is still drying on the server, so let me know if anything seems broken.</p>
+    <p>Welcome to my <i>web site</i>. It's an internet archive of the many projects that I've cranked out over the years, from my <a href="/3d-studio-max">early 3D art</a>, various <a href="/a-shrinking-feeling">music releases</a>, to the occasional <a href="/are-we-small-yet">code experiment</a>. The glue is still drying on the server, so <a href="/contact">let me know</a> if anything seems super squirrelly.</p>
     <p>Where to start? Well, you can keep reading this page for my bio and CV, or jump directly to the projects, <a href="/types">by type</a> or <a href="/time">by time</a>. I recommend checking out <a href="/2013">2013</a>, which was one of my more productive years.
   </section>
   
 
   <section id="bio">
     <h1>Bio</h1>
-    <div class="hero">
-      <img src="http://ivanreese.s3.amazonaws.com/index/bio-portrait.jpg">
-    </div>
     
     <div class="columns">
       <p>
@@ -78,6 +91,12 @@
       </div>
     </p>
     
+    <div class="label">Curriculum Vitae</div>
+    <a href="/cv">Here you go!</a>
+  </section>
+  
+  <section id="contact">
+    <h1>Contact</h1>
     <div class="label">Around The Web</div>
     <p>
       <a href="https://spiralganglion.bandcamp.com">Bandcamp</a>
@@ -94,13 +113,9 @@
       <a href="https://twitter.com/spiralganglion">Twitter</a>
       <a href="https://en.wikipedia.org/wiki/Ganglion_(band)">Wikipedia</a>
     </p>
+
   </section>
   
-  <section id="cv">
-    <h1>CV</h1>
-    <a href="/cv">Here you go!</a>
-  </section>
-
   <section class="related">
     Where to go next? Check out my work —
     <a href="/type">by type</a> or <a href="/time">by time</a>.
