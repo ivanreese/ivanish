@@ -9,29 +9,40 @@
 <header class="stars">
   <canvas set-height="56"></canvas>
   <div>
-    Creative work of <a href="/">Ivan Reese</a>, by <a href="/type">type</a> or by <a href="/time">time</a>.
+    Creative work of <a class="header-index-link" href="/">Ivan Reese</a>, by <a href="/type">type</a> or by <a href="/time">time</a>.
   </div>
 </header>
 
 <main id="index">
   
   <style>
+    .header-index-link {
+      text-decoration: none;
+    }
+    
+    main {
+      padding: 8vh 3vw 16vh;
+    }
+    
+    #index .hero {
+      margin-top: 1em;
+    }
+    
+    #index .hero img {
+      width: 500px;
+      max-width: 100%;
+      border-radius: 100%;
+    }
+    
+    @media (max-width: 800px) {
+      main { padding-top: 0; }
+      #index .hero img { border-radius: 0; }
+    }
+    
     #index h1 {
       margin: 0 0 4vh;
       font-size: 3em;
       line-height: 1.3em;
-    }
-
-    #index .hero img {
-      width: 100%;
-      max-width: 30em;
-      border-radius: 100%;
-    }
-    
-    @media (max-width: 550px) {
-      #index .hero img {
-        border-radius: 0;
-      }
     }
     
     #index #bio h1 {
@@ -40,10 +51,6 @@
     
     #index #contact h1 {
       margin-left: -3px;
-    }
-    
-    #index section + section {
-      margin-top: 24vh;
     }
   </style>
   
@@ -55,8 +62,9 @@
   
   <section id="announcing">
     <h1>Announcing</h1>
-    <p>Welcome to my <i>web site</i>. It's an internet archive of the many projects that I've cranked out over the years, from my <a href="/3d-studio-max">early 3D art</a>, various <a href="/a-shrinking-feeling">music releases</a>, to the occasional <a href="/are-we-small-yet">code experiment</a>. The glue is still drying on the server, so <a href="/contact">let me know</a> if anything seems super squirrelly.</p>
-    <p>Where to start? Well, you can keep reading this page for my bio and CV, or jump directly to the projects, <a href="/types">by type</a> or <a href="/time">by time</a>. I recommend checking out <a href="/2013">2013</a>, which was one of my more productive years.
+    <p>Welcome to my new<sup>•</sup> internet web site. It is an archive of projects I've cranked out over the years, from my <a href="/3d-studio-max">early 3D art</a>, various <a href="/a-shrinking-feeling">music releases</a>, to the occasional <a href="/are-we-small-yet">code experiment</a>. The glue is still drying on the server, the CSS is still a little under-ripe, so <a href="/contact">let me know</a> if anything seems super squirrelly.</p>
+    <p>Where to start? Well you can keep reading this page. Or, jump directly to the projects <a href="/types">by type</a> or <a href="/time">by time</a>. I advise checking out <a href="/2013">2013</a>, which was one of my more productive years.</p>
+    <p><small><sup>•</sup>circa 2017</small></p>
   </section>
   
 

@@ -1,5 +1,6 @@
 .stars {
   position: relative;
+  text-align: center;
   background: $black;
   
   a, a:visited {
@@ -15,16 +16,12 @@
   }
   
   div {
+    display: inline-block;
     position: relative;
     padding: 1em 1rem;
-    padding-right: 0;
+    text-align: left;
     color: white;
-    text-shadow: 0 0 3px $black;
     z-index: 2;
     -webkit-font-smoothing: subpixel-antialiased;
-  }
-  
-  @media (max-width: 400px) {
-    padding-left: 0.5rem;
   }
 }

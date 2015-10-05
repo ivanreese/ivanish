@@ -77,7 +77,7 @@ do ()->
         x = (x * width / size)|0
         y = (y * height / size)|0
         r = r / size * 3 + 1
-        l = l / size * 20 + 80
+        l = l / size * 20 + 40
         o = o / size * Math.min(10 * decrease, 0.3) + 0.3
         c = c / size * 120 + 200
         sx = (sx / size * 2 - 1) * Math.abs(r)
@@ -188,7 +188,7 @@ do ()->
         y = (y * height / size)|0
         w = w / size * 3 + 1
         h = h / size * 3 + 1
-        l = l / size * 30 + 30
+        l = l / size * 20 + 30
         o = o / size * 10 * decrease
         c = c / size * 60 + 260
         context.fillStyle = "hsla(#{c}, 40%, #{l}%, #{o})"
@@ -209,7 +209,7 @@ do ()->
         x = (x * width / size)|0
         y = (y * height / size)|0
         r = r / size * 2 + 0.5
-        l = l / size * 50 + 30
+        l = l / size * 30 + 30
         o = o / size * 10 * decrease
         c = c / size * 20 + 280
         context.beginPath()
