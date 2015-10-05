@@ -18,10 +18,13 @@
   div {
     display: inline-block;
     position: relative;
-    padding: 1em 1rem;
+    font-size: 1.1em;
+    padding: 1rem .2rem;
     text-align: left;
     color: white;
     z-index: 2;
     -webkit-font-smoothing: subpixel-antialiased;
+    
+    @media (max-width: 450px) { font-size: 1em; }
   }
 }
