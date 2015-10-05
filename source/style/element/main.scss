@@ -1,9 +1,12 @@
 main {
-  flex: 1 0 auto;
   width: 100%;
   max-width: $maxLineLength;
   margin: 0 auto;
-  padding: 8vh 3vw 16vh;
+  padding: 8vh 2em 16vh;
+  
+  @media (max-width: $maxLineLength) {
+    padding: 8vh 3vw 16vh;
+  }
 }
 
 main.full {
