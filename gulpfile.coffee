@@ -19,10 +19,15 @@ paths =
     watch: "{bower_components,source}/**/*.coffee"
   kit:
     source: "source/pages/*.kit"
-    watch: "source/pages/*.kit"
+    watch: "source/**/*.kit"
   sass:
     source: "source/styles.scss"
     watch: "{bower_components,source}/**/*.scss"
+
+
+onError = (err)->
+  console.error "Tell Ivan!", err.message
+  @emit "end"
 
 
 gulp.task "coffee", ()->
@@ -32,8 +37,9 @@ gulp.task "coffee", ()->
     .pipe gulp_concat "scripts.coffee"
     .pipe gulp_coffee().on "error", gulp_util.log
     .pipe gulp_sourcemaps.write "."
+    .on "error", onError
     .pipe gulp.dest "public/_assets"
-    .pipe browser_sync.stream match: "public/assets/scripts.js"
+    .pipe browser_sync.stream match: "**/*.js"
 
 
 gulp.task "kit", ()->
@@ -47,8 +53,9 @@ gulp.task "kit", ()->
         path.dirname = path.basename
         path.basename = "index"
       path
+    .on "error", onError
     .pipe gulp.dest "public"
-    .pipe browser_sync.stream match: "public/**/*.html"
+    .pipe browser_sync.stream match: "**/*.html"
 
 
 gulp.task "sass", ()->
@@ -64,18 +71,27 @@ gulp.task "sass", ()->
       cascade: false
       remove: false
     .pipe gulp_sourcemaps.write "."
+    .on "error", onError
     .pipe gulp.dest "public/_assets"
-    .pipe browser_sync.stream match: "public/assets/styles.css"
+    .pipe browser_sync.stream match: "**/*.css"
 
 
 gulp.task "serve", ()->
   browser_sync.init
+    files: [
+        "./**/*.html"
+        "./_assets/scripts.js"
+        "./_assets/styles.css"
+      ]
     ghostMode: false
-    server: baseDir: "public"
+    server:
+      baseDir: "./public"
     ui: false
+    watchOptions:
+      ignored: "*.map"
 
 
-gulp.task "default", ["coffee", "kit", "sass", "serve"], ()->
+gulp.task "default", ["serve", "coffee", "kit", "sass"], ()->
   gulp.watch paths.coffee.watch, ["coffee"]
   gulp.watch paths.kit.watch, ["kit"]
   gulp.watch paths.sass.watch, ["sass"]
