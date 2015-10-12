@@ -109,6 +109,7 @@ gulp.task "sass", ()->
 gulp.task "serve", ()->
   browser_sync.init
     ghostMode: false
+    online: false
     server:
       baseDir: "public"
     ui: false
