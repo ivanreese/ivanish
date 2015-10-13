@@ -58,9 +58,6 @@ gulp.task "coffee", ()->
     .pipe gulp.dest "public/_assets"
     .pipe browser_sync.stream
       match: "**/*.js"
-    .pipe gulp_notify
-      title: "👍"
-      message: "CoffeeScript"
 
 
 gulp.task "kit", ()->
@@ -78,9 +75,6 @@ gulp.task "kit", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.html"
-    .pipe gulp_notify
-      title: "👍"
-      message: "HTML"
 
 
 gulp.task "scss", ["sass"]
@@ -101,9 +95,6 @@ gulp.task "sass", ()->
     .pipe gulp.dest "public/_assets"
     .pipe browser_sync.stream
       match: "**/*.css"
-    .pipe gulp_notify
-      title: "👍"
-      message: "CSS"
 
 
 gulp.task "serve", ()->

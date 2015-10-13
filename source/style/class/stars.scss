@@ -1,7 +1,7 @@
 .stars {
   position: relative;
   text-align: center;
-  background: $black;
+  background: linear-gradient(to bottom right, hsl(210, 50%, 12%), hsl(311,100%,0%), hsl(0, 50%, 15%));
   
   a, a:visited {
     color: white;
@@ -19,7 +19,7 @@
     display: inline-block;
     position: relative;
     font-size: 1.1em;
-    padding: 1rem .2rem;
+    padding: 2rem .2rem;
     text-align: left;
     color: white;
     z-index: 2;
