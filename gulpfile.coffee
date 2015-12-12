@@ -48,8 +48,8 @@ gulp_notify.on "click", ()->
 
 logAndKillError = (err)->
   beepbeep()
-  console.log gulp_util.colors.bgRed("\n## Error ##")
-  console.log gulp_util.colors.red err.message + "\n"
+  console.log chalk.bgRed("\n## Error ##")
+  console.log chalk.red err.message + "\n"
   gulp_notify.onError(
     emitError: true
     icon: false
