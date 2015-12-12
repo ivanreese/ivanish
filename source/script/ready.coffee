@@ -3,3 +3,4 @@ ready = (fn)->
     document.addEventListener "DOMContentLoaded", parseEm
   else
     fn()
+  return fn # pass-through

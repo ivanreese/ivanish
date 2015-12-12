@@ -20,7 +20,7 @@ do ()->
       j = (j + seed + randTable[i]) % size
       swap(i, j, randTable)
   
-  redraw = ()->
+  window.addEventListener "resize", ready ()->
     canvases = document.querySelectorAll "canvas"
     for canvas in canvases
       # Setup & Locals
@@ -262,6 +262,3 @@ do ()->
     
     if debug
       console.log Math.ceil(performance.now() - INNER), Math.ceil(performance.now() - OUTER)
-  
-  ready(redraw)
-  window.addEventListener "resize", redraw
