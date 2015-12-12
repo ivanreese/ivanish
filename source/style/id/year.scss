@@ -5,7 +5,7 @@
     align-items: center;
     margin: 5vh 0;
     
-    & > a {
+    .image {
       flex: 0 0 auto;
       margin-right: 0.75rem;
       
@@ -16,7 +16,7 @@
       }
     }
     
-    & > div {
+    .info {
       flex: 0 1 auto;
       
       h2 {
