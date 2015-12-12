@@ -108,6 +108,9 @@ gulp.task "kit", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.html"
+    .pipe gulp_notify
+      title: "👍"
+      message: "Kit"
 
 
 gulp.task "sass", ["scss"]
