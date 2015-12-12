@@ -11,8 +11,8 @@
       
       img {
         border: 1px solid $black;
-        width: 102px;
-        height: 102px;
+        width: 152px;
+        height: 152px;
       }
     }
     
@@ -27,6 +27,7 @@
     .continue {
       display: inline-block;
       padding: 0 0.5em 0.25em;
+      margin-left: .25em;
       text-transform: lowercase;
       font-variant: small-caps;
       border-radius: 2px;
