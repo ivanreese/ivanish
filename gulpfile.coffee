@@ -28,7 +28,7 @@ paths =
     source: "source/**/*.coffee"
     watch: "source/**/*.coffee"
   kit:
-    source: "source/pages/*.kit"
+    source: "source/pages/**/*.kit"
     watch: "source/**/*.kit"
   scss:
     source: [
@@ -102,7 +102,7 @@ gulp.task "kit", ()->
       if path.basename is "index"
         path.dirname = ""
       else
-        path.dirname = path.basename
+        path.dirname = path.dirname + "/" + path.basename
         path.basename = "index"
       return path
     .pipe gulp.dest "public"

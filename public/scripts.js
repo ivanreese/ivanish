@@ -56,7 +56,7 @@
     TAU = Math.PI * 2;
     size = 4096;
     half_size = size / 2;
-    seed = 754874;
+    seed = Math.random() * 999999 | 0;
     randTable = (function() {
       results = [];
       for (var k = 0; 0 <= size ? k < size : k > size; 0 <= size ? k++ : k--){ results.push(k); }

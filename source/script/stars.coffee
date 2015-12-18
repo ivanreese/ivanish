@@ -5,7 +5,8 @@ do ()->
   TAU = Math.PI * 2
   size = 4096
   half_size = size/2
-  seed = 754874
+  # seed = 754874
+  seed = Math.random() * 999999 |0
   randTable = [0...size]
   
   swap = (i, j, p)->
