@@ -42,18 +42,24 @@
       padding: 0 3vw 16vh;
     }
     
-    #index .hero img {
+    #index .hero {
       position: relative;
+      justify-content: center;
       height: 70vh;
-      margin-top: -15vh;
-      min-height: 20em;
-      vertical-align: middle;
+      margin-top: -14vh;
+      width: 100%;
       border-radius: 100%;
+      background-image: url("http://ivanreese.s3.amazonaws.com/index/bio-portrait.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top center;
     }
     
-    @media (max-width: 800px) {
-      main { padding-top: 0; }
-      #index .hero img { border-radius: 0; }
+    @media (max-width: 70vh) {
+      #index .hero {
+        margin-top: 3vw;
+        border-radius: 0;
+      }
     }
     
     #index h1 {
@@ -73,9 +79,7 @@
   
   <title class="hide">Ivan Reese</title>
   
-  <div class="hero">
-    <img src="http://ivanreese.s3.amazonaws.com/index/bio-portrait.jpg">
-  </div>
+  <div class="hero"></div>
   
   <section>
     <h1>About</h1>
