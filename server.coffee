@@ -17,11 +17,6 @@ server.route
       path: '.'
       index: true
 
-server.route
-  method: 'GET'
-  path: '/items'
-  handler: (req, rep)-> rep("Sup?")
-
 server.start (err)->
   if err? then throw err
   console.log 'Server running at:', server.info.uri
