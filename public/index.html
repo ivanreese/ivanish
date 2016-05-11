@@ -14,12 +14,22 @@
 <link rel="icon" href="/assets/favicon-192x192.png" sizes="192x192">
 <link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32"><!-- Must come last -->
 <link rel="stylesheet" href="/styles.css">
+<script>
+window.ready = function(fn) {
+  if (document.readyState == "loading") {
+    document.addEventListener("DOMContentLoaded", parseEm);
+  } else {
+    fn();
+  }
+  return fn; // pass-through
+}
+</script>
 <script defer src="/scripts.js"></script>
 </head>
 <body>
 
 <header class="stars">
-  <canvas></canvas>
+  <canvas class="js-stars"></canvas>
   <div>
     The creative work of <a class="header-index-link" href="/">Ivan Reese</a>, by <a href="/type">type</a> or <a href="/time">time</a>.
   </div>
@@ -34,37 +44,67 @@
     
     .stars div {
       padding: 0 .2rem;
-      height: 50vh;
-      line-height: 40vh;
+      height: 100vh;
+      line-height: 80vh;
+      font-size: 1.4em;
+    }
+    
+    @media (max-width: 600px) {
+      .stars div {
+        font-size: 1.0em;
+      }
     }
     
     main {
       padding: 0 3vw 16vh;
     }
     
+    @media(min-width:58em) {
+      main {
+        padding: 0 0 16vh;
+      }
+    }
+    
     #index .hero {
-      position: relative;
-      justify-content: center;
+      position: absolute; /* Force the hero to draw on top of the header. */
+      top: 64vh;
+      left: 50%;
+      width: 70vh;
       height: 70vh;
-      margin-top: -14vh;
+      margin-left: -35vh;
+      border-radius: 100%;
+    }
+    
+    @media(max-width: 70vh) {
+      #index .hero {
+        top: auto;
+        bottom: -49vw;
+        left: 0;
+        margin: 0;
+        width: 100vw;
+        height: 100vw;
+      }
+    }
+    
+    #index .hero canvas {
       width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      background-color: hsl(7, 7%, 73%);
       background-image: url("http://ivanreese.s3.amazonaws.com/index/bio-portrait.jpg");
       background-size: contain;
       background-repeat: no-repeat;
       background-position: top center;
     }
     
-    @media (max-width: 70vh) {
-      #index .hero {
-        margin-top: 3vw;
-        border-radius: 0;
-      }
-    }
-    
     #index h1 {
-      margin: 0 0 4vh;
+      margin: 30vh 0 4vh;
       font-size: 3em;
       line-height: 1.3em;
+    }
+    
+    #index #about h1 {
+      margin-top: 40vh;
     }
     
     #index #bio h1 {
@@ -78,13 +118,21 @@
   
   <title class="hide">Ivan Reese</title>
   
-  <div class="hero"></div>
+  <div class="hero">
+    <canvas class="js-bio"></canvas>
+  </div>
   
-  <section>
+  <section id="about">
     <h1>About</h1>
     <div class="columns">
-      <p>I'm a computer programmer, musician, and recovering artist from Canada. This website is an archive of playful things I made for myself and others. Some of it might chance to delight you, but at the very least, surely none of it will cause permanent discomfort.</p>
-      <p>Where to start? Well you can keep reading this page to learn more about me. Or, jump directly to the projects <a href="/type">by type</a> or <a href="/time">by time</a>. I advise checking out <a href="/year/2013">2013</a>, which was one of my more productive years.</p>
+      <p>
+        I'm a computer programmer, musician, and recovering artist from Canada.
+        This website is an archive of playful things I've made for myself and others.
+      </p>
+      <p>
+        Where to start? Keep reading this page to learn more about me,
+        or start perusing the projects <a href="/type">by type</a> or <a href="/time">by time</a>.
+      </p>
     </div>
   </section>
   
@@ -129,7 +177,14 @@
     <p>
       <div class="label">Personal History</div>
       <div class="columns">
-        In my teens I self-taught 3D animation, thinking that I'd rather enjoy a career as a computer artist. Thankfully, just before art college destroyed my life for the wrong muse, I realized my passion was for the technology, not the artistry. So I ripped my career in half: computer programming for the fortune, and music/art for the fame. Thus, the stuff featured on this site sits in the space bounded by these interests — software, music, art, and their mutant offspring. Granted, I have neither fame nor fortune, but if you only aim for Mars, you'll never get to <a href="https://en.wikipedia.org/wiki/Triangulum_Galaxy" target="_blank">M33</a>.
+        In my teens I self-taught 3D animation, thinking that I'd rather enjoy a career as a computer artist.
+        Thankfully, just before art college destroyed my life for the wrong muse,
+        I realized my passion was for the technology, not the artistry.
+        So I ripped my career in half: computer programming for the fortune, and music/art for the fame.
+        Thus, the stuff featured on this site sits in the space bounded by these interests —
+        software, music, art, and their mutant offspring.
+        Granted, I have neither fame nor fortune, but if you only aim for Mars, you'll never get to
+        <a href="https://en.wikipedia.org/wiki/Triangulum_Galaxy" target="_blank">M33</a>.
       </div>
     </p>
     

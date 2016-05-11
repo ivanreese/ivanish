@@ -72,10 +72,7 @@ gulp.task "assets", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.{#{assetTypes}}"
-    .pipe gulp_notify
-      title: "👍"
-      message: "Assets"
-  
+        
 
 gulp.task "coffee", ()->
   gulp.src paths.coffee.source
@@ -88,10 +85,7 @@ gulp.task "coffee", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.js"
-    .pipe gulp_notify
-      title: "👍"
-      message: "Coffee"
-
+      
 
 gulp.task "kit", ()->
   gulp.src paths.kit.source
@@ -108,10 +102,7 @@ gulp.task "kit", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.html"
-    .pipe gulp_notify
-      title: "👍"
-      message: "Kit"
-
+      
 
 gulp.task "sass", ["scss"]
 gulp.task "scss", ()->
@@ -132,10 +123,7 @@ gulp.task "scss", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.css"
-    .pipe gulp_notify
-      title: "👍"
-      message: "SCSS"
-
+      
 
 gulp.task "serve", ()->
   browser_sync.init

@@ -1,33 +1,16 @@
 do ()->
   debug = false
   
-  OUTER = performance.now() if debug
-  TAU = Math.PI * 2
-  size = 4096
-  half_size = size/2
-  # seed = 754874
-  seed = Math.random() * 999999 |0
-  randTable = [0...size]
-  
-  swap = (i, j, p)->
-    tmp = p[i]
-    p[i] = p[j]
-    p[j] = tmp
-  
-  # Initialize the randomness table
-  do ()->
-    j = 0
-    for i in [0...size]
-      j = (j + seed + randTable[i]) % size
-      swap(i, j, randTable)
-  
   window.addEventListener "resize", ready ()->
-    canvases = document.querySelectorAll "canvas"
+    canvases = document.querySelectorAll "canvas.js-stars"
     for canvas in canvases
       # Setup & Locals
       context = canvas.getContext "2d"
       width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2
       height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * 2
+      
+      # This lets us define things in terms of a "natural" display size — aka a biased vw
+      wscale = width/3000
       
       # DRAW BACKGROUND
       # context.fillStyle = "white"
@@ -63,8 +46,7 @@ do ()->
       #   context.fillStyle = "hsla(#{c}, 30%, #{l}%, #{o})"
       #   context.fillRect(x, y, w, h)
       
-
-      # Big Star Color
+      # Star Color
       nBigStars = width/100
       for i in [0..nBigStars]
         increase = i/nBigStars # get bigger as i increases
@@ -85,9 +67,9 @@ do ()->
         context.fillStyle = "hsla(#{c}, 40%, #{l}%, #{o})"
         context.arc(x, y, r, 0, TAU)
         context.fill()
-
-
-      # Big Star Glow
+      
+      
+      # Star Glow
       nBigStars = width/200
       for i in [0..nBigStars]
         x = randTable[i % size]
@@ -104,39 +86,66 @@ do ()->
         context.fillStyle = "hsla(0, 0%, 100%, 1)"
         context.arc(x + sx, y + sy, r, 0, TAU)
         context.fill()
-
       
-      # Blue Blobs
+      
+      # Big Blue Blobs
       nBlueBlobs = width/20
       for i in [0..nBlueBlobs]
         increase = i/nBlueBlobs # get bigger as i increases
         decrease = (1 - increase) # get smaller as i increases
-        o = randTable[(i + 123) % size]
-        x = randTable[o]
+        x = randTable[(i + 123) % size]
         y = randTable[x]
         r = randTable[y]
         l = randTable[r]
         h = randTable[l]
-        x = (x * width / size)|0
-        y = (y * height / size)|0
-        r = r / size * 40 * decrease + 4
-        s = l / size * 50 + 30
-        l = l / size * 20 * decrease + 10
-        o = o / size * 0.3 * increase + 0.05
-        h = h / size * 20 + 260
+        x = (x / size * width)|0
+        y = (y / size * height)|0
+        r = r / size * 100 * wscale * decrease + 20
+        s = l / size * 40 + 30
+        l = l / size * 40 * decrease + 5
+        h = h / size * 30 + 200
         context.beginPath()
-        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, #{o})"
+        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, 0.01)"
         context.arc(x, y, r, 0, TAU)
         context.fill()
         context.beginPath()
-        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, #{o/2})"
+        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, 0.009)"
         context.arc(x, y, r * 2, 0, TAU)
         context.fill()
         context.beginPath()
-        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, #{o/4})"
+        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, 0.008)"
         context.arc(x, y, r * 3, 0, TAU)
         context.fill()
-            
+      
+      # Small Blue Blobs
+      nSmallBlueBlobs = width/30
+      for i in [0..nSmallBlueBlobs]
+        increase = i/nSmallBlueBlobs # get bigger as i increases
+        decrease = (1 - increase) # get smaller as i increases
+        x = randTable[(i + 473) % size]
+        y = randTable[x]
+        r = randTable[y]
+        l = randTable[r]
+        h = randTable[l]
+        x = (x / size * width*2/3 + width/3)|0
+        y = (y / size * height)|0
+        r = r / size * 20 * wscale * decrease + 5
+        s = l / size * 30 + 40
+        l = l / size * 40 * decrease + 20
+        h = h / size * 50 + 200
+        context.beginPath()
+        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, 0.03)"
+        context.arc(x, y, r, 0, TAU)
+        context.fill()
+        context.beginPath()
+        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, 0.02)"
+        context.arc(x, y, r * 2, 0, TAU)
+        context.fill()
+        context.beginPath()
+        context.fillStyle = "hsla(#{h}, #{s}%, #{l}%, 0.01)"
+        context.arc(x, y, r * 3, 0, TAU)
+        context.fill()
+      
       # Purple Blobs
       nPurpBlobs = width/20
       for i in [0..nPurpBlobs]
@@ -147,18 +156,18 @@ do ()->
         r = randTable[y]
         l = randTable[r]
         o = randTable[l]
-        x = (x * width / size)|0
-        y = (y * height / size)|0
-        r = r / size * 200 * decrease + 2
-        l = l / size * 12 * increase + 7
-        o = o / size * 0.1 * decrease + 0.01
+        x = (x / size * width*2/3 + width*1/6)|0
+        y = (y / size * height*2/3 + height*1/6)|0
+        r = r / size * 300 * wscale * decrease + 30
+        l = l / size * 10 * increase + 9
+        o = o / size * 0.03 * decrease + 0.03
         context.beginPath()
         context.fillStyle = "hsla(290, 100%, #{l}%, #{o})"
         context.arc(x, y, r, 0, TAU)
         context.fill()
       
       # Red Blobs
-      nRedBlobs = width/50
+      nRedBlobs = width/20
       for i in [0..nRedBlobs]
         increase = i/nRedBlobs # get bigger as i increases
         decrease = (1 - increase) # get smaller as i increases
@@ -168,22 +177,22 @@ do ()->
         r = randTable[y]
         l = randTable[r]
         h = randTable[l]
-        x = (x * width / size)|0
-        y = (y * height / size)|0
-        r = r / size * 10 * decrease + 20
-        l = l / size * 20 * decrease + 5
-        o = o / size * 0.3 * increase + 0.05
+        x = (x / size * width)|0
+        y = (y / size * height)|0
+        r = r / size * 100 * wscale * decrease + 20
+        l = l / size * 30 * decrease + 30
+        o = o / size * 0.01 + 0.002
         h = h / size * 30 + 350
         context.beginPath()
         context.fillStyle = "hsla(#{h}, 100%, #{l}%, #{o})"
         context.arc(x, y, r, 0, TAU)
         context.fill()
         context.beginPath()
-        context.fillStyle = "hsla(#{h}, 100%, #{l}%, #{o/2})"
+        context.fillStyle = "hsla(#{h}, 100%, #{l}%, #{o*3/4})"
         context.arc(x, y, r * 2, 0, TAU)
         context.fill()
         context.beginPath()
-        context.fillStyle = "hsla(#{h}, 100%, #{l}%, #{o/4})"
+        context.fillStyle = "hsla(#{h}, 100%, #{l}%, #{o/2})"
         context.arc(x, y, r * 3, 0, TAU)
         context.fill()
       
@@ -207,7 +216,7 @@ do ()->
         c = c / size * 40 + 240
         context.fillStyle = "hsla(#{c}, 30%, #{l}%, #{o})"
         context.fillRect(x, y, w, h)
-
+      
       
       # Small Round Stars
       nSmallRoundStars = width/20
@@ -246,20 +255,20 @@ do ()->
       
       
       # Pixel Stars
-      pixelStars = width/6
+      pixelStars = width/5
       for i in [0..pixelStars]
         x = randTable[(i + 5432) % size]
         y = randTable[x]
         o = randTable[y]
         x = (x * width / size)|0
         y = (y * height / size)|0
-        o = o / size * 0.6 + 0.4
+        o = o / size * 0.3 + 0.7
         context.beginPath()
         context.fillStyle = "hsla(300, 30%, 50%, #{o})"
-        # context.arc(x, y, 1, 0, TAU)
-        context.fillRect(x, y, 1, 1)
+        context.arc(x, y, 1, 0, TAU)
         context.fill()
-        
+      
     
     if debug
-      console.log Math.ceil(performance.now() - INNER), Math.ceil(performance.now() - OUTER)
+      console.log "STARS"
+      console.log Math.ceil(performance.now() - INNER)
