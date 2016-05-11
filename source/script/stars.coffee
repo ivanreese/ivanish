@@ -59,7 +59,7 @@ do ()->
         o = randTable[c]
         x = (x * width / size)|0
         y = (y * height / size)|0
-        r = r / size * 3 + 1
+        r = r / size * 3 + 1.5
         l = l / size * 20 + 20
         o = o / size * 10 * decrease + 0.3
         c = c / size * 120 + 200
@@ -70,7 +70,7 @@ do ()->
       
       
       # Star Glow
-      nBigStars = width/200
+      nBigStars = width/100
       for i in [0..nBigStars]
         x = randTable[i % size]
         y = randTable[x]
@@ -85,6 +85,26 @@ do ()->
         context.beginPath()
         context.fillStyle = "hsla(0, 0%, 100%, 1)"
         context.arc(x + sx, y + sy, r, 0, TAU)
+        context.fill()
+
+      # Planets
+      nBigStars = width/100
+      for i in [0..nBigStars]
+        increase = i/nBigStars # get bigger as i increases
+        decrease = (1 - increase) # get smaller as i increases
+        x = randTable[(i + 239) % size]
+        y = randTable[x]
+        r = randTable[y]
+        l = randTable[r]
+        c = randTable[l]
+        x = (x * width / size)|0
+        y = (y * height / size)|0
+        r = r / size * wscale * 5 * decrease + 2
+        l = l / size * 20 + 10
+        c = (c / size * 180 + 200) % 360
+        context.beginPath()
+        context.fillStyle = "hsla(#{c}, 50%, #{l}%, 0.5)"
+        context.arc(x, y, r, 0, TAU)
         context.fill()
       
       

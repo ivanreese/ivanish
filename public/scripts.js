@@ -117,7 +117,7 @@
     var debug;
     debug = false;
     return window.addEventListener("resize", ready(function() {
-      var INNER, aa, ab, ac, c, canvas, canvases, context, decrease, h, height, i, increase, l, len, m, n, nBSmallSquareStars, nBigStars, nBlueBlobs, nPurpBlobs, nRedBlobs, nSmallBlueBlobs, nSmallRoundStars, o, pixelStars, q, r, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, s, sx, sy, t, u, v, w, width, wscale, x, y, z;
+      var INNER, aa, ab, ac, ad, c, canvas, canvases, context, decrease, h, height, i, increase, l, len, m, n, nBSmallSquareStars, nBigStars, nBlueBlobs, nPurpBlobs, nRedBlobs, nSmallBlueBlobs, nSmallRoundStars, o, pixelStars, q, r, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, s, sx, sy, t, u, v, w, width, wscale, x, y, z;
       canvases = document.querySelectorAll("canvas.js-stars");
       for (m = 0, len = canvases.length; m < len; m++) {
         canvas = canvases[m];
@@ -142,7 +142,7 @@
           o = randTable[c];
           x = (x * width / size) | 0;
           y = (y * height / size) | 0;
-          r = r / size * 3 + 1;
+          r = r / size * 3 + 1.5;
           l = l / size * 20 + 20;
           o = o / size * 10 * decrease + 0.3;
           c = c / size * 120 + 200;
@@ -151,7 +151,7 @@
           context.arc(x, y, r, 0, TAU);
           context.fill();
         }
-        nBigStars = width / 200;
+        nBigStars = width / 100;
         for (i = q = 0, ref1 = nBigStars; 0 <= ref1 ? q <= ref1 : q >= ref1; i = 0 <= ref1 ? ++q : --q) {
           x = randTable[i % size];
           y = randTable[x];
@@ -168,8 +168,27 @@
           context.arc(x + sx, y + sy, r, 0, TAU);
           context.fill();
         }
+        nBigStars = width / 100;
+        for (i = t = 0, ref2 = nBigStars; 0 <= ref2 ? t <= ref2 : t >= ref2; i = 0 <= ref2 ? ++t : --t) {
+          increase = i / nBigStars;
+          decrease = 1 - increase;
+          x = randTable[(i + 239) % size];
+          y = randTable[x];
+          r = randTable[y];
+          l = randTable[r];
+          c = randTable[l];
+          x = (x * width / size) | 0;
+          y = (y * height / size) | 0;
+          r = r / size * wscale * 5 * decrease + 2;
+          l = l / size * 20 + 10;
+          c = (c / size * 180 + 200) % 360;
+          context.beginPath();
+          context.fillStyle = "hsla(" + c + ", 50%, " + l + "%, 0.5)";
+          context.arc(x, y, r, 0, TAU);
+          context.fill();
+        }
         nBlueBlobs = width / 20;
-        for (i = t = 0, ref2 = nBlueBlobs; 0 <= ref2 ? t <= ref2 : t >= ref2; i = 0 <= ref2 ? ++t : --t) {
+        for (i = u = 0, ref3 = nBlueBlobs; 0 <= ref3 ? u <= ref3 : u >= ref3; i = 0 <= ref3 ? ++u : --u) {
           increase = i / nBlueBlobs;
           decrease = 1 - increase;
           x = randTable[(i + 123) % size];
@@ -197,7 +216,7 @@
           context.fill();
         }
         nSmallBlueBlobs = width / 30;
-        for (i = u = 0, ref3 = nSmallBlueBlobs; 0 <= ref3 ? u <= ref3 : u >= ref3; i = 0 <= ref3 ? ++u : --u) {
+        for (i = v = 0, ref4 = nSmallBlueBlobs; 0 <= ref4 ? v <= ref4 : v >= ref4; i = 0 <= ref4 ? ++v : --v) {
           increase = i / nSmallBlueBlobs;
           decrease = 1 - increase;
           x = randTable[(i + 473) % size];
@@ -225,7 +244,7 @@
           context.fill();
         }
         nPurpBlobs = width / 20;
-        for (i = v = 0, ref4 = nPurpBlobs; 0 <= ref4 ? v <= ref4 : v >= ref4; i = 0 <= ref4 ? ++v : --v) {
+        for (i = z = 0, ref5 = nPurpBlobs; 0 <= ref5 ? z <= ref5 : z >= ref5; i = 0 <= ref5 ? ++z : --z) {
           increase = i / nPurpBlobs;
           decrease = 1 - increase;
           x = randTable[(i + 1234) % size];
@@ -244,7 +263,7 @@
           context.fill();
         }
         nRedBlobs = width / 20;
-        for (i = z = 0, ref5 = nRedBlobs; 0 <= ref5 ? z <= ref5 : z >= ref5; i = 0 <= ref5 ? ++z : --z) {
+        for (i = aa = 0, ref6 = nRedBlobs; 0 <= ref6 ? aa <= ref6 : aa >= ref6; i = 0 <= ref6 ? ++aa : --aa) {
           increase = i / nRedBlobs;
           decrease = 1 - increase;
           o = randTable[(12345 + i) % size];
@@ -273,7 +292,7 @@
           context.fill();
         }
         nBSmallSquareStars = width / 10;
-        for (i = aa = 0, ref6 = nBSmallSquareStars; 0 <= ref6 ? aa <= ref6 : aa >= ref6; i = 0 <= ref6 ? ++aa : --aa) {
+        for (i = ab = 0, ref7 = nBSmallSquareStars; 0 <= ref7 ? ab <= ref7 : ab >= ref7; i = 0 <= ref7 ? ++ab : --ab) {
           y = randTable[(i + 234) % size];
           w = randTable[y];
           h = randTable[w];
@@ -292,7 +311,7 @@
           context.fillRect(x, y, w, h);
         }
         nSmallRoundStars = width / 20;
-        for (i = ab = 0, ref7 = nSmallRoundStars; 0 <= ref7 ? ab <= ref7 : ab >= ref7; i = 0 <= ref7 ? ++ab : --ab) {
+        for (i = ac = 0, ref8 = nSmallRoundStars; 0 <= ref8 ? ac <= ref8 : ac >= ref8; i = 0 <= ref8 ? ++ac : --ac) {
           r = randTable[(i + 345) % size];
           l = randTable[r];
           o = randTable[l];
@@ -323,7 +342,7 @@
           context.fill();
         }
         pixelStars = width / 5;
-        for (i = ac = 0, ref8 = pixelStars; 0 <= ref8 ? ac <= ref8 : ac >= ref8; i = 0 <= ref8 ? ++ac : --ac) {
+        for (i = ad = 0, ref9 = pixelStars; 0 <= ref9 ? ad <= ref9 : ad >= ref9; i = 0 <= ref9 ? ++ad : --ad) {
           x = randTable[(i + 5432) % size];
           y = randTable[x];
           o = randTable[y];
