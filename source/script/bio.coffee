@@ -33,7 +33,7 @@ do ()->
         x =          Math.cos((a/size) * TAU)  * Math.pow(d/size, 1/10) * (r/2 + width/2)  + width/2|0
         y = Math.abs(Math.sin((a/size) * TAU)) * Math.pow(d/size, 1/3)  * (r/2 + height/2) + height/2|0
         context.beginPath()
-        context.fillStyle = "hsla(#{c}, 23%, #{l}%, .03)"
+        context.fillStyle = "hsla(#{c}, 30%, #{l}%, .03)"
         context.arc(x, y, r, 0, TAU)
         context.fill()
     
