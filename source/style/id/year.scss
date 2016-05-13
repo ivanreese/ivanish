@@ -54,6 +54,9 @@
   }
   
   section.related {
+    display: block;
+    text-align: center;
+    
     a {
       display: inline-block;
       font-size: 1.2em;
