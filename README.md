@@ -1,5 +1,5 @@
-# ivanreese
+# ivanish
 
 A personal website.
 
-Run with `nodemon server.coffee` in dev, plz!
+You could `nodemon server.coffee`, but you don't have to.
