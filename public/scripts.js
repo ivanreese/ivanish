@@ -104,7 +104,7 @@
     epsilon = 0.0001;
     fadeHeader = function() {
       var opacity;
-      opacity = 1 - document.body.scrollTop / header.offsetHeight * 1.2;
+      opacity = 1 - (document.body.scrollTop + document.body.parentNode.scrollTop) / header.offsetHeight * 1.2;
       opacity = opacity * opacity * opacity;
       opacity = Math.min(1, Math.max(0, opacity));
       return headerTarget = opacity;

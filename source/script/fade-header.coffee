@@ -7,7 +7,7 @@ do ()->
   epsilon = 0.0001
 
   fadeHeader = ()->
-    opacity = 1 - document.body.scrollTop / header.offsetHeight * 1.2
+    opacity = 1 - (document.body.scrollTop + document.body.parentNode.scrollTop) / header.offsetHeight * 1.2
     opacity = opacity * opacity * opacity
     opacity = Math.min(1, Math.max(0, opacity))
     headerTarget = opacity
@@ -21,7 +21,7 @@ do ()->
       requestUpdate()
   
   requestUpdate = ()->
-    unless dirty
+    if not dirty
       dirty = true
       window.requestAnimationFrame(update)
   
