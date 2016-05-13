@@ -38,6 +38,26 @@ window.ready = function(fn) {
 <main id="time">
   
   <style>
+    .stars {
+      background: linear-gradient(to bottom left, hsl(6, 14%, 52%), hsl(19, 33%, 58%), hsl(23, 57%, 65%), hsl(37, 93%, 79%), hsl(40, 100%, 87%), hsl(61, 100%, 90%), white);
+    }
+    
+    .stars::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(to right, white 10%, hsl(24, 55%, 64%) 90%);
+    }
+    
+    .stars div, .stars div a, .stars div a:visited {
+      color: #33002A;
+    }
+    
+    main {
+      padding-bottom: 1em;
+    }
+    
     #time a {
       display: inline-block;
       font-size: 2em;
@@ -48,6 +68,14 @@ window.ready = function(fn) {
     #time a.immemorial {
       width: 8em;
     }
+
+    #bg {
+      height: 66vw;
+      background-image: url(http://ivanreese.s3.amazonaws.com/time/bg.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    
   </style>
   
   <title>By Time</title>
@@ -66,6 +94,8 @@ window.ready = function(fn) {
   <a href="/year/2006">2006</a>
   <a href="/year/2005">2005</a>
   <a href="/year/2004">2004</a>
-  <a class="immemorial" href="/time-immemorial">Immemorial</a>
+  <a class="immemorial" href="/year/time-immemorial">Immemorial</a>
   
 </main>
+
+<div id="bg"></div>
