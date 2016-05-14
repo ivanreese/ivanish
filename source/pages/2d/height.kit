@@ -2,15 +2,37 @@
 
 <main>
   
+  <style>
+    @media(min-width:500px) {
+      .hero {
+        float: left;
+        margin-right: 1em;
+        width: 50%;
+        margin-bottom: 0;
+      }
+
+      .hero img {
+        object-fit: cover;
+        object-position: bottom left;
+        width: 100%;
+        height: 30em;
+      }
+    }
+    
+    .related {
+      clear: left;
+    }
+  </style>
+  
   <title>Height</title>
   
   <a class="hero" href="/2d/height-full">
     <img src="https://ivanreese.s3.amazonaws.com/height/height-preview.png">
   </a>
   
-  <p>Click the preview image above to view the full work — it's much, much taller. Think of it like an animation where the vertical direction is both time and space, and you're scrubbing forward-down and backward-up. Works great with inertial scrolling (iOS and Mac).</p>
+  <p>Click this preview to view the full thing — it's much, much taller. Think of it like an animation where the vertical direction is a sliding window of time. Works great with inertial scrolling (iOS and Mac).</p>
   
-  <p>I was going through an obsession with mid-80s Cyberpunk, and wanted to create some glitched-out portraits. This one started with a carefully applied content-aware scale taken to extreme heights, and finished with a few dozen runs through a GIF compressor.</p>
+  <p>I was going through an obsession with mid-80s Cyberpunk, and wanted to create some glitched-out portraits. This one started with a carefully applied <a href="https://en.wikipedia.org/wiki/Seam_carving">content-aware scale</a> taken to extreme heights, and finished with a few dozen runs through a GIF compressor.</p>
   
   
   <section class="related">
