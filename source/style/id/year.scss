@@ -1,13 +1,25 @@
 #year {
   
+  h2 {
+    display: inline-block;
+    line-height: 1.1em;
+    margin: 2vh 0 0;
+    border-bottom: 2px solid $black;
+    padding-left: calc(2vw + 152px);
+    
+    a {
+      text-decoration: none;
+    }
+  }
+  
   section {
     display: flex;
-    align-items: center;
-    margin: 5vh 0;
+    align-items: flex-start;
+    margin: -1px 0 5vh;
     
     .image {
       flex: 0 0 auto;
-      margin-right: 0.75rem;
+      margin-right: 2vw;
       
       img {
         border: 1px solid $black;
@@ -18,10 +30,7 @@
     
     .info {
       flex: 0 1 auto;
-      
-      h2 {
-        line-height: 1.1em;
-      }
+      margin-top: 2vw;
       
       p {
         line-height: 1.6;
@@ -30,7 +39,7 @@
       .continue {
         display: inline-block;
         padding: 0 .3em .2em;
-        margin-left: .3em;
+        margin-left: .2em;
         text-transform: lowercase;
         font-variant: small-caps;
         border-radius: 2px;
