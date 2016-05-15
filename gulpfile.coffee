@@ -18,12 +18,12 @@ run_sequence = require "run-sequence"
 # CONFIG ##########################################################################################
 
 
-assetTypes = "gif,ico,jpeg,jpg,json,m4v,mp3,mp4,png,svg,swf,woff"
+assetTypes = "CNAME,gif,ico,jpeg,jpg,json,m4v,mp3,mp4,png,svg,swf,woff"
 
 
 paths =
   assets:
-    source: "source/**/*.{#{assetTypes}}"
+    source: "source/**/*{#{assetTypes}}"
   coffee:
     source: "source/**/*.coffee"
     watch: "source/**/*.coffee"
