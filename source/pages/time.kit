@@ -4,10 +4,13 @@
   
   <style>
     body {
-      background-image: url(https://ivanreese.s3.amazonaws.com/time/bg.png);
+      color: white;
+      background-color: black;
+      background-image: url(https://ivanreese.s3.amazonaws.com/time/bg.jpg);
       background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: bottom;
+      background-size: auto 100%;
+      background-position: bottom right;
+      background-attachment: fixed;
     }
 
     .stars {
@@ -18,12 +21,16 @@
       display: none;
     }
     
-    .stars div, .stars div a, .stars div a:visited {
-      color: #33002A;
+    main {
+      padding: 10vmin 40vh 0 10vmin;
+      max-width: 80em;
     }
     
-    main {
-      padding-bottom: 1em;
+    @media (max-width: 700px) {
+      main {
+        padding-top: 0;
+        padding-left: .5em;
+      }
     }
     
     #time a {
@@ -31,6 +38,10 @@
       font-size: 2em;
       width: 5em;
       height: 2em;
+    }
+    
+    #time a:hover {
+      color: white;
     }
     
     #time a.immemorial {
