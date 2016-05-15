@@ -1,24 +1,33 @@
+ready ()->
+  canvases = document.querySelectorAll "canvas.js-stars"
+  
+  doRender = ()-> renderStars(canvases)
+  requestRender = ()-> requestAnimationFrame doRender
+  
+  requestRender()
+  window.addEventListener "resize", requestRender
+
 renderStars = (canvases)->
+  
+  # measurePerf, ready, randTable, randTableSize, and a few other things
+  # are defined in app.coffee and are used as read-only globals.
+  
   for canvas in canvases
-    # Setup & Locals
     context = canvas.getContext "2d"
+    
+    # Just do everything at 2x so that we're good for most retina displays (hard to detect)
     width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2
     height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * 2
     
+    # How many stellar objects do we need?
     density = Math.sqrt width * height
     
-    # This lets us define things in terms of a "natural" display randTableSize
+    # This lets us define things in terms of a "natural" display size
     dscale = density/3000
     
     # DRAW BACKGROUND
-    # context.fillStyle = "white"
     context.fillStyle = "transparent"
     context.fillRect(0, 0, width, height)
-    
-    # DISTRIBUTION CHECK
-    # context.fillStyle = "black"
-    # for n, i in randTable
-    #   context.fillRect(i/randTableSize * width, height - n/randTableSize * height, 2, 2)
     
     if measurePerf
       console.log ""
@@ -222,18 +231,6 @@ renderStars = (canvases)->
       console.log((performance.now() - start).toPrecision(4) + "  smallGlowingStars") if measurePerf
 
       
-      
-  
     if measurePerf
       console.log ""
       console.log (performance.now() - starsPerfStart).toPrecision(4) + "  Stars"
-
-ready ()->
-  canvases = document.querySelectorAll "canvas.js-stars"
-  
-  doRender = ()-> renderStars(canvases)
-  requestRender = ()-> requestAnimationFrame doRender
-  
-  requestRender()
-  # setInterval requestRender, 300
-  window.addEventListener "resize", requestRender

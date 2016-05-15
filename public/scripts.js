@@ -129,6 +129,19 @@
     });
   })();
 
+  ready(function() {
+    var canvases, doRender, requestRender;
+    canvases = document.querySelectorAll("canvas.js-stars");
+    doRender = function() {
+      return renderStars(canvases);
+    };
+    requestRender = function() {
+      return requestAnimationFrame(doRender);
+    };
+    requestRender();
+    return window.addEventListener("resize", requestRender);
+  });
+
   renderStars = function(canvases) {
     var blueBlobs, c, canvas, context, decrease, density, dscale, h, height, i, increase, k, l, len, m, n, nBlueBlobs, nPixelStars, nPurpBlobs, nRedBlobs, nSmallGlowingStars, nStars, o, pixelStars, purpleBlobs, q, r, r1, r2, redBlobs, ref, ref1, ref2, ref3, ref4, ref5, results, s, smallGlowingStars, stars, starsPerfStart, start, sx, sy, u, v, w, width, x, y;
     results = [];
@@ -357,19 +370,6 @@
     }
     return results;
   };
-
-  ready(function() {
-    var canvases, doRender, requestRender;
-    canvases = document.querySelectorAll("canvas.js-stars");
-    doRender = function() {
-      return renderStars(canvases);
-    };
-    requestRender = function() {
-      return requestAnimationFrame(doRender);
-    };
-    requestRender();
-    return window.addEventListener("resize", requestRender);
-  });
 
 }).call(this);
 
