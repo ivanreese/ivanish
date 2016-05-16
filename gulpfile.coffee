@@ -77,11 +77,11 @@ gulp.task "assets", ()->
 gulp.task "coffee", ()->
   gulp.src paths.coffee.source
     # .pipe gulp_using() # Uncomment for debug
-    .pipe gulp_sourcemaps.init()
+    # .pipe gulp_sourcemaps.init()
     .pipe gulp_concat "scripts.coffee"
     .pipe gulp_coffee()
     .on "error", logAndKillError
-    .pipe gulp_sourcemaps.write "."
+    # .pipe gulp_sourcemaps.write "."
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.js"
@@ -108,7 +108,7 @@ gulp.task "sass", ["scss"]
 gulp.task "scss", ()->
   gulp.src paths.scss.source
     # .pipe gulp_using() # Uncomment for debug
-    .pipe gulp_sourcemaps.init()
+    # .pipe gulp_sourcemaps.init()
     .pipe gulp_concat "styles.scss"
     .pipe gulp_sass
       errLogToConsole: true
@@ -119,7 +119,7 @@ gulp.task "scss", ()->
       browsers: "last 5 Chrome versions, last 2 ff versions, IE >= 10, Safari >= 8, iOS >= 8"
       cascade: false
       remove: false
-    .pipe gulp_sourcemaps.write "."
+    # .pipe gulp_sourcemaps.write "."
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.css"
