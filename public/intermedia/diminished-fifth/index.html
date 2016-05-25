@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="/assets/apple-touch-icon-167x167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180x180.png">
+<link rel="icon" href="/assets/favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="/assets/favicon-48x48.png" sizes="48x48">
+<link rel="icon" href="/assets/favicon-64x64.png" sizes="64x64">
+<link rel="icon" href="/assets/favicon-192x192.png" sizes="192x192">
+<link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32"><!-- Must come last -->
+<link rel="stylesheet" href="/styles.css">
+<script>
+window.ready = function(fn) {
+  if (document.readyState == "loading") {
+    document.addEventListener("DOMContentLoaded", fn);
+  } else {
+    fn();
+  }
+  return fn; // pass-through
+}
+</script>
+<script defer src="/scripts.js"></script>
+</head>
+<body>
+
+<header class="stars">
+  <canvas class="js-stars"></canvas>
+  <div>
+    The creative work of <a class="header-index-link" href="/">Ivan Reese</a>, by <a href="/type">type</a> or <a href="/time">time</a>.
+  </div>
+</header>
+
+<main>
+
+  <title>Diminished Fifth</title>
+
+  <section>
+    <p>
+      This is the fifth project in the <a href="/project/a-shrinking-feeling">A Shrinking Feeling</a> lineage.
+      Like most of the previous entries in the series, this is a procedural music generation program intended for live exhibition.
+      It's written in ClojureScript — badly — and runs in the browser using the Web Audio API.
+      The code is up on <a href="https://github.com/ivanreese/diminished-fifth">HitBug</a>.
+    </p>
+  </section>
+  
+  <div class="hero">
+    <a href="https://ivanreese.s3.amazonaws.com/diminished-fifth/d5/index.html">
+      <img src="https://ivanreese.s3.amazonaws.com/diminished-fifth/diminished-fifth.png">
+    </a>
+  </div>
+  
+  <p>
+    Click the image to view the project.
+    It takes a minute to load (8MB-ish).
+    You'll know it's ready when the background turns grey and you see the word "Orchestra" in the top left.
+    Then click the <strong>Play</strong> button to begin.
+    There's no interactivity — just enjoy the music.
+    Hit <strong>Pause</strong> if you need to, and then hit <strong>Play</strong> again to resume.
+    <strong>Tick Once</strong> is for debug and you can ignore it.
+    <strong>Fullscreen</strong> does what you'd expect — hit <strong>esc</strong> on your keyboard to exit.
+    Finally, <strong>Sound Check</strong> plays a random sample from the system, and is useful when I'm wiring this up for a live performance.
+  </p>
+  
+  <section class="related">
+    <a href="/intermedia">Intermedia</a> from <a href="/year/2016">2016</a>.
+  </section>
+  
+</main>

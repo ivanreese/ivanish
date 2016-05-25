@@ -35,68 +35,10 @@ window.ready = function(fn) {
   </div>
 </header>
 
-<main id="type">
-  
-  <style>
-    .stars {
-      background: none;
-    }
-    
-    .stars canvas {
-      display: none;
-    }
-    
-    .stars div, .stars div a, .stars div a:visited {
-      color: #33002A;
-    }
-    
-    main {
-      padding-bottom: 0;
-    }
-
-    #type a {
-      display: inline-block;
-      font-size: 2em;
-      padding-right: 2em;
-    }
-    
-    @media(max-width: 600px) {
-      #type a {
-        display: block;
-      }
-    }
-    
-    #bg {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      bottom: 0;
-      padding-top: 20vh;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    
-    #bg .spacer {
-      flex: 1 0 calc(10em - 10vh);
-    }
-    
-    #bg img {
-      flex: 0 0 100vw;
-      width: 100vw;
-      height: 100vw;
-    }
-    
-  </style>
-  
-  <title>By Type</title>
-  <a href="/art">Art</a>
-  <a href="/blog">Blog</a>
-  <a href="/code">Code</a>
-  <a href="/intermedia">Intermedia</a>
-  <a href="/music">Music</a>
-  <a href="/project">Project</a>
-  
+<main id="type-project">
+  <title>Project</title>
+  <ul>
+    <li><a href="/project/a-shrinking-feeling">A Shrinking Feeling</a></li>
+    <li><a href="/project/ganglion">Ganglion</a></li>
+  </ul>
 </main>
-
-<div id="bg"><div class="spacer"></div><img src="https://ivanreese.s3.amazonaws.com/type/bg.png"></div>
