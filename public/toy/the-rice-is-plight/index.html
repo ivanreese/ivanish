@@ -28,35 +28,39 @@ window.ready = function(fn) {
 </head>
 <body>
 
+<header class="stars">
+  <canvas class="js-stars"></canvas>
+  <div>
+    The creative work of <a class="header-index-link" href="/">Ivan Reese</a>, by <a href="/type">type</a> or <a href="/time">time</a>.
+  </div>
+</header>
 
-<main id="height-full" class="full">
+<main>
   
   <style>
-    #height-full {
-      font-size: 0;
-    }
-    
-    #height-full img {
-      width:100%;
-      margin:0;
-      padding:0;
-      border:0;
-      
-      -ms-interpolation-mode: nearest-neighbor;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: -moz-crisp-edges;
-      image-rendering: optimizeSpeed;
+    iframe {
+      display: inline-block;
+      width: 40em;
+      height: 40em;
+      background-color: black;
     }
   </style>
   
-  <title class="hide">Height</title>
+  <title>The Rice Is Plight</title>
 
-  <img src="https://ivanreese.s3.amazonaws.com/height/height1a.png">
-  <img src="https://ivanreese.s3.amazonaws.com/height/height1b.png">
-  <img src="https://ivanreese.s3.amazonaws.com/height/height1c.png">
-  <img src="https://ivanreese.s3.amazonaws.com/height/height1d.png">
-  <img src="https://ivanreese.s3.amazonaws.com/height/height2.png">
-  <img src="https://ivanreese.s3.amazonaws.com/height/height3.png">
-  <img src="https://ivanreese.s3.amazonaws.com/height/height4.png">
-
+  <p>Move your mouse (or finger) up and down on the graphic to change the velocity of the animation. The center is 0.</p>
+  
+  <div class="hero">
+    <iframe src="http://ivanreese.s3.amazonaws.com/the-rice-is-plight/index.html"></iframe>
+  </div>
+  
+  <p>
+    I made this as a throwaway, and then <a href="https://thepsychicalliance.bandcamp.com">a dear friend</a> asked to use it as a projection at a show, so I made it slightly less terrible.
+    <a href="https://github.com/ivanreese/creatures/blob/master/source/script/rainbow.coffee">Here's the source.</a>
+  </p>
+  
+  <section class="related">
+    <a href="/code">Toy</a> from <a href="/year/2015">2015</a>.
+  </section>
+  
 </main>
