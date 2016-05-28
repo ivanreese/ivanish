@@ -1,16 +1,21 @@
 ready ()->
   bioShift = Math.random()
   canvas = document.querySelector "canvas.js-bio"
+  scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
+  count = Math.random() * 100 |0
   
   doRender = ()-> renderBio()
-  requestRender = ()-> requestAnimationFrame doRender
+  requestRender = ()->
+    # Don't render if we're scrolling around
+    st = document.body.scrollTop + document.body.parentNode.scrollTop
+    requestAnimationFrame(doRender) if st == scrollTop
+    scrollTop = st
   
   requestRender()
-  setInterval requestRender, 500
+  setInterval requestRender, 300
   
   renderBio = ()->
-    time = Date.now()/1000
-    t = Math.sin(time/7)/2 + 0.5
+    t = Math.sin(++count/25)/2 + 0.5
 
     # Setup & Locals
     context = canvas.getContext "2d"
@@ -40,7 +45,7 @@ ready ()->
       x =          Math.cos((a/randTableSize) * TAU)  * Math.pow(d/randTableSize, 1/10) * (r/2 + width/2)  + width/2|0
       y = Math.abs(Math.sin((a/randTableSize) * TAU)) * Math.pow(d/randTableSize, 1/3)  * (r/2 + height/2) + height/2|0
       context.beginPath()
-      context.fillStyle = "hsla(#{c}, 40%, #{l}%, .04)"
+      context.fillStyle = "hsla(#{c}, 43%, #{l}%, .04)"
       context.arc(x, y, r, 0, TAU)
       context.fill()
 

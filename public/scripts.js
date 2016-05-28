@@ -78,21 +78,27 @@
   })();
 
   ready(function() {
-    var bioShift, canvas, doRender, renderBio, requestRender;
+    var bioShift, canvas, count, doRender, renderBio, requestRender, scrollTop;
     bioShift = Math.random();
     canvas = document.querySelector("canvas.js-bio");
+    scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop;
+    count = Math.random() * 100 | 0;
     doRender = function() {
       return renderBio();
     };
     requestRender = function() {
-      return requestAnimationFrame(doRender);
+      var st;
+      st = document.body.scrollTop + document.body.parentNode.scrollTop;
+      if (st === scrollTop) {
+        requestAnimationFrame(doRender);
+      }
+      return scrollTop = st;
     };
     requestRender();
-    setInterval(requestRender, 500);
+    setInterval(requestRender, 300);
     return renderBio = function() {
-      var a, c, context, d, decrease, height, i, increase, k, l, nBlobs, perfStart, r, ref, t, time, width, x, y;
-      time = Date.now() / 1000;
-      t = Math.sin(time / 7) / 2 + 0.5;
+      var a, c, context, d, decrease, height, i, increase, k, l, nBlobs, perfStart, r, ref, t, width, x, y;
+      t = Math.sin(++count / 25) / 2 + 0.5;
       context = canvas.getContext("2d");
       width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2;
       height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * 2;
@@ -116,7 +122,7 @@
         x = Math.cos((a / randTableSize) * TAU) * Math.pow(d / randTableSize, 1 / 10) * (r / 2 + width / 2) + width / 2 | 0;
         y = Math.abs(Math.sin((a / randTableSize) * TAU)) * Math.pow(d / randTableSize, 1 / 3) * (r / 2 + height / 2) + height / 2 | 0;
         context.beginPath();
-        context.fillStyle = "hsla(" + c + ", 40%, " + l + "%, .04)";
+        context.fillStyle = "hsla(" + c + ", 43%, " + l + "%, .04)";
         context.arc(x, y, r, 0, TAU);
         context.fill();
       }
@@ -191,9 +197,8 @@
     window.addEventListener("resize", requestRender);
     window.addEventListener("scroll", requestRender);
     return renderStars = function() {
-      var blueBlobs, c, decrease, h, i, increase, k, l, m, n, nBlueBlobs, nPixelStars, nPurpBlobs, nRedBlobs, nSmallGlowingStars, nStars, newWidth, o, pixelStars, purpleBlobs, q, r, r1, r2, rect, redBlobs, ref, ref1, ref2, ref3, ref4, ref5, s, scrollTop, smallGlowingStars, stars, starsPerfStart, start, sx, sy, u, v, x, y;
-      rect = document.body.getBoundingClientRect();
-      scrollTop = rect.top;
+      var blueBlobs, c, decrease, h, i, increase, k, l, m, n, nBlueBlobs, nPixelStars, nPurpBlobs, nRedBlobs, nSmallGlowingStars, nStars, newWidth, o, pixelStars, purpleBlobs, q, r, r1, r2, redBlobs, ref, ref1, ref2, ref3, ref4, ref5, s, scrollTop, smallGlowingStars, stars, starsPerfStart, start, sx, sy, u, v, x, y;
+      scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop;
       newWidth = parseInt(canvas.parentNode.offsetWidth) * dpi;
       if (width !== newWidth) {
         context = canvas.getContext("2d");
@@ -206,18 +211,18 @@
         console.log("");
         starsPerfStart = performance.now();
       }
-      pixelStars = true;
-      stars = true;
       redBlobs = true;
       purpleBlobs = true;
       blueBlobs = true;
+      pixelStars = true;
+      stars = true;
       smallGlowingStars = true;
-      nPixelStars = scale(-scrollTop, 0, height / 3, density / 5, 0) | 0;
-      nStars = scale(-scrollTop, 0, height / 3, density / 50, 0) | 0;
-      nRedBlobs = scale(-scrollTop, 0, height / 3, density / 25, 0) | 0;
-      nPurpBlobs = scale(-scrollTop, 0, height / 3, density / 20, 0) | 0;
-      nBlueBlobs = scale(-scrollTop, 0, height / 3, density / 25, 0) | 0;
-      nSmallGlowingStars = scale(-scrollTop, 0, height / 3, density / 20, 0) | 0;
+      nRedBlobs = Math.max(0, scale(scrollTop, 0, height * 0.4, density / 25, 0) | 0);
+      nPurpBlobs = Math.max(0, scale(scrollTop, 0, height * 0.4, density / 20, 0) | 0);
+      nBlueBlobs = Math.max(0, scale(scrollTop, 0, height * 0.4, density / 25, 0) | 0);
+      nPixelStars = Math.max(0, scale(scrollTop, 0, height * 0.4, density / 5, 0) | 0);
+      nStars = Math.max(0, scale(scrollTop, 0, height * 0.4, density / 50, 0) | 0);
+      nSmallGlowingStars = Math.max(0, scale(scrollTop, 0, height * 0.4, density / 20, 0) | 0);
       if (redBlobs) {
         if (measurePerf) {
           start = performance.now();
@@ -232,7 +237,7 @@
           l = randTable[r];
           h = randTable[l];
           x = x / randTableSize * width | 0;
-          y = y / randTableSize * height + scrollTop * increase | 0;
+          y = y / randTableSize * height - scrollTop * increase | 0;
           r = r / randTableSize * 120 * decrease * dscale + 20;
           l = l / randTableSize * 30 * decrease + 30;
           o = o / randTableSize * 0.015 + 0.008;
@@ -267,7 +272,7 @@
           l = randTable[r];
           o = randTable[l];
           x = x / randTableSize * width * 2 / 3 + width * 1 / 6 | 0;
-          y = y / randTableSize * height * 2 / 3 + height * 1 / 6 + scrollTop * decrease | 0;
+          y = y / randTableSize * height * 2 / 3 + height * 1 / 6 - scrollTop * decrease | 0;
           r = r / randTableSize * 200 * dscale * decrease + 30;
           l = l / randTableSize * 10 * increase + 9;
           o = o / randTableSize * 0.07 * decrease + 0.05;
@@ -293,7 +298,7 @@
           l = randTable[r];
           h = randTable[l];
           x = x / randTableSize * width | 0;
-          y = y / randTableSize * height + scrollTop * decrease | 0;
+          y = y / randTableSize * height - scrollTop * decrease | 0;
           r = r / randTableSize * 120 * dscale * decrease + 20;
           s = l / randTableSize * 40 + 30;
           l = l / randTableSize * 40 * decrease + 10;
@@ -326,7 +331,7 @@
           o = randTable[y];
           r = randTable[o];
           x = x * width / randTableSize | 0;
-          y = y * height / randTableSize + scrollTop | 0;
+          y = y * height / randTableSize - scrollTop | 0;
           o = o / randTableSize * 0.5 + 0.5;
           r = r / randTableSize * 1.5 + .5;
           context.beginPath();
@@ -355,7 +360,7 @@
           c = randTable[l];
           o = randTable[c];
           x = x * width / randTableSize | 0;
-          y = y * height / randTableSize + scrollTop * decrease | 0;
+          y = y * height / randTableSize - scrollTop * decrease | 0;
           r1 = r1 / randTableSize * 4 + .5;
           r2 = r2 / randTableSize * 3 + .5;
           l = l / randTableSize * 20 + 20;
@@ -388,7 +393,7 @@
           x = randTable[c];
           y = randTable[x];
           x = x * width / randTableSize | 0;
-          y = y * height / randTableSize + scrollTop * decrease | 0;
+          y = y * height / randTableSize - scrollTop * decrease | 0;
           r = r / randTableSize * 2 + 1;
           l = l / randTableSize * 20 + 40;
           o = o / randTableSize * 1 * decrease + 0.25;
