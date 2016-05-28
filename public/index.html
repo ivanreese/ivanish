@@ -67,7 +67,7 @@ window.ready = function(fn) {
     
     #index .hero {
       position: absolute; /* Force the hero to draw on top of the header. */
-      top: 64vh;
+      top: 65vh;
       left: 50%;
       width: 70vh;
       height: 70vh;
@@ -75,10 +75,9 @@ window.ready = function(fn) {
       border-radius: 100%;
     }
     
-    @media(max-width: 70vh) {
+    @media(max-width: 78vh) {
       #index .hero {
-        top: auto;
-        bottom: -49vw;
+        top: calc(100vh - 45vw);
         left: 5vw;
         margin: 0;
         width: 90vw;
