@@ -50,7 +50,7 @@
 
   (function() {
     var determinstic, i, j, k, m, perfStart, ref, results, seed, swap;
-    determinstic = true;
+    determinstic = false;
     seed = determinstic ? 2147483647 : Math.random() * 2147483647 | 0;
     window.randTableSize = 4096;
     swap = function(i, j, p) {
