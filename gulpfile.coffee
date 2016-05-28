@@ -128,7 +128,7 @@ gulp.task "scss", ()->
 gulp.task "serve", ()->
   browser_sync.init
     ghostMode: false
-    online: false
+    online: true
     server:
       baseDir: "public"
     ui: false
