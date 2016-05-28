@@ -1,6 +1,8 @@
 ready ()->
   bioShift = Math.random()
   canvas = document.querySelector "canvas.js-bio"
+  return unless canvas? and window.getComputedStyle(canvas).display != "none"
+
   scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
   count = Math.random() * 100 |0
   

@@ -1,6 +1,7 @@
 ready ()->
   renderRequested = false
   canvas = document.querySelector "canvas.js-stars"
+  return unless canvas? and window.getComputedStyle(canvas).display != "none"
   context = null
   width = 0
   height = 0

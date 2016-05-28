@@ -81,6 +81,9 @@
     var bioShift, canvas, count, doRender, renderBio, requestRender, scrollTop;
     bioShift = Math.random();
     canvas = document.querySelector("canvas.js-bio");
+    if (!((canvas != null) && window.getComputedStyle(canvas).display !== "none")) {
+      return;
+    }
     scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop;
     count = Math.random() * 100 | 0;
     doRender = function() {
@@ -132,6 +135,16 @@
     };
   });
 
+  ready(function() {
+    document.body.removeAttribute("fade-out");
+    window.addEventListener("popstate", function() {
+      return document.body.removeAttribute("fade-out");
+    });
+    return window.addEventListener("beforeunload", function() {
+      return document.body.setAttribute("fade-out", true);
+    });
+  });
+
   (function() {
     var dirty, epsilon, fadeHeader, header, headerCurrent, headerDelta, headerTarget, requestUpdate, update;
     header = document.querySelector("header");
@@ -148,7 +161,7 @@
     fadeHeader = function() {
       var opacity, scrollTop;
       scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop;
-      console.log(opacity = scale(scrollTop, 0, header.offsetHeight, 1, 0.2));
+      opacity = scale(scrollTop, 0, header.offsetHeight, 1, 0.2);
       opacity = opacity * opacity * opacity;
       opacity = Math.min(1, Math.max(0, opacity));
       return headerTarget = opacity;
@@ -177,6 +190,9 @@
     var canvas, context, density, doRender, dpi, dscale, height, renderRequested, renderStars, requestRender, width;
     renderRequested = false;
     canvas = document.querySelector("canvas.js-stars");
+    if (!((canvas != null) && window.getComputedStyle(canvas).display !== "none")) {
+      return;
+    }
     context = null;
     width = 0;
     height = 0;
