@@ -1,10 +1,17 @@
-bioShift = Math.random()
-
-renderBio = (canvases)->
-  time = Date.now()/1000
-  t = Math.sin(time/7)/2 + 0.5
+ready ()->
+  bioShift = Math.random()
+  canvas = document.querySelector "canvas.js-bio"
   
-  for canvas in canvases
+  doRender = ()-> renderBio()
+  requestRender = ()-> requestAnimationFrame doRender
+  
+  requestRender()
+  setInterval requestRender, 500
+  
+  renderBio = ()->
+    time = Date.now()/1000
+    t = Math.sin(time/7)/2 + 0.5
+
     # Setup & Locals
     context = canvas.getContext "2d"
     width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2
@@ -37,16 +44,5 @@ renderBio = (canvases)->
       context.arc(x, y, r, 0, TAU)
       context.fill()
 
-  if measurePerf
-    console.log((performance.now() - perfStart).toPrecision(4) + "  Bio")
-
-
-ready ()->
-  canvases = document.querySelectorAll "canvas.js-bio"
-  
-  doRender = ()-> renderBio(canvases)
-  requestRender = ()-> requestAnimationFrame doRender
-  
-  requestRender()
-  setInterval requestRender, 300
-  # window.addEventListener "resize", requestRender
+    if measurePerf
+      console.log((performance.now() - perfStart).toPrecision(4) + "  Bio")
