@@ -33,7 +33,7 @@ renderBio = (canvases)->
       x =          Math.cos((a/randTableSize) * TAU)  * Math.pow(d/randTableSize, 1/10) * (r/2 + width/2)  + width/2|0
       y = Math.abs(Math.sin((a/randTableSize) * TAU)) * Math.pow(d/randTableSize, 1/3)  * (r/2 + height/2) + height/2|0
       context.beginPath()
-      context.fillStyle = "hsla(#{c}, 30%, #{l}%, .03)"
+      context.fillStyle = "hsla(#{c}, 40%, #{l}%, .04)"
       context.arc(x, y, r, 0, TAU)
       context.fill()
 
@@ -48,5 +48,5 @@ ready ()->
   requestRender = ()-> requestAnimationFrame doRender
   
   requestRender()
-  setInterval requestRender, 500
+  setInterval requestRender, 300
   # window.addEventListener "resize", requestRender

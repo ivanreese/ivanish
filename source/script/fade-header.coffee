@@ -1,13 +1,15 @@
 do ()->
   header = document.querySelector("header")
   return unless header?
+  return if document.querySelector "#index"
   header.style.opacity = headerTarget = headerCurrent = 1
   headerDelta = 0
   dirty = false
   epsilon = 0.0001
 
   fadeHeader = ()->
-    opacity = 1 - (document.body.scrollTop + document.body.parentNode.scrollTop) / header.offsetHeight * 1.2
+    scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
+    console.log opacity = scale scrollTop, 0, header.offsetHeight, 1, 0.2
     opacity = opacity * opacity * opacity
     opacity = Math.min(1, Math.max(0, opacity))
     headerTarget = opacity
