@@ -78,12 +78,16 @@
   })();
 
   ready(function() {
-    var bioShift, canvas, count, doRender, renderBio, requestRender, scrollTop;
+    var bioShift, canvas, context, count, doRender, dpi, height, renderBio, requestRender, scrollTop, width;
     bioShift = Math.random();
     canvas = document.querySelector("canvas.js-bio");
     if (!((canvas != null) && window.getComputedStyle(canvas).display !== "none")) {
       return;
     }
+    context = canvas.getContext("2d");
+    width = 0;
+    height = 0;
+    dpi = 2;
     scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop;
     count = Math.random() * 100 | 0;
     doRender = function() {
@@ -100,13 +104,14 @@
     requestRender();
     setInterval(requestRender, 150);
     return renderBio = function() {
-      var a, c, context, d, decrease, height, i, increase, k, l, nBlobs, perfStart, r, ref, t, width, x, y;
-      t = Math.sin(++count / 20) / 2 + 0.5;
-      context = canvas.getContext("2d");
-      width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2;
-      height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * 2;
-      context.fillStyle = "transparent";
-      context.fillRect(0, 0, width, height);
+      var a, c, d, decrease, i, increase, k, l, nBlobs, newWidth, perfStart, r, ref, t, x, y;
+      t = Math.sin(++count / 25) / 2 + 0.5;
+      newWidth = parseInt(canvas.parentNode.offsetWidth) * dpi;
+      if (width !== newWidth) {
+        width = canvas.width = newWidth;
+        height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * dpi;
+      }
+      context.clearRect(0, 0, width, height);
       if (measurePerf) {
         perfStart = performance.now();
       }
@@ -193,12 +198,12 @@
     if (!((canvas != null) && window.getComputedStyle(canvas).display !== "none")) {
       return;
     }
-    context = null;
+    context = canvas.getContext("2d");
     width = 0;
     height = 0;
+    dpi = 2;
     density = 0;
     dscale = 0;
-    dpi = 2;
     doRender = function() {
       renderRequested = false;
       return renderStars();

@@ -2,11 +2,18 @@ ready ()->
   bioShift = Math.random()
   canvas = document.querySelector "canvas.js-bio"
   return unless canvas? and window.getComputedStyle(canvas).display != "none"
-
+  context = canvas.getContext "2d"
+  width = 0
+  height = 0
+  dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
+  
   scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
   count = Math.random() * 100 |0
   
+  # This otherwise useless functions lets us have a forward reference to renderBio
+  # Without it, the first call to rAF would fail
   doRender = ()-> renderBio()
+  
   requestRender = ()->
     # Don't render if we're scrolling around
     st = document.body.scrollTop + document.body.parentNode.scrollTop
@@ -17,16 +24,18 @@ ready ()->
   setInterval requestRender, 150
   
   renderBio = ()->
-    t = Math.sin(++count/20)/2 + 0.5
+    t = Math.sin(++count/25)/2 + 0.5
 
-    # Setup & Locals
-    context = canvas.getContext "2d"
-    width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2
-    height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * 2
+    # Only resize the buffer when the width changes
+    # This provides the nicest behaviour for iOS (which resizes on scroll)
+    # And the best perf for Firefox (which hates resizing the buffer)
+    newWidth = parseInt(canvas.parentNode.offsetWidth) * dpi
+    if width != newWidth
+      width = canvas.width = newWidth
+      height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * dpi
     
-    # DRAW BACKGROUND
-    context.fillStyle = "transparent"
-    context.fillRect(0, 0, width, height)
+    # FLUSH
+    context.clearRect(0, 0, width, height)
     
     if measurePerf
       perfStart = performance.now()

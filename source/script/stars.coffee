@@ -2,12 +2,12 @@ ready ()->
   renderRequested = false
   canvas = document.querySelector "canvas.js-stars"
   return unless canvas? and window.getComputedStyle(canvas).display != "none"
-  context = null
+  context = canvas.getContext "2d"
   width = 0
   height = 0
+  dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
   density = 0
   dscale = 0
-  dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
   
   doRender = ()->
     renderRequested = false
