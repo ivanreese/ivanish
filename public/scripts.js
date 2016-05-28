@@ -95,10 +95,10 @@
       return scrollTop = st;
     };
     requestRender();
-    setInterval(requestRender, 300);
+    setInterval(requestRender, 150);
     return renderBio = function() {
       var a, c, context, d, decrease, height, i, increase, k, l, nBlobs, perfStart, r, ref, t, width, x, y;
-      t = Math.sin(++count / 25) / 2 + 0.5;
+      t = Math.sin(++count / 20) / 2 + 0.5;
       context = canvas.getContext("2d");
       width = canvas.width = parseInt(canvas.parentNode.offsetWidth) * 2;
       height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * 2;

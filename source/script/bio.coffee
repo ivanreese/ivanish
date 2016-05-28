@@ -12,10 +12,10 @@ ready ()->
     scrollTop = st
   
   requestRender()
-  setInterval requestRender, 300
+  setInterval requestRender, 150
   
   renderBio = ()->
-    t = Math.sin(++count/25)/2 + 0.5
+    t = Math.sin(++count/20)/2 + 0.5
 
     # Setup & Locals
     context = canvas.getContext "2d"
