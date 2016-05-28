@@ -130,7 +130,7 @@
         x = Math.cos((a / randTableSize) * TAU) * Math.pow(d / randTableSize, 1 / 10) * (r / 2 + width / 2) + width / 2 | 0;
         y = Math.abs(Math.sin((a / randTableSize) * TAU)) * Math.pow(d / randTableSize, 1 / 3) * (r / 2 + height / 2) + height / 2 | 0;
         context.beginPath();
-        context.fillStyle = "hsla(" + c + ", 43%, " + l + "%, .04)";
+        context.fillStyle = "hsla(" + c + ", 33%, " + l + "%, .04)";
         context.arc(x, y, r, 0, TAU);
         context.fill();
       }
@@ -166,7 +166,7 @@
     fadeHeader = function() {
       var opacity, scrollTop;
       scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop;
-      opacity = scale(scrollTop, 0, header.offsetHeight, 1, 0.2);
+      opacity = scale(scrollTop, 0, header.offsetHeight, 1, -0.3);
       opacity = opacity * opacity * opacity;
       opacity = Math.min(1, Math.max(0, opacity));
       return headerTarget = opacity;

@@ -9,7 +9,7 @@ do ()->
 
   fadeHeader = ()->
     scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
-    opacity = scale scrollTop, 0, header.offsetHeight, 1, 0.2
+    opacity = scale scrollTop, 0, header.offsetHeight, 1, -0.3
     opacity = opacity * opacity * opacity
     opacity = Math.min(1, Math.max(0, opacity))
     headerTarget = opacity
