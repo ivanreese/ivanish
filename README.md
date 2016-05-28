@@ -2,4 +2,8 @@
 
 A personal website.
 
-You could `nodemon server.coffee`, but you don't have to.
+Build with `gulp`.
+
+It should go without saying.. the site, the code, and all content are Copyright (c) Ivan Reese 2016, excepting attributed images, fonts, and other content.
+
+Sofia Pro Light by http://www.mostardesign.com
