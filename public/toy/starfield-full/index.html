@@ -29,35 +29,19 @@ window.ready = function(fn) {
 <body>
 
 
-<main id="height-full" class="full">
-  
+<main id="starfield-full" class="full">
   <style>
-    #height-full {
-      font-size: 0;
-    }
-    
-    #height-full img {
-      width:100%;
-      margin:0;
-      padding:0;
-      border:0;
-      
-      -ms-interpolation-mode: nearest-neighbor;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: -moz-crisp-edges;
-      image-rendering: optimizeSpeed;
+    #starfield-full .stars canvas.js-stars {
+      position: static;
+      height: 150vh;
     }
   </style>
   
-  <title class="hide">Height</title>
+  <title class="hide">Starfield</title>
   
-  <a href="/2d/height">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height1a.png">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height1b.png">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height1c.png">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height1d.png">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height2.png">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height3.png">
-    <img src="https://ivanreese.s3.amazonaws.com/height/height4.png">
+  <a href="/toy/starfield">
+    <div class="stars">
+      <canvas class="js-stars"></canvas>
+    </div>
   </a>
 </main>
