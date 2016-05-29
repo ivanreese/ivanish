@@ -126,7 +126,7 @@ gulp.task "scss", ()->
     .pipe gulp_sass
       errLogToConsole: true
       outputStyle: "compressed"
-      precision: 1
+      precision: 2
     .on "error", logAndKillError
     .pipe gulp_autoprefixer
       browsers: "last 5 Chrome versions, last 2 ff versions, IE >= 10, Safari >= 8, iOS >= 8"
