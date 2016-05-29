@@ -1,22 +1,10 @@
 <!-- @import ../../header.kit -->
 
-<div class="contain">
 <main>
-
   <style>
-    body {
-      background: black;
-    }
-    
-    .stars {
-      background: none;
-    }
-    
-    .stars canvas {
-      display: none;
-    }
-    
-    .contain { position: relative; overflow: hidden; }
+    body { background: black; }
+    .stars { background: none; }
+    .stars canvas { display: none; }
     
     main {
       color: hsl(3,91%,61%);
@@ -25,45 +13,65 @@
       line-height: 1.7em;
       font-weight: lighter;
       font-family: "Futura";
+      padding-left: 16em;
     }
     
-    em {
-      font-family: "sofia pro light", sans-serif;
-      font-style: normal;
-      font-size: 0.9rem;
+    img.cover {
+      position: absolute;
+      top: 2%;
+      left: 0;
+      width: 40vw;
+      z-index: -1;
     }
-    
-    .hero { position: absolute; top: 0vw; left: 0; width: 100vw; min-width: 40em; z-index: -1; }
-    .hero img { width: 100%; }
     
     title {
       font-size: 5em;
       font-family: "baskerville";
+      -webkit-text-stroke: 2.5px black;
+    }
+    
+    h2 {
+      font-size: 2em;
       -webkit-text-stroke: 3px black;
     }
 
-    h2 {
-      font-size: 2em;
-      font-family: "baskerville";
-      -webkit-text-stroke: 1px black;
+    em {
+      padding: 0 .2em;
+      font-size: 0.8em;
+      font-style: normal;
+      font-family: "courier new", monospace;
     }
-        
-    section.related { border-color: currentColor; }
-    main { padding-left: 16em }
-    @media (max-width: 60em) { main { padding-left: 30vw; }
-    /*@media (max-width: 40em) { main { padding-left: 0 } }*/
-    em { font-style: normal; font-family: "courier new", monospace; font-size: 0.8em; background: rgba(55,50,50,0.8); padding: .5em; }
-    .story img { max-width: 100%; margin-bottom: 1em; opacity: .3;}
+    
+    @media(max-width: 60em) {
+      main {
+        padding-left: 4vw;
+      }
+      
+      img.cover {
+        top: auto;
+        width: 100%;
+        margin-top: -3em;
+      }
+      
+      .spacer {
+        height: 48vw;
+      }
+    }
+    
+    @media(max-width: 40em) {
+      img.cover {
+        margin-top: 0;
+      }
+      .spacer {
+        height: 100vw;
+      }
+    }
   </style>
   
   
   <title>Organs</title>
   
-  <div class="hero">
-    <img src="https://ivanreese.s3.amazonaws.com/organs/organs.png">
-  </div>
-
-  <section class="story">
+  <section>
     <h2>March 16th, 2013</h2>
     <p>I wrote 9 songs this evening, <a href="https://ivanreese.s3.amazonaws.com/organs/photos/recording.png">chronicling my progress</a> as I went.</p>
     <p>I was obsessed with the artwork of <a href="http://www.jessicayh.com">Jessica YH</a>, and in the final miserable throes of my friendship with Kiri. She'd fled our house, <a href="https://www.facebook.com/pages/Supermoon-Mansion/246862462108637">Supermoon Mansion</a>. I made these songs in her half-emptied bedroom as a quiet act of revolt.</p>
@@ -73,6 +81,9 @@
       (<em>I was well in the habit of writing it all down, a habit I've since lost. No wonder I haven't made any albums since.</em>)
     </p>
   </section>
+  
+  <img class="cover" src="https://ivanreese.s3.amazonaws.com/organs/organs.jpg">
+  <div class="spacer"></div>
   
   <section>
     <h2>March 17th, 2013</h2>
@@ -111,4 +122,3 @@
   </section>
   
 </main>
-</div>
