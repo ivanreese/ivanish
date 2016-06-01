@@ -84,8 +84,8 @@ ready ()->
           # measurePerf, ready, randTable, randTableSize, and a few other things
           # are defined in app.coffee and are used as read-only globals.
           
-          accel = -keySpeed if keyboardDown and not keyboardUp
-          accel = +keySpeed if keyboardUp and not keyboardDown
+          accel = +keySpeed if keyboardDown and not keyboardUp
+          accel = -keySpeed if keyboardUp and not keyboardDown
           
           accel /= 1.1
           vel += accel
@@ -138,12 +138,12 @@ ready ()->
           stars             = true
           smallGlowingStars = true
           
-          nRedBlobs          = Math.max 0, scale(Math.cos(pos / height), 1, -1.1, density / 25, 1)
-          nPurpBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -1.1, density / 20, 1)
-          nBlueBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -1.1, density / 25, 1)
-          nPixelStars        = Math.max 0, scale(Math.cos(pos / height), 1, -1.1, density / 5 , 1)
-          nStars             = Math.max 0, scale(Math.cos(pos / height), 1, -1.1, density / 50, 1)
-          nSmallGlowingStars = Math.max 0, scale(Math.cos(pos / height), 1, -1.1, density / 20, 1)
+          nRedBlobs          = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 25, 1)
+          nPurpBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 20, 1)
+          nBlueBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 25, 1)
+          nPixelStars        = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 5 , 1)
+          nStars             = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 50, 1)
+          nSmallGlowingStars = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 20, 1)
           
           context.lineCap = "round"
           
