@@ -25,7 +25,7 @@ do ()->
   # This is not a performance optimization — Math.random() is already VERY fast. It just gives us repeatability.
   
   # Set determinstic to true for debugging, false for deployment
-  determinstic = false
+  determinstic = true
   seed = if determinstic then 2147483647 else Math.random() * 2147483647 |0
   
   # Needs to be larger than the number of times we use it in one place, or else we'll get duplication.

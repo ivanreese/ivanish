@@ -3,17 +3,24 @@
 
 <main id="starfield-full" class="full">
   <style>
-    #starfield-full .stars canvas.js-stars {
+    html, body, main, a, canvas {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    #starfield-full canvas.js-infinite-stars {
       position: static;
-      height: 200vh;
+      height: 100%;
     }
   </style>
   
   <title class="hide">Starfield</title>
   
   <a href="/toy/starfield">
-    <div class="stars">
-      <canvas class="js-stars"></canvas>
-    </div>
+    <canvas class="js-infinite-stars"></canvas>
   </a>
 </main>
