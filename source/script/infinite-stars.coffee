@@ -47,7 +47,6 @@ ready ()->
         touchStart = (e)->
           lastTouchY = e.touches.item(0).screenY
           
-        
         keyDown = (e)->
           keyboardUp = true if e.keyCode == 38
           keyboardDown = true if e.keyCode == 40
@@ -78,16 +77,22 @@ ready ()->
             context.moveTo(x, y - vel*dpi)
             context.lineTo(x, y)
             context.stroke()
-
         
         renderStars = ()->
           # measurePerf, ready, randTable, randTableSize, and a few other things
           # are defined in app.coffee and are used as read-only globals.
+
+          if measurePerf
+            console.log ""
+            starsPerfStart = performance.now()
           
-          accel = +keySpeed if keyboardDown and not keyboardUp
-          accel = -keySpeed if keyboardUp and not keyboardDown
+          if keyboardDown and not keyboardUp
+            accel = +keySpeed
+          else if keyboardUp and not keyboardDown
+            accel = -keySpeed
+          else
+            accel /= 1.1
           
-          accel /= 1.1
           vel += accel
           vel /= 1.1
           pos += vel * dpi
@@ -101,7 +106,7 @@ ready ()->
           newWidth = parseInt(canvas.parentNode.offsetWidth) * dpi
           if width != newWidth
             context = canvas.getContext "2d"
-            
+
             width = canvas.width = newWidth
             height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * dpi
             
@@ -111,9 +116,7 @@ ready ()->
             # This lets us define things in terms of a "natural" display size
             dscale = density/3000
             
-            r1 = Math.sqrt(width*width + height*height)
-            grad = context.createRadialGradient 0, height, 0, 0, height, r1
-            
+            grad = context.createRadialGradient 0, height, 0, 0, height, Math.sqrt(width*width + height*height)
             grad.addColorStop 0.0, "hsl(210, 100%, 8%)"
             grad.addColorStop 0.2, "hsl(250, 60%,16%)"
             grad.addColorStop 0.4, "hsl(250, 40%,6%)"
@@ -121,15 +124,15 @@ ready ()->
             grad.addColorStop 1.0, "hsl(10, 90%, 22%)"
             context.fillStyle = grad
             context.fillRect 0, 0, width, height
+
             a = 1
             first = true
+          
           else
             a = Math.min 1, Math.abs(vel/2)
             first = false
-            
-          if measurePerf
-            console.log ""
-            starsPerfStart = performance.now()
+
+          context.lineCap = "round"
           
           redBlobs          = true
           purpleBlobs       = true
@@ -138,17 +141,17 @@ ready ()->
           stars             = true
           smallGlowingStars = true
           
-          nRedBlobs          = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 25, 1)
-          nPurpBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 20, 1)
-          nBlueBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 25, 1)
-          nPixelStars        = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 5 , 1)
-          nStars             = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 50, 1)
-          nSmallGlowingStars = Math.max 0, scale(Math.cos(pos / height), 1, -1.2, density / 20, 1)
+          nRedBlobs          = Math.max 0, scale(Math.cos(pos / height), 1, -2, density / 25, 1)
+          nPurpBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -2, density / 20, 1)
+          nBlueBlobs         = Math.max 0, scale(Math.cos(pos / height), 1, -2, density / 25, 1)
+          nPixelStars        = Math.max 0, scale(Math.cos(pos / height), 1, -2, density / 5 , 1)
+          nStars             = Math.max 0, scale(Math.cos(pos / height), 1, -2, density / 50, 1)
+          nSmallGlowingStars = Math.max 0, scale(Math.cos(pos / height), 1, -2, density / 20, 1)
           
-          context.lineCap = "round"
-          
+
           # Count the number of objects we're about to render
-          trace = nRedBlobs + nPurpBlobs + nBlueBlobs + nPixelStars + nStars + nSmallGlowingStars |0
+          # trace = nRedBlobs + nPurpBlobs + nBlueBlobs + nPixelStars + nStars + nSmallGlowingStars |0
+          
           
           # Red Blobs
           if redBlobs
@@ -163,7 +166,7 @@ ready ()->
               l = randTable[r]
               h = randTable[l]
               x = x / randTableSize * width  |0
-              y = mod y / randTableSize * height - pos * (increase*9/10 + 0.1), height
+              y = mod y / randTableSize * height - pos * (increase/2 + 0.5), height
               r = r / randTableSize * 120 * decrease * dscale + 20
               l = l / randTableSize * 30 * decrease + 30
               o = (o / randTableSize * 0.015 + 0.008) * a
@@ -185,7 +188,7 @@ ready ()->
               l = randTable[r]
               o = randTable[l]
               x = x / randTableSize * width*2/3 + width*1/6
-              y = mod y / randTableSize * height*2/3 + height*1/6 - pos * (decrease*9/10 + 0.1), height
+              y = mod y / randTableSize * height*2/3 + height*1/6 - pos * (decrease/2 + 0.5), height
               r = r / randTableSize * 200 * dscale * decrease + 30
               l = l / randTableSize * 10 * increase + 9
               o = (o / randTableSize * 0.07 * decrease + 0.05) * a
@@ -205,7 +208,7 @@ ready ()->
               l = randTable[r]
               h = randTable[l]
               x = x / randTableSize * width
-              y = mod y / randTableSize * height - pos * (decrease*9/10 + 0.1), height
+              y = mod y / randTableSize * height - pos * (decrease/5 + 0.5), height
               r = r / randTableSize * 120 * dscale * increase + 20
               s = l / randTableSize * 40 + 30
               l = l / randTableSize * 40 * decrease + 10
@@ -214,6 +217,7 @@ ready ()->
               drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{0.015*a})"
               drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{0.013*a})"
             console.log((performance.now() - start).toPrecision(4) + "  blueBlobs") if measurePerf
+          
           
           # Pixel Stars
           if pixelStars
@@ -248,7 +252,7 @@ ready ()->
               c = randTable[l]
               o = randTable[c]
               x = x * width / randTableSize
-              y = mod y * height / randTableSize - pos * (decrease*9/10 + 0.1), height
+              y = mod y * height / randTableSize - pos * decrease, height
               r1 = r1 / randTableSize * 4 + .5
               r2 = r2 / randTableSize * 3 + .5
               l = l / randTableSize * 20 + 20
@@ -272,7 +276,7 @@ ready ()->
               x = randTable[c]
               y = randTable[x]
               x = x * width / randTableSize
-              y = mod y * height / randTableSize - pos * (decrease*9/10 + 0.1), height
+              y = mod y * height / randTableSize - pos * decrease, height
               r = r / randTableSize * 2 + 1
               l = l / randTableSize * 20 + 40
               o = (o / randTableSize * 1 * decrease + 0.25) * a
@@ -292,11 +296,11 @@ ready ()->
               
             console.log((performance.now() - start).toPrecision(4) + "  smallGlowingStars") if measurePerf
           
-          context.fillStyle = "black"
-          context.fillRect(0, 0, 36*dpi, 20*dpi)
-          context.fillStyle = "white"
-          context.font = "#{16*dpi}px monospace"
-          context.fillText(trace, 4*dpi, 16*dpi)
+          # context.fillStyle = "black"
+          # context.fillRect(0, 0, 36*dpi, 20*dpi)
+          # context.fillStyle = "white"
+          # context.font = "#{16*dpi}px monospace"
+          # context.fillText(trace, 4*dpi, 16*dpi)
           
             
           if measurePerf
