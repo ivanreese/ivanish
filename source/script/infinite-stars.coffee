@@ -163,7 +163,7 @@ ready ()->
               l = randTable[r]
               h = randTable[l]
               x = x / randTableSize * width  |0
-              y = mod y / randTableSize * height - pos * (increase*4/5 + 0.2), height
+              y = mod y / randTableSize * height - pos * (increase*9/10 + 0.1), height
               r = r / randTableSize * 120 * decrease * dscale + 20
               l = l / randTableSize * 30 * decrease + 30
               o = (o / randTableSize * 0.015 + 0.008) * a
@@ -185,7 +185,7 @@ ready ()->
               l = randTable[r]
               o = randTable[l]
               x = x / randTableSize * width*2/3 + width*1/6
-              y = mod y / randTableSize * height*2/3 + height*1/6 - pos * (decrease*4/5 + 0.2), height
+              y = mod y / randTableSize * height*2/3 + height*1/6 - pos * (decrease*9/10 + 0.1), height
               r = r / randTableSize * 200 * dscale * decrease + 30
               l = l / randTableSize * 10 * increase + 9
               o = (o / randTableSize * 0.07 * decrease + 0.05) * a
@@ -205,7 +205,7 @@ ready ()->
               l = randTable[r]
               h = randTable[l]
               x = x / randTableSize * width
-              y = mod y / randTableSize * height - pos * (decrease*4/5 + 0.2), height
+              y = mod y / randTableSize * height - pos * (decrease*9/10 + 0.1), height
               r = r / randTableSize * 120 * dscale * increase + 20
               s = l / randTableSize * 40 + 30
               l = l / randTableSize * 40 * decrease + 10
@@ -248,7 +248,7 @@ ready ()->
               c = randTable[l]
               o = randTable[c]
               x = x * width / randTableSize
-              y = mod y * height / randTableSize - pos * (decrease*4/5 + 0.2), height
+              y = mod y * height / randTableSize - pos * (decrease*9/10 + 0.1), height
               r1 = r1 / randTableSize * 4 + .5
               r2 = r2 / randTableSize * 3 + .5
               l = l / randTableSize * 20 + 20
@@ -272,7 +272,7 @@ ready ()->
               x = randTable[c]
               y = randTable[x]
               x = x * width / randTableSize
-              y = mod y * height / randTableSize - pos * (decrease*4/5 + 0.2), height
+              y = mod y * height / randTableSize - pos * (decrease*9/10 + 0.1), height
               r = r / randTableSize * 2 + 1
               l = l / randTableSize * 20 + 40
               o = (o / randTableSize * 1 * decrease + 0.25) * a
