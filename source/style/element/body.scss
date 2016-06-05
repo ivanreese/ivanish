@@ -1,6 +1,5 @@
 body {
   text-align: center;
-  transition: opacity 2s;
   
   &.full {
     padding: 0;
@@ -8,8 +7,4 @@ body {
   
   // This makes the header look a little nicer on iPhone 5-
   @media (max-width: 374px) { font-size: 14px; }
-  
-  &[fade-out=true] {
-    opacity: 0;
-  }
 }
