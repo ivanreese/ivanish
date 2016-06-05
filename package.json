@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "A personal website for Ivan Reese",
   "devDependencies": {
-    "beepbeep": "latest",
     "browser-sync": "latest",
-    "chalk": "latest",
     "coffee-script": "latest",
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
@@ -16,10 +14,7 @@
     "gulp-notify": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
-    "gulp-shell": "latest",
-    "gulp-sourcemaps": "latest",
     "gulp-uglify": "latest",
-    "gulp-using": "latest",
     "run-sequence": "latest"
   },
   "license": "UNLICENSED",
