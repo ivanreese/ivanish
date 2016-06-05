@@ -1,14 +1,14 @@
-measurePerf = false
+@measurePerf = false
 
 if measurePerf
   console.log "Performance --------------------"
 
-TAU = Math.PI * 2
+@TAU = Math.PI * 2
 
-clip = (input, inputMin = 0, inputMax = 1)->
+@clip = (input, inputMin = 0, inputMax = 1)->
   Math.min 1, Math.max 0, input
 
-scale = (input, inputMin = 0, inputMax = 1, outputMin = 0, outputMax = 1, doClip = false)->
+@scale = (input, inputMin = 0, inputMax = 1, outputMin = 0, outputMax = 1, doClip = false)->
   return outputMin if inputMin is inputMax # Avoids a divide by zero
   input = clip(input, inputMin, inputMax) if doClip
   input -= inputMin
@@ -30,7 +30,7 @@ do ()->
   
   # Needs to be larger than the number of times we use it in one place, or else we'll get duplication.
   # At this size, it takes about ~2ms to populate the table on my machine
-  window.randTableSize = 4096
+  @randTableSize = 4096
   
   # This is just a generic swap function. It seems faster to let the browser JIT this than to inline it ourselves.
   swap = (i, j, p)->
@@ -41,7 +41,7 @@ do ()->
   if measurePerf
     perfStart = performance.now()
   
-  window.randTable = [0...randTableSize]
+  @randTable = [0...randTableSize]
   j = 0
   for i in [0...randTableSize]
     j = (j + seed + randTable[i]) % randTableSize
