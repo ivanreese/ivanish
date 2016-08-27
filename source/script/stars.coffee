@@ -75,9 +75,9 @@ ready ()->
         
         requestResize = ()->
           if width isnt window.innerWidth * dpi
-            first = true
-            smoothDt = 1
             requestAnimationFrame (time)->
+              first = true
+              smoothDt = 1
               resize()
               renderStars time, firstDrawCall
         
@@ -118,7 +118,7 @@ ready ()->
           vel += accel
           vel /= 1.1
           recipVel = Math.min 1, Math.abs 10 / vel
-          pos += vel * dpi
+          pos -= vel * dpi / 2
           
           if Math.abs(vel) > 0.3
             requestRender()
@@ -143,12 +143,12 @@ ready ()->
           purpleBlobs       = true
           blueBlobs         = true
           
-          nPixelStars        = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 5 , 0) |0
-          nStars             = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 99, 0) |0
-          nSmallGlowingStars = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 40, 0) |0
-          nRedBlobs          = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 20, 0) |0
-          nPurpBlobs         = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0) |0
-          nBlueBlobs         = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0) |0
+          nPixelStars        = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 5 , 0)) |0
+          nStars             = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 99, 0)) |0
+          nSmallGlowingStars = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 40, 0)) |0
+          nPurpBlobs         = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0)) |0
+          nBlueBlobs         = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0)) |0
+          nRedBlobs          = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0)) |0
           
           # Count the number of objects we're about to render
           # console.log nRedBlobs + nPurpBlobs + nBlueBlobs + nPixelStars + nStars + nSmallGlowingStars
