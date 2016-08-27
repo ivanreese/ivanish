@@ -7,10 +7,10 @@ ready ()->
       do (canvas)->
         context = canvas.getContext "2d"
         dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
-        width = canvas.width = window.innerWidth * dpi
-        height = canvas.height = window.innerHeight * dpi
-        density = Math.sqrt width * height # How many stellar objects do we need?
-        dscale = density/3000 # This lets us define things in terms of a "natural" display size
+        width = 0
+        height = 0
+        density = 0
+        dscale = 0
         accel = 0
         vel = 0
         pos = 0
@@ -24,11 +24,16 @@ ready ()->
         lastTime = performance.now()
         maxFpsFrac = 2
         targetMsPerFrame = 13
-        smoothDt = targetMsPerFrame / maxFpsFrac
+        smoothDt = 1
 
-        context.globalAlpha = 1
-        context.lineCap = "round"
-
+        resize = ()->
+          width  = canvas.width = window.innerWidth * dpi
+          height = canvas.height = window.innerHeight * dpi
+          density = Math.sqrt width * height # How many stellar objects do we need?
+          dscale = density/3000 # This lets us define things in terms of a "natural" display size
+          context.globalAlpha = 1
+          context.lineCap = "round"
+        
         starSpots = false #Math.random() < 0.5
         blobSpots = false #Math.random() < 0.5
         
@@ -54,7 +59,6 @@ ready ()->
           vel -= (y - lastTouchY) / 10
           lastTouchY = y
           requestRender()
-          e.preventDefault()
         
         touchStart = (e)->
           lastTouchY = e.touches.item(0).screenY
@@ -69,9 +73,16 @@ ready ()->
           keyboardDown = false if e.keyCode == 40
           requestRender()
         
+        requestResize = ()->
+          if width isnt window.innerWidth * dpi
+            first = true
+            smoothDt = 1
+            requestAnimationFrame (time)->
+              resize()
+              renderStars time, firstDrawCall
         
-        # requestRender(firstDrawCall)
-        # window.addEventListener "resize", requestRender
+        requestResize()
+        window.addEventListener "resize", requestResize
         window.addEventListener "scroll", requestScrollRender
         window.addEventListener "touchstart", touchStart
         window.addEventListener "touchmove", requestMoveRender
@@ -92,9 +103,6 @@ ready ()->
           context.moveTo(x, y - vel*dpi)
           context.lineTo(x, y)
           context.stroke()
-        
-        requestAnimationFrame (time)->
-          renderStars time, firstDrawCall
         
         renderStars = (time, drawCall)->
           # measurePerf, ready, randTable, randTableSize, and a few other things
@@ -122,10 +130,11 @@ ready ()->
             console.log ""
             starsPerfStart = performance.now()
           
+          # We're deliberately adding 1 frame of latency to our fpsFrac, so that the first frame always renders at top quality
+          fpsFrac = Math.min maxFpsFrac, targetMsPerFrame/smoothDt
           dt = time - lastTime
           smoothDt = smoothDt*.9 + dt*.1
           lastTime = time
-          fpsFrac = Math.min maxFpsFrac, targetMsPerFrame/smoothDt
           
           pixelStars        = true
           stars             = true

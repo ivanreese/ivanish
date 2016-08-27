@@ -90,6 +90,27 @@
     <canvas class="js-bio"></canvas>
   </div>
   
+  <script>
+    // This sucks, but it makes Android happy UGH
+    function inlineResize() {
+      document.querySelector(".stars div").style.height = window.innerHeight + "px";
+      document.querySelector(".stars div").style.lineHeight = (.8 * window.innerHeight) + "px";
+      document.querySelector("#index .hero").style.top = (.65 * window.innerHeight) + "px";
+      document.querySelector("#index .hero").style.width = (.7 * window.innerHeight) + "px";
+      document.querySelector("#index .hero").style.height = (.7 * window.innerHeight) + "px";
+      document.querySelector("#index .hero").style.marginLeft = (-.35 * window.innerHeight) + "px";
+      
+      if (window.innerWidth <= window.innerHeight * .78) {
+        document.querySelector("#index .hero").style.top = (window.innerHeight - .45 * window.innerWidth) + "px";
+        document.querySelector("#index .hero").style.marginLeft = null
+        document.querySelector("#index .hero").style.width = (.9 * window.innerWidth) + "px";
+        document.querySelector("#index .hero").style.height = (.9 * window.innerWidth) + "px";
+      }
+    };
+    requestAnimationFrame(inlineResize);
+    window.addEventListener("resize", inlineResize);
+  </script>
+
   <section id="about">
     <h1>About</h1>
     <div class="columns">
@@ -192,7 +213,6 @@
     Where to go next? Check out my work —
     <a href="/type">by type</a> or <a href="/time">by time</a>.
   </section>
-  
 </main>
 
 <!-- @import ../footer.kit -->
