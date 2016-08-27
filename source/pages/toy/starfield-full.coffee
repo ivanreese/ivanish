@@ -105,8 +105,6 @@ ready ()->
           # And the best perf for Firefox (which hates resizing the buffer)
           newWidth = parseInt(canvas.parentNode.offsetWidth) * dpi
           if width != newWidth
-            context = canvas.getContext "2d"
-
             width = canvas.width = newWidth
             height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * dpi
             
@@ -171,6 +169,7 @@ ready ()->
               l = l / randTableSize * 30 * decrease + 30
               o = (o / randTableSize * 0.015 + 0.008) * a
               h = h / randTableSize * 30 + 350
+              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o})"
               drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o*3/4})"
               drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o/2})"
             console.log((performance.now() - start).toPrecision(4) + "  redBlobs") if measurePerf
@@ -213,7 +212,7 @@ ready ()->
               s = l / randTableSize * 40 + 30
               l = l / randTableSize * 40 * decrease + 10
               h = h / randTableSize * 50 + 200
-              drawCall x, y, r * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{0.017*a})"
+              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{0.017*a})"
               drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{0.015*a})"
               drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{0.013*a})"
             console.log((performance.now() - start).toPrecision(4) + "  blueBlobs") if measurePerf
