@@ -12,7 +12,6 @@ ready ()->
         dpi = 2
         density = 0
         dscale = 0
-        lastP = 0
         accel = 0
         vel = 0
         pos = 0

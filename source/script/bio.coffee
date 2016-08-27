@@ -56,7 +56,7 @@ ready ()->
       x =          Math.cos((a/randTableSize) * TAU)  * Math.pow(d/randTableSize, 1/10) * (r/2 + width/2)  + width/2|0
       y = Math.abs(Math.sin((a/randTableSize) * TAU)) * Math.pow(d/randTableSize, 1/3)  * (r/2 + height/2) + height/2|0
       context.beginPath()
-      context.fillStyle = "hsla(#{c}, 33%, #{l}%, .04)"
+      context.fillStyle = "hsla(#{c}, 33%, #{l}%, .06)"
       context.arc(x, y, r, 0, TAU)
       context.fill()
 

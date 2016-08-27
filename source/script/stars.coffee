@@ -5,85 +5,127 @@ ready ()->
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display != "none"
       do (canvas)->
-        renderRequested = false
         context = canvas.getContext "2d"
-        width = 0
-        height = 0
         dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
-        density = 0
-        dscale = 0
-        pos = document.body.scrollTop + document.body.parentNode.scrollTop
+        width = canvas.width = window.innerWidth * dpi
+        height = canvas.height = window.innerHeight * dpi
+        density = Math.sqrt width * height # How many stellar objects do we need?
+        dscale = density/3000 # This lets us define things in terms of a "natural" display size
+        accel = 0
         vel = 0
+        pos = 0
+        renderRequested = false
         first = true
-        
+        lastTouchY = 0
+        keyboardUp = false
+        keyboardDown = false
+        keySpeed = 1
+        scrollPos = 0
+        lastTime = performance.now()
+        maxFpsFrac = 2
+        targetMsPerFrame = 13
+        smoothDt = targetMsPerFrame / maxFpsFrac
+
+        context.globalAlpha = 1
+        context.lineCap = "round"
+
         starSpots = false #Math.random() < 0.5
         blobSpots = false #Math.random() < 0.5
         
-        doRender = ()->
+        
+        doRender = (time)->
           renderRequested = false
-          renderStars()
+          renderStars time, normalDrawCall
         
         requestRender = ()->
           unless renderRequested
             renderRequested = true
             requestAnimationFrame doRender
         
-        requestRender()
-        window.addEventListener "resize", requestRender
-        window.addEventListener "scroll", requestRender
+        requestScrollRender = (e)->
+          p = document.body.scrollTop + document.body.parentNode.scrollTop
+          delta = p - scrollPos
+          scrollPos = p
+          vel += delta / 5
+          requestRender()
         
-        drawCall = (x, y, r, s, forceCircle = false)->
+        requestMoveRender = (e)->
+          y = e.touches.item(0).screenY
+          vel -= (y - lastTouchY) / 10
+          lastTouchY = y
+          requestRender()
+          e.preventDefault()
+        
+        touchStart = (e)->
+          lastTouchY = e.touches.item(0).screenY
+          
+        keyDown = (e)->
+          keyboardUp = true if e.keyCode == 38
+          keyboardDown = true if e.keyCode == 40
+          requestRender()
+        
+        keyUp = (e)->
+          keyboardUp = false if e.keyCode == 38
+          keyboardDown = false if e.keyCode == 40
+          requestRender()
+        
+        
+        # requestRender(firstDrawCall)
+        # window.addEventListener "resize", requestRender
+        window.addEventListener "scroll", requestScrollRender
+        window.addEventListener "touchstart", touchStart
+        window.addEventListener "touchmove", requestMoveRender
+        window.addEventListener "keydown", keyDown
+        window.addEventListener "keyup", keyUp
+        
+        
+        firstDrawCall = (x, y, r, s, forceCircle = false)->
           context.beginPath()
-          if first || forceCircle
-            context.fillStyle = s
-            context.arc(x, y, r, 0, TAU)
-            context.fill()
-          else
-            context.strokeStyle = s
-            context.lineWidth = r*2
-            context.moveTo(x, y - vel*dpi)
-            context.lineTo(x, y)
-            context.stroke()
+          context.fillStyle = s
+          context.arc(x, y, r, 0, TAU)
+          context.fill()
         
-        renderStars = ()->
+        normalDrawCall = (x, y, r, s, forceCircle = false)->
+          context.beginPath()
+          context.strokeStyle = s
+          context.lineWidth = r*2
+          context.moveTo(x, y - vel*dpi)
+          context.lineTo(x, y)
+          context.stroke()
+        
+        requestAnimationFrame (time)->
+          renderStars time, firstDrawCall
+        
+        renderStars = (time, drawCall)->
           # measurePerf, ready, randTable, randTableSize, and a few other things
           # are defined in app.coffee and are used as read-only globals.
           
-          last = pos
-          pos = document.body.scrollTop + document.body.parentNode.scrollTop
-          vel = -(pos - last)
-          
-          recipVel = Math.min 1, Math.abs 10 / vel
-          
-          # Only resize the buffer when the width changes
-          # This provides the nicest behaviour for iOS (which resizes on scroll)
-          # And the best perf for Firefox (which hates resizing the buffer)
-          newWidth = parseInt(canvas.parentNode.offsetWidth) * dpi
-          if width != newWidth
-            width = canvas.width = newWidth
-            height = canvas.height = parseInt(canvas.parentNode.offsetHeight) * dpi
-            context.lineCap = "round"
-            
-            # How many stellar objects do we need?
-            density = Math.sqrt width * height
-            
-            # This lets us define things in terms of a "natural" display size
-            dscale = density/3000
-            
-            first = true
-            context.globalAlpha = 1
-            
+          if keyboardDown and not keyboardUp
+            accel = +keySpeed
+          else if keyboardUp and not keyboardDown
+            accel = -keySpeed
           else
-            first = false
+            accel /= 1.1
+          
+          vel += accel
+          vel /= 1.1
+          recipVel = Math.min 1, Math.abs 10 / vel
+          pos += vel * dpi
+          
+          if Math.abs(vel) > 0.3
+            requestRender()
+          
+          if not first
             context.globalAlpha = Math.min 1, Math.sqrt Math.abs(vel/30)
-          
-          
           
           if measurePerf
             console.log ""
             starsPerfStart = performance.now()
           
-          
+          dt = time - lastTime
+          smoothDt = smoothDt*.9 + dt*.1
+          lastTime = time
+          fpsFrac = Math.min maxFpsFrac, targetMsPerFrame/smoothDt
           
           pixelStars        = true
           stars             = true
@@ -92,12 +134,12 @@ ready ()->
           purpleBlobs       = true
           blueBlobs         = true
           
-          nPixelStars        = Math.max 0, scale(pos, 0, height*0.4, density / 5 , 0) |0
-          nStars             = Math.max 0, scale(pos, 0, height*0.4, density / 99, 0) |0
-          nSmallGlowingStars = Math.max 0, scale(pos, 0, height*0.4, density / 40, 0) |0
-          nRedBlobs          = Math.max 0, scale(pos, 0, height*0.4, density / 20, 0) |0
-          nPurpBlobs         = Math.max 0, scale(pos, 0, height*0.4, density / 25, 0) |0
-          nBlueBlobs         = Math.max 0, scale(pos, 0, height*0.4, density / 25, 0) |0
+          nPixelStars        = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 5 , 0) |0
+          nStars             = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 99, 0) |0
+          nSmallGlowingStars = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 40, 0) |0
+          nRedBlobs          = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 20, 0) |0
+          nPurpBlobs         = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0) |0
+          nBlueBlobs         = fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0) |0
           
           # Count the number of objects we're about to render
           # console.log nRedBlobs + nPurpBlobs + nBlueBlobs + nPixelStars + nStars + nSmallGlowingStars
@@ -116,7 +158,7 @@ ready ()->
               y = mod y * height / randTableSize - pos, height
               o = o / randTableSize * 0.5 + 0.5
               r = (r / randTableSize * 1.5 + .5) * recipVel
-              drawCall x, y, r * dpi/2, "hsla(300, 25%, 50%, #{o})", starSpots
+              drawCall x, y, r * dpi/2, "hsla(300, 25%, 50%, #{o})"#, starSpots
             console.log((performance.now() - start).toPrecision(4) + "  pixelStars") if measurePerf
             
           
@@ -142,8 +184,8 @@ ready ()->
               l = l / randTableSize * 20 + 20
               o = o / randTableSize * 10 * decrease + 0.3
               c = c / randTableSize * 120 + 200
-              drawCall x, y, r1 * dpi/2, "hsla(#{c}, 30%, #{l}%, #{o})", starSpots
-              drawCall x, y, r2 * dpi/2, "hsla(0, 0%, 100%, 1)", starSpots
+              drawCall x, y, r1 * dpi/2, "hsla(#{c}, 30%, #{l}%, #{o})"#, starSpots
+              drawCall x, y, r2 * dpi/2, "hsla(0, 0%, 100%, 1)"#, starSpots
             console.log((performance.now() - start).toPrecision(4) + "  stars") if measurePerf
 
           
@@ -167,16 +209,16 @@ ready ()->
               c = c / randTableSize * 180 + 200
 
               # far ring
-              drawCall x, y, r * r * r * dpi/2, "hsla(#{c}, 70%, #{l}%, #{o/25})", starSpots
+              drawCall x, y, r * r * r * dpi/2, "hsla(#{c}, 70%, #{l}%, #{o/25})"#, starSpots
               
               # close ring
-              drawCall x, y, r * r * dpi/2, "hsla(#{c}, 50%, #{l}%, #{o/6})", starSpots
+              drawCall x, y, r * r * dpi/2, "hsla(#{c}, 50%, #{l}%, #{o/6})"#, starSpots
               
               # round star body
-              drawCall x, y, r * dpi/2, "hsla(#{c}, 20%, #{l}%, #{o})", starSpots
+              drawCall x, y, r * dpi/2, "hsla(#{c}, 20%, #{l}%, #{o})"#, starSpots
               
               # point of light
-              drawCall x, y, 1 * dpi/2, "hsla(#{c}, 100%, 90%, #{o * 1.5})", starSpots
+              drawCall x, y, 1 * dpi/2, "hsla(#{c}, 100%, 90%, #{o * 1.5})"#, starSpots
               
             console.log((performance.now() - start).toPrecision(4) + "  smallGlowingStars") if measurePerf
           
@@ -186,31 +228,6 @@ ready ()->
             context.globalAlpha = Math.min 1, Math.sqrt Math.abs(vel/8)
 
           
-
-          # Red Blobs
-          if redBlobs
-            start = performance.now() if measurePerf
-            for i in [0..nRedBlobs]
-              increase = i/nRedBlobs # get bigger as i increases
-              decrease = (1 - increase) # get smaller as i increases
-              o = randTable[(12345 + i) % randTableSize]
-              x = randTable[o]
-              y = randTable[x]
-              r = randTable[y]
-              l = randTable[r]
-              h = randTable[l]
-              x = x / randTableSize * width
-              y = mod y / randTableSize * height - pos * (increase/2 + 0.5), height
-              r = r / randTableSize * 120 * decrease * dscale + 20
-              l = l / randTableSize * 60 * decrease + 15
-              o = o / randTableSize * 0.018 + 0.008
-              h = h / randTableSize * 30 + 350
-              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o})", blobSpots
-              drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o*3/4})", blobSpots
-              drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o/2})", blobSpots
-            console.log((performance.now() - start).toPrecision(4) + "  redBlobs") if measurePerf
-
-
           # Purple Blobs
           if purpleBlobs
             start = performance.now() if measurePerf
@@ -227,7 +244,7 @@ ready ()->
               r = r / randTableSize * 200 * dscale * decrease + 30
               l = l / randTableSize * 16 * increase + 5
               o = o / randTableSize * 0.12 * decrease + 0.05
-              drawCall x, y, r * dpi/2, "hsla(290, 100%, #{l}%, #{o})", blobSpots
+              drawCall x, y, r * dpi/2, "hsla(290, 100%, #{l}%, #{o})"#, blobSpots
             console.log((performance.now() - start).toPrecision(4) + "  purpleBlobs") if measurePerf
 
           
@@ -248,12 +265,39 @@ ready ()->
               s = l / randTableSize * 40 + 30
               l = l / randTableSize * 60 * decrease + 5
               h = h / randTableSize * 50 + 200
-              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.015)", blobSpots
-              drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.020)", blobSpots
-              drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.025)", blobSpots
+              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.015)"#, blobSpots
+              drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.020)"#, blobSpots
+              drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.025)"#, blobSpots
             console.log((performance.now() - start).toPrecision(4) + "  blueBlobs") if measurePerf
+
+
+          # Red Blobs
+          if redBlobs
+            start = performance.now() if measurePerf
+            for i in [0..nRedBlobs]
+              increase = i/nRedBlobs # get bigger as i increases
+              decrease = (1 - increase) # get smaller as i increases
+              o = randTable[(12345 + i) % randTableSize]
+              x = randTable[o]
+              y = randTable[x]
+              r = randTable[y]
+              l = randTable[r]
+              h = randTable[l]
+              x = x / randTableSize * width
+              y = mod y / randTableSize * height - pos * (increase/2 + 0.5), height
+              r = r / randTableSize * 120 * decrease * dscale + 20
+              l = l / randTableSize * 60 * decrease + 15
+              o = o / randTableSize * 0.018 + 0.008
+              h = h / randTableSize * 30 + 350
+              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o})"#, blobSpots
+              drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o*3/4})"#, blobSpots
+              drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o/2})"#, blobSpots
+            console.log((performance.now() - start).toPrecision(4) + "  redBlobs") if measurePerf
 
             
           if measurePerf
             console.log ""
             console.log (performance.now() - starsPerfStart).toPrecision(4) + "  Stars"
+          
+          
+          first = false
