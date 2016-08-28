@@ -2,6 +2,8 @@ ready ()->
   mod = (a, b)->
     (a % b + b) % b
   
+  isHome = document.getElementById("#index")?
+  
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display != "none"
       do (canvas)->
@@ -27,8 +29,12 @@ ready ()->
         smoothDt = 1
 
         resize = ()->
-          width  = canvas.width = window.innerWidth * dpi
-          height = canvas.height = window.innerHeight * dpi
+          if isHome
+            width  = canvas.width = window.innerWidth * dpi
+            height = canvas.height = window.innerHeight * dpi
+          else
+            width  = canvas.width = canvas.parentNode.offsetWidth * dpi
+            height = canvas.height = canvas.parentNode.offsetHeight * dpi
           density = Math.sqrt width * height # How many stellar objects do we need?
           dscale = density/3000 # This lets us define things in terms of a "natural" display size
           context.globalAlpha = 1
