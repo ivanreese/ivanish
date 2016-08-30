@@ -27,7 +27,8 @@ ready ()->
         maxFpsFrac = 2
         targetMsPerFrame = 13
         smoothDt = 1
-
+        frameCounter = 0
+        
         resize = ()->
           if isHome
             width  = canvas.width = window.innerWidth * dpi
@@ -142,19 +143,21 @@ ready ()->
           smoothDt = smoothDt*.9 + dt*.1
           lastTime = time
           
+          frameCounter++
+          
           pixelStars        = true
           stars             = true
           smallGlowingStars = true
-          redBlobs          = true
           purpleBlobs       = true
           blueBlobs         = true
+          redBlobs          = true
           
-          nPixelStars        = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 5 , 0)) |0
-          nStars             = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 99, 0)) |0
-          nSmallGlowingStars = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 40, 0)) |0
-          nPurpBlobs         = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0)) |0
-          nBlueBlobs         = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0)) |0
-          nRedBlobs          = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.4, density / 25, 0)) |0
+          nPixelStars        = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.6, density /   5, 0)) |0
+          nStars             = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.6, density / 100, 0)) |0
+          nSmallGlowingStars = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.6, density /  40, 0)) |0
+          nPurpBlobs         = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.6, density /  25, 0)) |0
+          nBlueBlobs         = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.6, density /  25, 0)) |0
+          nRedBlobs          = (fpsFrac * Math.max 0, scale(scrollPos, 0, height*0.6, density /  25, 0)) |0
           
           # Count the number of objects we're about to render
           # console.log nRedBlobs + nPurpBlobs + nBlueBlobs + nPixelStars + nStars + nSmallGlowingStars
@@ -163,7 +166,8 @@ ready ()->
           # Pixel Stars
           if pixelStars
             start = performance.now() if measurePerf
-            for i in [0..nPixelStars]
+            for j in [0..nPixelStars]
+              i = (j + frameCounter) % nPixelStars
               increase = i/nPixelStars # get bigger as i increases
               x = randTable[(i + 5432) % randTableSize]
               y = randTable[x]
@@ -180,7 +184,8 @@ ready ()->
           # Stars
           if stars
             start = performance.now() if measurePerf
-            for i in [0..nStars]
+            for j in [0..nStars]
+              i = (j + frameCounter) % nStars
               increase = i/nStars # get bigger as i increases
               decrease = (1 - increase) # get smaller as i increases
               x = randTable[i % randTableSize]
@@ -207,7 +212,8 @@ ready ()->
           # Small Round Stars with circular glow rings
           if smallGlowingStars
             start = performance.now() if measurePerf
-            for i in [0..nSmallGlowingStars]
+            for j in [0..nSmallGlowingStars]
+              i = (j + frameCounter) % nSmallGlowingStars
               increase = i/nSmallGlowingStars # get bigger as i increases
               decrease = (1 - increase) # get smaller as i increases
               r = randTable[(i + 345) % randTableSize]
@@ -241,12 +247,14 @@ ready ()->
           
           if not first
             context.globalAlpha = Math.min 1, Math.sqrt Math.abs(vel/8)
-
+          
+          
           
           # Purple Blobs
           if purpleBlobs
             start = performance.now() if measurePerf
-            for i in [0..nPurpBlobs]
+            for j in [0..nPurpBlobs]
+              i = (j + frameCounter) % nPurpBlobs
               increase = i/nPurpBlobs # get bigger as i increases
               decrease = (1 - increase) # get smaller as i increases
               x = randTable[(i + 1234) % randTableSize]
@@ -266,7 +274,8 @@ ready ()->
           # Blue Blobs
           if blueBlobs
             start = performance.now() if measurePerf
-            for i in [0..nBlueBlobs]
+            for j in [0..nBlueBlobs]
+              i = (j + frameCounter) % nBlueBlobs
               increase = i/nBlueBlobs # get bigger as i increases
               decrease = (1 - increase) # get smaller as i increases
               x = randTable[(i + 123) % randTableSize]
@@ -289,7 +298,8 @@ ready ()->
           # Red Blobs
           if redBlobs
             start = performance.now() if measurePerf
-            for i in [0..nRedBlobs]
+            for j in [0..nRedBlobs]
+              i = (j + frameCounter) % nRedBlobs
               increase = i/nRedBlobs # get bigger as i increases
               decrease = (1 - increase) # get smaller as i increases
               o = randTable[(12345 + i) % randTableSize]

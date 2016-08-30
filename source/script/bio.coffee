@@ -24,7 +24,7 @@ ready ()->
   setInterval requestRender, 150
   
   renderBio = ()->
-    t = Math.sin(++count/25)/2 + 0.5
+    t = Math.sin(++count/20)/2 + 0.5
 
     # Only resize the buffer when the width changes
     # This provides the nicest behaviour for iOS (which resizes on scroll)
@@ -40,7 +40,7 @@ ready ()->
     if measurePerf
       perfStart = performance.now()
     
-    nBlobs = width/6
+    nBlobs = width/5
     for i in [0..nBlobs]
       increase = i/nBlobs # get bigger as i increases
       decrease = (1 - increase) # get smaller as i increases
@@ -52,11 +52,11 @@ ready ()->
       r = r / randTableSize * width / 5
       # start from 200 (blue), shift up to 170 degrees right (orange), + 40 degrees of jitter. Thus, no green.
       c = (c / randTableSize * 50 + (170 * t) + 200) % 360 |0
-      l = l / randTableSize * 10 + 70
+      l = l / randTableSize * 12 + 70
       x =          Math.cos((a/randTableSize) * TAU)  * Math.pow(d/randTableSize, 1/10) * (r/2 + width/2)  + width/2|0
       y = Math.abs(Math.sin((a/randTableSize) * TAU)) * Math.pow(d/randTableSize, 1/3)  * (r/2 + height/2) + height/2|0
       context.beginPath()
-      context.fillStyle = "hsla(#{c}, 33%, #{l}%, .06)"
+      context.fillStyle = "hsla(#{c}, 20%, #{l}%, .06)"
       context.arc(x, y, r, 0, TAU)
       context.fill()
 
