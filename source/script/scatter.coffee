@@ -1,4 +1,6 @@
 ready ()->
+  return unless performance.now? # Fuck IE
+  
   for canvas in document.querySelectorAll "canvas.js-scatter"
     context = canvas.getContext "2d"
     content = document.querySelector ".above"
@@ -25,35 +27,41 @@ ready ()->
       requestAnimationFrame update = (time)->
         requestAnimationFrame update
         count++
-        ph = pw = 50 + Math.random() * 100 |0
-        # ph = 1 + Math.random() * 20 |0
+        size = 40 + Math.pow(2, Math.random() * 7) |0
+        size = Math.min size, w / 5 |0
+        sizeSquared = size * size
         
         fn = if count%2 is 0 then Math.min else Math.max
+        tries = 0
         
-        for i in [0..10]
-          x = Math.random() * (w-pw) |0
-          y = Math.random() * (h-ph) |0
-          nx = Math.max 0, Math.min w-pw, if Math.random() < 0.5 then x + pw else x - pw
-          ny = Math.max 0, Math.min h-ph, if Math.random() < 0.5 then y + ph else y - ph
-          imageDataA = context.getImageData x, y, pw, ph
-          imageDataB = context.getImageData nx, ny, pw, ph
+        while performance.now() < time + 10 and tries++ < 30
+          x = Math.random() * (w-size) |0
+          y = Math.random() * (h-size) |0
+          nx = Math.max 0, Math.min w-size, if Math.random() < 0.5 then x + size else x - size
+          ny = Math.max 0, Math.min h-size, if Math.random() < 0.5 then y + size else y - size
+          imageDataA = context.getImageData x, y, size, size
+          imageDataB = context.getImageData nx, ny, size, size
           j = 0
-          delta = 0
-          power = 0
-          bail = false
-          while j < imageDataA.data.length
-            if imageDataA.data[j-(j%4)+3] is 0 or imageDataB.data[j-(j%4)+3] is 0
-              bail = true
-              break
-            if j % 4 isnt 3
-              x = Math.abs ((j/4 |0) % pw) - pw/2 |0
-              y = Math.abs ((j/4 |0) / pw) - ph/2 |0
-              if x + y < pw/2
-                delta += Math.abs imageDataA.data[j] - imageDataB.data[j]
+          colorDelta = 0
+          brightness = 0
+          skip = false
+          while j < imageDataA.data.length and not skip
+            alphaByte = j - (j % 4) + 3
+            alphaA = imageDataA.data[alphaByte]
+            alphaB = imageDataB.data[alphaByte]
+            if alphaA is 0 or alphaB is 0
+              skip = true
+            else if colorDelta > 12
+              skip = true
+            else if j % 4 isnt 3
+              x = Math.abs ((j/4 |0) % size) - size/2 |0
+              y = Math.abs ((j/4 |0) / size) - size/2 |0
+              if x + y < size/2
+                colorDelta += Math.abs(imageDataA.data[j] - imageDataB.data[j]) / (sizeSquared)
                 imageDataB.data[j] = fn imageDataA.data[j], imageDataB.data[j]
-                power += imageDataB.data[j]
+                brightness += imageDataB.data[j]
             j++
-          if not bail and delta < 10 * pw * ph and power > 0.2 * pw * ph * 255 * 4
+          if not skip and colorDelta > 4 and brightness > 0.24 * size * size * 255 * 4
             context.putImageData imageDataB, nx, ny
         
       window.addEventListener "resize", resize
