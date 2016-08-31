@@ -8,8 +8,6 @@ ready ()->
     img.onload = ()->
       w = 0
       h = 0
-      pw = 2
-      ph = 2
       tracers = []
       
       resize = ()->
@@ -23,18 +21,21 @@ ready ()->
           context.drawImage img, w - iw, h - ih, iw, ih
       
       newTracer = ()->
+        rand = Math.random()
         tracer =
           offset: 0
-          dist: Math.pow 2, Math.random() * 6 |0
-          x: Math.random() * (w-pw) |0
-          y: Math.random() * (h-ph) |0
-        tracer.imageData = context.getImageData tracer.x, tracer.y, pw, ph
+          dist: Math.pow(2, 1 + rand * 6) |0
+        size = 1 + Math.random() * 8 |0
+        tracer.v = Math.min 1, size/2
+        tracer.x = Math.random() * (w-size) |0
+        tracer.y = Math.random() * (h-size) |0
+        tracer.imageData = context.getImageData tracer.x, tracer.y, size, size
         tracer
       
       updateTracers = ()->
         tracers = for tracer in tracers when tracer.offset < tracer.dist and tracer.y > 0
-          if Math.random() > 0.5
-            tracer.offset += 2
+          if Math.random() > 0.1
+            tracer.offset += tracer.v
             
             i = 0
             while i < tracer.imageData.data.length
@@ -45,8 +46,7 @@ ready ()->
           tracer
       
       requestAnimationFrame update = (time)->
-        for i in [0..100]
-          tracers.push newTracer()
+        tracers.push newTracer() while tracers.length < 500
         updateTracers()
         requestAnimationFrame update
         
