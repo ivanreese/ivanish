@@ -1,6 +1,7 @@
 ready ()->
   for canvas in document.querySelectorAll "canvas.js-streaks"
     context = canvas.getContext "2d"
+    content = document.querySelector ".above"
     
     img = new Image()
     img.src = "/assets/time.jpg"
@@ -12,10 +13,10 @@ ready ()->
       tracers = []
       
       resize = ()->
-        if window.innerWidth != w
+        if window.innerWidth isnt w
           tracers = []
           w = canvas.width = window.innerWidth
-          h = canvas.height = window.innerHeight
+          h = canvas.height = Math.max window.innerHeight, content.clientHeight
           frac = h / img.height
           iw = img.width * frac
           ih = img.height * frac
