@@ -10,15 +10,16 @@ ready ()->
       pw = 2
       ph = 2
       tracers = []
-            
+      
       resize = ()->
-        tracers = []
-        w = canvas.width = window.innerWidth
-        h = canvas.height = window.innerHeight
-        frac = h / img.height
-        iw = img.width * frac
-        ih = img.height * frac
-        context.drawImage img, w - iw, h - ih, iw, ih
+        if window.innerWidth != w
+          tracers = []
+          w = canvas.width = window.innerWidth
+          h = canvas.height = window.innerHeight
+          frac = h / img.height
+          iw = img.width * frac
+          ih = img.height * frac
+          context.drawImage img, w - iw, h - ih, iw, ih
       
       newTracer = ()->
         tracer =
