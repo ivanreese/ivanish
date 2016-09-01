@@ -23,6 +23,7 @@ ready ()->
       newTracer = ()->
         rand = Math.random()
         tracer =
+          rand: rand
           offset: 0
           dist: Math.pow(2, 1 + rand * 6) |0
         size = 1 + Math.random() * 8 |0
@@ -34,7 +35,7 @@ ready ()->
       
       updateTracers = ()->
         tracers = for tracer in tracers when tracer.offset < tracer.dist and tracer.y > 0
-          if Math.random() > 0.1
+          if Math.random() > tracer.rand
             tracer.offset += tracer.v
             
             i = 0
@@ -46,7 +47,7 @@ ready ()->
           tracer
       
       requestAnimationFrame update = (time)->
-        tracers.push newTracer() while tracers.length < 500
+        tracers.push newTracer() while tracers.length < w/8
         updateTracers()
         requestAnimationFrame update
         
