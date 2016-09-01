@@ -140,7 +140,7 @@ ready ()->
           # We're deliberately adding 1 frame of latency to our fpsFrac, so that the first frame always renders at top quality
           fpsFrac = Math.min maxFpsFrac, targetMsPerFrame/smoothDt
           dt = time - lastTime
-          smoothDt = smoothDt*.9 + dt*.1
+          smoothDt = smoothDt*.95 + dt*.05
           lastTime = time
           
           frameCounter++
