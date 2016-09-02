@@ -1,4 +1,9 @@
 hr {
+  // Normalize
+  box-sizing: content-box; // Add the correct box sizing in Firefox
+  height: 0; // Add the correct box sizing in Firefox
+  overflow: visible; // Show the overflow in Edge and IE
+  
   border: none;
   border-bottom: 2px solid $black;
 }

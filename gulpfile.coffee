@@ -1,4 +1,5 @@
 browser_sync = require("browser-sync").create()
+del = require "del"
 gulp = require "gulp"
 gulp_autoprefixer = require "gulp-autoprefixer"
 gulp_coffee = require "gulp-coffee"
@@ -9,7 +10,6 @@ gulp_notify = require "gulp-notify"
 gulp_rename = require "gulp-rename"
 gulp_sass = require "gulp-sass"
 gulp_uglify = require "gulp-uglify"
-run_sequence = require "run-sequence"
 
 
 # CONFIG ##########################################################################################
@@ -79,7 +79,11 @@ gulp.task "coffee", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.js"
-      
+
+
+gulp.task "del:public", ()->
+  del "public"
+
       
 gulp.task "kit", ()->
   gulp.src paths.kit.source
@@ -119,7 +123,6 @@ gulp.task "pageCoffee", ()->
       match: "**/*.js"
 
 
-gulp.task "sass", ["scss"]
 gulp.task "scss", ()->
   gulp.src paths.scss.source
     .pipe gulp_concat "styles.scss"
@@ -146,10 +149,13 @@ gulp.task "serve", ()->
     ui: false
 
 
-gulp.task "default", ["assets", "coffee", "kit", "pageCoffee", "scss"], ()->
-  gulp.watch paths.assets.source, ["assets"]
-  gulp.watch paths.coffee.watch, ["coffee"]
-  gulp.watch paths.kit.watch, ["kit"]
-  gulp.watch paths.pageCoffee.watch, ["pageCoffee"]
-  gulp.watch paths.scss.watch, ["scss"]
-  run_sequence "serve" # Must come last
+gulp.task "watch", (cb)->
+  gulp.watch paths.assets.source, gulp.series "assets"
+  gulp.watch paths.coffee.watch, gulp.series "coffee"
+  gulp.watch paths.kit.watch, gulp.series "kit"
+  gulp.watch paths.pageCoffee.watch, gulp.series "pageCoffee"
+  gulp.watch paths.scss.watch, gulp.series "scss"
+  cb()
+
+
+gulp.task "default", gulp.series "del:public", gulp.parallel("assets", "coffee", "kit", "pageCoffee", "scss"), "watch", "serve"

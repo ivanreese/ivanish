@@ -5,7 +5,8 @@
   "devDependencies": {
     "browser-sync": "latest",
     "coffee-script": "latest",
-    "gulp": "latest",
+    "del": "latest",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "latest",
     "gulp-coffee": "latest",
     "gulp-concat": "latest",
@@ -14,8 +15,7 @@
     "gulp-notify": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
-    "gulp-uglify": "latest",
-    "run-sequence": "latest"
+    "gulp-uglify": "latest"
   },
   "license": "UNLICENSED",
   "private": true
