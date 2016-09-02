@@ -2,21 +2,20 @@
 
 <main id="starfield">
   <style>
-    header.stars {
-      background: none;
-    }
+    header.stars { background: none; }
+    header.stars canvas { display: none; }
+    header.stars div,
+    header.stars div a,
+    header.stars div a:visited { color: #33002A; }
     
-    header.stars canvas {
-      display: none;
-    }
-    
-    header.stars div, header.stars div a, header.stars div a:visited {
-      color: #33002A;
-    }
+    title { text-align: center; }
     
     #starfield .stars canvas.js-stars {
       position: static;
+      width: 500px;
       height: 500px;
+      max-width: 94vmin;
+      max-height: 94vmin;
     }
     
     main#starfield {
@@ -34,7 +33,7 @@
       </div>
     </a>
     <p>
-      Click this preview to see a fullscreen, infinite version. You can use the arrow keys, too.<br>
+      Click this preview to see a fullscreen, infinite version.<br>You can use the arrow keys, too.<br>
     </p>
   </section>
   
