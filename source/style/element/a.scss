@@ -1,7 +1,11 @@
 a {
-  // color: red!important;
   color: inherit;
   text-decoration: underline;
+  
+}
+
+a, a * {
+  cursor: pointer;
 }
 
 a:visited {

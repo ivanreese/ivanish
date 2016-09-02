@@ -46,7 +46,7 @@ gulp_notify.logLevel(0)
 
 logAndKillError = (err)->
   console.log "\n## Error ##"
-  console.log err.message + "\n"
+  console.log err.toString() + "\n"
   gulp_notify.onError(
     emitError: true
     icon: false
@@ -74,7 +74,7 @@ gulp.task "coffee", ()->
   gulp.src paths.coffee.source
     .pipe gulp_concat "scripts.coffee"
     .pipe gulp_coffee()
-    # .pipe gulp_uglify()
+    .pipe gulp_uglify()
     .on "error", logAndKillError
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
@@ -105,13 +105,13 @@ gulp.task "kit", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.html"
-      
+
 
 gulp.task "pageCoffee", ()->
   gulp.src paths.pageCoffee.source
     .pipe gulp_coffee()
+    .pipe gulp_uglify()
     .on "error", logAndKillError
-    # .pipe gulp_uglify()
     .pipe gulp_rename (path)->
       path.dirname = path.dirname + "/" + path.basename
     .pipe gulp.dest "public"
