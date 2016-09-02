@@ -1,0 +1,10 @@
+<svg width="38px" height="24px" viewBox="0 0 380 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none">
+  <g transform="translate(93, 10)">
+    <path stroke="#33002A" stroke-width="10" stroke-linecap="round" d="M103,205 C159,205 206,159 206,102 C206,46 159,0 103,0 C46,0 0,46 0,102"></path>
+    <polygon fill="#33002A" points="103 181 103 229 74 205"></polygon>
+  </g>
+  <g transform="translate(182, 125) rotate(-270) translate(-50, -180)">
+    <path stroke="#33002A" stroke-width="10" stroke-linecap="round" d="M25,335 C57,335 84,260 84,167 C84,75 57,-2-12 25,-2-12"></path>
+    <polygon fill="#33002A" points="25 306 25 363 0 335"></polygon>
+  </g>
+</svg>

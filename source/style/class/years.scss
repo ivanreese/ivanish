@@ -63,25 +63,6 @@
       p {
         line-height: 1.6;
       }
-      
-      .continue {
-        display: none; // I'm considering removing the continue buttons, this is a trial
-        padding: 0 .3em .2em;
-        margin-left: .2em;
-        text-transform: lowercase;
-        font-variant: small-caps;
-        border-radius: 2px;
-        line-height: 1.4;
-        text-decoration: none;
-        letter-spacing: 1px;
-        color: rgba($black, .5);
-        border: 1px solid rgba($black, 0.1);
-        
-        &:hover {
-          color: white;
-          background-color: $black;
-        }
-      }
     }
     
     .meta {
