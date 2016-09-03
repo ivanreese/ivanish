@@ -26,7 +26,7 @@ paths =
     watch: "source/script/**/*.coffee"
   kit:
     source: "source/pages/**/*.kit"
-    watch: "source/**/*.kit" # pages + footer.kit, header-min.kit, header.kit
+    watch: "source/**/*.kit" # pages + header-min.kit, header.kit
   pageCoffee:
     source: "source/pages/**/*.coffee"
     watch: "source/pages/**/*.coffee"
