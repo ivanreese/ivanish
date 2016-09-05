@@ -82,7 +82,9 @@ ready ()->
           requestRender()
         
         requestResize = ()->
-          if width isnt window.innerWidth * dpi
+          containerWidth = if isHome then window.innerWidth else canvas.parentNode.offsetWidth
+          if width isnt containerWidth * dpi
+            console.log window.innerWidth * dpi
             requestAnimationFrame (time)->
               first = true
               smoothDt = 1

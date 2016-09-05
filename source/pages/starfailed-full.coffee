@@ -65,8 +65,9 @@ ready ()->
           requestRender()
         
         requestMoveRender = (e)->
+          e.preventDefault()
           y = e.touches.item(0).screenY
-          vel -= (y - lastTouchY) / 10
+          vel += (y - lastTouchY) / 10
           lastTouchY = y
           requestRender()
         
@@ -141,7 +142,7 @@ ready ()->
             accel /= 1.1
           
           vel += accel
-          vel /= 1.1
+          vel /= 1.02
           recipVel = Math.min 1, Math.abs 10 / vel
           pos -= vel * dpi * speedScale
           

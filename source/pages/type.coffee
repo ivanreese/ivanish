@@ -17,22 +17,23 @@ ready ()->
       wScale = 0 # Global scaling factor based on image size
       count = 0 # Used with mod to switch comparison functions
       
-      resize = ()->
-        if window.innerWidth isnt w # Only resize when the width changes — improves UX on mobile, because the height changes during scroll
+      resize = (force = false)->
+        if force or window.innerWidth isnt w # Only resize when the width changes — improves UX on mobile, because the height changes during scroll
           w = canvas.width = window.innerWidth
           ih = img.height * (w / img.width) # Set the image height based on the window width
           iUpper = w * .13
-          iTop = Math.max 0, 260 + inner.clientHeight - iUpper # The 260 just gives a bit of whitespace at the top
+          iTop = Math.max 0, above.clientHeight - iUpper
           h = canvas.height = Math.max ih + iTop, window.innerHeight # Size the canvas to fit the image height, which expands the window height as necessary
           iTop = Math.max iTop, h - ih # If needed, draw the image lower so it's bottom-aligned with the window
           lowerLimit = ih/4
           wScale = w/1500
-          above.style.height = ih + "px" # Not sure why we need this??
+          # above.style.height = ih + "px" # Not sure why we need this??
           # context.fillStyle = "white"
           # context.fillRect(0, 0, w, h) # We need to fill the upper part with white, or else we won't have enough
           context.drawImage img, 0, iTop, w, ih
       
       requestAnimationFrame update = (time)->
+        return
         requestAnimationFrame update
         count++
         
@@ -78,3 +79,4 @@ ready ()->
       
       window.addEventListener "resize", resize
       resize()
+      requestAnimationFrame ()-> resize true # This fixes a rendering glitch, probably caused by this code running before styles are finished
