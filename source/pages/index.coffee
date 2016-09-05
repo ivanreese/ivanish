@@ -2,15 +2,15 @@ do ()->
   
   # BIO FADE
   ready ()->
-    header = document.querySelector("#index .hero")
-    header.style.opacity = headerTarget = headerCurrent = 1
+    elm = document.querySelector("#index .hero")
+    elm.style.opacity = headerTarget = headerCurrent = 1
     headerDelta = 0
     dirty = false
     epsilon = 0.0001
     
     fadeHeader = ()->
       scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop - window.innerHeight
-      opacity = scale scrollTop, 0, header.offsetHeight/2, 1, 0
+      opacity = scale scrollTop, 0, elm.offsetHeight/2, 1, 0
       opacity = opacity * opacity * opacity
       opacity = Math.min(1, Math.max(0, opacity))
       headerTarget = opacity
@@ -20,7 +20,7 @@ do ()->
       
       headerDelta = (headerTarget - headerCurrent)/5
       if Math.abs(headerDelta) > epsilon
-        header.style.opacity = headerCurrent = headerCurrent + headerDelta
+        elm.style.opacity = headerCurrent = headerCurrent + headerDelta
         requestUpdate()
     
     requestUpdate = ()->

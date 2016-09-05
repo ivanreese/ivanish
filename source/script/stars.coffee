@@ -22,7 +22,7 @@ ready ()->
         keyboardUp = false
         keyboardDown = false
         keySpeed = 1
-        scrollPos = 0
+        scrollPos = document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop
         lastTime = 0
         maxFpsFrac = 2
         maxDt = 500
@@ -56,7 +56,7 @@ ready ()->
             requestAnimationFrame doRender
         
         requestScrollRender = (e)->
-          p = document.body.scrollTop + document.body.parentNode.scrollTop
+          p = document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop
           delta = p - scrollPos
           scrollPos = p
           vel += delta / 5

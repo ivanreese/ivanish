@@ -1,30 +1,6 @@
-.stars {
-  position: relative;
-  text-align: center;
+.js-stars {
+  width: 100%; // Necessary because the JS sets the canvas width to 2x the monitor's width, for retina
+  height: 100%;
   background-color: hsl(250, 30%, 5%);
   background: radial-gradient(at bottom left, hsl(210, 100%, 8%) 0%, hsl(250,60%,16%) 20%, hsl(250,40%,6%) 40%, hsl(330, 40%, 12%) 90%, hsl(10, 90%, 22%) 100%);
-  
-  a, a:visited {
-    color: white;
-  }
-  
-  canvas {
-    position: absolute;
-    width: 100%; // Necessary because the JS sets the canvas width to 2x the monitor's width, for retina
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-  
-  div {
-    display: inline-block;
-    position: relative;
-    font-size: 1.1em;
-    padding: 2rem .2rem;
-    text-align: left;
-    color: white;
-    z-index: 2;
-    
-    @media (max-width: 450px) { font-size: 1em; }
-  }
 }
