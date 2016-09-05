@@ -28,7 +28,7 @@ ready ()->
         maxDt = 500
         targetMsPerFrame = 13
         smoothDt = 1
-        speedScale = 0.5
+        speedScale = 1
         
         resize = ()->
           if isHome

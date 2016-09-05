@@ -57,13 +57,6 @@ ready ()->
             renderRequested = true
             requestAnimationFrame doRender
         
-        requestScrollRender = (e)->
-          p = document.body.scrollTop + document.body.parentNode.scrollTop
-          delta = p - scrollPos
-          scrollPos = p
-          vel += delta / 5
-          requestRender()
-        
         requestMoveRender = (e)->
           e.preventDefault()
           y = e.touches.item(0).screenY
