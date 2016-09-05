@@ -9,6 +9,8 @@ ready ()->
       w = 0
       h = 0
       tracers = []
+      count = 0
+      tries = 0
       
       resize = ()->
         if window.innerWidth isnt w
@@ -22,33 +24,53 @@ ready ()->
           context.drawImage img, left, h - ih, iw, ih
       
       newTracer = ()->
-        rand = Math.random()
-        tracer =
-          rand: rand
+        tw = 2 + Math.pow(Math.random()-.5, 2) * 40 |0
+        th = 2
+        x = Math.random() * (w-tw - h/20) |0
+        y = Math.random() * (h-th - h * .6) + h * .6 |0
+        imageData = context.getImageData x, y, tw, th
+        byte = 0
+        intensity = 0
+        while byte < imageData.data.length
+          intensity += imageData.data[byte] if byte isnt (byte - (byte % 4) + 3)
+          byte++
+        
+        intensity /= (tw*th)
+        
+        if intensity > Math.max(10, h * .6 - count)
+          dist: Math.pow(2, Math.pow(Math.random(), 4) * 7) |0
+          imageData: imageData
+          intensity: intensity
           offset: 0
-          dist: Math.pow(2, 1 + rand * 6) |0
-        size = 1 + Math.random() * 8 |0
-        tracer.v = Math.min 1, size/2
-        tracer.x = Math.random() * (w-size) |0
-        tracer.y = Math.random() * (h-size) |0
-        tracer.imageData = context.getImageData tracer.x, tracer.y, size, size
-        tracer
+          rand: Math.random()/2
+          x: x
+          y: y
+        else
+          null
       
       updateTracers = ()->
-        tracers = for tracer in tracers when tracer.offset < tracer.dist and tracer.y > 0
-          if Math.random() > tracer.rand
-            tracer.offset += tracer.v
+        tracers = for tracer in tracers when tracer.offset < tracer.dist and (tracer.y-tracer.offset) > 0
+          if Math.random() < tracer.rand
+            tracer.offset++
             
-            i = 0
-            while i < tracer.imageData.data.length
-              tracer.imageData.data[i] *= 1.01
-              i++
+            byte = 0
+            
+            while byte < tracer.imageData.data.length
+              tracer.imageData.data[byte] *= 1.003
+              byte++
             
             context.putImageData tracer.imageData, tracer.x, tracer.y-tracer.offset
           tracer
       
       requestAnimationFrame update = (time)->
-        tracers.push newTracer() while tracers.length < w/8
+        tries = 0
+        count += 0.3
+        while tracers.length < h/30 and tries < 100
+          t = newTracer()
+          if t?
+            tracers.push t
+          else
+            tries++
         updateTracers()
         requestAnimationFrame update
         
