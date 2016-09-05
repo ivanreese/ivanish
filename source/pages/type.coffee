@@ -46,7 +46,7 @@ ready ()->
         fn = if count%3 is 0 then Math.max else Math.min # Bias towards darker colors
         reps = 0
         
-        while reps++ < 4
+        while reps++ < 10
           x = Math.random() * (w-size) |0
           y = Math.min h-size, iUpper + iTop + Math.random() * lowerLimit |0
           nx = Math.max 0, Math.min w-size, if Math.random() < 0.5 then x + size else x - size
