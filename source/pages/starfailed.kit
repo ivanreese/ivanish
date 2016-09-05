@@ -39,35 +39,34 @@
   
   <section>
     <p>
-      One of the very first goals for this website is that it should be blindingly fast to load.
+      The foremost goals for this website are that it should be gorgeous and blindingly fast to load. These goals are almost diametrically opposite, and the conflict between them is a beneficent creative constraint.
     </p>
     <p>
       There are a handful of sites out there, James Hague's <a href="http://prog21.dadgum.com">Programming In The 21st Century</a> most of all, that are astoundingly quick.
       The common thrust among them is a return to the simple origins web design: inline CSS, no JS, no images — in effect, 1 HTTP request per page.
       For my website, I challenged myself to see how close to that level of speed I could get, while still having an artful and lush design with a touch of playful interactivity.
-      My site has custom fonts, a fair bit of CSS, the occasional image, but it should still load with a small handful of HTTP requests in a small handful of seconds anywhere in the world, even on a slow connection.
+      
     </p>
     <p>
-      For the <a href="/">home page</a> of the site, I wanted a big splashy graphic.
+      For the <a href="/">home page</a>, I wanted a big splashy graphic.
       Of course, loading such a big graphic would miserably slow things down.
-      It occurred to me that I could probably procedurally render something — the necessary JS would only be a few hundred bytes. The initial render could probably happen within a few milliseconds.
+      It occurred to me that I could procedurally generate something — the necessary JS would only be a few thousand bytes. The initial render could probably happen within a few milliseconds.
       But what could I render that would be visually captivating?
       The "star bar" at the top of <a href="http://socket.io">socket.io</a> has always stuck out in my mind as a super-simple, super-cool bit of web design.
       Stars are pretty simple — a dark background, some points of light, maybe a few cloudy color regions for that <a href="http://www.homeworldremastered.com">Homeworld</a> feel.
       Should be easy.
     </p>
     <p>
-      After a bit of experimentation, I managed to create a screenfull of stars and nebula-esq clouds that looked <em>almost</em> photographic.
-      It loaded instantly, and rendered in under 40ms (depending on screen size — the complexity of the graphic is dynamic, to support a diverse array of devices).
+      After a bit of experimentation, I managed to create a screenfull of stars and nebula-esq clouds that looked almost photographic.
+      It loaded instantly, and rendered in under 40ms.
       Success!
     </p>
     <p>
-      Then came optimization. Can I get that 40ms down to 20ms? Can I make it look as good on a dim monitor in daylight as on a bright monitor in the dark?
-      Tweak tweak tweak tweak twe... and then I hit a bug! While optimizing the initial setup, I changed some code that was inadvertently resizing the buffer on each redraw, clearing the buffer.
-      At the time, I was playing with moving the stars a bit based on the scroll position, for a fancy parallax effect that'd be impossible to do with static images (even multiple layers of static images, a la <a href="http://firewatchgame.com">Firewatch</a>).
-      Suddenly, I had stars and low-opacity nebula colors sliding around, drawing again and again on top of the same buffer.
-      And that was it! There's the high-impact splashy graphic I wanted for my home page.
-      It loads faster than any image, renders super quick (with room for further optimization, natch), and is more striking and visceral than any static image.
+      Then came optimization and interactivity. Can I get that 40ms down to 20ms? Can I make it look as good on a dim monitor in daylight as on a bright monitor in the dark? Can I make the stars slide around while scrolling, for a striking parallax effect (a la <a href="http://firewatchgame.com">Firewatch</a>)?
+      Tweak tweak tweak tweak twe... and then I caused a "bug". While optimizing the initial setup, I fixed some code that was inadvertently resizing the buffer on each redraw, clearing the buffer.
+      Suddenly, I had stars and low-opacity nebula colors sliding around, drawing again and again on top of the same buffer. They streaked and puffed and flooded the canvas with colour.
+      And that was it, the high-impact splashy graphic I wanted for my home page.
+      It loads faster than any image, renders super quick, and is an immediate statement of identity.
     </p>
   </section>
 
