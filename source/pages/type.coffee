@@ -22,7 +22,7 @@ ready ()->
           w = canvas.width = window.innerWidth
           ih = img.height * (w / img.width) # Set the image height based on the window width
           iUpper = w * .13
-          iTop = Math.max 0, 200 + inner.clientHeight - iUpper # I think 200 is the header height?
+          iTop = Math.max 0, 260 + inner.clientHeight - iUpper # The 260 just gives a bit of whitespace at the top
           h = canvas.height = Math.max ih + iTop, window.innerHeight # Size the canvas to fit the image height, which expands the window height as necessary
           iTop = Math.max iTop, h - ih # If needed, draw the image lower so it's bottom-aligned with the window
           lowerLimit = ih/4
