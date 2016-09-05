@@ -1,7 +1,7 @@
 ready ()->
   for canvas in document.querySelectorAll "canvas.js-streaks"
     context = canvas.getContext "2d"
-    content = document.querySelector ".above"
+    inner = document.querySelector ".above"
     
     img = new Image()
     img.src = "/assets/time.jpg"
@@ -14,11 +14,12 @@ ready ()->
         if window.innerWidth isnt w
           tracers = []
           w = canvas.width = window.innerWidth
-          h = canvas.height = Math.max window.innerHeight, content.clientHeight
+          h = canvas.height = Math.max window.innerHeight, inner.clientHeight
           frac = h / img.height
           iw = img.width * frac
           ih = img.height * frac
-          context.drawImage img, w - iw, h - ih, iw, ih
+          left = Math.max -iw * .4, w - iw
+          context.drawImage img, left, h - ih, iw, ih
       
       newTracer = ()->
         rand = Math.random()
