@@ -10,7 +10,7 @@
   div {
     display: inline-block;
     vertical-align: top;
-    max-width: 18em;
+    max-width: 22em;
     margin: 2vh calc(4vw + 2em) 4vh 0;
     
     h2 {
@@ -33,7 +33,6 @@
         flex: 0 0 100px;
         width: 100px;
         height: 100px;
-        line-height: 100px;
         margin: .5rem;
         border-radius: 100%;
         * { border-radius: 100%; }
