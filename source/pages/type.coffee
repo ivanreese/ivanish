@@ -33,7 +33,6 @@ ready ()->
           context.drawImage img, 0, iTop, w, ih
       
       requestAnimationFrame update = (time)->
-        return
         requestAnimationFrame update
         count++
         
