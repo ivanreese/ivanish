@@ -26,7 +26,7 @@ ready ()->
         lastTime = 0
         maxFpsFrac = 2
         maxDt = 500
-        targetMsPerFrame = 13
+        targetMsPerFrame = 30
         smoothDt = 1
         speedScale = 0.5
         
