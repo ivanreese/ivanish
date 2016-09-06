@@ -27,7 +27,7 @@
       line-height: 1.1;
       text-decoration: none;
       margin-left: -.5rem;
-      &:hover { color: inherit; }
+      &:hover { opacity: 1; }
       
       & > :first-child {
         flex: 0 0 100px;

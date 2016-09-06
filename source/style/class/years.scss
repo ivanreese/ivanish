@@ -15,7 +15,7 @@
     display: block;
     text-decoration: none;
     
-    &:hover { color: inherit; }
+    &:hover { opacity: 1; }
     
     & > span:first-child {
       display: inline-block;

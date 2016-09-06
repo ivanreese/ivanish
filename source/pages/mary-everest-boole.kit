@@ -1,15 +1,61 @@
 <!-- @import ../header.kit -->
 
 <main>
-
-  <title>Mary Everest Boole</title>
-
-  <div class="hero"><img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/tv.jpg"></div>
   
-  <p>THIS PAGE IS A STUB</p>
-  <p>This was my performance for the 2nd Soundasaurus.</p>
+  <style>
+    title {
+      text-align: center;
+      margin-bottom: 1vh;
+    }
+    @media (max-width: 600px) { title { font-size: 2em; } }
+    .top {
+      max-width: 555px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .pd img {
+      border: 1px solid black;
+    }
+  </style>
+  
+  <title>Mary Everest Boole</title>
+  
+  <div class="top hero"><img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/meb1.jpg"></div>
+  
+  
+  <p>This was my performance for the 2nd Soundasaurus. For want of a collaborator, the result was quite a bit less exciting than <a href="/the-unlimited-dream-company">the one before</a>. But it does mark the beginning of my experiments with procedural sound and music.</p>
+  
+  <section>
+    <p>For the first half (which wasn't recorded), I spoke briefly about the life and important work of <a href="https://en.wikipedia.org/wiki/Mary_Everest_Boole">MEB</a>. I then explained to the audience that the computer had been "listening" the entire time, processing the sound of the room and of me talking, looking for choice bits to chew up and reassemble. I then walked over to the computer, dramatically pinged the spacebar, and walked offstage. Here's what happened next:</p>
+    <p class="audio">
+      <a download href="http://ivanreese.s3.amazonaws.com/mary-everest-boole/Mary%20Everest%20Boole.mp3">Mary Everest Boole</a>
+      <audio src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/Mary%20Everest%20Boole.mp3" controls></audio></p>
+    </p>
+    <p>About six minutes later, the computer switched to a different mode, and stopped playing sound. This was my cue to come out, take the microphone, and feed it new sound. In this new mode, it would take the pitch, amplitude, and a few aggregate qualities of the sound coming into the microphone. It would match those qualities to the sounds it had recorded at the start of the piece, and sew them all together into a mass of noises that swarmed and swam around the new sounds coming in. Think of it like... a very slow feedback loop, with some specific goals and several degrees of freedom. A few minutes of this nonsense, and that's that!</p>
+  </section>
+  
+  <p>For contrast, the application I submitted read as follows.</p>
+  <blockquote>
+    <b>Mary Everest Boole</b><br>
+    A narrative performance of stochastic musical cybernetics. Based on the life and work of the titular woman, it presents math, science, and random chance in a sonically-engaging fashion. Ivan Reese plays three hand-made electroacoustic instruments, with designs and mechanisms derived from historically threatening bacteria. In lieu of a band, he is accompanied by a specially-written computer algorithm that responds to what it hears. The computer listens carefully to everything in the room, using a few unconventional methods: quefrency and cepstrum analysis. Whenever it hears an interesting sound, the sound is captured and then played back, rearranged for musical continuity. The duo will give a narrative about Mrs. Boole, honouring her pioneering role in science and mathematics two centuries ago.
+  </blockquote>
+  <p>All of that worked out very nearly as intended, save for the bacterial instruments bit. I'd amassed quite the collection of destroyed instruments by this point, and my hope was to pull them together into something I could use for this show. But when it came down to the wire, I directed my attention towards the sound software rather than the instruments — unfortunate, since this show dearly lacked anything visually compelling.</p>
+  
+  <section class="pd hero">
+    <img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/pure-data.jpg">
+    <p>The computer system was coded in <a href="https://en.wikipedia.org/wiki/Pure_Data">PureData</a>.</p>
+  </section>
 
-  <div class="hero"><img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/pure-data.jpg"></div>
+  
+  <section>
+    <h1>Photos</h1>
+    <div class="hero">
+      <img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/tv.jpg">
+      <img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/meb2.jpg">
+      <img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/meb3.jpg">
+      <img src="http://ivanreese.s3.amazonaws.com/mary-everest-boole/meb4.jpg">
+    </div>
+  </section>
 
   <section class="related">
     <a href="/performance">Performance</a> from <a href="/2011">2011</a>
