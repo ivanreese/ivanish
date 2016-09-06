@@ -1,0 +1,6 @@
+.youtube {
+  width: 52em;
+  height: 29.25em;
+  
+  @media (max-width: 56em) { height: 52vw; }
+}
