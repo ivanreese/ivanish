@@ -1,0 +1,14 @@
+.audio {
+  display: flex;
+  align-items: center;
+  min-height: 2em;
+  padding-left: .5em;
+  border: 1px solid #292929;
+  background: #292929;
+  color: white;
+  
+  audio {
+    flex: 1 1 auto;
+    margin-left: .5em;
+  }
+}
