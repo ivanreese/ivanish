@@ -1,14 +1,17 @@
 .audio {
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
-  min-height: 2em;
-  padding-left: .5em;
-  border: 1px solid #292929;
+  border: 2px solid #292929;
   background: #292929;
   color: white;
   
   audio {
     flex: 1 1 auto;
-    margin-left: .5em;
+  }
+  
+  span {
+    flex: 0 1 auto;
+    margin: .2em .5em;
   }
 }
