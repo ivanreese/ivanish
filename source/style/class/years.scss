@@ -12,7 +12,9 @@
   }
   
   & > a {
+    display: block;
     text-decoration: none;
+    
     &:hover { color: inherit; }
     
     & > span:first-child {
@@ -36,7 +38,7 @@
     & > span + span {
       display: flex;
       align-items: flex-start;
-      margin-top: -1px;
+      margin-top: -1.2px;
       @media(max-width: 500px) { margin-left: -3vw; }
       
       & > :first-child {
