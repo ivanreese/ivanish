@@ -3,4 +3,8 @@
   height: 100%;
   background-color: hsl(250, 30%, 5%);
   background: radial-gradient(at bottom left, hsl(210, 100%, 8%) 0%, hsl(250,60%,16%) 20%, hsl(250,40%,6%) 40%, hsl(330, 40%, 12%) 90%, hsl(10, 90%, 22%) 100%);
+  
+  &[bw] {
+    background: radial-gradient(at bottom left, hsl(210, 0%, 8%) 0%, hsl(250,0%,16%) 20%, hsl(250,0%,6%) 40%, hsl(330, 0%, 12%) 90%, hsl(10, 0%, 22%) 100%);
+  }
 }

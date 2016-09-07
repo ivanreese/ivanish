@@ -2,6 +2,7 @@ browser_sync = require("browser-sync").create()
 del = require "del"
 gulp = require "gulp"
 gulp_autoprefixer = require "gulp-autoprefixer"
+gulp_changed = require "gulp-changed"
 gulp_coffee = require "gulp-coffee"
 gulp_concat = require "gulp-concat"
 gulp_htmlmin = require "gulp-htmlmin"
@@ -26,6 +27,7 @@ paths =
     watch: "source/script/**/*.coffee"
   kit:
     source: "source/pages/**/*.kit"
+    header: "source/{header,header-min}.kit"
     watch: "source/**/*.kit" # pages + header-min.kit, header.kit
   pageCoffee:
     source: "source/pages/**/*.coffee"
@@ -84,10 +86,13 @@ gulp.task "coffee", ()->
 gulp.task "del:public", ()->
   del "public"
 
+
+gulp.task "del:html", ()->
+  del "public/**/*.html"
+
       
 gulp.task "kit", ()->
   gulp.src paths.kit.source
-    .pipe gulp_kit()
     .on "error", logAndKillError
     .pipe gulp_rename (path)->
       if path.basename is "index"
@@ -96,6 +101,8 @@ gulp.task "kit", ()->
         path.dirname = path.dirname + "/" + path.basename
         path.basename = "index"
       return path
+    .pipe gulp_changed "public", extension: ".html"
+    .pipe gulp_kit()
     .pipe gulp_htmlmin
       collapseWhitespace: true
       collapseBooleanAttributes: true
@@ -150,6 +157,7 @@ gulp.task "serve", ()->
 
 
 gulp.task "watch", (cb)->
+  gulp.watch paths.kit.header, gulp.series "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
   gulp.watch paths.assets.source, gulp.series "assets"
   gulp.watch paths.coffee.watch, gulp.series "coffee"
   gulp.watch paths.kit.watch, gulp.series "kit"

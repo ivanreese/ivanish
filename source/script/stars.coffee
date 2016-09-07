@@ -3,6 +3,7 @@ ready ()->
     (a % b + b) % b
   
   isHome = document.getElementById("#index")?
+  bw = if document.querySelector "[js-stars-bw]" then 0 else 1
   
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display != "none"
@@ -29,6 +30,8 @@ ready ()->
         targetMsPerFrame = 13
         smoothDt = 1
         speedScale = 1
+        
+        canvas.setAttribute "bw", "" if bw is 0
         
         resize = ()->
           if isHome
@@ -177,7 +180,7 @@ ready ()->
               y = mod y * height / randTableSize - pos, height
               o = o / randTableSize * 0.5 + 0.5
               r = (r / randTableSize * 1.5 + .5) * recipVel
-              drawCall x, y, r * dpi/2, "hsla(300, 25%, 50%, #{o})"#, starSpots
+              drawCall x, y, r * dpi/2, "hsla(300, #{25*bw}%, 50%, #{o})"#, starSpots
             console.log((performance.now() - start).toPrecision(4) + "  pixelStars") if measurePerf
             
           
@@ -203,7 +206,7 @@ ready ()->
               l = l / randTableSize * 20 + 20
               o = o / randTableSize * 10 * decrease + 0.3
               c = c / randTableSize * 120 + 200
-              drawCall x, y, r1 * dpi/2, "hsla(#{c}, 30%, #{l}%, #{o})"#, starSpots
+              drawCall x, y, r1 * dpi/2, "hsla(#{c}, #{30*bw}%, #{l}%, #{o})"#, starSpots
               drawCall x, y, r2 * dpi/2, "hsla(0, 0%, 100%, 1)"#, starSpots
             console.log((performance.now() - start).toPrecision(4) + "  stars") if measurePerf
 
@@ -228,16 +231,16 @@ ready ()->
               c = c / randTableSize * 180 + 200
 
               # far ring
-              drawCall x, y, r * r * r * dpi/2, "hsla(#{c}, 70%, #{l}%, #{o/25})"#, starSpots
+              drawCall x, y, r * r * r * dpi/2, "hsla(#{c}, #{70*bw}%, #{l}%, #{o/25})"#, starSpots
               
               # close ring
-              drawCall x, y, r * r * dpi/2, "hsla(#{c}, 50%, #{l}%, #{o/6})"#, starSpots
+              drawCall x, y, r * r * dpi/2, "hsla(#{c}, #{50*bw}%, #{l}%, #{o/6})"#, starSpots
               
               # round star body
-              drawCall x, y, r * dpi/2, "hsla(#{c}, 20%, #{l}%, #{o})"#, starSpots
+              drawCall x, y, r * dpi/2, "hsla(#{c}, #{20*bw}%, #{l}%, #{o})"#, starSpots
               
               # point of light
-              drawCall x, y, 1 * dpi/2, "hsla(#{c}, 100%, 90%, #{o * 1.5})"#, starSpots
+              drawCall x, y, 1 * dpi/2, "hsla(#{c}, #{100*bw}%, 90%, #{o * 1.5})"#, starSpots
               
             console.log((performance.now() - start).toPrecision(4) + "  smallGlowingStars") if measurePerf
           
@@ -264,7 +267,7 @@ ready ()->
               r = r / randTableSize * 200 * dscale * decrease + 20
               l = l / randTableSize * 16 * increase + 5
               o = o / randTableSize * 0.17 * decrease + 0.05
-              drawCall x, y, r * dpi/2, "hsla(290, 100%, #{l}%, #{o})"#, blobSpots
+              drawCall x, y, r * dpi/2, "hsla(290, #{100*bw}%, #{l}%, #{o})"#, blobSpots
             console.log((performance.now() - start).toPrecision(4) + "  purpleBlobs") if measurePerf
 
           
@@ -282,7 +285,7 @@ ready ()->
               x = x / randTableSize * width
               y = mod y / randTableSize * height - pos * (decrease/5 + 0.5), height
               r = r / randTableSize * 120 * dscale * decrease + 20
-              s = l / randTableSize * 40 + 35
+              s = (l / randTableSize * 40 + 35) * bw
               l = l / randTableSize * 60 * decrease + 5
               h = h / randTableSize * 50 * decrease + 205
               drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.010)"#, blobSpots
@@ -309,9 +312,10 @@ ready ()->
               l = l / randTableSize * 60 * decrease + 15
               o = o / randTableSize * 0.012 + 0.008
               h = h / randTableSize * 30 + 350
-              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o})"#, blobSpots
-              drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o*3/4})"#, blobSpots
-              drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, 100%, #{l}%, #{o/2})"#, blobSpots
+              s = 100 * bw
+              drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o})"#, blobSpots
+              drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o*3/4})"#, blobSpots
+              drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2})"#, blobSpots
             console.log((performance.now() - start).toPrecision(4) + "  redBlobs") if measurePerf
 
             

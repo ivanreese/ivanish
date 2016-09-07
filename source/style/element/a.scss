@@ -12,6 +12,6 @@ a:visited {
   color: inherit;
 }
 
-a:hover {
-  opacity: 0.5;
+a:hover, a:visited:hover {
+  color: #777;
 }
