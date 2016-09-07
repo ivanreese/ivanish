@@ -50,7 +50,7 @@
       z-index: 11;
     }
     
-    #index .hero canvas {
+    #index .hero div {
       width: 100%;
       height: 100%;
       border-radius: 100%;
@@ -71,9 +71,9 @@
       }
     }
     
-    @media(max-width: 1000px) { #index .hero canvas { background-image: url("/assets/bio-portrait-1000.jpg"); } }
-    @media(max-width: 750px)  { #index .hero canvas { background-image: url("/assets/bio-portrait-750.jpg"); } }
-    @media(max-width: 500px)  { #index .hero canvas { background-image: url("/assets/bio-portrait-500.jpg"); } }
+    @media(max-width: 1000px) { #index .hero div { background-image: url("/assets/bio-portrait-1000.jpg"); } }
+    @media(max-width: 750px)  { #index .hero div { background-image: url("/assets/bio-portrait-750.jpg"); } }
+    @media(max-width: 500px)  { #index .hero div { background-image: url("/assets/bio-portrait-500.jpg"); } }
 
     
     #index h1 {
@@ -114,9 +114,7 @@
   
   <title class="hide">Ivan Reese</title>
   
-  <div class="hero">
-    <canvas class="js-bio"></canvas>
-  </div>
+  <div class="hero"><div></div></div>
   
   <script>
     // This sucks, but it makes Android happy UGH
