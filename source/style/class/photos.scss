@@ -1,21 +1,53 @@
 .photos {
-  title {
-    margin-bottom: 8vh;
-  }
+  title { margin-bottom: 8vh; }
   
   .hero {
-    margin: 12vh 0;
+    margin: 20vh 0 0;
+    height: 90vh;
     
     img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 90vh;
     }
+    
+    &.full {
+      margin-left: calc(26em - 50vw);
+      margin-bottom: 20vh;
+      height: auto;
+      img {
+        width: 100vw;
+        max-width: none;
+        max-height: none;
+      }
+      
+      @media (max-width: $maxLineLength) {
+        margin-left: -3vw;
+      }
+    }
+    
+    &.wide {
+      margin-bottom: 20vh;
+      height: auto;
+      img {
+        width: 100%;
+        max-height: none;
+      }
+    }
+    
+    &.tall {
+      margin-bottom: 20vh;
+      height: auto;
+      img {
+        max-height: none;
+      }
+    }
+  }
+  
+  .hero + p {
+    margin-top: 20vh;
   }
   
   h1 {
     margin-top: 12vh;
-  }
-  
-  h1 + .hero {
-    margin-top: 0;
   }
 }
