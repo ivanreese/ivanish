@@ -94,6 +94,7 @@ gulp.task "del:html", ()->
 gulp.task "kit", ()->
   gulp.src paths.kit.source
     .on "error", logAndKillError
+    .pipe gulp_kit()
     .pipe gulp_rename (path)->
       if path.basename is "index"
         path.dirname = ""
@@ -101,8 +102,6 @@ gulp.task "kit", ()->
         path.dirname = path.dirname + "/" + path.basename
         path.basename = "index"
       return path
-    .pipe gulp_changed "public", extension: ".html"
-    .pipe gulp_kit()
     .pipe gulp_htmlmin
       collapseWhitespace: true
       collapseBooleanAttributes: true
@@ -113,6 +112,7 @@ gulp.task "kit", ()->
       removeComments: true
       sortAttributes: true
       sortClassName: true
+    .pipe gulp_changed "public", extension: ".html", hasChanged: gulp_changed.compareSha1Digest
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.html"
