@@ -1,0 +1,21 @@
+.photos {
+  title {
+    margin-bottom: 8vh;
+  }
+  
+  .hero {
+    margin: 12vh 0;
+    
+    img {
+      width: 100%;
+    }
+  }
+  
+  h1 {
+    margin-top: 12vh;
+  }
+  
+  h1 + .hero {
+    margin-top: 0;
+  }
+}
