@@ -8,8 +8,7 @@
     <p>
       This is the fifth project in the <a href="/a-shrinking-feeling">A Shrinking Feeling</a> lineage.
       Like most of the previous entries in the series, this is a procedural music generation program intended for live exhibition.
-      It's written in ClojureScript — badly — and runs in the browser using the Web Audio API.
-      The code is up on <a href="https://github.com/ivanreese/diminished-fifth">HitBug</a>.
+      It's designed to run for hours at a time, and it takes a few minutes to "warm up".
     </p>
   </section>
   
@@ -21,14 +20,24 @@
   </div>
   
   <ol>
-    <li>Click the <strong>Play</strong> button to begin.</li>
     <li>Hit <strong>Pause</strong> if you need to, and then hit <strong>Play</strong> again to resume.</li>
     <li><strong>Restart</strong> will start the piece over from the beginning.</li>
-    <li><strong>Tick Once</strong> is for debug and you can ignore it.</li>
-    <li><strong>Toggle GUI</strong> is for debug and you can ignore it.</li>
     <li><strong>Fullscreen</strong> does what you'd expect — hit <strong>esc</strong> on your keyboard to exit.</li>
-    <li>Finally, <strong>Sound Check</strong> plays a random sample from the system, and is useful when I'm wiring this up for a live performance.</li>
+    <li><strong>Sound Check</strong> plays a random sample from the system, and is useful when I'm wiring this up for a live performance.</li>
+    <li>The rest of the buttons are just to help me debug the system when something goes wrong.</li>
   </ol>
+  
+  <p>
+    Diminished Fifth is written in ClojureScript — badly — and runs in the browser using the Web Audio API.
+    The code is up on <a href="https://github.com/ivanreese/diminished-fifth">HitBug</a>.
+  </p>
+  <p>
+    The simulation is <i>mostly</i> deterministic — each run will be just slightly different.
+    There's a very small pool of pre-written melodies used as source material, so the musical result will be very self-similar at times.
+    As I continue to work on the project, I'll be expanding the breadth of sounds and moods produced.
+    That's the fun part.
+  </p>
+
   
   <section class="related">
     <a href="/code">Procedural Music</a> from <a href="/2016">2016</a>.
