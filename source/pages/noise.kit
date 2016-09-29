@@ -40,27 +40,34 @@
     
     <p>These editors are set up for easy drawing.</p>
     <ul>
-      <li><b>g</b> lets you access the <i>canvas 2d drawing context</i> &nbsp; (<a href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">cheatsheet</a>)</li>
-      <li><b>cx</b> and <b>cy</b> are the center of the black box</li>
-      <li><b>tau</b> is 2 x π &nbsp; (because <a href="http://tauday.com/tau-manifesto"> good reasons</a>)</li>
+      <li><b>g</b> is the <i>canvas context</i> &nbsp;(<a href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">cheatsheet</a>)</li>
+      <li><b>cx</b> and <b>cy</b> are the center of the canvas</li>
+      <li><b>w</b> and <b>h</b> are the width and height of the canvas</li>
+      <li><b>tau</b> is 2π &nbsp;(helpful because <a href="http://tauday.com/tau-manifesto">circle math mostly uses 2π</a>)</li>
     </ul>
     <textarea js-repl js-canvas>
-      g.arc cx, cy, 30, 0, tau
+      # Prepare a circle shape
+      g.arc cx, cy, h/4, 0, tau
+      
+      # Draw the current shape
       g.fill()
     </textarea>
     
     <p>They're also set up for easy animation. Fuck yeah!</p>
     <ul>
       <li><b>time</b> is the current time in seconds</li>
-      <li><b>%</b> gives you the mod (aka remainder) when dividing two numbers</li>
+      <li><b>%</b> is modulo — it's like division, but it gives you the remainder: &nbsp; 5 % 3 = 2</li>
     </ul>
     <textarea js-repl js-canvas>
       log time, "Time"
       
-      radius = 10 * (time % 3) # Counts 0 to 30 every 3 seconds
-      log radius, "Radius"
+      zeroToThree = time % 3
+      log zeroToThree, "0 to 3"
       
-      g.arc cx, cy, radius, 0, tau
+      zeroToThirty = 10 * zeroToThree
+      log zeroToThirty, "0 to 30"
+      
+      g.arc cx, cy, zeroToThirty, 0, tau
       g.fill()
     </textarea>
     

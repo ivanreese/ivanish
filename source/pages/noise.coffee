@@ -28,7 +28,7 @@ do ()->
     textarea.parentElement.replaceChild repl, textarea
     repl.appendChild textarea
     
-    results = document.createElement "p"
+    results = document.createElement "pre"
     repl.appendChild results
     results.className = "results"
     
@@ -37,6 +37,8 @@ do ()->
       repl.appendChild canvas
       g = canvas.getContext "2d"
     
+    logged = []
+    maxLogLabel = 0
     animated = false
     animating = false
     compiled = null
@@ -47,10 +49,22 @@ do ()->
     h = 0
     time = 0
     
+    clearLog = ()->
+      logged = []
+      maxLogLabel = 0
+      results.textContent = ""
+    
     log = (msg, label)->
-      msg = msg.toPrecision 5 if typeof msg is "number"
-      msg = label + ": " + msg if label?
-      results.innerHTML += msg + "<br>"
+      logged.push [msg, label]
+      maxLogLabel = Math.max maxLogLabel, label.length if label?
+    
+    flushLog = ()->
+      for [msg, label] in logged
+        msg = Math.round(msg * 1000)/1000 if typeof msg is "number"
+        if label?
+          spaces = Array(maxLogLabel - label.length + 3).join " "
+          msg = label + spaces + msg
+        results.innerHTML += msg + "\n"
     
     evaluate = ()->
       try
@@ -59,7 +73,7 @@ do ()->
         log e
     
     render = ()->
-      results.textContent = ""
+      clearLog()
       
       if g?
         g.clearRect 0,0,w,h
@@ -70,6 +84,8 @@ do ()->
         evaluate()
       else if compiled?.error?
         log compiled.error
+      
+      flushLog()
     
     tick = (t)->
       if animated and animating
