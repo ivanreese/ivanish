@@ -28,10 +28,7 @@ paths =
   pageCoffee:
     source: "source/pages/**/*.coffee"
   pageSCSS:
-    source: [
-      "source/**/vars.scss"
-      "source/pages/**/*.scss"
-    ]
+    source: "source/pages/**/*.scss"
   scss:
     source: [
       "source/**/vars.scss"
