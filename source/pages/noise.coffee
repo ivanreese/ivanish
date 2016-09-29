@@ -36,8 +36,8 @@ do ()->
       try eval code
 
     run = ()->
+      results.textContent = ""
       if code.code?
-        results.textContent = ""
         evaluate code.code, context, w, h
       else
         log code.error
