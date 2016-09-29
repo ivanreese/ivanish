@@ -107,11 +107,12 @@ do ()->
       run()
   
   
-  ready ()->
-    # Decloak first, or CodeMirror acts dumb
+  decloak = ()->
     for section in document.querySelectorAll "section"
-      section.style.display = "block"
+      section.style.visibility = "visible"
 
+  
+  ready ()->
     # Setup REPLs
     for repl in document.querySelectorAll "[js-repl]"
       setup repl
@@ -120,3 +121,12 @@ do ()->
     for a in document.querySelectorAll "a"
       if a.id.length > 0
         a.outerHTML = "<a href='##{a.id}' class='anchor' id='#{a.id}'>#{a.textContent}</a>"
+    
+    l = document.getElementById location.hash.replace("#", "")
+    if l?
+      scroll = ()->
+        document.scrollTop = document.body.scrollTop = l.offsetTop
+        decloak()
+      setTimeout scroll, 150
+    else
+      decloak()
