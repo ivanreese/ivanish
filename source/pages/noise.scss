@@ -1,5 +1,47 @@
-[js-repl] {
-  background: #CCC;
+section {
+  display: none; // Cloak while we load
+}
+
+.anchor {
+  position: relative;
+
+  margin: -2px -1px 2vh;
+  font-size: 2.4em;
+
+  margin-top: -2em;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  text-decoration: none;
+  
+  &, &:hover, &:visited:hover { color: inherit; }
+  &:focus { outline: 0; }
+  
+  &:hover::before {
+    position: absolute;
+    left: -1.3em;
+    content: "⚓︎"; // Anchor
+    font-size: .8em;
+    line-height: 1.8;
+  }
+}
+
+js-repl {
+  display: block;
+  margin: 1em 0 6em;
+  
+  .CodeMirror {
+    max-width: 100%;
+    padding: .6em;
+    border: 2px solid black;
+    border-bottom: 0;
+  }
+  
+  .results {
+    color: white;
+    padding: .2em 1em;
+    min-height: 2em;
+    background: #33002A;
+  }
   
   canvas {
     width: 100%;
@@ -7,18 +49,4 @@
     background: black;
   }
   
-  .CodeMirror {
-    max-width: 100%;
-    padding: .6em;
-    border: 2px solid black;
-    border-top: 0;
-  }
-
-  p {
-    color: white;
-    padding: .2em 1em;
-    height: 2em;
-    background: #33002A;
-  }
-
 }

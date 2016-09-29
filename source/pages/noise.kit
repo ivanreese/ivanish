@@ -10,20 +10,60 @@
 
   <title>Noise</title>
   
-  <section js-repl>
-    <canvas></canvas>
-    <p></p>
-    <textarea spellcheck="false">
-      log "You can log stuff. Edit this text."
+  <p>Noise is super cool. Let's make some. We'll start simple, and build up to some fucking sweet particle swirls.</p>
+  <p>We'll be using <a href="http://coffeescript.org">CoffeeScript</a> and the <a href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">&lt;canvas&gt; element</a>, but you can use anything that lets you draw pixel-by-pixel.</p>
+  
+  <section>
+    <a id="1">Meet The Editor</a>
+    
+    <p>The <b>log</b> function prints out text. You can edit the text in the white box.</p>
+    <textarea js-repl>
+      log "Zzzzzzzzz"
+    </textarea>
+    
+    <p>If you make a mistake, you'll see a message that (hopefully) explains what went wrong.</p>
+    <textarea js-repl>
+      log "Quoth the raven...
+    </textarea>
+    
+    <p>The rest of this post assumes you can deduce what's going on. Here's that <a href="http://coffeescript.org">CoffeeScript</a> link again. If the following makes sense, you're good to go. If not, well.. give it your best shot, and let your intuitions flourish (or flounder).</p>
+    <textarea js-repl>
+      makeAdd = (a)-> (b)-> a + b
+      add3 = makeAdd 3
+      log add3 10
+      log add3 " cheers for dynamic types!"
     </textarea>
   </section>
   
-  <section js-repl>
-    <canvas></canvas>
-    <p></p>
-    <textarea spellcheck="false">
-      log "Fix this error
+  <section>
+    <a id="2">Drawing</a>
+    
+    <p>These editors are set up for easy drawing.</p>
+    <ul>
+      <li><b>g</b> lets you access the <i>canvas 2d drawing context</i> &nbsp; (<a href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">cheatsheet</a>)</li>
+      <li><b>cx</b> and <b>cy</b> are the center of the black box</li>
+      <li><b>tau</b> is 2 x π &nbsp; (because <a href="http://tauday.com/tau-manifesto"> good reasons</a>)</li>
+    </ul>
+    <textarea js-repl js-canvas>
+      g.arc cx, cy, 30, 0, tau
+      g.fill()
     </textarea>
+    
+    <p>They're also set up for easy animation. Fuck yeah!</p>
+    <ul>
+      <li><b>time</b> is the current time in seconds</li>
+      <li><b>%</b> gives you the mod (aka remainder) when dividing two numbers</li>
+    </ul>
+    <textarea js-repl js-canvas>
+      log time, "Time"
+      
+      radius = 10 * (time % 3) # Counts 0 to 30 every 3 seconds
+      log radius, "Radius"
+      
+      g.arc cx, cy, radius, 0, tau
+      g.fill()
+    </textarea>
+    
   </section>
   
 </main>
