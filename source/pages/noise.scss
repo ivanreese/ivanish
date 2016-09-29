@@ -31,8 +31,8 @@ js-repl {
   
   .CodeMirror {
     max-width: 100%;
-    padding: .6em;
-    border: 2px solid black;
+    padding: .5em;
+    border: .4em solid #33002A;
     border-bottom: 0;
   }
   
@@ -40,12 +40,16 @@ js-repl {
     color: white;
     margin: 0;
     padding: .2em 1em;
+    overflow: auto;
     background: #33002A;
   }
   
   canvas {
     width: 100%;
     height: 128px;
+    border: .4em solid #33002A;
+    border-top: 0;
+    background: #33002A;
   }
   
 }

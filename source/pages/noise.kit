@@ -74,17 +74,93 @@
   </section>
   
   <section>
-    <a id="3">First: Let's Draw Stripes</a>
+    <a id="3">Let's Draw Stripes</a>
     
     <p>Why stripes? Because we have to start somewhere.</p>
     <textarea js-repl js-canvas>
       x = 0
-      step = 20
+      stripeSize = 40
+      
       while x &lt; w
-        g.rect x, 0, step, h + 2
-        x += step * 2
+        g.rect x, 0, stripeSize, h
+        x += stripeSize * 2
+      
       g.fill()
     </textarea>
+    
+    <p>We can color the stripes based on their position.</p>
+    <textarea js-repl js-canvas>
+      x = 0
+      stripeSize = 40
+      
+      while x &lt; w
+        # Set the color based on the x position
+        lightness = Math.round 255 * x / w
+        
+        # Make a separate shape for each stripe
+        g.beginPath()
+        g.fillStyle = "rgb(#{lightness}, #{lightness}, #{lightness})"
+        g.rect x, 0, stripeSize, h
+        g.fill()
+        
+        x += stripeSize
+    </textarea>
+    
+    <p>We can pre-compute an array of colors. We want the first stripe to be 0, and the last to be 255.</p>
+    <textarea js-repl js-canvas>
+      stripeSize = 40
+      nStripes = Math.floor w / stripeSize
+      
+      i = 0
+      colors = []
+      while i &lt;= nStripes
+        colors.push Math.round 255 * i / nStripes
+        i++
+      
+      i = 0
+      while i &lt;= nStripes
+        g.beginPath()
+        c = colors[i]
+        g.fillStyle = "rgb(#{c}, #{c}, #{c})"
+        g.rect i * stripeSize, 0, stripeSize, h
+        g.fill()
+        i++
+
+      log colors
+    </textarea>
+    
+    <p>Let's shuffle the array. For performance and consistency, we'll just hard-code this.</p>
+    <textarea js-repl js-canvas>
+      stripeSize = 40
+      nStripes = Math.floor w / stripeSize
+      colors = [128,102,153,179,26,166,51,38,140,191,217,64,204,0,115,242,89,77,230,13,255]
+      
+      i = 0
+      while i &lt;= nStripes
+        g.beginPath()
+        c = colors[i]
+        g.fillStyle = "rgb(#{c}, #{c}, #{c})"
+        g.rect i * stripeSize, 0, stripeSize, h
+        g.fill()
+        i++
+    </textarea>
+
+    <p>If we have more stripes than colors, we can just repeat the pattern with modulo (%).</p>
+    <textarea js-repl js-canvas>
+      stripeSize = 5
+      nStripes = Math.floor w / stripeSize
+      colors = [128,102,153,179,26,166,51,38,140,191,217,64,204,0,115,242,89,77,230,13,255]
+      
+      i = 0
+      while i &lt;= nStripes
+        g.beginPath()
+        c = colors[i % colors.length]
+        g.fillStyle = "rgb(#{c}, #{c}, #{c})"
+        g.rect i * stripeSize, 0, stripeSize, h
+        g.fill()
+        i++
+    </textarea>
+
   </section>
   
 </main>
