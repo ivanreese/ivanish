@@ -36,13 +36,14 @@ do ()->
       repl.appendChild canvas
       g = canvas.getContext "2d"
     
-    logged = []
-    maxLogLabel = 0
+    compiled = null
     animated = false
     animating = false
     offscreen = false
-    dirty = false
-    compiled = null
+    renderRequested = false
+    logged = []
+    maxLogLabel = 0
+    
     tau = Math.PI * 2
     cx = 0
     cy = 0
@@ -74,37 +75,28 @@ do ()->
         log e
     
     render = ()->
-      dirty = false
       clearLog()
-      
       if g?
         g.fillStyle = "black"
         g.fillRect 0,0,w,h
         g.fillStyle = "white"
         g.beginPath()
-      
       if compiled?.code?
         evaluate()
       else if compiled?.error?
         log compiled.error
-      
       flushLog()
     
     tick = (t)->
-      if animated and animating
+      renderRequested = false
+      if not offscreen
         time = t / 1000
         render()
-        requestAnimationFrame tick
-      else
-        animating = false
+        requestRender() if animated
     
-    run = ()->
-      if offscreen or not compiled?
-        animating = false
-      else if not animated and dirty
-        render()
-      else if not animating
-        animating = true
+    requestRender = ()->
+      if not renderRequested
+        renderRequested = true
         requestAnimationFrame tick
     
     if canvas?
@@ -113,8 +105,7 @@ do ()->
         h = canvas.height = parseInt canvas.offsetHeight
         cx = w/2
         cy = h/2
-        run()
-    
+        requestRender()
       window.addEventListener "resize", resize
       setTimeout resize, 150
     
@@ -125,16 +116,15 @@ do ()->
       windowBottom = windowTop + window.innerHeight
       wasOffscreen = offscreen
       offscreen = windowTop > replBottom or replTop > windowBottom
-      run()
-    
+      requestRender() if wasOffscreen
     document.addEventListener "scroll", scrollHandlerFn
+    scrollHandlerFn()
     
     setupCM textarea, (editor)->
       text = editor.getValue()
       compiled = compile text
       animated = compiled.code? and text.indexOf("time") isnt -1
-      dirty = true
-      run()
+      requestRender()
   
   
   decloak = ()->
