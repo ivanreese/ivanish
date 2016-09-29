@@ -59,10 +59,11 @@ logAndKillError = (err)->
 
 
 gulp.task "assets", ()->
+  gulp.src "source/*{CNAME,.ico,.png}"
+    .pipe gulp.dest "public"
+  
   gulp.src paths.assets.source
     .pipe gulp.dest "public/assets"
-    .pipe browser_sync.stream
-      match: "**/*"
         
 
 gulp.task "coffee", ()->
