@@ -1,0 +1,32 @@
+<!-- @import ../header.kit -->
+<script defer src="/assets/codemirror.js"></script>
+<link rel="stylesheet" href="/assets/codemirror.css">
+<script defer src="/assets/codemirror-coffeescript.js"></script>
+<script defer src="/assets/coffeescript.js"></script>
+<link rel="stylesheet" href="noise.css">
+<script defer src="noise.js"></script>
+
+<main>
+
+  <title>Noise</title>
+  
+  <p>Noise tutorial stuff. Type <b>command-enter</b> in a field to force eval.</p>
+  
+  <section js-repl>
+    <canvas></canvas>
+    <textarea spellcheck="false">
+      do ()->
+        console.log "NE"
+    </textarea>
+    <p> </p>
+  </section>
+  
+  <section js-repl>
+    <canvas></canvas>
+    <textarea spellcheck="false">
+      console.log "Hi"
+    </textarea>
+    <p> </p>
+  </section>
+  
+</main>

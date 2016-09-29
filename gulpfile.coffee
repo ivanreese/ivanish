@@ -16,28 +16,27 @@ gulp_uglify = require "gulp-uglify"
 # CONFIG ##########################################################################################
 
 
-assetTypes = "CNAME,gif,ico,jpeg,jpg,json,m4v,mp3,mp4,png,svg,swf,woff,xml"
-
-
 paths =
   assets:
-    source: "source/**/*{#{assetTypes}}"
+    source: "source/assets/**/*"
   coffee:
     source: "source/script/**/*.coffee"
-    watch: "source/script/**/*.coffee"
   kit:
     source: "source/pages/**/*.kit"
     header: "source/{header,header-min}.kit"
     watch: "source/**/*.kit" # pages + header-min.kit, header.kit
   pageCoffee:
     source: "source/pages/**/*.coffee"
-    watch: "source/pages/**/*.coffee"
+  pageSCSS:
+    source: [
+      "source/**/vars.scss"
+      "source/pages/**/*.scss"
+    ]
   scss:
     source: [
       "source/**/vars.scss"
-      "source/**/*.scss"
+      "source/style/**/*.scss"
     ]
-    watch: "source/**/*.scss"
 
 
 gulp_notify.logLevel(0)
@@ -64,12 +63,9 @@ logAndKillError = (err)->
 
 gulp.task "assets", ()->
   gulp.src paths.assets.source
-    .pipe gulp_rename (path)->
-      path.dirname = path.dirname.replace /.*\/pack\//, ''
-      path
-    .pipe gulp.dest "public"
+    .pipe gulp.dest "public/assets"
     .pipe browser_sync.stream
-      match: "**/*.{#{assetTypes}}"
+      match: "**/*"
         
 
 gulp.task "coffee", ()->
@@ -130,6 +126,24 @@ gulp.task "pageCoffee", ()->
       match: "**/*.js"
 
 
+gulp.task "pageSCSS", ()->
+  gulp.src paths.pageSCSS.source
+    .pipe gulp_sass
+      errLogToConsole: true
+      outputStyle: "compressed"
+      precision: 2
+    .on "error", logAndKillError
+    .pipe gulp_autoprefixer
+      browsers: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
+      cascade: false
+      remove: false
+    .pipe gulp_rename (path)->
+      path.dirname = path.dirname + "/" + path.basename
+    .pipe gulp.dest "public"
+    .pipe browser_sync.stream
+      match: "**/*.css"
+
+
 gulp.task "scss", ()->
   gulp.src paths.scss.source
     .pipe gulp_concat "styles.scss"
@@ -159,11 +173,12 @@ gulp.task "serve", ()->
 gulp.task "watch", (cb)->
   gulp.watch paths.kit.header, gulp.series "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
   gulp.watch paths.assets.source, gulp.series "assets"
-  gulp.watch paths.coffee.watch, gulp.series "coffee"
+  gulp.watch paths.coffee.source, gulp.series "coffee"
   gulp.watch paths.kit.watch, gulp.series "kit"
-  gulp.watch paths.pageCoffee.watch, gulp.series "pageCoffee"
-  gulp.watch paths.scss.watch, gulp.series "scss"
+  gulp.watch paths.pageCoffee.source, gulp.series "pageCoffee"
+  gulp.watch paths.pageSCSS.source, gulp.series "pageSCSS"
+  gulp.watch paths.scss.source, gulp.series "scss"
   cb()
 
 
-gulp.task "default", gulp.series "del:public", gulp.parallel("assets", "coffee", "kit", "pageCoffee", "scss"), "watch", "serve"
+gulp.task "default", gulp.series "del:public", gulp.parallel("assets", "coffee", "kit", "pageCoffee", "pageSCSS", "scss"), "watch", "serve"

@@ -7,7 +7,7 @@ ready ()->
   
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display != "none"
-      do (canvas)->
+      do ()->
         context = canvas.getContext "2d"
         dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
         width = 0
