@@ -1,5 +1,4 @@
 do ()->
-  
   compile = (text)->
     try
       code: CoffeeScript.compile text, bare: on
@@ -41,6 +40,8 @@ do ()->
     maxLogLabel = 0
     animated = false
     animating = false
+    offscreen = false
+    dirty = false
     compiled = null
     tau = Math.PI * 2
     cx = 0
@@ -73,10 +74,12 @@ do ()->
         log e
     
     render = ()->
+      dirty = false
       clearLog()
       
       if g?
-        g.clearRect 0,0,w,h
+        g.fillStyle = "black"
+        g.fillRect 0,0,w,h
         g.fillStyle = "white"
         g.beginPath()
       
@@ -96,12 +99,13 @@ do ()->
         animating = false
     
     run = ()->
-      if compiled?
-        if not animated
-          render()
-        else if not animating
-          animating = true
-          requestAnimationFrame tick
+      if offscreen or not compiled?
+        animating = false
+      else if not animated and dirty
+        render()
+      else if not animating
+        animating = true
+        requestAnimationFrame tick
     
     if canvas?
       resize = ()->
@@ -114,10 +118,22 @@ do ()->
       window.addEventListener "resize", resize
       setTimeout resize, 150
     
+    scrollHandlerFn = ()->
+      replTop = repl.offsetTop
+      replBottom = repl.offsetTop + repl.offsetHeight
+      windowTop = document.body.scrollTop + document.body.parentNode.scrollTop
+      windowBottom = windowTop + window.innerHeight
+      wasOffscreen = offscreen
+      offscreen = windowTop > replBottom or replTop > windowBottom
+      run()
+    
+    document.addEventListener "scroll", scrollHandlerFn
+    
     setupCM textarea, (editor)->
       text = editor.getValue()
       compiled = compile text
-      animated = compiled.code? and text.indexOf "time" isnt -1
+      animated = compiled.code? and text.indexOf("time") isnt -1
+      dirty = true
       run()
   
   
@@ -139,7 +155,7 @@ do ()->
     l = document.getElementById location.hash.replace("#", "")
     if l?
       scroll = ()->
-        document.scrollTop = document.body.scrollTop = l.offsetTop
+        document.scrollTop = document.body.parentNode.scrollTop = l.offsetTop
         decloak()
       setTimeout scroll, 150
     else

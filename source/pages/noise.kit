@@ -73,4 +73,18 @@
     
   </section>
   
+  <section>
+    <a id="3">First: Let's Draw Stripes</a>
+    
+    <p>Why stripes? Because we have to start somewhere.</p>
+    <textarea js-repl js-canvas>
+      x = 0
+      step = 20
+      while x &lt; w
+        g.rect x, 0, step, h + 2
+        x += step * 2
+      g.fill()
+    </textarea>
+  </section>
+  
 </main>
