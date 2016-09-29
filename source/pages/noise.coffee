@@ -80,25 +80,23 @@ do ()->
         animating = false
     
     run = ()->
-      if not animated
-        render()
-      else if not animating
-        animating = true
-        requestAnimationFrame tick
-
+      if compiled?
+        if not animated
+          render()
+        else if not animating
+          animating = true
+          requestAnimationFrame tick
     
-    resize = ()->
-      if canvas?
+    if canvas?
+      resize = ()->
         w = canvas.width = parseInt canvas.offsetWidth
         h = canvas.height = parseInt canvas.offsetHeight
         cx = w/2
         cy = h/2
+        run()
     
-    window.addEventListener "resize", ()->
-      resize()
-      run()
-    
-    resize()
+      window.addEventListener "resize", resize
+      setTimeout resize, 150
     
     setupCM textarea, (editor)->
       text = editor.getValue()
