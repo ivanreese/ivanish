@@ -14,7 +14,7 @@
   <p>We'll be using <a href="http://coffeescript.org">CoffeeScript</a> and the <a href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">&lt;canvas&gt; element</a>, but you can use anything that lets you draw pixel-by-pixel.</p>
   
   <section>
-    <a id="1">Meet The Editor</a>
+    <!-- <a id="1">Meet The Editor</a>
     
     <p>The <b>log</b> function prints out text. You can edit the text in the white box.</p>
     <textarea js-repl>
@@ -199,6 +199,29 @@
         i++
     </textarea>
 
+    <p>2D - simpler</p>
+    <textarea js-repl js-canvas>
+      stepSize = 5
+      xSteps = Math.floor w / stepSize
+      ySteps = Math.floor h / stepSize
+      
+      values = [151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180]
+      getValue = (i)-> values[i % values.length]
+      getValue2D = (x, y)-> getValue(y + getValue(x))
+      
+      i = 0
+      while i &lt;= xSteps
+        j = 0
+        while j &lt;= ySteps
+          g.beginPath()
+          c = getValue2D(i, j)
+          g.fillStyle = "rgb(#{c}, #{c}, #{c})"
+          g.rect i * stepSize, j * stepSize, stepSize, stepSize
+          g.fill()
+          j++
+        i++
+    </textarea>
+
     <p>Interpolating neighbouring random values - 1D</p>
     <textarea js-repl js-canvas>
       stripeSize = 5
@@ -239,6 +262,90 @@
         g.fillStyle = "rgb(#{c}, #{c}, #{c})"
         g.rect x, 0, 1, h
         g.fill()
+        x++
+    </textarea>
+    
+    <p>
+      Interpolating - 2D.
+      Instead of bluring 2 neighbouring stripes, we need to blur four neighbouring squares.
+      We'll call these corners TL,TR,BL,BR.
+    </p>
+    <textarea js-repl js-canvas>
+      stepSize = 30
+      values = [151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180]
+      getValue = (i)-> values[i % values.length]
+      getValue2D = (x, y)-> getValue(y + getValue(x))
+      smooth = (t)-> 6 * Math.pow(t,5) - 15 * Math.pow(t,4) + 10 * Math.pow(t,3)
+      blend = (a, b, t)-> Math.round a * (1 - t) + b * t
+      
+      x = 0
+      while x &lt;= w
+        y = 0
+        while y &lt;= h
+          
+          iLeft = Math.floor x/stepSize
+          iTop = Math.floor y/stepSize
+          iRight = iLeft + 1
+          iBottom = iTop + 1
+          
+          topLeft = getValue2D iLeft, iTop
+          topRight = getValue2D iRight, iTop
+          bottomLeft = getValue2D iLeft, iBottom
+          bottomRight = getValue2D iRight, iBottom
+          
+          tx = smooth x/stepSize - iLeft
+          ty = smooth y/stepSize - iTop
+          top = blend topLeft, topRight, tx
+          bottom = blend bottomLeft, bottomRight, tx
+          c = blend top, bottom, ty
+          
+          g.beginPath()
+          g.fillStyle = "rgb(#{c}, #{c}, #{c})"
+          g.rect x, y, 1, 1
+          g.fill()
+          y++
+        x++
+    </textarea> -->
+
+    <p>
+      Interpolating - 2D.
+      Instead of bluring 2 neighbouring stripes, we need to blur four neighbouring squares.
+      We'll call these corners TL,TR,BL,BR.
+    </p>
+    <textarea js-repl js-canvas>
+      stepSize = 30
+      values = [151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180]
+      getValue = (i)-> values[i % values.length]
+      getValue2D = (x, y)-> getValue(y + getValue(x))
+      smooth = (t)-> 6 * Math.pow(t,5) - 15 * Math.pow(t,4) + 10 * Math.pow(t,3)
+      blend = (a, b, t)-> Math.round a * (1 - t) + b * t
+      
+      x = 0
+      while x &lt;= w
+        y = 0
+        while y &lt;= h
+          
+          iLeft = Math.floor x/stepSize
+          iTop = Math.floor y/stepSize
+          iRight = iLeft + 1
+          iBottom = iTop + 1
+          
+          topLeft = getValue2D iLeft, iTop
+          topRight = getValue2D iRight, iTop
+          bottomLeft = getValue2D iLeft, iBottom
+          bottomRight = getValue2D iRight, iBottom
+          
+          tx = smooth x/stepSize - iLeft
+          ty = smooth y/stepSize - iTop
+          top = blend topLeft, topRight, tx
+          bottom = blend bottomLeft, bottomRight, tx
+          c = blend top, bottom, ty
+          
+          g.beginPath()
+          g.fillStyle = "rgb(#{c}, #{c}, #{c})"
+          g.rect x, y, 1, 1
+          g.fill()
+          y++
         x++
     </textarea>
 
