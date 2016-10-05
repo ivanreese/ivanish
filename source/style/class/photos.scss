@@ -1,6 +1,15 @@
 .photos {
   title { margin-bottom: 8vh; }
   
+  .slug {
+    text-align: center;
+    
+    & > * {
+      display: inline-block;
+      text-align: left;
+    }
+  }
+  
   .hero {
     margin: 20vh 0;
     height: 90vh;
