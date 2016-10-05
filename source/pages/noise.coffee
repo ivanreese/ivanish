@@ -57,8 +57,12 @@ do ()->
       results.textContent = ""
     
     log = (msg, label)->
-      logged.push [msg, label]
-      maxLogLabel = Math.max maxLogLabel, label.length if label?
+      if logged.length < 10
+        logged.push [msg, label]
+        maxLogLabel = Math.max maxLogLabel, label.length if label?
+      else if logged.length is 10
+        logged.push ["... and more"]
+        
     
     flushLog = ()->
       for [msg, label] in logged
@@ -67,6 +71,25 @@ do ()->
           spaces = Array(maxLogLabel - label.length + 3).join " "
           msg = label + spaces + msg
         results.innerHTML += msg + "\n"
+    
+    # This is used by tutorial code
+    drawRect = (l, x, y, w, h)->
+      if g?
+        g.beginPath()
+        l = l|0
+        g.fillStyle = "rgb(#{l}, #{l}, #{l})"
+        g.rect x|0, y|0, w|0, h|0
+        g.fill()
+
+    # This is used by tutorial code
+    # TODO: Replace this with something faster
+    drawPixel = (l, x, y)->
+      if g?
+        g.beginPath()
+        l = l|0
+        g.fillStyle = "rgb(#{l}, #{l}, #{l})"
+        g.rect x|0, y|0, 1, 1
+        g.fill()
     
     evaluate = ()->
       try
