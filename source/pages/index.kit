@@ -7,26 +7,26 @@
     a.header-index-link { text-decoration: none; }
     a.header-index-link:hover, a.header-index-link:visited:hover { color: white; }
     
+    header {
+      height: 100vh;
+      border-bottom: .6em solid white;
+    }
+    
     header div {
       display: inline-block;
       position: relative;
-      text-align: left;
+      text-align: center;
       color: white;
       z-index: 2;
       padding: 0;
-      height: 100vh;
-      line-height: 80vh;
+      margin-top: calc(40vh - 1em);
+      line-height: 1.9;
       font-size: 1.4em;
     }
     
     header div a {
+      color: hsla(240, 100%, 97%, .9);
       line-height: 1;
-    }
-    
-    @media (max-width: 600px) {
-      header div {
-        font-size: 1.0em;
-      }
     }
     
     main {
@@ -59,6 +59,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
+      border: .6em solid white;
     }
 
     @media(max-width: 78vh) {
@@ -123,8 +124,8 @@
       function inlineResize() {
         if (width != window.innerWidth) {
           width = window.innerWidth
-          document.querySelector("header div").style.height = window.innerHeight + "px";
-          document.querySelector("header div").style.lineHeight = (.8 * window.innerHeight) + "px";
+          // document.querySelector("header div").style.height = window.innerHeight + "px";
+          // document.querySelector("header div").style.lineHeight = (.8 * window.innerHeight) + "px";
           document.querySelector("#index .hero").style.top = (.65 * window.innerHeight) + "px";
           document.querySelector("#index .hero").style.width = (.7 * window.innerHeight) + "px";
           document.querySelector("#index .hero").style.height = (.7 * window.innerHeight) + "px";
