@@ -140,7 +140,7 @@ do ()->
       wasOffscreen = offscreen
       offscreen = windowTop > replBottom or replTop > windowBottom
       requestRender() if wasOffscreen
-    document.addEventListener "scroll", scrollHandlerFn
+    document.addEventListener "scroll", scrollHandlerFn, passive: true
     scrollHandlerFn()
     
     setupCM textarea, (editor)->

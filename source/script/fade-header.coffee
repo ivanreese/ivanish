@@ -27,6 +27,8 @@ do ()->
       dirty = true
       window.requestAnimationFrame(update)
   
-  window.addEventListener "scroll", ()->
+  scroll = ()->
     fadeHeader()
     requestUpdate()
+  
+  window.addEventListener "scroll", scroll, passive: true

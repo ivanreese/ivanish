@@ -92,8 +92,8 @@ ready ()->
         requestResize()
         window.addEventListener "resize", requestResize
         window.addEventListener "wheel", requestWheelRender
-        window.addEventListener "touchstart", touchStart
-        window.addEventListener "touchmove", requestMoveRender
+        window.addEventListener "touchstart", touchStart, passive: false
+        window.addEventListener "touchmove", requestMoveRender, passive: false
         window.addEventListener "keydown", keyDown
         window.addEventListener "keyup", keyUp
         
