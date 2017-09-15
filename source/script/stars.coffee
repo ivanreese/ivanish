@@ -139,7 +139,8 @@ ready ()->
             accel /= 1.1
           
           vel += accel
-          vel /= 1.1
+          vel /= 1.04
+          vel = Math.min 10, Math.max -10, vel
           recipVel = Math.min 1, Math.abs 10 / vel
           pos -= vel * dpi * speedScale
           
