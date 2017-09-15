@@ -58,7 +58,7 @@ ready ()->
           p = document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop
           delta = p - scrollPos
           scrollPos = p
-          vel += delta / 7
+          vel += delta / 10
           requestRender()
         
         requestMoveRender = (e)->
@@ -136,11 +136,11 @@ ready ()->
           
           vel += accel
           vel /= 1.04
-          vel = Math.min 10, Math.max -10, vel
+          vel = Math.min 20, Math.max -20, vel
           recipVel = Math.min 1, Math.abs 10 / vel
           pos -= vel * dpi * speedScale
           
-          if Math.abs(vel) > 0.3
+          if Math.abs(vel) > 0.01
             requestRender()
           
           if not first
@@ -257,8 +257,8 @@ ready ()->
             o = randTable[l]
             x = x / randTableSize * width*2/3 + width*1/6
             y = mod y / randTableSize * height*2/3 + height*1/6 - pos * (decrease/2 + 0.5), height
-            r = r / randTableSize * 200 * dscale * decrease + 20
-            l = l / randTableSize * 16 * increase + 5
+            r = r / randTableSize * 300 * dscale * decrease + 20
+            l = l / randTableSize * 20 * increase + 1
             o = o / randTableSize * 0.17 * decrease + 0.05
             drawCall x, y, r * dpi/2, "hsla(290, #{100*bw}%, #{l}%, #{o})"
             i++
@@ -278,9 +278,9 @@ ready ()->
             h = randTable[l]
             x = x / randTableSize * width
             y = mod y / randTableSize * height - pos * (decrease/5 + 0.5), height
-            r = r / randTableSize * 120 * dscale * decrease + 20
-            s = (l / randTableSize * 40 + 35) * bw
-            l = l / randTableSize * 60 * decrease + 5
+            r = r / randTableSize * 130 * dscale * decrease + 20
+            s = (l / randTableSize * 30 + 55) * bw
+            l = l / randTableSize * 64 * decrease + 1
             h = h / randTableSize * 50 * decrease + 205
             drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.010)"
             drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.014)"
@@ -303,9 +303,9 @@ ready ()->
             h = randTable[l]
             x = x / randTableSize * width
             y = mod y / randTableSize * height - pos * (increase/2 + 0.5), height
-            r = r / randTableSize * 150 * decrease * dscale + 20
-            l = l / randTableSize * 60 * decrease + 15
-            o = o / randTableSize * 0.012 + 0.008
+            r = r / randTableSize * 170 * decrease * dscale + 20
+            l = l / randTableSize * 65 * decrease + 15
+            o = o / randTableSize * 0.014 + 0.008
             h = h / randTableSize * 30 + 350
             s = 100 * bw
             drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o})"
