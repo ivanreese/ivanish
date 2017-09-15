@@ -62,12 +62,12 @@ ready ()->
           p = document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop
           delta = p - scrollPos
           scrollPos = p
-          vel += delta / 5
+          vel += delta / 7
           requestRender()
         
         requestMoveRender = (e)->
           y = e.touches.item(0).screenY
-          vel -= (y - lastTouchY) / 10
+          vel -= (y - lastTouchY) / 15
           lastTouchY = y
           requestRender()
         
