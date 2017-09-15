@@ -34,6 +34,7 @@ ready ()->
         while byte < imageData.data.length
           intensity += imageData.data[byte] if byte isnt (byte - (byte % 4) + 3)
           byte++
+          null
         
         intensity /= (tw*th)
         
@@ -58,6 +59,7 @@ ready ()->
             while byte < tracer.imageData.data.length
               tracer.imageData.data[byte] *= 1.003
               byte++
+              null
             
             context.putImageData tracer.imageData, tracer.x, tracer.y-tracer.offset
           tracer
@@ -71,6 +73,7 @@ ready ()->
             tracers.push t
           else
             tries++
+          null
         updateTracers()
         requestAnimationFrame update
         

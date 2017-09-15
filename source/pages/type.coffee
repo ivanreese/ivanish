@@ -74,9 +74,11 @@ ready ()->
                 colorDelta += Math.abs(byteA - byteB) / sizeSquared
                 imageDataB.data[byte] = fn(byteA, byteB) / 0.99 |0 # Apply the fn, then bias towards darker colors
             byte++
+            null
           if not skip and colorDelta > 3 # Don't bother drawing if it won't make much visible difference
             context.putImageData imageDataB, nx, ny
             done = true
+          null
       
       window.addEventListener "resize", resize
       resize()
