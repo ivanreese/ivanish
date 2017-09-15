@@ -7,7 +7,7 @@ ready ()->
   
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display != "none"
-      do ()->
+      do (canvas)->
         context = canvas.getContext "2d"
         dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
         width = 0
@@ -38,8 +38,8 @@ ready ()->
             width  = canvas.width = window.innerWidth * dpi
             height = canvas.height = window.innerHeight * dpi
           else
-            width  = canvas.width = canvas.parentNode.offsetWidth * dpi
-            height = canvas.height = canvas.parentNode.offsetHeight * dpi
+            console.log width  = canvas.width = canvas.parentNode.offsetWidth * dpi
+            console.log height = canvas.height = canvas.parentNode.offsetHeight * dpi
           density = Math.sqrt width * height # How many stellar objects do we need?
           dscale = density/3000 # This lets us define things in terms of a "natural" display size
           context.globalAlpha = 1
