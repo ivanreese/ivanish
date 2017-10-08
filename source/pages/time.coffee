@@ -24,7 +24,7 @@ ready ()->
           context.drawImage img, left, h - ih, iw, ih
       
       newTracer = ()->
-        tw = 2 + Math.pow(Math.random()-.5, 2) * 40 |0
+        tw = 1 + Math.pow(Math.random()-.5, 2) * 40 |0
         th = 2
         x = Math.random() * (w-tw - h/20) |0
         y = Math.random() * (h-th - h * .6) + h * .6 |0
@@ -43,26 +43,30 @@ ready ()->
           imageData: imageData
           intensity: intensity
           offset: 0
-          rand: Math.random()/2
+          rand: 0.1 + Math.random() * 0.6
           x: x
           y: y
         else
           null
       
       updateTracers = ()->
-        tracers = for tracer in tracers when tracer.offset < tracer.dist and (tracer.y-tracer.offset) > 0
-          if Math.random() < tracer.rand
-            tracer.offset++
-            
-            byte = 0
-            
-            while byte < tracer.imageData.data.length
-              tracer.imageData.data[byte] *= 1.003
-              byte++
-              null
-            
-            context.putImageData tracer.imageData, tracer.x, tracer.y-tracer.offset
-          tracer
+        for tracer, i in tracers
+          if tracer.offset < tracer.dist and (tracer.y-tracer.offset) > 0
+            if Math.random() < tracer.rand
+              tracer.offset++
+              
+              byte = 0
+              
+              while byte < tracer.imageData.data.length
+                tracer.imageData.data[byte] *= 1.003
+                byte++
+                null
+              
+              context.putImageData tracer.imageData, tracer.x, tracer.y-tracer.offset
+          else
+            nt = newTracer()
+            tracers[i] = nt if nt?
+        undefined
       
       requestAnimationFrame update = (time)->
         tries = 0

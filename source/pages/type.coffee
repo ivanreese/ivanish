@@ -47,7 +47,7 @@ ready ()->
         reps = 0
         done = false
         
-        while ++reps <= 3 and not done
+        while ++reps <= 20 and not done
           x = Math.random() * (w-size) |0
           y = Math.min h-size, iUpper + iTop + Math.random() * lowerLimit |0
           nx = Math.max 0, Math.min w-size, if Math.random() < 0.5 then x + size else x - size
