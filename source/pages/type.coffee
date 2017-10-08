@@ -17,7 +17,7 @@ ready ()->
       wScale = 0 # Global scaling factor based on image size
       count = 0 # Used with mod to switch comparison functions
       
-      resize = (force = false)->
+      resize = (force)-> (e)->
         if force or window.innerWidth isnt w # Only resize when the width changes — improves UX on mobile, because the height changes during scroll
           w = canvas.width = window.innerWidth
           ih = img.height * (w / img.width) # Set the image height based on the window width
@@ -80,6 +80,6 @@ ready ()->
             done = true
           null
       
-      window.addEventListener "resize", resize
-      resize()
-      requestAnimationFrame ()-> resize true # This fixes a rendering glitch, probably caused by this code running before styles are finished
+      window.addEventListener "resize", resize false
+      resize(false)()
+      requestAnimationFrame resize true # This fixes a rendering glitch, probably caused by this code running before styles are finished

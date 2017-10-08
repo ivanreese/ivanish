@@ -1,6 +1,7 @@
 .js-stars {
   width: 100%; // Necessary because the JS sets the canvas width to 2x the monitor's width, for retina
   height: 100%;
+  visibility: visible!important; // We have a problem with the JS running before the CSS is ready, so we do this to delay things a bit
   background-color: hsl(250, 30%, 5%);
   background: radial-gradient(at bottom left, hsl(210, 100%, 8%) 0%, hsl(250,60%,16%) 20%, hsl(250,40%,6%) 40%, hsl(330, 40%, 12%) 90%, hsl(10, 90%, 22%) 100%);
   

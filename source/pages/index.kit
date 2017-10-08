@@ -8,9 +8,15 @@
     a.header-index-link:hover, a.header-index-link:visited:hover { color: white; }
     
     header {
-      width: 97vw;
-      height: calc(100vh - 3vw);
-      margin: 1.5vw;
+      height: 100vh;
+    }
+
+    @media(min-width: 600px) {
+      header {
+        width: calc(100vw - 1em - 1vw);
+        height: calc(100vh - 1em - 1vw);
+        margin: calc(.5em + .5vw);
+      }
     }
     
     header div {
@@ -42,13 +48,11 @@
     
     #index .hero {
       position: absolute; /* Force the hero to draw on top of the header. */
-      top: 65vh;
-      left: 50%;
-      width: 70vh;
-      height: 70vh;
-      margin-left: -35vh;
       border-radius: 100%;
       z-index: 11;
+      background: white;
+      border: calc(.5em + .5vw) solid white;
+      /* The hero image is sized and positioned with JS, down below */
     }
     
     #index .hero div {
@@ -60,16 +64,8 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
-    }
-
-    @media(max-width: 78vh) {
-      #index .hero {
-        top: calc(100vh - 45vw);
-        left: 5vw;
-        margin: 0;
-        width: 90vw;
-        height: 90vw;
-      }
+      filter: brightness(0) saturate(0%) contrast(300%) hue-rotate(-90deg);
+      transition: .5s filter;
     }
     
     @media(max-width: 1000px) { #index .hero div { background-image: url("/assets/bio-portrait-1000.jpg"); } }
@@ -121,26 +117,33 @@
     // This sucks, but it makes Android happy UGH
     (function(){
       var width = null;
+      var heroImage = null;
       function inlineResize() {
         if (width != window.innerWidth) {
           width = window.innerWidth
-          // document.querySelector("header div").style.height = window.innerHeight + "px";
-          // document.querySelector("header div").style.lineHeight = (.8 * window.innerHeight) + "px";
-          document.querySelector("#index .hero").style.top = (.65 * window.innerHeight) + "px";
-          document.querySelector("#index .hero").style.width = (.7 * window.innerHeight) + "px";
-          document.querySelector("#index .hero").style.height = (.7 * window.innerHeight) + "px";
-          document.querySelector("#index .hero").style.marginLeft = (-.35 * window.innerHeight) + "px";
-          
-          if (window.innerWidth <= window.innerHeight * .78) {
-            document.querySelector("#index .hero").style.top = (window.innerHeight - .45 * window.innerWidth) + "px";
-            document.querySelector("#index .hero").style.marginLeft = null
-            document.querySelector("#index .hero").style.width = (.9 * window.innerWidth) + "px";
-            document.querySelector("#index .hero").style.height = (.9 * window.innerWidth) + "px";
+          if (heroImage == null) {
+            heroImage = document.querySelector("#index .hero");
+            if (heroImage == null) { return }
+          }
+          if (window.innerWidth > window.innerHeight * .78) {
+            heroImage.style.top = (.65 * window.innerHeight) + "px";
+            heroImage.style.left = "50%";
+            heroImage.style.width = (.7 * window.innerHeight) + "px";
+            heroImage.style.height = (.7 * window.innerHeight) + "px";
+            heroImage.style.marginLeft = (-.35 * window.innerHeight) + "px";
+          } else {
+            heroImage.style.top = (window.innerHeight - .45 * window.innerWidth) + "px";
+            heroImage.style.left = (.1 * window.innerWidth) + "px";
+            heroImage.style.width = (.8 * window.innerWidth) + "px";
+            heroImage.style.height = (.8 * window.innerWidth) + "px";
+            heroImage.style.marginLeft = null
           }
         }
       };
+      inlineResize();
       requestAnimationFrame(inlineResize);
       window.addEventListener("resize", inlineResize);
+      requestAnimationFrame(function(){document.querySelector("#index .hero div").style.filter = "brightness(1) saturate(100%) contrast(100%) hue-rotate(0)";});
     })();
   </script>
 
