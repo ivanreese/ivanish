@@ -22,7 +22,7 @@ do ()->
 
   ## RAND TABLE
   # We use a rand table, rather than Math.random(), so that we can have determinstic randomness.
-  # This is not a performance optimization — Math.random() is already VERY fast. It just gives us repeatability.
+  # This is not a performance optimization — Math.random() is already VERY fast. It just gives us repeatability.
   
   # Set determinstic to true for debugging, false for deployment
   determinstic = false

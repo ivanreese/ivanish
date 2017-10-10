@@ -13,12 +13,12 @@ ready ()->
       ih = 0 # The height of the image
       iTop = 0 # The y position of the top of the image within the canvas
       iUpper = 0 # The proportion of the image above the tip of the wing
-      lowerLimit = 0 # The lowest point we should be drawing into — gradually moves down
+      lowerLimit = 0 # The lowest point we should be drawing into — gradually moves down
       wScale = 0 # Global scaling factor based on image size
       count = 0 # Used with mod to switch comparison functions
       
       resize = (force)-> (e)->
-        if force or window.innerWidth isnt w # Only resize when the width changes — improves UX on mobile, because the height changes during scroll
+        if force or window.innerWidth isnt w # Only resize when the width changes — improves UX on mobile, because the height changes during scroll
           w = canvas.width = window.innerWidth
           ih = img.height * (w / img.width) # Set the image height based on the window width
           iUpper = w * .13

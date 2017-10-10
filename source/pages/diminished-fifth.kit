@@ -6,16 +6,6 @@
       background: hsl(214, 7%, 20%);
       color: white;
     }
-    
-    .photos .full {
-      margin: 8vh 0;
-    }
-    
-    iframe {
-      width: 100vw;
-      height: 80vh;
-      max-width: none;
-    }
   </style>
   
   <title>Diminished Fifth</title>
@@ -23,13 +13,11 @@
   <p>
     This is the fifth project in the <a href="/a-shrinking-feeling">A Shrinking Feeling</a> lineage.
     Like most of the previous entries in the series, this is a procedural music generation program intended for public exhibition.
-    It takes a few minutes to "warm up", and should provide an interesting listening experience for up to an hour or so.
+    It takes about three minutes to "warm up", and should provide an interesting listening experience for up to an hour or so. I <i>highly</i> recommend listening to this through headphones or dedicated speakers, since the music is very texturally complex and doesn't do well on laptop or phone speakers.
   </p>
   
-  <div class="photos">
-    <div class="hero full">
-      <iframe src="http://diminished-fifth.surge.sh"></iframe>
-    </div>
+  <div class="full-width">
+    <iframe src="http://diminished-fifth.surge.sh"></iframe>
   </div>
   
   <section>
@@ -38,7 +26,7 @@
     <ul>
       <li>Hit <strong>Pause</strong> if you need to, and then hit <strong>Play</strong> again to resume.</li>
       <li><strong>Restart</strong> will start the piece over from the beginning.</li>
-      <li><strong>Fullscreen</strong> does what you'd expect — hit <strong>esc</strong> on your keyboard to exit.</li>
+      <li><strong>Fullscreen</strong> does what you'd expect — hit <strong>esc</strong> on your keyboard to exit.</li>
       <li><strong>Sound Check</strong> plays a random sample from the system, useful when I'm setting up for a public exhibition.</li>
       <li>The rest of the buttons are just to help me debug the system when something goes wrong.</li>
     </ul>
@@ -60,10 +48,10 @@
     <h2>No, Really.. How Does It Work?</h2>
     <p>You're sitting down? Have a drink? K..</p>
     <p>
-      Let's skip over the tedious bits about setting up a Web Audio context, reverb filters, and other necessary-evil plumbing (<a href="https://twitter.com/spiralganglion" rel="nofollow">@spiralganglion</a> if you want to learn about this gunk). Instead, here's what in the hell you're listening to.
+      Let's skip over the tedious bits about setting up a Web Audio context, reverb filters, and other necessary-evil plumbing (<a rel="nofollow" href="https://twitter.com/spiralganglion">@ me</a> if you want to learn about this gunk). Instead, here's the skinny on what in the fresh hell is arriving at your ears. I'll casually use music and programming terminology, so if this is too murky for you let me know and I'll clean it up.
     </p>
     <p>
-      There is a pool of about 15 melodies — little fragments of tuneful music. (They're so small, and so often recurring, that <a rel="nofollow" href="https://en.wikipedia.org/wiki/Motif_(music)">motive</a> is probably a better term). These melodies were written carefully so that they can be transformed in tempo, shifted out of alignment, and combined together in almost any fashion, and yet the result should still be sensical.
+      There is a pool of about 15 melodies — little fragments of tuneful music. (They're so small, and so often recurring, that <a rel="nofollow" href="https://en.wikipedia.org/wiki/Motif_(music)">motive</a> is probably a better term). These melodies were written carefully so that they can be transformed in tempo, shifted out of alignment, and combined together in almost any fashion, and yet the result should still be sensical.
     </p>
     <p>
       There is a pool of about 81 sound samples — recordings of an individual note played on an instrument. They were extracted from a bunch of different songs, and especially from <a href="/above-genus-below-order">Above Genus, Below Order</a>. (Note that the songs on my albums generally aren't sample-based, but rather are multi-track recordings of me playing the instruments, so I had to be a bit surgical to pull out clean single notes from recordings of longer musical phrases.) All of the samples are tuned to the same musical pitch (I think it was C, but I can't remember). If the system needs to play one of the samples in a D rather than a C, it just plays the sample a bit faster. (How much faster? I'm just using the standard <span class="formula">2^(interval/12)</span>, so in the case of C to D the interval is 2 semitones, so I play the sample at 1.12 times the normal rate).
@@ -72,7 +60,7 @@
       When the program runs, we generate a bunch of "players" for our "orchestra". Each player is assigned a melody to play, and a sound sample with which to play the melody. Like a real orchestra, they play their musical part (melody) with their instrument (sample) in concert with all the other players around them.
     </p>
     <p>
-      Now, the entire orchestra is placed into a time machine. In addition to conducting the orchestra, the conductor is given a big knob that says "slower" on the left and "faster" on the right. As the audience is listening to the music, the conductor can reach over and start twisting the knob one way or the other. The passage of time experienced by each player seems normal enough — when they look at the other players, everyone seems to be playing together harmoniously. The passage of time experienced by the audience seems normal too — other audience members are coughing and checking their glowing screens at what seems like the usual rate. But the music, flowing out of the orchestra, out of the time machine, and washing over the audience.. sounds sped up, or slowed down, like someone playing a vinyl record at the wrong speed. BUT! Here's where the analogy breaks down. Unlike a <i>real</i> orchestra in a time machine, or a real record player, when our orchestra speeds up or slows down, the pitch of the music doesn't change (because this is software and I can do what I want). (Also because having the pitch change with the tempo would lessen the sense that this is meant to be listened to as real music, rather than as some sort of tech demo.) (Also because we'll handle pitch changes in a moment).
+      Now, the entire orchestra is placed into a time machine. In addition to conducting the orchestra, the conductor is given a big knob that says "slower" on the left and "faster" on the right. As the audience is listening to the music, the conductor can reach over and start twisting the knob one way or the other. The passage of time experienced by each player seems normal enough — when they look at the other players, everyone seems to be playing together harmoniously. The passage of time experienced by the audience seems normal too — other audience members are coughing and checking their glowing screens at what seems like the usual rate. But the music, flowing out of the orchestra, out of the time machine, and washing over the audience.. sounds sped up, or slowed down, like someone playing a vinyl record at the wrong speed. BUT! Here's where the analogy breaks down. Unlike a <i>real</i> orchestra in a time machine, or a real record player, when our orchestra speeds up or slows down, the pitch of the music doesn't change (because this is software and I can do what I want). (Also because having the pitch change with the tempo would lessen the sense that this is meant to be listened to as real music, rather than as some sort of tech demo.) (Also because we'll handle pitch changes in a moment).
     </p>
     <p>
       The conductor's time dial doesn't have an upper or lower limit. They can keep cranking it slower and slower, and the relative passage of time will keep slowing down, half as fast as normal, and half again, and half again. Or the other way, faster and faster, seemingly without an end.
@@ -90,7 +78,7 @@
       After a player repeats their melody a certain number of times, they'll move up one octave. This "certain number of times" interacts in fun ways with varying degrees of relative difference between player-time and audience-time.
     </p>
     <p>
-      Another thing that can happen is that the orchestra can change key by a 5th. This happens once in an odd while, and you can trigger it manually by hitting the "transpose" button. To see what this sounds like, give the system about a minute to warm up, then click the transpose button once and listen to what happens for a few seconds, then click it again and listen for a few more seconds. Notice the effect this has on the graphs — you'll see the regularly repeating melody patterns get a bit jumbled when you transpose. Transposition is a dramatic effect, which is why it happens only rarely. Oh, why a 5th? Because by traveling around the <a rel="nofollow" href="https://en.wikipedia.org/wiki/Circle_of_fifths">circle of fifths</a>, we get to visit all of the keys.
+      Another thing that can happen is that the orchestra can change key by a 5th. This happens once in an odd while, and you can trigger it manually by hitting the "transpose" button. To see what this sounds like, give the system about a minute to warm up, then click the transpose button once and listen to what happens for a few seconds, then click it again and listen for a few more seconds. Notice the effect this has on the graphs — you'll see the regularly repeating melody patterns get a bit jumbled when you transpose. Transposition is a dramatic effect, which is why it happens only rarely. Oh, why a 5th? Because by traveling around the <a rel="nofollow" href="https://en.wikipedia.org/wiki/Circle_of_fifths">circle of fifths</a>, we get to visit all of the keys.
     </p>
     <p>
       You're wondering why some players have squiggly graphs, and others only have these little orbs that fly from right to left. The squiggle players are melody players. The orb players are "percussive", and they follow a slightly different set of rules from the melody players. Percussive players don't have a pre-written pattern that they play. They have a chunk of logic that defines a system of rhythm, including notions like "triplets" and "ghost notes", built from arithmetic rather than pre-written music notation data. The percussive players are a recent addition, to help make the music feel more propulsive, so they're still a little under-realized. Bear with me.
