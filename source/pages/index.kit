@@ -64,8 +64,9 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
-      filter: brightness(0) saturate(0%) contrast(300%) hue-rotate(-90deg);
-      transition: .5s filter;
+      filter: brightness(5) saturate(0%) contrast(300%) hue-rotate(-90deg);
+      opacity: 0;
+      transition: .5s .3s filter, .5s .3s opacity;
     }
     
     @media(max-width: 1000px) { #index .hero div { background-image: url("/assets/bio-portrait-1000.jpg"); } }
@@ -102,6 +103,10 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       font-size: .75em;
+    }
+    
+    p + .label {
+      margin-top: 2vh;
     }
     
     .related {
@@ -143,7 +148,11 @@
       inlineResize();
       requestAnimationFrame(inlineResize);
       window.addEventListener("resize", inlineResize);
-      requestAnimationFrame(function(){document.querySelector("#index .hero div").style.filter = "brightness(1) saturate(100%) contrast(100%) hue-rotate(0)";});
+      requestAnimationFrame(function(){
+        var elm = document.querySelector("#index .hero div");
+        elm.style.filter = "brightness(1) saturate(100%) contrast(100%) hue-rotate(0)";
+        elm.style.opacity = 1;
+      });
     })();
   </script>
 
@@ -151,11 +160,11 @@
     <h1>About</h1>
     <div class="columns">
       <p>
-        I'm a computer scientist and recovering performance artist from Canada.
-        This website is an archive of playful things for you to enjoy, with a bit of commentary and context.
+        I'm a computer programmer and recovering performance artist from Canada.
+        This website is an archive of playful things I've made, here for you to enjoy.
       </p>
       <p>
-        Where to start? Stay here to learn more about me,
+        Where to start? Read on learn more about me,
         or dive in to the projects <a href="/type">by type</a> or <a href="/time">by time</a>.
         Maybe start at <a href="/2013">2013</a> — it was a good year.
       </p>
@@ -167,35 +176,23 @@
     <h1>Bio</h1>
     
     <div class="columns">
-      <p>
-        <div class="label">Born</div>
-        1986.
-      </p>
+      <div class="label">Born</div>
+      <p>1986. Old enough to remember the pre-internet, but young enough to feel it's always been here.</p>
+    
+      <div class="label">Location</div>
+      <p>A forest in Alberta, Canada.</p>
+    
+      <div class="label">Education</div>
+      <p>Autodidact (art school dropout, comp sci dropout).</p>
       
-      <p>
-        <div class="label">Location</div>
-        A forest in Alberta, Canada.
-      </p>
-      
-      <p>
-        <div class="label">Education</div>
-        Autodidact (2x dropout).
-      </p>
-      
-      <p class="motto">
-        <div class="label">Motto</div>
-        <a rel="nofollow" href="http://makezine.com">I'm a maker</a>. <a rel="nofollow" href="https://www.youtube.com/watch?v=3MIVjs50Blc">I bleed in six colours</a>. <a rel="nofollow" href="http://www.ffwa.org/ff6/characters.php">Let's travel together</a>.
-      </p>
-      
-      <p>
-        <div class="label">Employment</div>
-        <a href="https://www.lunchboxsessions.com">I help people learn.</a>
-      </p>
-      
-      <p>
-        <div class="label">Relationship</div>
-        <a href="http://www.fehuleather.com/about">For life.</a>
-      </p>
+      <div class="label">Motto</div>
+      <p><a rel="nofollow" href="http://makezine.com">I'm a maker</a>. <a rel="nofollow" href="https://www.youtube.com/watch?v=3MIVjs50Blc">I bleed in six colours</a>. <a rel="nofollow" href="http://www.ffwa.org/ff6/characters.php">Let's travel together</a>.</p>
+    
+      <div class="label">Employment</div>
+      <p><a href="https://www.lunchboxsessions.com">My software helps people teach & learn.</a></p>
+    
+      <div class="label">Relationship</div>
+      <p><a href="http://www.fehuleather.com/about">A beautiful weirdo who gets paid for her art.</a></p>
       
     </div>
     
@@ -204,11 +201,11 @@
       <div class="columns">
         <p>
           In my teens I self-studied 3D animation under the foolish belief that I'd enjoy a career as a <em>computer artist</em>.
-          But right as art school was about to ruin my life for the wrong muse
+          But just as art school was about to ruin my life for the wrong muse,
           I realized my joy was for the technology, not the imagery.
         </p>
         <p>
-          I flipped my career inside-out, and became a professional <em>art computerist</em>.
+          I flipped my career inside-out, and became a professional <em>art computerist</em>, if you will.
           The work on this website was found along the path of that pursuit:
           concept games, theoretical music, glitch art, and their mutant offspring.
         </p>
@@ -226,8 +223,7 @@
       <a rel="nofollow" href="https://twitter.com/spiralganglion">Twitter</a>
     </p>
     
-    <p>
-    <div class="label">In Your Internet</div>
+    <div class="label">Put Me In Your Internet</div>
     <p>
       <a rel="nofollow" href="https://spiralganglion.bandcamp.com">Bandcamp</a>
       <a rel="nofollow" href="https://github.com/ivanreese">Github</a>
