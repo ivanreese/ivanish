@@ -13,9 +13,8 @@
 
     @media(min-width: 600px) {
       header {
-        width: calc(100vw - 1em - 1vw);
-        height: calc(100vh - 1em - 1vw);
-        margin: calc(.5em + .5vw);
+        height: calc(100vh - .5em - .5vw);
+        margin-bottom: calc(.5em + .5vw);
       }
     }
     
@@ -112,7 +111,18 @@
     .related {
       margin-top: 20vh;
     }
+    
+    hud {
+      display: block;
+      position: fixed;
+      top: .5em;
+      left: .5em;
+      color: white;
+      z-index: 100;
+    }
   </style>
+  
+  <hud></hud>
   
   <title class="hide">Ivan Reese</title>
   
