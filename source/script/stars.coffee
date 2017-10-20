@@ -1,12 +1,34 @@
 ready ()->
-  mod = (a, b)->
-    (a % b + b) % b
   
-  isInfinite = document.getElementById("starfailed-full")
+  ## BEGIN RAND TABLE
+  # We use a rand table, rather than Math.random(), so that we can have determinstic randomness.
+  # This is not a performance optimization — Math.random() is already VERY fast. It just gives us repeatability.
+  
+  # Set determinstic to true for debugging, false for deployment
+  determinstic = false
+  seed = if determinstic then 2147483647 else Math.random() * 2147483647 |0
+  
+  # Needs to be larger than the number of times we use it in one place, or else we'll get duplication.
+  # At this size, it takes about ~2ms to populate the table on my machine
+  randTableSize = 4096
+  
+  # This is just a generic swap function. It seems faster to let the browser JIT this than to inline it ourselves.
+  swap = (i, j, p)->
+    tmp = p[i]
+    p[i] = p[j]
+    p[j] = tmp
+  
+  randTable = [0...randTableSize]
+  j = 0
+  for i in [0...randTableSize]
+    j = (j + seed + randTable[i]) % randTableSize
+    swap i, j, randTable
+  ## END RAND TABLE
+  
+  # Check the DOM to see which mode we'll be running in
+  isInfinite = document.getElementById "starfailed-full"
   bw = if document.querySelector "[js-stars-bw]" then 0 else 1
-  
-  if window.location.port is "3000"
-    hud = document.querySelector "hud"
+  hud = document.querySelector "hud" if window.location.port is "3000"
   
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display != "none"
@@ -116,13 +138,6 @@ ready ()->
           context.stroke()
         
         renderStars = (time, drawCall)->
-          # measurePerf, ready, randTable, randTableSize, and a few other things
-          # are defined in app.coffee and are used as read-only globals.
-          
-          # if measurePerf
-          #   console.log ""
-          #   starsPerfStart = performance.now()
-          
           # Limit the dt range to avoid divide by zero errors, major weirdness from long pauses, etc
           dt = clip time - lastTime, 1, 100
           fps = 1000/dt
@@ -139,6 +154,8 @@ ready ()->
             # This config reaches an equalibrium around 35 FPS in Safari on my Mac.
             scale smoothedFPS, 20, 60, 0.3, 1, true
           
+          return unless scrollPos < height and !document.hidden
+          
           if keyboardDown and not keyboardUp
             accel = +keyboardAccel
           else if keyboardUp and not keyboardDown
@@ -147,61 +164,63 @@ ready ()->
             accel /= 1.1
           
           vel += accel
-          vel /= 1.04
+          vel /= 1.05
           vel = Math.min maxVel, Math.max -maxVel, vel
-          recipVel = Math.min 1, Math.abs maxVel / vel
           pos -= vel * dpi
           
           if Math.abs(vel) > 0.1
             requestRender()
           
           if not first
-            context.globalAlpha = Math.min 1, Math.sqrt Math.abs(vel/maxVel)
-            # context.globalAlpha = Math.pow Math.sin(vel/maxVel * Math.PI/2), 2
+            context.globalAlpha = Math.min 1, Math.sqrt Math.abs vel/maxVel
           
           if hud?
-            hud.textContent = context.globalAlpha.toPrecision(3)
+            hud.textContent = smoothedFPS.toPrecision(3)
+                    
+          if first
+            maxPixelStars = 350
+            maxStars = 100
+            maxSmallGlowingStars = 50
+            maxPurpBlobs = 200
+            maxBlueBlobs = 300
+            maxRedBlobs = 300
+          else
+            maxPixelStars = 250
+            maxStars = 25
+            maxSmallGlowingStars = 25
+            maxPurpBlobs = 70
+            maxBlueBlobs = 90
+            maxRedBlobs = 90
           
-
-          return unless scrollPos < height
-          
-          maxPurpBlobs = 120
-          maxBlueBlobs = 120
-          maxRedBlobs = 120
-          
-          nPixelStars        = density * frameRateLOD * 600 |0
-          nStars             = density * frameRateLOD * 30  |0
-          nSmallGlowingStars = density * frameRateLOD * 75  |0
+          nPixelStars        = density * frameRateLOD * maxPixelStars |0
+          nStars             = density * frameRateLOD * maxStars |0
+          nSmallGlowingStars = density * frameRateLOD * maxSmallGlowingStars |0
           nPurpBlobs         = density * frameRateLOD * maxPurpBlobs |0
           nBlueBlobs         = density * frameRateLOD * maxBlueBlobs |0
           nRedBlobs          = density * frameRateLOD * maxRedBlobs |0
-          
-          # Count the number of objects we're about to render
-          # console.log nRedBlobs + nPurpBlobs + nBlueBlobs + nPixelStars + nStars + nSmallGlowingStars
                     
+          
           # Pixel Stars
-          # start = performance.now() if measurePerf
           i = 0
-          while i < nPixelStars
+          while i < maxPixelStars
+            increase = i/maxPixelStars
             x = randTable[(i + 5432) % randTableSize]
             y = randTable[x]
             o = randTable[y]
             r = randTable[o]
             x = x * width / randTableSize
-            y = mod y * height / randTableSize - pos, height
+            y = mod y * height / randTableSize - pos * increase, height
             o = o / randTableSize * 0.5 + 0.5
-            r = (r / randTableSize * 1.5 + .5) * recipVel
+            r = r / randTableSize * 1.5 + .5
             drawCall x, y, r * dpi/2, "hsla(300, #{25*bw}%, 50%, #{o})"
             i++
-          # console.log((performance.now() - start).toPrecision(4) + "  pixelStars") if measurePerf
             
           
           # Stars
-          # start = performance.now() if measurePerf
           i = 0
           while i < nStars
-            increase = i/nStars # get bigger as i increases
-            decrease = (1 - increase) # get smaller as i increases
+            increase = i/maxStars
+            decrease = (1 - increase)
             x = randTable[i % randTableSize]
             y = randTable[x]
             r1 = randTable[y]
@@ -213,23 +232,21 @@ ready ()->
             o = randTable[c]
             x = x * width / randTableSize
             y = mod y * height / randTableSize - pos * decrease, height
-            r1 = (r1 / randTableSize * 4 + .5) * recipVel
-            r2 = (r2 / randTableSize * 3 + .5) * recipVel
+            r1 = r1 / randTableSize * 4 + .5
+            r2 = r2 / randTableSize * 3 + .5
             l = l / randTableSize * 20 + 20
             o = o / randTableSize * 10 * decrease + 0.3
             c = c / randTableSize * 120 + 200
             drawCall x, y, r1 * dpi/2, "hsla(#{c}, #{30*bw}%, #{l}%, #{o})"
             drawCall x, y, r2 * dpi/2, "hsla(0, 0%, 100%, 1)"
             i++
-          # console.log((performance.now() - start).toPrecision(4) + "  stars") if measurePerf
 
           
           # Small Round Stars with circular glow rings
-          # start = performance.now() if measurePerf
           i = 0
           while i < nSmallGlowingStars
-            increase = i/nSmallGlowingStars # get bigger as i increases
-            decrease = (1 - increase) # get smaller as i increases
+            increase = i/maxSmallGlowingStars
+            decrease = (1 - increase)
             r = randTable[(i + 345) % randTableSize]
             l = randTable[r]
             o = randTable[l]
@@ -238,7 +255,7 @@ ready ()->
             y = randTable[x]
             x = x * width / randTableSize
             y = mod y * height / randTableSize - pos * decrease, height
-            r = (r / randTableSize * 2 + 1) * recipVel
+            r = r / randTableSize * 2 + 1
             l = l / randTableSize * 20 + 40
             o = o / randTableSize * 1 * decrease + 0.3
             c = c / randTableSize * 180 + 200
@@ -256,64 +273,63 @@ ready ()->
             drawCall x, y, 1 * dpi/2, "hsla(#{c}, #{100*bw}%, 90%, #{o * 1.5})"
             
             i++
-          # console.log((performance.now() - start).toPrecision(4) + "  smallGlowingStars") if measurePerf
 
           
-          if not first
-            context.globalAlpha = Math.min 1, Math.sqrt Math.abs(vel/8)
+          # Adjust global opacity for blobs
+          if first
+            context.globalAlpha = 0.6
+          else
+            context.globalAlpha = Math.min 1, Math.sqrt Math.abs vel/8
           
           
           # Purple Blobs
-          # start = performance.now() if measurePerf
           i = 0
           while i < nPurpBlobs
-            increase = i/maxPurpBlobs # get bigger as i increases
-            decrease = (1 - increase) # get smaller as i increases
+            increase = i/maxPurpBlobs
+            decrease = (1 - increase)
             x = randTable[(i + 1234) % randTableSize]
             y = randTable[x]
-            r = randTable[y]
-            l = randTable[r]
+            _r = randTable[y]
+            l = randTable[_r]
             o = randTable[l]
             x = x / randTableSize * width*2/3 + width*1/6
-            y = mod y / randTableSize * height*2/3 + height*1/6 - pos * (1-0.5*r/randTableSize), height
-            r = r / randTableSize * 300 * density * decrease + 20
-            l = l / randTableSize * 20 * increase + 1
-            o = o / randTableSize * 0.17 * decrease + 0.05
+            r = _r / randTableSize * 300 * density * decrease + 20
+            y = mod(y / randTableSize * height*2/3 + height*1/6 - pos * (1-0.99*_r/randTableSize)*decrease, height+r*2)-r
+            l = l / randTableSize * 15 * increase
+            o = o / randTableSize * 0.07 + 0.05
             drawCall x, y, r * dpi/2, "hsla(290, #{100*bw}%, #{l}%, #{o})"
             i++
-          # console.log((performance.now() - start).toPrecision(4) + "  purpleBlobs") if measurePerf
 
           
           # Blue Blobs
-          # start = performance.now() if measurePerf
           i = 0
           while i < nBlueBlobs
-            increase = i/maxBlueBlobs # get bigger as i increases
-            decrease = (1 - increase) # get smaller as i increases
+            increase = i/maxBlueBlobs
+            decrease = (1 - increase)
             x = randTable[(i + 123) % randTableSize]
             y = randTable[x]
             r = randTable[y]
             l = randTable[r]
             h = randTable[l]
+            o = randTable[l]
             x = x / randTableSize * width
-            y = mod y / randTableSize * height - pos * (decrease*0.2 + 0.5), height
             r = r / randTableSize * 130 * density * decrease + 20
+            y = mod(y / randTableSize * height*2/3 + height*5/6 - pos * (decrease*0.2 + 0.5), height + r*2)-r
             s = (l / randTableSize * 30 + 55) * bw
             l = l / randTableSize * 64 * decrease + 1
             h = h / randTableSize * 50 * decrease + 205
-            drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.010)"
-            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.014)"
-            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, 0.018)"
+            o = o / randTableSize * 0.03 + 0.005
+            drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o})"
+            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2})"
+            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/4})"
             i++
-          # console.log((performance.now() - start).toPrecision(4) + "  blueBlobs") if measurePerf
 
 
           # Red Blobs
-          # start = performance.now() if measurePerf
           i = 0
           while i < nRedBlobs
-            increase = i/maxRedBlobs # get bigger as i increases
-            decrease = (1 - increase) # get smaller as i increases
+            increase = i/maxRedBlobs
+            decrease = (1 - increase)
             o = randTable[(12345 + i) % randTableSize]
             x = randTable[o]
             y = randTable[x]
@@ -321,23 +337,16 @@ ready ()->
             l = randTable[r]
             h = randTable[l]
             x = x / randTableSize * width
-            y = mod y / randTableSize * height - pos * (increase*0.8 + 0.2), height
             r = r / randTableSize * 170 * decrease * density + 20
-            l = l / randTableSize * 65 * decrease + 15
-            o = o / randTableSize * 0.014 + 0.008
+            y = mod(y / randTableSize * height*2/3 + height*1/2 - pos * (increase*0.8 + 0.2), height + r*2)-r
+            l = l / randTableSize * 65 * decrease + 25
+            o = o / randTableSize * 0.03 + 0.005
             h = h / randTableSize * 30 + 350
             s = 100 * bw
             drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o})"
-            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o*3/4})"
-            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2})"
+            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2})"
+            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/4})"
             i++
-          # console.log((performance.now() - start).toPrecision(4) + "  redBlobs") if measurePerf
-
-          
-          # if measurePerf
-          #   console.log ""
-          #   console.log (performance.now() - starsPerfStart).toPrecision(4) + "  Stars"
-          
           
           first = false
-  null # Avoids coffeescript building an array
+  undefined
