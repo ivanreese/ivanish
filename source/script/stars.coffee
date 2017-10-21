@@ -52,7 +52,7 @@ ready ()->
         lastTime = 0
         minFPS = 2
         smoothedFPS = 60
-        smoothFPSAdaptationRate = 1/60 # The closer this gets to 1, the more sputtering we get
+        smoothFPSAdaptationRate = 1/100 # The closer this gets to 1, the more sputtering we get
         alpha = 1
         
         # This is for the css
@@ -166,7 +166,7 @@ ready ()->
             accel /= 1.05
           
           vel += accel
-          vel /= 1.05
+          vel /= 1.05 unless isInfinite and Math.abs(vel) < 0.5
           vel = Math.min maxVel, Math.max -maxVel, vel
           pos -= vel * dpi
           
