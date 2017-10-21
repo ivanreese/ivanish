@@ -52,7 +52,9 @@ ready ()->
         lastTime = 0
         minFPS = 2
         smoothedFPS = 60
-        smoothFPSAdaptationRate = 1/100 # The closer this gets to 1, the more sputtering we get
+        # The closer these rates get to 1, the more sputtering
+        smoothFPSAdaptationRateUp = 1/300 # Rate when current FPS is higher than smoothed FPS
+        smoothFPSAdaptationRateDown = 1/60 # Rate when current FPS is lower than smoothed FPS
         alpha = 1
         
         # This is for the css
@@ -142,19 +144,21 @@ ready ()->
         
         renderStars = (time, drawCall)->
           # Limit the dt range to avoid divide by zero errors, major weirdness from long pauses, etc
-          dt = clip time - lastTime, 1, 100
+          dt = clip time - lastTime, 16, 100
           fps = 1000/dt
           lastTime = time
-          smoothedFPS = smoothedFPS*(1-smoothFPSAdaptationRate) + fps*smoothFPSAdaptationRate
+          smoothedFPS = if fps > smoothedFPS
+            smoothedFPS*(1-smoothFPSAdaptationRateUp) + fps*smoothFPSAdaptationRateUp
+          else
+            smoothedFPS*(1-smoothFPSAdaptationRateDown) + fps*smoothFPSAdaptationRateDown
           
           # If we aren't moving (eg: the initial render), render at full quality
-          frameRateLOD = if vel is 0
-            1
+          if vel is 0
+            frameRateLODStars = 1
+            frameRateLODBlobs = 1
           else # The scene is moving, so adjust the LOD based on the frame rate
-            # It's not worth hitting 60fps if that means rendering nothing.
-            # This config reaches an equalibrium around 35 FPS in Safari on my Mac.
-            scale smoothedFPS, 20, 60, 0.3, 1, true
-            # 1
+            frameRateLODStars = scale smoothedFPS, 30, 60, 0.2, 1, true
+            frameRateLODBlobs = scale smoothedFPS, 10, 60, 0.3, 1, true
           
           return unless scrollPos < Math.max(height, 1000) and !document.hidden
           
@@ -166,7 +170,7 @@ ready ()->
             accel /= 1.05
           
           vel += accel
-          vel /= 1.05 unless isInfinite and Math.abs(vel) < 0.5
+          vel /= 1.05
           vel = Math.min maxVel, Math.max -maxVel, vel
           pos -= vel * dpi
           
@@ -179,25 +183,25 @@ ready ()->
           
           if first
             maxPixelStars = 800
-            maxStars = 100
-            maxSmallGlowingStars = 50
-            maxPurpBlobs = 200
-            maxBlueBlobs = 300
-            maxRedBlobs = 300
+            maxStars = 80
+            maxSmallGlowingStars = 80
+            maxBlackBlobs = 0
+            maxBlueBlobs = 0
+            maxRedBlobs = 0
           else
             maxPixelStars = 350
-            maxStars = 35
-            maxSmallGlowingStars = 35
-            maxPurpBlobs = 100
+            maxStars = 80
+            maxSmallGlowingStars = 80
+            maxBlackBlobs = 100
             maxBlueBlobs = 120
             maxRedBlobs = 120
           
-          nPixelStars        = density * frameRateLOD * maxPixelStars |0
-          nStars             = density * frameRateLOD * maxStars |0
-          nSmallGlowingStars = density * frameRateLOD * maxSmallGlowingStars |0
-          nPurpBlobs         = density * frameRateLOD * maxPurpBlobs |0
-          nBlueBlobs         = density * frameRateLOD * maxBlueBlobs |0
-          nRedBlobs          = density * frameRateLOD * maxRedBlobs |0
+          nPixelStars        = density * frameRateLODStars * maxPixelStars |0
+          nStars             = density * frameRateLODStars * maxStars |0
+          nSmallGlowingStars = density * frameRateLODStars * maxSmallGlowingStars |0
+          nBlackBlobs         = density * frameRateLODBlobs * maxBlackBlobs |0
+          nBlueBlobs         = density * frameRateLODBlobs * maxBlueBlobs |0
+          nRedBlobs          = density * frameRateLODBlobs * maxRedBlobs |0
           
           if hud?
             hud.textContent = smoothedFPS.toPrecision(3)
@@ -211,11 +215,15 @@ ready ()->
             y = randTable[x]
             o = randTable[y]
             r = randTable[o]
+            l = randTable[r]
+            s = randTable[l]
             x = x * width / randTableSize
             y = mod y * height / randTableSize - pos * increase, height
             o = o / randTableSize * 0.99 + 0.01
-            r = r / randTableSize * 1.5 + .5
-            drawCall x, y, r * dpi/2, "hsla(300, #{25*bw}%, 50%, #{o*alpha})", increase
+            r = r / randTableSize * 2
+            l = l / randTableSize * 50 + 50
+            s = s / randTableSize * 25
+            drawCall x, y, r * dpi/2, "hsla(300, #{s*bw}%, #{l}%, #{o*alpha})", increase
             i++
             
           
@@ -280,15 +288,15 @@ ready ()->
           
           # Alpha for blobs
           if first
-            alpha = 0.6
+            alpha = 0.35
           else
-            alpha = Math.sqrt Math.abs vel/8
+            alpha = Math.sqrt Math.abs vel/5
           
           
-          # Purple Blobs
+          # Black Blobs
           i = 0
-          while i < nPurpBlobs
-            increase = i/maxPurpBlobs
+          while i < nBlackBlobs
+            increase = i/maxBlackBlobs
             decrease = 1 - increase
             x = randTable[(i + 1234) % randTableSize]
             y = randTable[x]
@@ -300,7 +308,7 @@ ready ()->
             velScale = (1 - 0.99 * _r/randTableSize) * decrease
             y = mod(y / randTableSize * height*2/3 + height*1/6 - pos * velScale, height+r*2)-r
             l = l / randTableSize * 15 * increase
-            o = o / randTableSize * 0.07 + 0.05
+            o = o / randTableSize * 0.12 + 0.05
             drawCall x, y, r * dpi/2, "hsla(290, #{100*bw}%, #{l}%, #{o*alpha})", velScale
             i++
           
@@ -324,10 +332,10 @@ ready ()->
             x = x / randTableSize * width
             r = r / randTableSize * 130 * density * decrease + 20
             velScale = decrease * 0.2 + 0.5
-            y = mod(y / randTableSize * height*2/3 + height*5/6 - pos * velScale, height + r*2)-r
+            y = mod(y / randTableSize * height - pos * velScale, height + r*2)-r
             s = (s / randTableSize * 30 + 70) * bw
-            l = l / randTableSize * 64 + 1
-            h = h / randTableSize * 50 + 210
+            l = l / randTableSize * 74 + 1
+            h = h / randTableSize * 50 + 200
             o = o / randTableSize * 0.03 + 0.005
             drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
@@ -349,10 +357,10 @@ ready ()->
             x = x / randTableSize * width
             r = r / randTableSize * 170 * decrease * density + 20
             velScale = increase * 0.8 + 0.2
-            y = mod(y / randTableSize * height*2/3 + height*1/2 - pos * velScale, height + r*2)-r
-            l = l / randTableSize * 60 + 20
+            y = mod(y / randTableSize * height * decrease - pos * velScale, height + r*2)-r
+            l = l / randTableSize * 40 + 25
             o = o / randTableSize * 0.03 + 0.005
-            h = h / randTableSize * 30 + 345
+            h = h / randTableSize * 50 + 340
             s = 100 * bw
             drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/3*alpha})", velScale
