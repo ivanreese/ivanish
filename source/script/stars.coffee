@@ -34,13 +34,13 @@ ready ()->
     if window.getComputedStyle(canvas).display != "none"
       do (canvas)->
         context = canvas.getContext "2d"
-        dpi = 2 # Just do everything at 2x so that we're good for most retina displays (hard to detect)
+        dpi = Math.max 1, Math.round(window.devicePixelRatio)
         width = 0
         height = 0
         density = 0
         accel = 0
         vel = 0
-        maxVel = 20
+        maxVel = defaultMaxVel = 0.05 # Measured in screen-heights
         pos = 0
         renderRequested = false
         first = true
@@ -53,15 +53,18 @@ ready ()->
         minFPS = 2
         smoothedFPS = 60
         smoothFPSAdaptationRate = 1/60 # The closer this gets to 1, the more sputtering we get
+        alpha = 1
         
+        # This is for the css
         canvas.setAttribute "bw", "" if bw is 0
         
         resize = ()->
           width  = canvas.width = canvas.parentNode.offsetWidth * dpi
           height = canvas.height = canvas.parentNode.offsetHeight * dpi
-          density = scale Math.sqrt(width * height), 0, 3000, 0, 1 # Scale the number of objects based on the screen size
-          context.globalAlpha = 1
+          density = scale Math.sqrt(width * height)/dpi, 0, 1500, 0, 1 # Scale the number of objects based on the canvas size
+          maxVel = defaultMaxVel * window.innerHeight # Scale the velocity based on the height of the screen
           context.lineCap = "round"
+          first = true
         
         doRender = (time)->
           renderRequested = false
@@ -126,15 +129,15 @@ ready ()->
         firstDrawCall = (x, y, r, s)->
           context.beginPath()
           context.fillStyle = s
-          context.arc(x, y, r, 0, TAU)
+          context.arc x, y, r, 0, TAU
           context.fill()
         
-        normalDrawCall = (x, y, r, s)->
+        normalDrawCall = (x, y, r, s, velScale)->
           context.beginPath()
           context.strokeStyle = s
           context.lineWidth = r*2
-          context.moveTo(x, y - vel*dpi)
-          context.lineTo(x, y)
+          context.moveTo x, y - (vel*dpi*velScale)
+          context.lineTo x, y
           context.stroke()
         
         renderStars = (time, drawCall)->
@@ -147,21 +150,20 @@ ready ()->
           # If we aren't moving (eg: the initial render), render at full quality
           frameRateLOD = if vel is 0
             1
-          
-          # The scene is moving, so adjust the LOD based on the frame rate
-          else
+          else # The scene is moving, so adjust the LOD based on the frame rate
             # It's not worth hitting 60fps if that means rendering nothing.
             # This config reaches an equalibrium around 35 FPS in Safari on my Mac.
             scale smoothedFPS, 20, 60, 0.3, 1, true
+            # 1
           
-          return unless scrollPos < height and !document.hidden
+          return unless scrollPos < Math.max(height, 1000) and !document.hidden
           
           if keyboardDown and not keyboardUp
             accel = +keyboardAccel
           else if keyboardUp and not keyboardDown
             accel = -keyboardAccel
           else
-            accel /= 1.1
+            accel /= 1.05
           
           vel += accel
           vel /= 1.05
@@ -172,25 +174,23 @@ ready ()->
             requestRender()
           
           if not first
-            context.globalAlpha = Math.min 1, Math.sqrt Math.abs vel/maxVel
+            targetAlpha = Math.min 1, Math.sqrt Math.abs vel/maxVel
+            alpha += clip targetAlpha - alpha, -0.05, 0.05
           
-          if hud?
-            hud.textContent = smoothedFPS.toPrecision(3)
-                    
           if first
-            maxPixelStars = 350
+            maxPixelStars = 800
             maxStars = 100
             maxSmallGlowingStars = 50
             maxPurpBlobs = 200
             maxBlueBlobs = 300
             maxRedBlobs = 300
           else
-            maxPixelStars = 250
-            maxStars = 25
-            maxSmallGlowingStars = 25
-            maxPurpBlobs = 70
-            maxBlueBlobs = 90
-            maxRedBlobs = 90
+            maxPixelStars = 350
+            maxStars = 35
+            maxSmallGlowingStars = 35
+            maxPurpBlobs = 100
+            maxBlueBlobs = 120
+            maxRedBlobs = 120
           
           nPixelStars        = density * frameRateLOD * maxPixelStars |0
           nStars             = density * frameRateLOD * maxStars |0
@@ -198,7 +198,10 @@ ready ()->
           nPurpBlobs         = density * frameRateLOD * maxPurpBlobs |0
           nBlueBlobs         = density * frameRateLOD * maxBlueBlobs |0
           nRedBlobs          = density * frameRateLOD * maxRedBlobs |0
-                    
+          
+          if hud?
+            hud.textContent = smoothedFPS.toPrecision(3)
+          
           
           # Pixel Stars
           i = 0
@@ -210,9 +213,9 @@ ready ()->
             r = randTable[o]
             x = x * width / randTableSize
             y = mod y * height / randTableSize - pos * increase, height
-            o = o / randTableSize * 0.5 + 0.5
+            o = o / randTableSize * 0.99 + 0.01
             r = r / randTableSize * 1.5 + .5
-            drawCall x, y, r * dpi/2, "hsla(300, #{25*bw}%, 50%, #{o})"
+            drawCall x, y, r * dpi/2, "hsla(300, #{25*bw}%, 50%, #{o*alpha})", increase
             i++
             
           
@@ -220,7 +223,7 @@ ready ()->
           i = 0
           while i < nStars
             increase = i/maxStars
-            decrease = (1 - increase)
+            decrease = 1 - increase
             x = randTable[i % randTableSize]
             y = randTable[x]
             r1 = randTable[y]
@@ -234,11 +237,11 @@ ready ()->
             y = mod y * height / randTableSize - pos * decrease, height
             r1 = r1 / randTableSize * 4 + .5
             r2 = r2 / randTableSize * 3 + .5
-            l = l / randTableSize * 20 + 20
+            l = l / randTableSize * 20 + 80
             o = o / randTableSize * 10 * decrease + 0.3
             c = c / randTableSize * 120 + 200
-            drawCall x, y, r1 * dpi/2, "hsla(#{c}, #{30*bw}%, #{l}%, #{o})"
-            drawCall x, y, r2 * dpi/2, "hsla(0, 0%, 100%, 1)"
+            drawCall x, y, r1 * dpi/2, "hsla(#{c}, #{30*bw}%, #{l}%, #{o*alpha})", decrease
+            drawCall x, y, r2 * dpi/2, "hsla(0, 0%, 100%, 1)", decrease
             i++
 
           
@@ -246,7 +249,7 @@ ready ()->
           i = 0
           while i < nSmallGlowingStars
             increase = i/maxSmallGlowingStars
-            decrease = (1 - increase)
+            decrease = 1 - increase
             r = randTable[(i + 345) % randTableSize]
             l = randTable[r]
             o = randTable[l]
@@ -256,37 +259,37 @@ ready ()->
             x = x * width / randTableSize
             y = mod y * height / randTableSize - pos * decrease, height
             r = r / randTableSize * 2 + 1
-            l = l / randTableSize * 20 + 40
+            l = l / randTableSize * 20 + 60
             o = o / randTableSize * 1 * decrease + 0.3
             c = c / randTableSize * 180 + 200
-
+            
             # far ring
-            drawCall x, y, r * r * r * dpi/2, "hsla(#{c}, #{70*bw}%, #{l}%, #{o/25})"
+            drawCall x, y, r * r * r * dpi/2, "hsla(#{c}, #{70*bw}%, #{l}%, #{o/25*alpha})", decrease
             
             # close ring
-            drawCall x, y, r * r * dpi/2, "hsla(#{c}, #{50*bw}%, #{l}%, #{o/6})"
+            drawCall x, y, r * r * dpi/2, "hsla(#{c}, #{50*bw}%, #{l}%, #{o/6*alpha})", decrease
             
             # round star body
-            drawCall x, y, r * dpi/2, "hsla(#{c}, #{20*bw}%, #{l}%, #{o})"
+            drawCall x, y, r * dpi/2, "hsla(#{c}, #{20*bw}%, #{l}%, #{o*alpha})", decrease
             
             # point of light
-            drawCall x, y, 1 * dpi/2, "hsla(#{c}, #{100*bw}%, 90%, #{o * 1.5})"
+            drawCall x, y, 1 * dpi/2, "hsla(#{c}, #{100*bw}%, 90%, #{o * 1.5*alpha})", decrease
             
             i++
 
           
-          # Adjust global opacity for blobs
+          # Alpha for blobs
           if first
-            context.globalAlpha = 0.6
+            alpha = 0.6
           else
-            context.globalAlpha = Math.min 1, Math.sqrt Math.abs vel/8
+            alpha = Math.sqrt Math.abs vel/8
           
           
           # Purple Blobs
           i = 0
           while i < nPurpBlobs
             increase = i/maxPurpBlobs
-            decrease = (1 - increase)
+            decrease = 1 - increase
             x = randTable[(i + 1234) % randTableSize]
             y = randTable[x]
             _r = randTable[y]
@@ -294,34 +297,41 @@ ready ()->
             o = randTable[l]
             x = x / randTableSize * width*2/3 + width*1/6
             r = _r / randTableSize * 300 * density * decrease + 20
-            y = mod(y / randTableSize * height*2/3 + height*1/6 - pos * (1-0.99*_r/randTableSize)*decrease, height+r*2)-r
+            velScale = (1 - 0.99 * _r/randTableSize) * decrease
+            y = mod(y / randTableSize * height*2/3 + height*1/6 - pos * velScale, height+r*2)-r
             l = l / randTableSize * 15 * increase
             o = o / randTableSize * 0.07 + 0.05
-            drawCall x, y, r * dpi/2, "hsla(290, #{100*bw}%, #{l}%, #{o})"
+            drawCall x, y, r * dpi/2, "hsla(290, #{100*bw}%, #{l}%, #{o*alpha})", velScale
             i++
-
+          
+          
+          if not first
+            alpha = alpha * 2 - 1
+          
           
           # Blue Blobs
           i = 0
           while i < nBlueBlobs
             increase = i/maxBlueBlobs
-            decrease = (1 - increase)
+            decrease = 1 - increase
             x = randTable[(i + 123) % randTableSize]
             y = randTable[x]
             r = randTable[y]
             l = randTable[r]
-            h = randTable[l]
-            o = randTable[l]
+            s = randTable[l]
+            h = randTable[s]
+            o = randTable[h]
             x = x / randTableSize * width
             r = r / randTableSize * 130 * density * decrease + 20
-            y = mod(y / randTableSize * height*2/3 + height*5/6 - pos * (decrease*0.2 + 0.5), height + r*2)-r
-            s = (l / randTableSize * 30 + 55) * bw
-            l = l / randTableSize * 64 * decrease + 1
-            h = h / randTableSize * 50 * decrease + 205
+            velScale = decrease * 0.2 + 0.5
+            y = mod(y / randTableSize * height*2/3 + height*5/6 - pos * velScale, height + r*2)-r
+            s = (s / randTableSize * 30 + 70) * bw
+            l = l / randTableSize * 64 + 1
+            h = h / randTableSize * 50 + 210
             o = o / randTableSize * 0.03 + 0.005
-            drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o})"
-            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2})"
-            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/4})"
+            drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
+            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
+            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/4*alpha})", velScale
             i++
 
 
@@ -329,7 +339,7 @@ ready ()->
           i = 0
           while i < nRedBlobs
             increase = i/maxRedBlobs
-            decrease = (1 - increase)
+            decrease = 1 - increase
             o = randTable[(12345 + i) % randTableSize]
             x = randTable[o]
             y = randTable[x]
@@ -338,14 +348,15 @@ ready ()->
             h = randTable[l]
             x = x / randTableSize * width
             r = r / randTableSize * 170 * decrease * density + 20
-            y = mod(y / randTableSize * height*2/3 + height*1/2 - pos * (increase*0.8 + 0.2), height + r*2)-r
-            l = l / randTableSize * 65 * decrease + 25
+            velScale = increase * 0.8 + 0.2
+            y = mod(y / randTableSize * height*2/3 + height*1/2 - pos * velScale, height + r*2)-r
+            l = l / randTableSize * 60 + 20
             o = o / randTableSize * 0.03 + 0.005
-            h = h / randTableSize * 30 + 350
+            h = h / randTableSize * 30 + 345
             s = 100 * bw
-            drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o})"
-            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/2})"
-            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/4})"
+            drawCall x, y, r * 1 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
+            drawCall x, y, r * 2 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/3*alpha})", velScale
+            drawCall x, y, r * 3 * dpi/2, "hsla(#{h}, #{s}%, #{l}%, #{o/9*alpha})", velScale
             i++
           
           first = false
