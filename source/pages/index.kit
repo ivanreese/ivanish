@@ -149,7 +149,8 @@
       window.addEventListener("resize", inlineResize);
       requestAnimationFrame(function(){
         var elm = document.querySelector("#index .hero div");
-        elm.style.filter = "brightness(1) saturate(100%) contrast(100%) hue-rotate(0)";
+        console.log(elm);
+        elm.style.filter = "none";
         elm.style.opacity = 1;
       });
     })();
