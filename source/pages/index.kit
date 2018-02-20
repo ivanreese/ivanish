@@ -2,11 +2,11 @@
 
 <main id="index">
   <script defer src="/index/index.js"></script>
-  
+
   <style>
     a.header-index-link { text-decoration: none; }
     a.header-index-link:hover, a.header-index-link:visited:hover { color: white; }
-    
+
     header {
       height: 100vh;
     }
@@ -17,7 +17,7 @@
         margin-bottom: calc(.5em + .5vw);
       }
     }
-    
+
     header div {
       display: inline-block;
       position: relative;
@@ -29,22 +29,22 @@
       line-height: 1.9;
       font-size: 1.4em;
     }
-    
+
     header div a {
       color: hsla(240, 100%, 97%, .9);
       line-height: 1;
     }
-    
+
     main {
       padding: 0 3vw 16vh;
     }
-    
+
     @media(min-width:58em) {
       main {
         padding: 0 0 16vh;
       }
     }
-    
+
     #index .hero {
       position: absolute; /* Force the hero to draw on top of the header. */
       border-radius: 100%;
@@ -53,7 +53,7 @@
       border: calc(.5em + .5vw) solid white;
       /* The hero image is sized and positioned with JS, down below */
     }
-    
+
     #index .hero div {
       width: 100%;
       height: 100%;
@@ -67,56 +67,56 @@
       opacity: 0;
       transition: .5s .3s filter, .5s .3s opacity;
     }
-    
+
     @media(max-width: 1000px) { #index .hero div { background-image: url("/assets/bio-portrait-1000.jpg"); } }
     @media(max-width: 750px)  { #index .hero div { background-image: url("/assets/bio-portrait-750.jpg"); } }
     @media(max-width: 500px)  { #index .hero div { background-image: url("/assets/bio-portrait-500.jpg"); } }
 
-    
+
     #index h1 {
       margin: 30vh 0 4vh;
       font-size: 3em;
       line-height: 1.3em;
     }
-    
+
     #index #about h1 {
       margin-top: 70vh;
     }
-    
+
     #index #bio h1 {
       margin-left: -4px;
     }
-    
+
     #index #contact h1 {
       margin-left: -3px;
     }
-    
+
     .columns {
       columns: 20em;
       column-gap: 2em;
       margin-bottom: 4vh;
     }
-    
+
     .label {
       display: block;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-size: .75em;
     }
-    
+
     p + .label {
       margin-top: 2vh;
     }
-    
+
     .related {
       margin-top: 20vh;
     }
   </style>
-    
+
   <title class="hide">Ivan Reese</title>
-  
+
   <div class="hero"><div></div></div>
-  
+
   <script>
     // This sucks, but it makes Android happy UGH
     (function(){
@@ -170,33 +170,33 @@
       </p>
     </div>
   </section>
-  
+
 
   <section id="bio">
     <h1>Bio</h1>
-    
+
     <div class="columns">
       <div class="label">Born</div>
-      <p>1986. Old enough to remember the pre-internet, but young enough to feel it's always been here.</p>
-    
+      <p>1986. Just barely pre-internet.</p>
+
       <div class="label">Location</div>
       <p>A forest in Alberta, Canada.</p>
-    
+
       <div class="label">Education</div>
-      <p>Autodidact (art school dropout, comp sci dropout).</p>
-      
+      <p>Art school dropout. Comp-sci dropout.</p>
+
       <div class="label">Motto</div>
-      <p><a rel="nofollow" href="http://makezine.com">I'm a maker</a>. <a rel="nofollow" href="https://www.youtube.com/watch?v=3MIVjs50Blc">I bleed in six colours</a>. <a rel="nofollow" href="http://www.ffwa.org/ff6/characters.php">Let's travel together</a>.</p>
-    
+      <p><a rel="nofollow" href="https://makezine.com">I'm a maker</a>. <a rel="nofollow" href="https://www.youtube.com/watch?v=3MIVjs50Blc">I bleed in six colours</a>. <a rel="nofollow" href="http://www.ffwa.org/ff6/characters.php">Let's travel together</a>.</p>
+
       <div class="label">Employment</div>
-      <p><a href="https://www.lunchboxsessions.com">My software helps people teach & learn.</a></p>
-    
+      <p><a href="https://www.lunchboxsessions.com">Tools for learning with your hands.</a></p>
+
       <div class="label">Relationship</div>
-      <p><a href="http://www.fehuleather.com/about">A beautiful weirdo who gets paid for her art.</a></p>
-      
+      <p><a href="https://www.fehuleather.com">A beautiful leather lady.</a></p>
+
     </div>
-    
-    
+
+
       <div class="label">History</div>
       <div class="columns">
         <p>
@@ -210,19 +210,19 @@
           concept games, theoretical music, glitch art, and their mutant offspring.
         </p>
       </div>
-    
+
     <div class="label">Curriculum Vitae</div>
     <a href="/cv">A little out of date, perhaps.</a>
   </section>
-  
+
   <section id="contact">
     <h1>Contact</h1>
-    
+
     <div class="label">Say Hello</div>
     <p>
       <a rel="nofollow" href="https://twitter.com/spiralganglion">Twitter</a>
     </p>
-    
+
     <div class="label">Put Me In Your Internet</div>
     <p>
       <a rel="nofollow" href="https://spiralganglion.bandcamp.com">Bandcamp</a>
@@ -235,7 +235,7 @@
     </p>
 
   </section>
-  
+
   <section class="related">
     Where to go next? Check out my work —
     <a href="/type">by type</a> or <a href="/time">by time</a>.
