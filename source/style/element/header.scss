@@ -2,15 +2,16 @@ header {
   position: relative;
   text-align: center;
   z-index: 10;
-  
+
   .js-stars {
     position: absolute;
   }
-  
+
   a, a:visited {
     color: white;
+    &:hover { color: #DDD; }
   }
-  
+
   div {
     display: inline-block;
     position: relative;
@@ -19,7 +20,7 @@ header {
     text-align: left;
     color: white;
     z-index: 2;
-    
+
     @media (max-width: 450px) { font-size: 1em; }
   }
 }

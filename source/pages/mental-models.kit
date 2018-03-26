@@ -1,0 +1,91 @@
+<!-- @import ../header.kit -->
+
+<main class="writing">
+
+  <title>Mental Models</title>
+
+  <section>
+    <blockquote>When I have nails to pound, I reach for a hammer. I know hammers can pound nails. I know how to pound nails with a hammer. Hammers are tools for working with nails.</blockquote>
+
+    <p>As the user of a tool, I have a <b>mental model</b> of the tool — an evolving understanding of how the tool can be used. That model is developed from many inspirations, including:</p>
+    <ul>
+      <li>My own experiences with the tool.</li>
+      <li>Watching other people use the tool.</li>
+      <li>Being part of a culture that has shared knowledge about the tool.</li>
+      <li>My knowledge of other tools that I draw on via analogy.</li>
+    </ul>
+
+    <p>As the creator of a tool, you play a pivotal role in establishing all of these inspirations. The way you design the tool shapes the experience of those who use it, and how it resembles other tools. How you talk about the tool shapes the culture.</p>
+
+    <p>As the creator of a tool, what kinds of mental models do you want your users to form?</p>
+  </section>
+
+  <section>
+    <p>Software tends to err on the side of complexity. To counter this, software designers strive for simplicity. They hope to make software intuitive. They focus tightly on the problem domain. They anticipate and prevent failure modes. They want users to <a rel="nofollow" href="https://blog.codinghorror.com/falling-into-the-pit-of-success/">fall into the pit of success</a>.</p>
+
+    <p>The most powerful leverage designers have over the user's mental modelling process is controlling the <i>concept</i> of their creation. If the concept is kept small and simple, it can be mentally modelled quickly and correctly. A go-kart is conceptually simple for the driver — so simple we let children drive them. But for the mechanic, a go-kart is vastly more complex. The true complexity is hidden from those who don't need to know it. Controlling apparent complexity is one way of influencing the user's concept of the tool.</p>
+
+    <p>But tools <i>always</i> take on lives of their own, beyond the intentions of the toolmaker. Could the efforts of designers to control the concept of their tools be a curse, not a blessing?</p>
+  </section>
+
+  <section>
+    <p>Hammers can hit nails. That's their very purpose. But they can also hit screws, which is a great way to make a screw stay put while you reach for the screwdriver. They can also dent and deform sheet metal, which is useful for crafting a <a rel="nofollow" href="https://en.wikipedia.org/wiki/Steelpan">steel drum</a>. They can knock loose a stuck fitting or lid, especially when hitting the free end of a long wrench. They can punch a hole in drywall, making it easier to tear down. They can also smash your other hand.</p>
+
+    <p>Hammers are tools for working with nails — that's their intended concept. But sometimes, hammers are just tools for amplifying the force of your arm. Sometimes, hammers are tools for surviving a forceful impact. Sometimes, hammers are tools for exploring ideas via metaphor (hi). But by design, hammers are for nails. You won't find them in the "force-multipliers" aisle of your hardware store; nor the "impact surviving" aisle.</p>
+
+    <p>Thanks to the open-ended nature of physical reality, the conceptual constraints that designers placed on hammers do not impede their versatility. The same is true of nails — they were designed for hammers, but they can be used in myriad other ways. The same is true of nail guns — they're more constrained by design than hammers, but you can still use them for target practice with an empty beer can. And the beer can sure wasn't designed for target practice.</p>
+
+    <p>But software environments are not as open-ended as physical reality. It is possible to place "unrealistic" constraints on how a software tool may be used. This can happen despite—or because of—the best intentions of the designer. This can happen in the service of simplifying the software, with the goal of making it easier for a user to mentally model the software.</p>
+  </section>
+
+  <section>
+    <p>Some software is inherently very complex. Tools for professional artists tend to be particularly fiendish, so they make a great case study. Let's see what harm befalls a professional artist struggling with an incomplete, incorrect, wrong, misleading, or bad mental model of their software.</p>
+
+    <blockquote>Since they come from non-tech backgrounds and are not formally trained in digital media, the artists I work with each have their own somewhat unique understanding of how their illustration software works. They often find unfamiliar corners of their software, or see unexpected things happen. When they end up in an unfamiliar corner, their creative curiosity leads them to try something that nobody else on the team would have tried, and they end up "inventing" a new technique. When that technique feeds back to the rest of the team, it shakes up their sense of how the software works. Out pops even more novel ideas, forming a positive feedback loop. This cycle is a gift in its social impact on our team culture and our collective self-esteem, and our art keeps getting better in ways we couldn't have predicted.</blockquote>
+
+    <p>If everyone had a "correct" mental model of their creative tools, they'd settle into a stable, steady, static way of doing things. This is at odds with a culture of innovation and "beginner's mind". <b>So when designing a tool, consider whether you want to reap the benefits of your users forming a complete, consistent, or correct mental model, as opposed to the benefits of them not.</b> You can choose to build a tool that can be misunderstood, and this can be a strength. Seek out the benefits of misunderstanding. Build tools for which new uses can be iteratively discovered, not just for the commonly-cited benefit of easier onboarding, but also for the benefit of growing a culture of discovery and invention around your tools.</p>
+  </section>
+
+  <section>
+    <p>For the sake of starting you off on the path away from rigid mental models, let's list a few ways to helpfully violate them. You want to encourage:</p>
+
+    <ul>
+      <li>Creative misuse.</li>
+      <li>Breaking abstractions.</li>
+      <li>Learning through play.</li>
+      <li>More than one way to skin a cat.</li>
+    </ul>
+
+    <blockquote>
+      <p>When I started learning Maya, I didn't know anything about its shading language. Hell, I didn't really know what shaders really were, or how they really worked. I hadn't yet learned to program. And unlike the <a href="/bryce-3d">other 3d tools</a> I'd <a href="/3d-studio-max">used previously</a>, the components of shaders in Maya could be combined without any regard for the meaning of their combination. There were no guard rails. It was an expensive, professional tool. It was assumed you'd know what you were doing, that you could effectively use this tool to do your photorealistic work for <a rel="nofollow" href="https://en.wikipedia.org/wiki/Industrial_Light_%26_Magic">ILM</a> or your <a rel="nofollow" href="https://en.wikipedia.org/wiki/Non-photorealistic_rendering">non-PR</a> work for Blizzard.</p>
+      <p>I didn't have have this knowledge, so I was delighted to learn that you could take, say, the XYZ angle of each surface in camera space and then use that to derive your RGB surface color, creating really <a href="/maya">unusual garbage-y results</a> the likes of which I'd never seen before.</p>
+    </blockquote>
+    <div class="hero">
+      <img src="https://ivanreese.s3.amazonaws.com/maya/bad_choice_of_spansules.png">
+    </div>
+    <blockquote>
+      <p>Nobody is supposed do that. Shader tools exist at a high of abstraction, with domain concepts derived from the physics of light and physical materials. But Maya doesn't stop you from violating the layering of its abstractions, or using the data from one conceptual domain in another. Most "meaningless" combinations resulted in a blank result. But as I discovered, XYZ and RGB are just sets of three numbers, so it was obvious to me that you could use them interchangeably. I lacked the mental model to know that I wasn't supposed to.</p>
+    </blockquote>
+  </section>
+
+  <section>
+    <p>Other examples, because I love thinking about these:</p>
+    <ul>
+      <li>One of my favourite software examples of a technology designed with <i>creative misuse</i> in mind is the web. HTML is incredibly flexible in how it can be used. It doesn't just give you simple primitives with myriad ways to compose them. It gives you way too many different ways to accomplish the same outcome, all of them valid, all of them fruitful. It's also atypically forgiving of mistakes, encouraging play and experimentation. For these reasons, HTML feels more like a tool for art than a tool for science. Science craves <a rel="nofollow" href="https://en.wikipedia.org/wiki/Predictive_power">predictive power</a>, Art craves surprise. When building your software tools, don't let the computer science of your programming roots dictate the modes of thinking your users must adopt.</li>
+      <li>When learning to paint, you ask about mixing types (they're sitting right next to each other on the shelf), and are summarily told that it's fine to layer oil paint atop acrylic paint, but not the other way around. Only later, as you inevitably start pushing at the boundaries, do you learn that acrylic atop oil makes the acrylic crack when it dries, and that that actually looks fucking cool. In fact, this is a well known technique. It's part of painting culture. Yet, you won't see a paint company advertise this combination — artful or not, it's still a "misuse", and your artwork will disintegrate in time. But whether or not that's a good or a bad thing should be up to you and your audience, not your teacher.</li>
+      <li>When electric guitar amplifiers are turned up too loudly, you are immersed in a wash of feedback and distortion. When this was first discovered, it was of course a violation of the intended mental model for guitarists as imposed by amplifier designers, recording engineers, standards bodies, and record executives. Thankfully, guitarists could play live concerts and circumvent all those prescriptivists, sharing the true joy of a good ear-melting buzz with their audiences, advancing the cultural norms, paving the way for the plurality of noise music we can now enjoy.</li>
+      <li><a rel="nofollow" href="https://www.youtube.com/watch?v=fAxHlLK3Oyk">I Am Sitting in a Room</a> by Alvin Lucier, in which a short poem is read into a tape recorder, then played back and recorded into another tape recorder, again and again until the acoustic resonances of the room overtake the texture of his voice. This violates the mental models of most anyone who is not familiar with this physical phenomenon. (There's a whole lot of art based on physical phenomena and it's all fantastic, so if you dig this piece, keep digging!)</li>
+      <li>Okay, one more! <a rel="nofollow" href="https://www.youtube.com/watch?v=5v5eBf2KwF8">Metronomes synchronizing</a> when placed on a swinging platform. This isn't a creative misuse, per se. Rather, it's a bit of abstraction leakage. The users of metronomes don't have reason to expect this outcome, because it's <a rel="nofollow" href="https://en.wikipedia.org/wiki/Excession#Outside_Context_Problem">outside the context</a> of intended metronome behaviour. But physics doesn't care about how metronomes are supposed to behave.</li>
+    </ul>
+
+    <h3>Be conscious of just how you encourage the formation of mental models.</h3>
+    <p>In summary, I think it's important to seriously consider whether or not you actually want to nurture a particular mental model in the users of your tool, and to what extent. Do you want to encourage or discourage "happy accidents" and "creative misuse"? Do you want to encourage or discourage <a rel="nofollow" href="https://en.wikipedia.org/wiki/Circuit_bending">circuit bending</a>? Is it actually good if your abstractions leak, or if people can violate your tower of types? Is bowling more or less rewarding with bumpers instead of gutters?</p>
+
+    <p>You might not need or want the user to understand your tool the way you do.</p>
+  </section>
+
+  <section class="related">
+    <a href="/writing">Writing</a> from <a href="/2018">2018</a>
+  </section>
+
+</main>

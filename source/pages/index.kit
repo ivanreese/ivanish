@@ -63,15 +63,11 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
-      filter: brightness(5) saturate(0%) contrast(300%) hue-rotate(-90deg);
-      opacity: 0;
-      transition: .5s .3s filter, .5s .3s opacity;
     }
 
     @media(max-width: 1000px) { #index .hero div { background-image: url("/assets/bio-portrait-1000.jpg"); } }
     @media(max-width: 750px)  { #index .hero div { background-image: url("/assets/bio-portrait-750.jpg"); } }
     @media(max-width: 500px)  { #index .hero div { background-image: url("/assets/bio-portrait-500.jpg"); } }
-
 
     #index h1 {
       margin: 30vh 0 4vh;
@@ -147,12 +143,6 @@
       inlineResize();
       requestAnimationFrame(inlineResize);
       window.addEventListener("resize", inlineResize);
-      requestAnimationFrame(function(){
-        var elm = document.querySelector("#index .hero div");
-        console.log(elm);
-        elm.style.filter = "none";
-        elm.style.opacity = 1;
-      });
     })();
   </script>
 
@@ -189,10 +179,10 @@
       <p><a rel="nofollow" href="https://makezine.com">I'm a maker</a>. <a rel="nofollow" href="https://www.youtube.com/watch?v=3MIVjs50Blc">I bleed in six colours</a>. <a rel="nofollow" href="http://www.ffwa.org/ff6/characters.php">Let's travel together</a>.</p>
 
       <div class="label">Employment</div>
-      <p><a href="https://www.lunchboxsessions.com">Tools for learning with your hands.</a></p>
+      <p><a href="https://www.lunchboxsessions.com">Tools for learning & teaching industrial technology.</a></p>
 
       <div class="label">Relationship</div>
-      <p><a href="https://www.fehuleather.com">A beautiful leather lady.</a></p>
+      <p><a href="https://www.fehuleather.com">Wide-eyed and weird, always singing something silly.</a></p>
 
     </div>
 
