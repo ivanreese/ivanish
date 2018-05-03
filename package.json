@@ -9,7 +9,7 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "latest",
     "gulp-changed": "latest",
-    "gulp-coffee": "latest",
+    "gulp-coffee": "2.3.4",
     "gulp-concat": "latest",
     "gulp-htmlmin": "latest",
     "gulp-kit": "latest",
