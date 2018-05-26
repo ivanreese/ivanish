@@ -21,6 +21,10 @@ do ()->
     if Math.abs(headerDelta) > epsilon
       header.style.opacity = headerCurrent = headerCurrent + headerDelta
       requestUpdate()
+    else if headerDelta isnt 0
+      header.style.opacity = headerCurrent = headerTarget
+      requestUpdate()
+
 
   requestUpdate = ()->
     if not dirty
