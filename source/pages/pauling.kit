@@ -1,0 +1,67 @@
+<!-- @import ../header.kit -->
+
+<main id="pauling">
+  <style>
+    body {
+      background: #292929;
+      color: white;
+    }
+  </style>
+
+  <title class="center">Pauling</title>
+  <p>
+    About two months ago, ATB Financial reached out to me with a neat proposal to create some generative artwork for the front cover of their annual report. That's the finished piece down below — yeah, that conspicuous empty space. Go on, touch it.
+  </p>
+
+  <div class="full-width">
+    <iframe src="http://pauling-rc1.surge.sh"></iframe>
+  </div>
+
+  <p>
+    For fun, let's look at a few alternate builds I created along the way to that final version. First up, an initial sketch to establish some of the key systems.
+  </p>
+  <p>
+    Before you touch it, notice that the canvas is filled with a grid of rotating lines that twirl around. This is a visualization of the <a rel="nofollow" href="https://en.wikipedia.org/wiki/Vector_field">vector field</a> that acts like the wind, pushing the wispy lines that stream out from the mouse.
+  </p>
+
+  <div class="full-width">
+    <iframe src="http://pauling-4.surge.sh"></iframe>
+  </div>
+
+  <p>
+    Did you notice that those wispy lines sometimes look like they're kinked, or bent around a corner? That's a bug in my math — I forgot to clip the vector field influence to zero, so sometimes faraway vector samples will contribute negatively to the velocity of— yeah, just a bug, I fixed it in the later builds.
+  </p>
+
+  <p>
+    One other little detail in this one: if you move your mouse in little tiny circles, you can spawn a ton of wispy lines and no particles. I wanted to come up with a bunch of little details like this — surprises for people who tried different things — but I ran out of time.
+  </p>
+
+  <p>
+    Next, a variation with brighter colors and more dynamism.
+  </p>
+
+  <div class="full-width">
+    <iframe src="http://pauling-5.surge.sh"></iframe>
+  </div>
+
+  <p>
+    That white line down the middle of the trail of big particles? That was going to grow into a reference to a design element ATB Financial use in some of their marketing, nicknamed "Linus". Thus, I named my interactive art project <a rel="nofollow" href="https://en.wikipedia.org/wiki/Linus_Pauling">Pauling</a>.
+  </p>
+
+  <p>
+    This next build is quite similar to the previous, but with more of a sense of rhythm. This one is my favourite.
+  </p>
+
+  <div class="full-width">
+    <iframe src="http://pauling-6.surge.sh"></iframe>
+  </div>
+
+  <p>
+    And that's it. You can see the final version (the version from the top of the page) live on the <a rel="nofollow" href="https://annualreport.atb.com">ATB website</a> for the time being.
+  </p>
+
+  <section class="related">
+    <a href="/code">Procedural Art</a> from <a href="/2018">2018</a>.
+  </section>
+
+</main>
