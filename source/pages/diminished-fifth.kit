@@ -6,20 +6,20 @@
       background: hsl(214, 7%, 20%);
       color: white;
     }
-    
+
     .samples {
       padding: .5em;
       background: #393939;
       margin: 2vh 0;
       border-radius: 8px;
     }
-    
+
     .samples span {
       min-width: 6em;
     }
 
   </style>
-  
+
   <title>Diminished Fifth</title>
 
   <p>
@@ -27,11 +27,11 @@
     Like most of the previous entries in the series, this is a procedural music generation program intended for public exhibition.
     It takes about three minutes to "warm up", and should provide an interesting listening experience for up to an hour or so. I <i>highly</i> recommend listening to this through headphones or dedicated speakers, since the music is very texturally complex and doesn't do well on laptop or phone speakers.
   </p>
-  
+
   <div class="full-width">
     <iframe src="http://diminished-fifth.surge.sh"></iframe>
   </div>
-  
+
   <section>
     <h2>Controls</h2>
 
@@ -43,19 +43,19 @@
       <li>The rest of the buttons are just to help me debug the system when something goes wrong.</li>
     </ul>
   </section>
-    
+
   <section>
     <h2>How It Works</h2>
-  
+
     <p>
       Diminished Fifth is written in ClojureScript, and runs in the browser using the Web Audio API.
       The simulation is <i>mostly</i> deterministic — each run will be just slightly different.
       There's a very small pool of pre-written melodies used as source material, so the musical result will be very self-similar at times.
       As I continue to work on the project, I'll be expanding the breadth of sounds and moods produced.
     </p>
-    
+
   </section>
-    
+
   <section>
     <h2>No, Really.. How Does It Work?</h2>
     <p>You're sitting down? Have a drink? K..</p>
@@ -72,7 +72,7 @@
     <p>
       There is a pool of about 81 sound samples — recordings of an individual note played on an instrument. They were extracted from a bunch of different songs, and especially from <a href="/above-genus-below-order">Above Genus, Below Order</a>. (Note that the songs on my albums generally aren't sample-based, but rather are multi-track recordings of me playing the instruments, so I had to be a bit surgical to pull out clean single notes from recordings of longer musical phrases.) All of the samples are tuned to the same musical pitch.
     </p>
-    
+
     <div class="samples">
       <div class="audio">
         <span>Sample #1</span>
@@ -95,11 +95,11 @@
         <audio src="http://diminished-fifth.surge.sh/samples/LarXylo.mp3" controls preload="metadata"></audio>
       </div>
     </div>
-    
+
     <p>
       If the system needs to play one of the samples in a D rather than a C, it just plays the sample a bit faster. How much faster? I'm just using the standard <span class="formula">2^(interval/12)</span>, so in the case of C to D the interval is 2 semitones, so I play the sample at 1.12 times the normal rate.
     </p>
-    
+
     <p>
       When the program runs, we generate a bunch of "players" for our "orchestra". Each player is assigned a melody to play, and a sound sample with which to play the melody. Like a real orchestra, they play their musical part (melody) with their instrument (sample) in concert with all the other players around them. The harmonious whole is greater than the sum of its parts (we hope).
     </p>
@@ -140,10 +140,10 @@
       The code is up on <a rel="nofollow" href="https://github.com/ivanreese/diminished-fifth">HitBug</a>.
     </p>
   </section>
-  
-  
+
+
   <section class="related">
     <a href="/code">Procedural Music</a> from <a href="/2016">2016</a>.
   </section>
-  
+
 </main>

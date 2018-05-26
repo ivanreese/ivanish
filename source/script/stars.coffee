@@ -89,7 +89,7 @@ ready ()->
           p = dpi * (document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop)
           delta = p - scrollPos
           scrollPos = p
-          vel += delta / 8
+          vel += delta / 5
           requestRender()
 
         requestWheelRender = (e)->
@@ -99,7 +99,7 @@ ready ()->
         requestMoveRender = (e)->
           e.preventDefault() if isInfinite
           y = e.touches.item(0).screenY
-          vel -= (y - lastTouchY) / 8
+          vel -= (y - lastTouchY) / 5
           lastTouchY = y
           requestRender()
 
@@ -196,16 +196,16 @@ ready ()->
             maxPixelStars = 500
             maxStars = 80
             maxSmallGlowingStars = 80
-            maxBlackBlobs = 0
             maxBlueBlobs = 0
             maxRedBlobs = 0
+            maxBlackBlobs = 0
           else
             maxPixelStars = 200
             maxStars = 40
             maxSmallGlowingStars = 40
-            maxBlackBlobs = 40
             maxBlueBlobs = 80
             maxRedBlobs = 80
+            maxBlackBlobs = 30
 
           nPixelStars        = ndensity * frameRateLODStars * maxPixelStars |0
           nStars             = ndensity * frameRateLODStars * maxStars |0
@@ -244,8 +244,7 @@ ready ()->
           # Stars
           i = 0
           while i < nStars
-            increase = i/maxStars
-            decrease = 1 - increase
+            decrease = 1 - i/maxStars
             x = randTable[i % randTableSize]
             y = randTable[x]
             r = randTable[y]
@@ -255,8 +254,8 @@ ready ()->
             c = randTable[l]
             o = randTable[c]
             x = x * width / randTableSize
-            y = mod y * height / randTableSize - pos * decrease, height
             r = r / randTableSize * 4 + .2
+            y = mod(r + y * height / randTableSize - pos * decrease, height+r*2)-r
             l = l / randTableSize * 20 + 80
             o = o / randTableSize * decrease + 0.1
             c = c / randTableSize * 120 + 200
@@ -269,8 +268,7 @@ ready ()->
           # Small Round Stars with circular glow rings
           i = 0
           while i < nSmallGlowingStars
-            increase = i/maxSmallGlowingStars
-            decrease = 1 - increase
+            decrease = 1 - i/maxSmallGlowingStars
             r = randTable[(i + 345) % randTableSize]
             l = randTable[r]
             o = randTable[l]
@@ -278,8 +276,8 @@ ready ()->
             x = randTable[c]
             y = randTable[x]
             x = x * width / randTableSize
-            y = mod y * height / randTableSize - pos * decrease, height
             r = r / randTableSize * 2 + 1
+            y = mod(r + y * height / randTableSize - pos * decrease, height+r*2)-r
             l = l / randTableSize * 20 + 60
             o = o / randTableSize * decrease * .8 + 0.1
             c = c / randTableSize * 200 + 200 % 360
@@ -310,7 +308,6 @@ ready ()->
           i = 0
           while i < nBlueBlobs
             increase = i/maxBlueBlobs
-            decrease = 1 - increase
             x = randTable[(i + 123) % randTableSize]
             y = randTable[x]
             r = randTable[y]
@@ -318,14 +315,15 @@ ready ()->
             s = randTable[l]
             h = randTable[s]
             o = randTable[h]
-            x = x / randTableSize * width * increase
-            r = r / randTableSize * 150 * density * decrease + 20
-            velScale = decrease * 0.8 + 0.2
-            y = mod(y / randTableSize * height - pos * velScale, height + r*2)-r
+            x = x / randTableSize * width * increase * .8
+            _r = r / randTableSize
+            velScale = 1 - .8 * _r
+            r = _r * 100 * density + 20
+            y = mod(r + y / randTableSize * height - pos * velScale, height + r*2)-r
             s = (s / randTableSize * 30 + 70) * bw
             l = l / randTableSize * 74 + 1
-            h = h / randTableSize * 50 + 200
-            o = o / randTableSize * 0.03 + 0.005
+            h = h / randTableSize * 50 + 210
+            o = o / randTableSize * 0.03 + 0.01
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2.5 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
             i++
@@ -335,20 +333,20 @@ ready ()->
           i = 0
           while i < nRedBlobs
             increase = i/maxRedBlobs
-            decrease = 1 - increase
             o = randTable[(12345 + i) % randTableSize]
             x = randTable[o]
             y = randTable[x]
             r = randTable[y]
             l = randTable[r]
             h = randTable[l]
-            x = width - x / randTableSize * width * decrease
-            r = r / randTableSize * 150 * density * increase + 20
-            velScale = increase * 0.8 + 0.2
-            y = mod(y / randTableSize * height * decrease - pos * velScale, height + r*2)-r
+            x = width - x / randTableSize * width * increase * .8
+            _r = r / randTableSize
+            velScale = 1 - .8 * _r
+            r = _r * 100 * density + 20
+            y = mod(r + y / randTableSize * height - pos * velScale, height + r*2)-r
             l = l / randTableSize * 40 + 25
-            o = o / randTableSize * 0.03 + 0.005
-            h = h / randTableSize * 50 + 340
+            o = o / randTableSize * 0.03 + 0.01
+            h = h / randTableSize * 50 + 330
             s = 100 * bw
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/3*alpha})", velScale
