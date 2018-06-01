@@ -1,0 +1,67 @@
+<!-- @import ../header.kit -->
+
+<main>
+  <style>
+    header { background: none; }
+    header canvas { display: none; }
+    header div, header a, header a:visited { color: #33002A; }
+    header a:hover, header a:hover:visited { color: hsl(311, 100%, 25%); }
+    main {
+      padding-bottom: 0;
+    }
+    title {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+      color: white;
+    }
+    .full-width {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .above {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      z-index: 1;
+    }
+    .above iframe {
+      margin: 0;
+      height: 100vh;
+    }
+    .below {
+      position: relative;
+      margin-top: 90vh;
+      padding: 12vh 0;
+      width: 100vw;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), white 20vh);
+      z-index: 2;
+    }
+    .below > div {
+      max-width: 56em;
+      margin: 0 auto;
+      padding: 0 2em;
+    }
+    @media (max-width: 56em) { .below > div { padding: 0 3vw; } }
+  </style>
+
+  <title class="center">Charges</title>
+
+  <div class="full-width above">
+    <iframe src="http://electrons.surge.sh"></iframe>
+  </div>
+
+  <div class="full-width below">
+    <div>
+      <section class="desc">
+        <p>A cool <a rel="nofollow" href="https://landgreen.github.io/physics/index.html">collection of physics lessons</a> bubbled up in my programming community one day, and they featured a number of cool illustrations and simulations. One of the simulations — a demonstration of electrical charges — had just awful performance. It was small as a postage stamp, low resolution, and ran at a low frame rate. As a challenge, I decided to see if I could implement a similar simulation in high res, full screen.</p>
+        <p>I took liberties with the physics model, for the sake of making a more visually playful result. Overall this was a fun exercise, which let me use a whole bunch of my best graphics programming tricks.</p>
+      </section>
+
+      <section class="related">
+        <a href="/code">Procedural Art</a> from <a href="/2018">2018</a>.
+      </section>
+    </div>
+  </div>
+
+</main>
