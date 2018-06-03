@@ -8,34 +8,24 @@
   }
 
   div {
-    display: inline-block;
+    margin: 8vh -1em;
     vertical-align: top;
-    max-width: 23em;
-    margin: 2vh calc(4vw + 2em) 4vh 0;
-
-    @media (max-width: 1500px) {
-      display: block;
-      max-width: none;
-      margin: 12vh -1em;
-    }
+    text-align: center;
 
     h2 {
-      display: inline-block;
+      display: block;
+      margin-bottom: 0;
       font-size: 2.2em;
-      min-width: 100px;
-      text-align: center;
-      @media (max-width: 1500px) {
-        display: block;
-      }
     }
 
     a {
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      margin: .5em 1.5em 2em;
+      text-align: left;
       font-size: 1.2em;
       line-height: 1.1;
       text-decoration: none;
-      margin-left: -.5rem;
       &:hover { opacity: 1; }
 
       & > :first-child {
@@ -45,12 +35,6 @@
         margin: .5rem;
         border-radius: 100%;
         * { border-radius: 100%; }
-      }
-
-      @media (max-width: 1500px) {
-        display: inline-flex;
-        margin: 1em;
-        min-width: 15em;
       }
     }
   }
