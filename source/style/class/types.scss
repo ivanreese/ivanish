@@ -2,22 +2,31 @@
   display: inline-block;
   max-width: none;
   width: auto;
-  
+
   title {
     text-align: center;
   }
-  
+
   div {
     display: inline-block;
     vertical-align: top;
     max-width: 23em;
     margin: 2vh calc(4vw + 2em) 4vh 0;
-    
+
+    @media (max-width: 1500px) {
+      display: block;
+      max-width: none;
+      margin: 12vh -1em;
+    }
+
     h2 {
       display: inline-block;
       font-size: 2.2em;
       min-width: 100px;
       text-align: center;
+      @media (max-width: 1500px) {
+        display: block;
+      }
     }
 
     a {
@@ -28,7 +37,7 @@
       text-decoration: none;
       margin-left: -.5rem;
       &:hover { opacity: 1; }
-      
+
       & > :first-child {
         flex: 0 0 100px;
         width: 100px;
@@ -37,13 +46,19 @@
         border-radius: 100%;
         * { border-radius: 100%; }
       }
+
+      @media (max-width: 1500px) {
+        display: inline-flex;
+        margin: 1em;
+        min-width: 15em;
+      }
     }
   }
-  
+
   .related {
     margin-top: 4vh;
     text-align: center;
-    
+
     a {
       font-size: 1.2em;
       padding: 0 .5em;
