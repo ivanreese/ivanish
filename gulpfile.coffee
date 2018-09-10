@@ -10,7 +10,10 @@ gulp_kit = require "gulp-kit"
 gulp_notify = require "gulp-notify"
 gulp_rename = require "gulp-rename"
 gulp_sass = require "gulp-sass"
-gulp_uglify = require "gulp-uglify"
+uglify_es = require "uglify-es"
+
+composer = require "gulp-uglify/composer"
+gulp_uglify = composer uglify_es, console
 
 
 # CONFIG ##########################################################################################
@@ -61,10 +64,10 @@ logAndKillError = (err)->
 gulp.task "assets", ()->
   gulp.src "source/*{CNAME,.ico,.png}"
     .pipe gulp.dest "public"
-  
+
   gulp.src paths.assets.source
     .pipe gulp.dest "public/assets"
-        
+
 
 gulp.task "coffee", ()->
   gulp.src paths.coffee.source
@@ -84,7 +87,7 @@ gulp.task "del:public", ()->
 gulp.task "del:html", ()->
   del "public/**/*.html"
 
-      
+
 gulp.task "kit", ()->
   gulp.src paths.kit.source
     .on "error", logAndKillError
@@ -157,7 +160,7 @@ gulp.task "scss", ()->
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.css"
-      
+
 
 gulp.task "serve", ()->
   browser_sync.init
