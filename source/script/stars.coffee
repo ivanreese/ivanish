@@ -46,7 +46,7 @@ ready ()->
         dScaleHalfDpi = 0
         accel = 0
         vel = 0
-        maxVel = defaultMaxVel = if isInfinite then 4 else .4 # Multiplied by root of the screen height
+        maxVel = defaultMaxVel = if isInfinite then 4 else .3 # Multiplied by root of the screen height
         scaledVel = 0
         pos = 0
         renderRequested = false
