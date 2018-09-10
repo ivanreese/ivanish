@@ -197,7 +197,7 @@ ready ()->
 
           if first
             maxPixelStars = 400
-            maxStars = 80
+            maxStars = 120
             maxSmallGlowingStars = 120
             maxBlueBlobs = 0
             maxRedBlobs = 0
@@ -205,9 +205,9 @@ ready ()->
           else
             maxPixelStars = 300
             maxStars = 40
-            maxSmallGlowingStars = 40
-            maxBlueBlobs = 30
-            maxRedBlobs = 30
+            maxSmallGlowingStars = 50
+            maxBlueBlobs = 60
+            maxRedBlobs = 60
             maxBlackBlobs = 10
 
           nPixelStars        = sdensity * frameRateLODStars * maxPixelStars |0
@@ -328,7 +328,7 @@ ready ()->
             velScale = 1 - .8 * _r
             r = _r * 120 * density + 20
             y = mod(r + y / randTableSize * height - pos * velScale, height + r*2)-r
-            s = (s / randTableSize * 50 + 50) * bw
+            s = (s / randTableSize * 70 + 30) * bw
             l = l / randTableSize * 74 + 1
             h = h / randTableSize * 50 + 210
             o = o / randTableSize * 0.1 + 0.05
@@ -367,14 +367,16 @@ ready ()->
           while i < nBlackBlobs
             increase = i/maxBlackBlobs
             decrease = 1 - increase
-            x = randTable[(i + 1234) % randTableSize]
+            x = randTable[(i + 771) % randTableSize]
             y = randTable[x]
             r = randTable[y]
-            r = r / randTableSize * 200 * density + 50
-            x = width * increase + 60
-            velScale = 1 - r / 250
+            l = randTable[r]
+            l = l / randTableSize * 3 + 3 * increase + 2
+            r = r / randTableSize * 100 + 100 * increase * increase * density + 50
+            x = x / randTableSize * width * .8 + width * .1
+            velScale = decrease * decrease / 2 + .1
             y = mod(r + y / randTableSize * height - pos * velScale, height+r*2)-r
-            drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, 5%, #{0.1*alpha})", velScale
+            drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, #{l}%, #{0.1*alpha})", velScale
             i++
 
           first = false
