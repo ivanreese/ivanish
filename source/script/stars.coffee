@@ -46,7 +46,7 @@ ready ()->
         dScaleHalfDpi = 0
         accel = 0
         vel = 0
-        maxVel = defaultMaxVel = 1 # Multiplied by root of the screen height
+        maxVel = defaultMaxVel = if isInfinite then 5 else .7 # Multiplied by root of the screen height
         scaledVel = 0
         pos = 0
         renderRequested = false
@@ -92,17 +92,17 @@ ready ()->
           p = dpi * (document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop)
           delta = p - scrollPos
           scrollPos = p
-          vel += delta / 5
+          vel += delta / if isInfinite then 24 else 5
           requestRender()
 
         requestWheelRender = (e)->
-          vel -= e.deltaY / 8
+          vel -= e.deltaY / if isInfinite then 64 else 8
           requestRender()
 
         requestMoveRender = (e)->
           e.preventDefault() if isInfinite
           y = e.touches.item(0).screenY
-          vel -= (y - lastTouchY) / 5
+          vel -= (y - lastTouchY) / if isInfinite then 24 else 5
           lastTouchY = y
           requestRender()
 
@@ -183,7 +183,7 @@ ready ()->
           vel += accel
           absVel = Math.abs vel
           if absVel > .5
-            vel /= 1.1
+            vel /= if isInfinite then 1.02 else 1.1
           else
             vel /= (1 + absVel/5)
           vel = clip vel, -maxVel, maxVel
@@ -375,7 +375,7 @@ ready ()->
             p = randTable[f]
             l = l / randTableSize * 3 + 3 * increase + 2
             r = _r / randTableSize * 100 + 100 * increase * increase * density + 50 * density
-            velScale = 700 / r / r + 12 / r
+            velScale = dScale * 700 / r / r + dScale * 12 / r
             y = mod(r + y / randTableSize * height - pos * velScale, height+r*2)-r
             x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(pos * velScale / height * f / randTableSize + p / randTableSize)
             drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, #{l}%, #{0.1*alpha})", velScale
