@@ -46,7 +46,7 @@ ready ()->
         dScaleHalfDpi = 0
         accel = 0
         vel = 0
-        maxVel = defaultMaxVel = .5 # Multiplied by root of the screen height
+        maxVel = defaultMaxVel = 1 # Multiplied by root of the screen height
         scaledVel = 0
         pos = 0
         renderRequested = false
@@ -308,7 +308,7 @@ ready ()->
           if first
             alpha = .25
           else
-            alpha = 0.027 + .8 - .8 * Math.cos(clip absVel/8, 0, Math.PI)
+            alpha = 0.025 + .8 - .8 * Math.cos(clip absVel/8, 0, Math.PI)
           context.lineCap = "round"
 
 
@@ -330,7 +330,7 @@ ready ()->
             y = mod(r + y / randTableSize * height - pos * velScale, height + r*2)-r
             s = (s / randTableSize * 70 + 30) * bw
             l = l / randTableSize * 74 + 1
-            h = h / randTableSize * 50 + 210
+            h = h / randTableSize * 55 + 207
             o = o / randTableSize * 0.1 + 0.05
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
@@ -354,7 +354,7 @@ ready ()->
             y = mod(r + y / randTableSize * height - pos * velScale, height + r*2)-r
             l = l / randTableSize * 40 + 25
             o = o / randTableSize * 0.1 + 0.05
-            h = h / randTableSize * 50 + 330
+            h = h / randTableSize * 55 + 330
             s = 80 * bw
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
@@ -369,13 +369,15 @@ ready ()->
             decrease = 1 - increase
             x = randTable[(i + 771) % randTableSize]
             y = randTable[x]
-            r = randTable[y]
-            l = randTable[r]
+            _r = randTable[y]
+            l = randTable[_r]
+            f = randTable[l]
+            p = randTable[f]
             l = l / randTableSize * 3 + 3 * increase + 2
-            r = r / randTableSize * 100 + 100 * increase * increase * density + 50
-            x = x / randTableSize * width * .8 + width * .1
-            velScale = decrease * decrease / 2 + .1
+            r = _r / randTableSize * 100 + 100 * increase * increase * density + 50 * density
+            velScale = 700 / r / r + 12 / r
             y = mod(r + y / randTableSize * height - pos * velScale, height+r*2)-r
+            x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(pos * velScale / height * f / randTableSize + p / randTableSize)
             drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, #{l}%, #{0.1*alpha})", velScale
             i++
 
