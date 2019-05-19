@@ -2,15 +2,21 @@
   display: inline-block;
   max-width: none;
   width: auto;
+  padding-left: 10vw;
+  padding-right: 10vw;
 
   title {
     text-align: center;
   }
 
-  div {
-    margin: 8vh -1em;
+  & > div {
+    margin: 6vh 0;
     vertical-align: top;
     text-align: center;
+
+    & + div {
+      margin-top: 12vh;
+    }
 
     h2 {
       display: block;
@@ -21,14 +27,15 @@
     a {
       display: inline-flex;
       align-items: center;
-      margin: .5em 1.5em 2em;
+      max-width: 15em;
+      margin: 1em 1em 2em;
       text-align: left;
       font-size: 1.2em;
       line-height: 1.1;
       text-decoration: none;
       &:hover { opacity: 1; }
 
-      & > :first-child {
+      img, canvas {
         flex: 0 0 100px;
         width: 100px;
         height: 100px;
