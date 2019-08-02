@@ -109,7 +109,7 @@ gulp.task "kit", ()->
       removeComments: true
       sortAttributes: true
       sortClassName: true
-    .pipe gulp_changed "public", extension: ".html", hasChanged: gulp_changed.compareSha1Digest
+    .pipe gulp_changed "public", extension: ".html", hasChanged: gulp_changed.compareContents
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.html"
@@ -135,7 +135,7 @@ gulp.task "pageSCSS", ()->
       precision: 2
     .on "error", logAndKillError
     .pipe gulp_autoprefixer
-      browsers: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
+      overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
       cascade: false
       remove: false
     .pipe gulp_rename (path)->
@@ -154,7 +154,7 @@ gulp.task "scss", ()->
       precision: 2
     .on "error", logAndKillError
     .pipe gulp_autoprefixer
-      browsers: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
+      overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
       cascade: false
       remove: false
     .pipe gulp.dest "public"
