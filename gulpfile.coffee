@@ -10,10 +10,7 @@ gulp_kit = require "gulp-kit"
 gulp_notify = require "gulp-notify"
 gulp_rename = require "gulp-rename"
 gulp_sass = require "gulp-sass"
-uglify_es = require "uglify-es"
-
-composer = require "gulp-uglify/composer"
-gulp_uglify = composer uglify_es, console
+gulp_terser = require "gulp-terser"
 
 
 # CONFIG ##########################################################################################
@@ -73,7 +70,7 @@ gulp.task "coffee", ()->
   gulp.src paths.coffee.source
     .pipe gulp_concat "scripts.coffee"
     .pipe gulp_coffee()
-    .pipe gulp_uglify()
+    .pipe gulp_terser()
     .on "error", logAndKillError
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
@@ -118,7 +115,7 @@ gulp.task "kit", ()->
 gulp.task "pageCoffee", ()->
   gulp.src paths.pageCoffee.source
     .pipe gulp_coffee()
-    .pipe gulp_uglify()
+    .pipe gulp_terser()
     .on "error", logAndKillError
     .pipe gulp_rename (path)->
       path.dirname = path.dirname + "/" + path.basename

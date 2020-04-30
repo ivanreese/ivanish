@@ -12,12 +12,14 @@
     "gulp-coffee": "latest",
     "gulp-concat": "latest",
     "gulp-htmlmin": "latest",
-    "gulp-kit": "latest",
+    "gulp-kit": "ivanreese/gulp-kit",
     "gulp-notify": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
-    "gulp-uglify": "latest",
-    "uglify-es": "latest"
+    "gulp-terser": "latest"
+  },
+  "resolutions": {
+    "node-sass": "sass/node-sass#v5"
   },
   "license": "UNLICENSED",
   "private": true
