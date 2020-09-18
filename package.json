@@ -16,7 +16,8 @@
     "gulp-notify": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
-    "gulp-terser": "latest"
+    "gulp-terser": "latest",
+    "node-gyp": "latest"
   },
   "resolutions": {
     "node-sass": "sass/node-sass#v5"
