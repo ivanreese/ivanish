@@ -17,8 +17,6 @@ gulp_terser = require "gulp-terser"
 
 
 paths =
-  assets:
-    source: "source/assets/**/*"
   coffee:
     source: "source/script/**/*.coffee"
   kit:
@@ -56,14 +54,6 @@ logAndKillError = (err)->
 
 
 # TASKS: APP COMPILATION ##########################################################################
-
-
-gulp.task "assets", ()->
-  gulp.src "source/*{CNAME,.ico,.png}"
-    .pipe gulp.dest "public"
-
-  gulp.src paths.assets.source
-    .pipe gulp.dest "public/assets"
 
 
 gulp.task "coffee", ()->
@@ -170,7 +160,6 @@ gulp.task "serve", ()->
 
 gulp.task "watch", (cb)->
   gulp.watch paths.kit.header, gulp.series "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
-  gulp.watch paths.assets.source, gulp.series "assets"
   gulp.watch paths.coffee.source, gulp.series "coffee"
   gulp.watch paths.kit.watch, gulp.series "kit"
   gulp.watch paths.pageCoffee.source, gulp.series "pageCoffee"
@@ -179,4 +168,4 @@ gulp.task "watch", (cb)->
   cb()
 
 
-gulp.task "default", gulp.series "del:public", gulp.parallel("assets", "coffee", "kit", "pageCoffee", "pageSCSS", "scss"), "watch", "serve"
+gulp.task "default", gulp.series "del:public", gulp.parallel("coffee", "kit", "pageCoffee", "pageSCSS", "scss"), "watch", "serve"

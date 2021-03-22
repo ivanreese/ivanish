@@ -1,12 +1,12 @@
 ready ()->
   for canvas in document.querySelectorAll "canvas.js-scatter"
     context = canvas.getContext "2d"
-    
+
     above = document.querySelector ".above" # The layer above the canvas, used for course-grained positioning
     inner = document.querySelector ".inner" # A layer inside .above, used for fine-grained positioning, which contains page content HTML
-    
+
     img = new Image()
-    img.src = "/assets/type.png"
+    img.src = "https://s3.ivanish.ca/type/bg.png"
     img.onload = ()->
       w = 0 # Width of the window
       h = 0 # Height of the window, which will be expanded as necessary to fit the image
@@ -16,7 +16,7 @@ ready ()->
       lowerLimit = 0 # The lowest point we should be drawing into — gradually moves down
       wScale = 0 # Global scaling factor based on image size
       count = 0 # Used with mod to switch comparison functions
-      
+
       resize = (force)-> (e)->
         if force or window.innerWidth isnt w # Only resize when the width changes — improves UX on mobile, because the height changes during scroll
           w = canvas.width = window.innerWidth
@@ -31,11 +31,11 @@ ready ()->
           # context.fillStyle = "white"
           # context.fillRect(0, 0, w, h) # We need to fill the upper part with white, or else we won't have enough
           context.drawImage img, 0, iTop, w, ih
-      
+
       requestAnimationFrame update = (time)->
         requestAnimationFrame update
         count++
-        
+
         # Our size will be no smaller than 1/8th of the width of the image
         # Our size will scale proportionally to the size of the image
         # Our unscaled size will vary between 2^0 and 2^9, plus 8
@@ -46,7 +46,7 @@ ready ()->
         fn = if count%3 is 0 then Math.max else Math.min # Bias towards darker colors
         reps = 0
         done = false
-        
+
         while ++reps <= 20 and not done
           x = Math.random() * (w-size) |0
           y = Math.min h-size, iUpper + iTop + Math.random() * lowerLimit |0
@@ -79,7 +79,7 @@ ready ()->
             context.putImageData imageDataB, nx, ny
             done = true
           null
-      
+
       window.addEventListener "resize", resize false
       resize(false)()
       requestAnimationFrame resize true # This fixes a rendering glitch, probably caused by this code running before styles are finished
