@@ -4,7 +4,8 @@ ready ()->
     inner = document.querySelector ".above"
 
     img = new Image()
-    img.src = "https://s3.ivanish.ca/time/bg.png"
+    img.crossOrigin = "Anonymous"
+    img.src = "https://ivanish.s3.amazonaws.com/time/bg.jpg"
     img.onload = ()->
       w = 0
       h = 0

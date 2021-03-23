@@ -6,7 +6,8 @@ ready ()->
     inner = document.querySelector ".inner" # A layer inside .above, used for fine-grained positioning, which contains page content HTML
 
     img = new Image()
-    img.src = "https://s3.ivanish.ca/type/bg.png"
+    img.crossOrigin = "Anonymous"
+    img.src = "https://ivanish.s3.amazonaws.com/type/bg.png"
     img.onload = ()->
       w = 0 # Width of the window
       h = 0 # Height of the window, which will be expanded as necessary to fit the image
