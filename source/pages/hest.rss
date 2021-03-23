@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Hest</title>
+    <link>https://ivanish.ca/hest</link>
+    <itunes:author>Ivan Reese</itunes:author>
+    <description>Ivan Reese thinks out loud about the design of his esoteric graphical programming system.</description>
+    <language>en</language>
+    <itunes:category text="Technology"/>
+    <itunes:explicit>yes</itunes:explicit>
+    <itunes:image href="https://ivanish.s3.amazonaws.com/hest/podcast.png"/>
+    <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-1</guid>
+      <pubDate>1 Jan 2021 12:00 -0000</pubDate>
+      <title>1 • Graphical Programming</title>
+      <itunes:duration>00:13:26</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/1.mp3"
+        length="6447496"
+        type="audio/mpeg"
+      />
+      <description>
+        The term "visual programming" is a bit of a misnomer. My preference is "graphical programming", though it's hard to overcome cultural inertia. Oh, also, welcome to the show. Let's talk about Hest.
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-2</guid>
+      <pubDate>8 Jan 2021 12:00 -0000</pubDate>
+      <title>2 • Why?</title>
+      <itunes:duration>00:13:04</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/2.mp3"
+        length="6268400"
+        type="audio/mpeg"
+      />
+      <description>
+        Why am I making Hest? Who is it for? When did I start? When will it end? What is it now? Where is it going? And what of this podcast?
+      </description>
+    </item>
+
+  </channel>
+</rss>

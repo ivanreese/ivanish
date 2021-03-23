@@ -27,6 +27,7 @@ paths =
     source: "source/pages/**/*.coffee"
   pageSCSS:
     source: "source/pages/**/*.scss"
+  rss: "source/**/*.rss"
   scss:
     source: [
       "source/**/vars.scss"
@@ -122,7 +123,7 @@ gulp.task "pageSCSS", ()->
       precision: 2
     .on "error", logAndKillError
     .pipe gulp_autoprefixer
-      overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
+      overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, Safari >= 11, iOS >= 11"
       cascade: false
       remove: false
     .pipe gulp_rename (path)->
@@ -141,12 +142,20 @@ gulp.task "scss", ()->
       precision: 2
     .on "error", logAndKillError
     .pipe gulp_autoprefixer
-      overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, IE >= 11, Safari >= 9, iOS >= 9"
+      overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, Safari >= 11, iOS >= 11"
       cascade: false
       remove: false
     .pipe gulp.dest "public"
     .pipe browser_sync.stream
       match: "**/*.css"
+
+
+gulp.task "rss", ()->
+  gulp.src paths.rss
+    .pipe gulp_rename (path)->
+      path.dirname = path.dirname.replace "pages", ""
+      return path
+    .pipe gulp.dest "public"
 
 
 gulp.task "serve", ()->
@@ -164,8 +173,9 @@ gulp.task "watch", (cb)->
   gulp.watch paths.kit.watch, gulp.series "kit"
   gulp.watch paths.pageCoffee.source, gulp.series "pageCoffee"
   gulp.watch paths.pageSCSS.source, gulp.series "pageSCSS"
+  gulp.watch paths.rss, gulp.series "rss"
   gulp.watch paths.scss.source, gulp.series "scss"
   cb()
 
 
-gulp.task "default", gulp.series "del:public", gulp.parallel("coffee", "kit", "pageCoffee", "pageSCSS", "scss"), "watch", "serve"
+gulp.task "default", gulp.series "del:public", gulp.parallel("coffee", "kit", "pageCoffee", "pageSCSS", "rss", "scss"), "watch", "serve"
