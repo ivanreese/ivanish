@@ -177,5 +177,6 @@ gulp.task "watch", (cb)->
   gulp.watch paths.scss.source, gulp.series "scss"
   cb()
 
+gulp.task "compile", gulp.series "del:public", gulp.parallel "coffee", "kit", "pageCoffee", "pageSCSS", "rss", "scss"
 
-gulp.task "default", gulp.series "del:public", gulp.parallel("coffee", "kit", "pageCoffee", "pageSCSS", "rss", "scss"), "watch", "serve"
+gulp.task "default", gulp.series "compile", "watch", "serve"

@@ -7,18 +7,18 @@
     <description>Ivan Reese thinks out loud about the design of his esoteric graphical programming system.</description>
     <language>en</language>
     <itunes:category text="Technology"/>
-    <itunes:explicit>no</itunes:explicit>
+    <itunes:explicit>yes</itunes:explicit>
     <itunes:image href="https://ivanish.s3.amazonaws.com/hest/podcast.png"/>
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
-      <pubDate>1 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>2 Jan 2021 12:00 -0000</pubDate>
       <title>1 • Graphical Programming</title>
       <itunes:duration>00:13:26</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/1.mp3"
-        length="6447496"
+        length="6448425"
         type="audio/mpeg"
       />
       <description>
@@ -28,16 +28,46 @@
 
     <item>
       <guid isPermaLink="false">hest-episode-2</guid>
-      <pubDate>8 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>9 Jan 2021 12:00 -0000</pubDate>
       <title>2 • Why?</title>
-      <itunes:duration>00:13:04</itunes:duration>
+      <itunes:duration>00:13:03</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/2.mp3"
-        length="6268400"
+        length="6269043"
         type="audio/mpeg"
       />
       <description>
         Why am I making Hest? Who is it for? When did I start? When will it end? What is it now? Where is it going? And what of this podcast?
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-3</guid>
+      <pubDate>16 Jan 2021 12:00 -0000</pubDate>
+      <title>3 • Waterslides</title>
+      <itunes:duration>00:13:36</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/3.mp3"
+        length="6535099"
+        type="audio/mpeg"
+      />
+      <description>
+        Functions and data, conveyance, points and edges, the kid, and the red paint brush.
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-4</guid>
+      <pubDate>23 Jan 2021 12:00 -0000</pubDate>
+      <title>4 • Time Travel</title>
+      <itunes:duration>00:15:04</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/4.mp3"
+        length="7231835"
+        type="audio/mpeg"
+      />
+      <description>
+        Grab the giant thumb, push it all the way to infinity at the top, or negative infinity at the bottom.
       </description>
     </item>
 
