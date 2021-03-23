@@ -7,7 +7,7 @@
     <description>Ivan Reese thinks out loud about the design of his esoteric graphical programming system.</description>
     <language>en</language>
     <itunes:category text="Technology"/>
-    <itunes:explicit>yes</itunes:explicit>
+    <itunes:explicit>no</itunes:explicit>
     <itunes:image href="https://ivanish.s3.amazonaws.com/hest/podcast.png"/>
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
 
