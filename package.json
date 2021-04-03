@@ -2,6 +2,9 @@
   "name": "ivanreese",
   "version": "1.0.0",
   "description": "A personal website for Ivan Reese",
+  "scripts": {
+    "bump": "gulp compile && surge public ivanish.ca && git aa && git cim \"*\" && git p"
+  },
   "devDependencies": {
     "browser-sync": "latest",
     "coffeescript": "latest",
