@@ -13,11 +13,11 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>3 Apr 2021 12:00 -0000</lastBuildDate>
+    <lastBuildDate>Sat, 3 Apr 2021 12:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
-      <pubDate>2 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>Sat, 2 Jan 2021 12:00:00 MST</pubDate>
       <title>1 • Graphical Programming</title>
       <itunes:duration>00:13:26</itunes:duration>
       <enclosure
@@ -26,13 +26,13 @@
         type="audio/mpeg"
       />
       <description>
-        The term "visual programming" is a bit of a misnomer. My preference is "graphical programming", though it's hard to overcome cultural inertia. Oh, also, welcome to the show. Let's talk about Hest.
+        The term Visual Programming is a bit of a misnomer. My preference is Graphical Programming, though it&apos;s hard to overcome cultural inertia. Oh, also, welcome to the show. Let&apos;s talk about Hest.
       </description>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-2</guid>
-      <pubDate>9 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>Sat, 9 Jan 2021 12:00:00 MST</pubDate>
       <title>2 • Why?</title>
       <itunes:duration>00:13:03</itunes:duration>
       <enclosure
@@ -47,7 +47,7 @@
 
     <item>
       <guid isPermaLink="false">hest-episode-3</guid>
-      <pubDate>16 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>Sat, 16 Jan 2021 12:00:00 MST</pubDate>
       <title>3 • Waterslide Kid</title>
       <itunes:duration>00:13:36</itunes:duration>
       <enclosure
@@ -62,7 +62,7 @@
 
     <item>
       <guid isPermaLink="false">hest-episode-4</guid>
-      <pubDate>23 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>Sat, 23 Jan 2021 12:00:00 MST</pubDate>
       <title>4 • Giant Thumb</title>
       <itunes:duration>00:15:03</itunes:duration>
       <enclosure
@@ -77,7 +77,7 @@
 
     <item>
       <guid isPermaLink="false">hest-episode-5</guid>
-      <pubDate>30 Jan 2021 12:00 -0000</pubDate>
+      <pubDate>Sat, 30 Jan 2021 12:00:00 MST</pubDate>
       <title>5 • The Space</title>
       <itunes:duration>00:19:37</itunes:duration>
       <enclosure
@@ -92,8 +92,8 @@
 
     <item>
       <guid isPermaLink="false">hest-episode-6</guid>
-      <pubDate>6 Feb 2021 12:00 -0000</pubDate>
-      <title>6 • That's No Moon</title>
+      <pubDate>Sat, 6 Feb 2021 12:00:00 MST</pubDate>
+      <title>6 • That&apos;s No Moon</title>
       <itunes:duration>00:26:54</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/6.mp3"
@@ -101,7 +101,7 @@
         type="audio/mpeg"
       />
       <description>
-        Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks. The design process behind notions like "abstraction" requires deeply considering the tools offered to the author,
+        Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks. The design process behind notions like &quot;abstraction&quot; requires deeply considering the tools offered to the author,
         so the back half of this episode is a lot of ranting about tools.
       </description>
     </item>
