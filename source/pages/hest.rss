@@ -44,30 +44,61 @@
     <item>
       <guid isPermaLink="false">hest-episode-3</guid>
       <pubDate>16 Jan 2021 12:00 -0000</pubDate>
-      <title>3 • Waterslides</title>
+      <title>3 • Waterslide Kid</title>
       <itunes:duration>00:13:36</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/3.mp3"
-        length="6535099"
+        length="6535237"
         type="audio/mpeg"
       />
       <description>
-        Functions and data, conveyance, points and edges, the kid, and the red paint brush.
+        Functions and data, conveyance, points and edges, and execution with a mandatory, explicit notion of time and space.
       </description>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-4</guid>
       <pubDate>23 Jan 2021 12:00 -0000</pubDate>
-      <title>4 • Time Travel</title>
-      <itunes:duration>00:15:04</itunes:duration>
+      <title>4 • Giant Thumb</title>
+      <itunes:duration>00:15:03</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/4.mp3"
-        length="7231835"
+        length="7231907"
         type="audio/mpeg"
       />
       <description>
         Grab the giant thumb, push it all the way to infinity at the top, or negative infinity at the bottom.
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-5</guid>
+      <pubDate>30 Jan 2021 12:00 -0000</pubDate>
+      <title>5 • The Space</title>
+      <itunes:duration>00:19:37</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/5.mp3"
+        length="9424136"
+        type="audio/mpeg"
+      />
+      <description>
+        Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace & Gromit have their long-awaited debut on the show.
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-6</guid>
+      <pubDate>6 Feb 2021 12:00 -0000</pubDate>
+      <title>6 • That's No Moon</title>
+      <itunes:duration>00:26:54</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/6.mp3"
+        length="12916602"
+        type="audio/mpeg"
+      />
+      <description>
+        Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks. The design process behind notions like "abstraction" requires deeply considering the tools offered to the author,
+        so the back half of this episode is a lot of ranting about tools.
       </description>
     </item>
 
