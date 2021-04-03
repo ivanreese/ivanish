@@ -12,7 +12,6 @@
     <itunes:image href="https://ivanish.s3.amazonaws.com/hest/podcast.png"/>
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
-    <itunes:copyright>Copyright should be abolished.</itunes:copyright>
 
     <lastBuildDate>3 Apr 2021 12:00 -0000</lastBuildDate>
 
@@ -87,7 +86,7 @@
         type="audio/mpeg"
       />
       <description>
-        Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace & Gromit have their long-awaited debut on the show.
+        Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace &amp; Gromit have their long-awaited debut on the show.
       </description>
     </item>
 
