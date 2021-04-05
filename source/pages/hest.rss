@@ -19,91 +19,108 @@
       <guid isPermaLink="false">hest-episode-1</guid>
       <pubDate>Sat, 02 Jan 2021 12:00:00 MST</pubDate>
       <title>1 • Graphical Programming</title>
+      <itunes:title>Graphical Programming</itunes:title>
+      <itunes:episode>1</itunes:episode>
       <itunes:duration>00:13:26</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/1.mp3"
         length="6448425"
         type="audio/mpeg"
       />
-      <description>
-        The term Visual Programming is a bit of a misnomer. My preference is Graphical Programming, though it&apos;s hard to overcome cultural inertia. Oh, also, welcome to the show. Let&apos;s talk about Hest.
-      </description>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        The term Visual Programming is a bit of a misnomer. My preference is Graphical Programming, though it is hard to overcome cultural inertia. Oh, also, welcome to the show.
+      </itunes:subtitle>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-2</guid>
       <pubDate>Sat, 09 Jan 2021 12:00:00 MST</pubDate>
       <title>2 • Why?</title>
+      <itunes:title>Why?</itunes:title>
+      <itunes:episode>2</itunes:episode>
       <itunes:duration>00:13:03</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/2.mp3"
         length="6269043"
         type="audio/mpeg"
       />
-      <description>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
         Why am I making Hest? Who is it for? When did I start? When will it end? What is it now? Where is it going? And what of this podcast?
-      </description>
+      </itunes:subtitle>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-3</guid>
       <pubDate>Sat, 16 Jan 2021 12:00:00 MST</pubDate>
       <title>3 • Waterslide Kid</title>
+      <itunes:title>Waterslide Kid</itunes:title>
+      <itunes:episode>3</itunes:episode>
       <itunes:duration>00:13:36</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/3.mp3"
         length="6535237"
         type="audio/mpeg"
       />
-      <description>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
         Functions and data, conveyance, points and edges, and execution with a mandatory, explicit notion of time and space.
-      </description>
+      </itunes:subtitle>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-4</guid>
       <pubDate>Sat, 23 Jan 2021 12:00:00 MST</pubDate>
       <title>4 • Giant Thumb</title>
+      <itunes:title>Giant Thumb</itunes:title>
+      <itunes:episode>4</itunes:episode>
       <itunes:duration>00:15:03</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/4.mp3"
         length="7231907"
         type="audio/mpeg"
       />
-      <description>
+      <itunes:explicit>yes</itunes:explicit>
+      <itunes:subtitle>
         Grab the giant thumb, push it all the way to infinity at the top, or negative infinity at the bottom.
-      </description>
+      </itunes:subtitle>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-5</guid>
       <pubDate>Sat, 30 Jan 2021 12:00:00 MST</pubDate>
       <title>5 • The Space</title>
+      <itunes:title>The Space</itunes:title>
+      <itunes:episode>5</itunes:episode>
       <itunes:duration>00:19:37</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/5.mp3"
         length="9424136"
         type="audio/mpeg"
       />
-      <description>
+      <itunes:explicit>yes</itunes:explicit>
+      <itunes:subtitle>
         Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace &amp; Gromit have their long-awaited debut on the show.
-      </description>
+      </itunes:subtitle>
     </item>
 
     <item>
       <guid isPermaLink="false">hest-episode-6</guid>
       <pubDate>Sat, 06 Feb 2021 12:00:00 MST</pubDate>
-      <title>6 • That&apos;s No Moon</title>
+      <title>6 • That's No Moon</title>
+      <itunes:title>No Moon</itunes:title>
+      <itunes:episode>6</itunes:episode>
       <itunes:duration>00:26:54</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/6.mp3"
-        length="12916602"
+        length="12915836"
         type="audio/mpeg"
       />
-      <description>
-        Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks. The design process behind notions like &quot;abstraction&quot; requires deeply considering the tools offered to the author,
-        so the back half of this episode is a lot of ranting about tools.
-      </description>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks.
+      </itunes:subtitle>
     </item>
 
   </channel>
