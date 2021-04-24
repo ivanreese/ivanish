@@ -24,7 +24,7 @@
       <itunes:duration>00:13:26</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/1.mp3"
-        length="6448425"
+        length="6448321"
         type="audio/mpeg"
       />
       <itunes:explicit>no</itunes:explicit>
@@ -42,7 +42,7 @@
       <itunes:duration>00:13:03</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/2.mp3"
-        length="6269043"
+        length="6269044"
         type="audio/mpeg"
       />
       <itunes:explicit>no</itunes:explicit>
@@ -60,7 +60,7 @@
       <itunes:duration>00:13:36</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/3.mp3"
-        length="6535237"
+        length="6535234"
         type="audio/mpeg"
       />
       <itunes:explicit>no</itunes:explicit>
@@ -78,7 +78,7 @@
       <itunes:duration>00:15:03</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/4.mp3"
-        length="7231907"
+        length="7232325"
         type="audio/mpeg"
       />
       <itunes:explicit>yes</itunes:explicit>
@@ -96,7 +96,7 @@
       <itunes:duration>00:19:37</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/5.mp3"
-        length="9424136"
+        length="9424137"
         type="audio/mpeg"
       />
       <itunes:explicit>yes</itunes:explicit>
@@ -114,7 +114,7 @@
       <itunes:duration>00:26:54</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/6.mp3"
-        length="12915836"
+        length="12915283"
         type="audio/mpeg"
       />
       <itunes:explicit>no</itunes:explicit>
