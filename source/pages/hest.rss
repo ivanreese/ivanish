@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>5 Apr 2021 10:00:00 MST</lastBuildDate>
+    <lastBuildDate>3 May 2021 20:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -121,6 +121,27 @@
       <itunes:subtitle>
         Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks.
       </itunes:subtitle>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-7</guid>
+      <pubDate>3 May 2021 00:00:00 MST</pubDate>
+      <title>7 • Focus Mode</title>
+      <itunes:title>Focus Mode</itunes:title>
+      <itunes:episode>7</itunes:episode>
+      <itunes:duration>00:18:44</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/7.mp3"
+        length="8992810"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Data as player character. Continuity and intimacy. The well of video games. Putting your finger on the data and following it from birth to death. A patchwork quilt of understanding, versus a single continuous thread.
+      </itunes:subtitle>
+      <description>
+        Data as player character. Continuity and intimacy. The well of video games. Putting your finger on the data and following it from birth to death. A patchwork quilt of understanding, versus a single continuous thread.
+      </description>
     </item>
 
   </channel>
