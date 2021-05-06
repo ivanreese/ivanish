@@ -1,4 +1,6 @@
+{ sassSync } = require "@mr-hope/gulp-sass"
 browser_sync = require("browser-sync").create()
+chokidar = require "chokidar"
 del = require "del"
 gulp = require "gulp"
 gulp_autoprefixer = require "gulp-autoprefixer"
@@ -9,7 +11,6 @@ gulp_htmlmin = require "gulp-htmlmin"
 gulp_kit = require "gulp-kit"
 gulp_notify = require "gulp-notify"
 gulp_rename = require "gulp-rename"
-gulp_sass = require "gulp-sass"
 gulp_terser = require "gulp-terser"
 
 
@@ -44,6 +45,10 @@ gulp_notify.logLevel(0)
 logAndKillError = (err)->
   console.log "\n## Error ##"
   console.log err.toString() + "\n"
+  notifyErr err
+  @emit "end"
+
+notifyErr = (err)->
   gulp_notify.onError(
     emitError: true
     icon: false
@@ -51,7 +56,6 @@ logAndKillError = (err)->
     title: "👻"
     wait: true
     )(err)
-  @emit "end"
 
 
 # TASKS: APP COMPILATION ##########################################################################
@@ -117,11 +121,8 @@ gulp.task "pageCoffee", ()->
 
 gulp.task "pageSCSS", ()->
   gulp.src paths.pageSCSS.source
-    .pipe gulp_sass
-      errLogToConsole: true
-      outputStyle: "compressed"
-      precision: 2
-    .on "error", logAndKillError
+    .pipe sassSync(outputStyle: "compressed", precision: 2).on("error", sassSync.logError)
+    .on "error", notifyErr
     .pipe gulp_autoprefixer
       overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, Safari >= 11, iOS >= 11"
       cascade: false
@@ -136,11 +137,8 @@ gulp.task "pageSCSS", ()->
 gulp.task "scss", ()->
   gulp.src paths.scss.source
     .pipe gulp_concat "styles.scss"
-    .pipe gulp_sass
-      errLogToConsole: true
-      outputStyle: "compressed"
-      precision: 2
-    .on "error", logAndKillError
+    .pipe sassSync(outputStyle: "compressed", precision: 2).on("error", sassSync.logError)
+    .on "error", notifyErr
     .pipe gulp_autoprefixer
       overrideBrowserslist: "last 5 Chrome versions, last 5 ff versions, Safari >= 11, iOS >= 11"
       cascade: false
@@ -167,14 +165,32 @@ gulp.task "serve", ()->
     ui: false
 
 
+queue = []
+tasksRunning = false
+
+runTasks = ()->
+  if queue.length > 0
+    tasksRunning = true
+    task = gulp.series queue.shift()
+    await new Promise (resolve)-> task resolve
+    runTasks()
+  else
+    tasksRunning = false
+
+watch = (paths, ...tasks)->
+  chokidar.watch(paths, ignoreInitial:true).on "all", ()->
+    if tasks not in queue
+      queue.push tasks
+      runTasks() unless tasksRunning
+
 gulp.task "watch", (cb)->
-  gulp.watch paths.kit.header, gulp.series "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
-  gulp.watch paths.coffee.source, gulp.series "coffee"
-  gulp.watch paths.kit.watch, gulp.series "kit"
-  gulp.watch paths.pageCoffee.source, gulp.series "pageCoffee"
-  gulp.watch paths.pageSCSS.source, gulp.series "pageSCSS"
-  gulp.watch paths.rss, gulp.series "rss"
-  gulp.watch paths.scss.source, gulp.series "scss"
+  # watch paths.kit.header, "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
+  watch paths.coffee.source, "coffee"
+  watch paths.kit.watch, "kit"
+  watch paths.pageCoffee.source, "pageCoffee"
+  watch paths.pageSCSS.source, "pageSCSS"
+  watch paths.rss, "rss"
+  watch paths.scss.source, "scss"
   cb()
 
 gulp.task "compile", gulp.series "del:public", gulp.parallel "coffee", "kit", "pageCoffee", "pageSCSS", "rss", "scss"

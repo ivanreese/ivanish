@@ -6,10 +6,12 @@
     "bump": "gulp compile && surge public ivanish.ca && git aa && git cim \"*\" && git p"
   },
   "devDependencies": {
+    "@mr-hope/gulp-sass": "latest",
     "browser-sync": "latest",
+    "chokidar": "^3.5.1",
     "coffeescript": "latest",
     "del": "latest",
-    "gulp": "latest",
+    "gulp": "gulpjs/gulp",
     "gulp-autoprefixer": "latest",
     "gulp-changed": "latest",
     "gulp-coffee": "latest",
@@ -18,12 +20,7 @@
     "gulp-kit": "ivanreese/gulp-kit",
     "gulp-notify": "latest",
     "gulp-rename": "latest",
-    "gulp-sass": "latest",
-    "gulp-terser": "latest",
-    "node-gyp": "latest"
-  },
-  "resolutions": {
-    "node-sass": "sass/node-sass#v5"
+    "gulp-terser": "latest"
   },
   "license": "UNLICENSED",
   "private": true
