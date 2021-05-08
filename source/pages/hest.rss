@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>3 May 2021 20:00:00 MST</lastBuildDate>
+    <lastBuildDate>8 May 2021 15:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -141,6 +141,27 @@
       </itunes:subtitle>
       <description>
         Data as player character. Continuity and intimacy. The well of video games. Putting your finger on the data and following it from birth to death. A patchwork quilt of understanding, versus a single continuous thread.
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-8</guid>
+      <pubDate>8 May 2021 00:00:00 MST</pubDate>
+      <title>8 • SpaceChem</title>
+      <itunes:title>Focus Mode</itunes:title>
+      <itunes:episode>7</itunes:episode>
+      <itunes:duration>00:09:53</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/8.mp3"
+        length="4747609"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Hest owes more to SpaceChem than any other inspiration. It's a beautiful little gem of a game, released by Zachtronics back in 2011. SpaceChem challenges you to design, develop, and debug complex systems, with an interface that looks a bit like a node-and-wire visual programming language. But the feel of playing it is wholly unique, and worth reflecting on and drawing from.
+      </itunes:subtitle>
+      <description>
+        Hest owes more to SpaceChem than any other inspiration. It's a beautiful little gem of a game, released by Zachtronics back in 2011. SpaceChem challenges you to design, develop, and debug complex systems, with an interface that looks a bit like a node-and-wire visual programming language. But the feel of playing it is wholly unique, and worth reflecting on and drawing from.
       </description>
     </item>
 
