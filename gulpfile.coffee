@@ -171,26 +171,26 @@ tasksRunning = false
 runTasks = ()->
   if queue.length > 0
     tasksRunning = true
-    task = gulp.series queue.shift()
+    task = queue.shift()
     await new Promise (resolve)-> task resolve
     runTasks()
   else
     tasksRunning = false
 
-watch = (paths, ...tasks)->
+watch = (paths, task)->
   chokidar.watch(paths, ignoreInitial:true).on "all", ()->
-    if tasks not in queue
-      queue.push tasks
+    if task not in queue
+      queue.push task
       runTasks() unless tasksRunning
 
 gulp.task "watch", (cb)->
-  # watch paths.kit.header, "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
-  watch paths.coffee.source, "coffee"
-  watch paths.kit.watch, "kit"
-  watch paths.pageCoffee.source, "pageCoffee"
-  watch paths.pageSCSS.source, "pageSCSS"
-  watch paths.rss, "rss"
-  watch paths.scss.source, "scss"
+  # watch paths.kit.header, gulp.series "del:html", "kit" # Kit causes a double-compile, but without it we get a Cannot GET / when we edit the header.kit
+  watch paths.coffee.source, gulp.series "coffee"
+  watch paths.kit.watch, gulp.series "kit"
+  watch paths.pageCoffee.source, gulp.series "pageCoffee"
+  watch paths.pageSCSS.source, gulp.series "pageSCSS"
+  watch paths.rss, gulp.series "rss"
+  watch paths.scss.source, gulp.series "scss"
   cb()
 
 gulp.task "compile", gulp.series "del:public", gulp.parallel "coffee", "kit", "pageCoffee", "pageSCSS", "rss", "scss"
