@@ -226,7 +226,7 @@ Also — hi! I'm writing a much longer description than normal because my explan
       <itunes:duration>00:09:30</itunes:duration>
       <enclosure
         url="https://ivanish.s3.amazonaws.com/hest/11.mp3"
-        length="6776715"
+        length="4563262"
         type="audio/mpeg"
       />
       <itunes:explicit>no</itunes:explicit>
