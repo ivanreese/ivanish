@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>22 May 2021 22:00:00 MST</lastBuildDate>
+    <lastBuildDate>29 May 2021 19:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -187,7 +187,7 @@
     </item>
 
     <item>
-      <guid isPermaLink="false">hest-episode-10a</guid>
+      <guid isPermaLink="false">hest-episode-10</guid>
       <pubDate>22 May 2021 22:00:00 MST</pubDate>
       <title>10 • Fibers</title>
       <itunes:title>Fibers</itunes:title>
@@ -214,6 +214,27 @@ For both issues, I'm feeling the need to add sync primitives, queuing/buffering,
 This episode looks at one such different-feeling approach: get away from the idea of points travelling along edges! Instead, treat the edges like "fibers" (a la fiber optics), which assume the value of data conveyed to them and instantly convey that data onward. The data, no longer chopped into discrete points, no longer needs to be coordinated so strictly. Functions that are fed solely by these "fiber"-like edges will always have the most recent value available to them on every inbound edge, so they can produce a new output value the instant any single inbound value changes. No need to coordinate multiple pieces of data to arrive at a function simultaneously.
 
 Also — hi! I'm writing a much longer description than normal because my explanations within the episode are a little… weak. That's the deal. This podcast is just me thinking out loud, no plan, no script. It's doodles in the notebook. In the moment that I record, I am just talking extemporaneously, which is surprisingly hard. I have very little grasp on how much context I've already shared on previous episodes, or even how well I'm outlining the body of each new idea. I expect this disorganization is only going to get more pronounced as I get away from super high-level, welcome-to-Hest basics and dive more into the ideas I'm still unsure about and problems I don't really comprehend. We'll have to see! So in the future, if I feel I've done a mediocre job in the show, be sure to check the show notes for another crack.]]>
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-11</guid>
+      <pubDate>29 May 2021 19:00:00 MST</pubDate>
+      <title>11 • Reconcile</title>
+      <itunes:title>Reconcile</itunes:title>
+      <itunes:episode>11</itunes:episode>
+      <itunes:duration>00:09:30</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/11.mp3"
+        length="6776715"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Each part of the whole can have different philosophies.
+      </itunes:subtitle>
+      <description>
+        Each part of the whole can have different philosophies.
       </description>
     </item>
 
