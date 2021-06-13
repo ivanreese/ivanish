@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>5 Jun 2021 18:00:00 MST</lastBuildDate>
+    <lastBuildDate>12 Jun 2021 18:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -202,8 +202,8 @@
       <itunes:subtitle>
         Lots of anthills, and a handful of cake too.
       </itunes:subtitle>
-      <description>
-        <![CDATA[Last episode, we looked at how the edges-conveying-points execution model leads to problems of synchronization. If you change some small part of your program so that it takes a little longer for data to traverse than it did before, then data leaving that small part will be behind schedule (so to speak) for wherever it needs to go next. Local changes cause non-local effects.
+      <description><![CDATA[
+        Last episode, we looked at how the edges-conveying-points execution model leads to problems of synchronization. If you change some small part of your program so that it takes a little longer for data to traverse than it did before, then data leaving that small part will be behind schedule (so to speak) for wherever it needs to go next. Local changes cause non-local effects.
 
 This problems exists because, at the moment, a function (node / point) will execute the moment data arrives at it — so for a function to take two arguments, there needs to be two data points that arrive at that function simultaneously.
 
@@ -213,8 +213,8 @@ For both issues, I'm feeling the need to add sync primitives, queuing/buffering,
 
 This episode looks at one such different-feeling approach: get away from the idea of points travelling along edges! Instead, treat the edges like "fibers" (a la fiber optics), which assume the value of data conveyed to them and instantly convey that data onward. The data, no longer chopped into discrete points, no longer needs to be coordinated so strictly. Functions that are fed solely by these "fiber"-like edges will always have the most recent value available to them on every inbound edge, so they can produce a new output value the instant any single inbound value changes. No need to coordinate multiple pieces of data to arrive at a function simultaneously.
 
-Also — hi! I'm writing a much longer description than normal because my explanations within the episode are a little… weak. That's the deal. This podcast is just me thinking out loud, no plan, no script. It's doodles in the notebook. In the moment that I record, I am just talking extemporaneously, which is surprisingly hard. I have very little grasp on how much context I've already shared on previous episodes, or even how well I'm outlining the body of each new idea. I expect this disorganization is only going to get more pronounced as I get away from super high-level, welcome-to-Hest basics and dive more into the ideas I'm still unsure about and problems I don't really comprehend. We'll have to see! So in the future, if I feel I've done a mediocre job in the show, be sure to check the show notes for another crack.]]>
-      </description>
+Also — hi! I'm writing a much longer description than normal because my explanations within the episode are a little… weak. That's the deal. This podcast is just me thinking out loud, no plan, no script. It's doodles in the notebook. In the moment that I record, I am just talking extemporaneously, which is surprisingly hard. I have very little grasp on how much context I've already shared on previous episodes, or even how well I'm outlining the body of each new idea. I expect this disorganization is only going to get more pronounced as I get away from super high-level, welcome-to-Hest basics and dive more into the ideas I'm still unsure about and problems I don't really comprehend. We'll have to see! So in the future, if I feel I've done a mediocre job in the show, be sure to check the show notes for another crack.
+      ]]></description>
     </item>
 
     <item>
@@ -257,6 +257,31 @@ Also — hi! I'm writing a much longer description than normal because my explan
       <description>
         Caution: This episode may qualify as ASMR content. It might also qualify as irritating, sophmoric philosophizing. But as the previous few episodes have run aground on the muddy bank of the design space, I'm marking the occasion by establishing firmly that WHILST PERFECT IS NOT THE POINT, NOR IS GOOD. And now that that's out of my system, we're going to (in the upcoming episodes) jump back to the center and venture outward along an entirely new axis. Though that Ira Glass quote is fucking fire, hey?
       </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-13</guid>
+      <pubDate>12 Jun 2021 18:00:00 MST</pubDate>
+      <title>13 • Begin Third Batch</title>
+      <itunes:title>Begin Third Batch</itunes:title>
+      <itunes:episode>13</itunes:episode>
+      <itunes:duration>00:16:16</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/13.mp3"
+        length="7808815"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        A real grab bag episode. Closing some threads on fibers, fine find and replace, how this show gets made, and what we get to look forward to next.
+      </itunes:subtitle>
+      <description><![CDATA[
+        My blog post about different approaches to rewind: https://ivanish.ca/hest-time-travel
+
+Enso: https://enso.org
+
+Places to contact me with feedback: https://twitter.com/spiralganglion • https://futureofcoding.org/community • ivanreese@gmail.com
+      ]]></description>
     </item>
 
   </channel>
