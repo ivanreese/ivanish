@@ -259,30 +259,6 @@ Also — hi! I'm writing a much longer description than normal because my explan
       </description>
     </item>
 
-    <item>
-      <guid isPermaLink="false">hest-episode-13</guid>
-      <pubDate>12 Jun 2021 18:00:00 MST</pubDate>
-      <title>13 • Begin Third Batch</title>
-      <itunes:title>Begin Third Batch</itunes:title>
-      <itunes:episode>13</itunes:episode>
-      <itunes:duration>00:16:16</itunes:duration>
-      <enclosure
-        url="https://ivanish.s3.amazonaws.com/hest/13.mp3"
-        length="7808815"
-        type="audio/mpeg"
-      />
-      <itunes:explicit>no</itunes:explicit>
-      <itunes:subtitle>
-        A real grab bag episode. Closing some threads on fibers, fine find and replace, how this show gets made, and what we get to look forward to next.
-      </itunes:subtitle>
-      <description><![CDATA[
-        My blog post about different approaches to rewind: https://ivanish.ca/hest-time-travel
-
-Enso: https://enso.org
-
-Places to contact me with feedback: https://twitter.com/spiralganglion • https://futureofcoding.org/community • ivanreese@gmail.com
-      ]]></description>
-    </item>
 
   </channel>
 </rss>
