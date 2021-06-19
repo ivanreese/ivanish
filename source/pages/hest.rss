@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>12 Jun 2021 18:40:00 MST</lastBuildDate>
+    <lastBuildDate>19 Jun 2021 12:10:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -282,6 +282,27 @@ Enso: https://enso.org
 
 Places to contact me with feedback: https://twitter.com/spiralganglion • https://futureofcoding.org/community • ivanreese@gmail.com
       ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-14</guid>
+      <pubDate>19 Jun 2021 12:10:00 MST</pubDate>
+      <title>14 • The Pit of Your Stomach</title>
+      <itunes:title>The Pit of Your Stomach</itunes:title>
+      <itunes:episode>14</itunes:episode>
+      <itunes:duration>00:14:27</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/14.mp3"
+        length="6941407"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Why not just make all data points take the same amount of time to convey along every path?
+      </itunes:subtitle>
+      <description>
+        Why not just make all data points take the same amount of time to convey along every path?
+      </description>
     </item>
 
   </channel>
