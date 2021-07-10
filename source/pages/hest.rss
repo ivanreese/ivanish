@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>3 Jul 2021 17:00:00 MST</lastBuildDate>
+    <lastBuildDate>10 Jul 2021 12:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -347,6 +347,27 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
         Zdog: https://zzz.dog
 
         Also — looking back on this episode after the fact (a few weeks after recording it, having spend the past few weeks thinking more about rendering), my thoughts on what would make for the best approach have changed. I'm already trying a new prototype with a different approach. This should serve as a reminder to myself (and such constant reminders are needed) that I ought to be very careful about speaking with undue certainty. I like to say that something *will* happen, when actually I just plan to attempt it, assuming my plans don't change. Of course, my plans always change. But that's the point of this podcast — it documents an ongoing design process. It's all talk of plans punctuated by small spurts of progress.
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-17</guid>
+      <pubDate>10 Jul 2021 12:00:00 MST</pubDate>
+      <title>17 • requestAnimationFroop</title>
+      <itunes:title>requestAnimationFroop</itunes:title>
+      <itunes:episode>17</itunes:episode>
+      <itunes:duration>00:15:26</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/17.mp3"
+        length="7410882"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Shut it down!
+      </itunes:subtitle>
+      <description>
+        Most games, and game-like software, use a constantly-running main loop to handle input, update their intenral state, and produce an ever-changing result for the user. With Hest I'm taking a different approach, designed to reduce the idle power consumption to a minimum.
       </description>
     </item>
 
