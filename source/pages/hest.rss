@@ -367,7 +367,7 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
         Shut it down!
       </itunes:subtitle>
       <description>
-        Most games, and game-like software, use a constantly-running main loop to handle input, update their intenral state, and produce an ever-changing result for the user. With Hest I'm taking a different approach, designed to reduce the idle power consumption to a minimum.
+        Most games, and game-like software, use a constantly-running main loop to handle input, update their internal state, and produce an ever-changing result for the user. With Hest I'm taking a different approach, designed to reduce the idle power consumption to a minimum.
       </description>
     </item>
 
