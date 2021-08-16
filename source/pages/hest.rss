@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>7 Aug 2021 21:50:00 MST</lastBuildDate>
+    <lastBuildDate>15 Aug 2021 21:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -452,6 +452,27 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       </itunes:subtitle>
       <description>
         Point, dot, position? Edge, wire, path? And, whence Hest?
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-22</guid>
+      <pubDate>15 Aug 2021 21:00:00 MST</pubDate>
+      <title>22 • Niceties Now or Later?</title>
+      <itunes:title>Niceties Now or Later?</itunes:title>
+      <itunes:episode>22</itunes:episode>
+      <itunes:duration>00:10:50</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/22.mp3"
+        length="5200198"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Should nice, fun, playful tools and capabilities be built directly in the editor now? Or should those things be held back, waiting until the language model is robust enough to build them within it?
+      </itunes:subtitle>
+      <description>
+        Should nice, fun, playful tools and capabilities be built directly in the editor now? Or should those things be held back, waiting until the language model is robust enough to build them within it?
       </description>
     </item>
 
