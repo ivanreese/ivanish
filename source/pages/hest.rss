@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>15 Aug 2021 21:00:00 MST</lastBuildDate>
+    <lastBuildDate>21 Aug 2021 23:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -473,6 +473,27 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       </itunes:subtitle>
       <description>
         Should nice, fun, playful tools and capabilities be built directly in the editor now? Or should those things be held back, waiting until the language model is robust enough to build them within it?
+      </description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-23</guid>
+      <pubDate>21 Aug 2021 23:00:00 MST</pubDate>
+      <title>23 • Barnacles</title>
+      <itunes:title>Barnacles</itunes:title>
+      <itunes:episode>23</itunes:episode>
+      <itunes:duration>00:11:02</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/23.mp3"
+        length="5299402"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle>
+        Speculating on nice affordances for programmers to hook into Hest's editor features.
+      </itunes:subtitle>
+      <description>
+        Speculating on nice affordances for programmers to hook into Hest's editor features.
       </description>
     </item>
 
