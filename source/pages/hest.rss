@@ -497,5 +497,26 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       </description>
     </item>
 
+    <item>
+      <guid isPermaLink="false">hest-episode-24</guid>
+      <pubDate>21 Aug 2021 23:00:00 MST</pubDate>
+      <title>24 • Barnacles</title>
+      <itunes:title>Barnacles</itunes:title>
+      <itunes:episode>24</itunes:episode>
+      <itunes:duration>00:10:16</itunes:duration>
+      <enclosure
+        url="https://ivanish.s3.amazonaws.com/hest/24.mp3"
+        length="4927890"
+        type="audio/mpeg"
+      />
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        On cake, and the eating of it.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        I have an idea for a feature called "accelerator functions", which are functions that define behaviour both within Hest itself and within the underlying runtime Hest sits atop (JavaScript, maybe someday "et al" too). Accelerators give you a way to write some heavily-constrained code that can run extra fast (directly against JS), but that can still be viewed and debugged as full-on Hest graphical code (which normally has a ton of overhead). This episode only discusses the feature in brief. The bulk of the episode uses accelerator functions as a lens to examine Hest's approach to static type checking, correctness guarantees, and the footguns you run into in their absense.
+      ]]></description>
+    </item>
+
   </channel>
 </rss>
