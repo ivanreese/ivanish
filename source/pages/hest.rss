@@ -514,7 +514,7 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
         On cake, and the eating of it.
       ]]></itunes:subtitle>
       <description><![CDATA[
-        I have an idea for a feature called "accelerator functions", which are functions that define behaviour both within Hest itself and within the underlying runtime Hest sits atop (JavaScript, maybe someday "et al" too). Accelerators give you a way to write some heavily-constrained code that can run extra fast (directly against JS), but that can still be viewed and debugged as full-on Hest graphical code (which normally has a ton of overhead). This episode only discusses the feature in brief. The bulk of the episode uses accelerator functions as a lens to examine Hest's approach to static type checking, correctness guarantees, and the footguns you run into in their absense.
+        I have an idea for a feature called "accelerator functions", which are functions that define behaviour both within Hest itself and within the underlying runtime Hest sits atop (JavaScript, maybe someday "et al" too). Accelerators give you a way to write some heavily-constrained code that can run extra fast (directly against JS), but that can still be viewed and debugged as full-on Hest graphical code (which normally has a ton of overhead). This episode only discusses the feature in brief. The bulk of the episode uses accelerator functions as a lens to examine Hest's approach to static type checking, correctness guarantees, and the footguns you run into in their absence.
       ]]></description>
     </item>
 
