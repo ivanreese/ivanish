@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>28 Aug 2021 23:17:00 MST</lastBuildDate>
+    <lastBuildDate>4 Sep 2021 22:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -179,10 +179,10 @@
       />
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
-        Hest is a long way from finished — a long way from viable, even. It's still riddled with design issues. Let's take a look at one of the big ones: with the current design, there are no mechanisms for coordination. Introducing some of the most obvious coordination mechanisms would violate the spirit of Hest. How should that be fixed? Tune in next week!
+        Hest is a long way from finished — a long way from viable, even. It's still riddled with design issues. Let's take a look at one of the big ones: with the current design, there are no mechanisms for coordination. Introducing some of the most obvious coordination mechanisms would violate the spirit of Hest. How should that be fixed? Tune in next week!
       </itunes:subtitle>
       <description>
-        Hest is a long way from finished — a long way from viable, even. It's still riddled with design issues. Let's take a look at one of the big ones: with the current design, there are no mechanisms for coordination. Introducing some of the most obvious coordination mechanisms would violate the spirit of Hest. How should that be fixed? Tune in next week!
+        Hest is a long way from finished — a long way from viable, even. It's still riddled with design issues. Let's take a look at one of the big ones: with the current design, there are no mechanisms for coordination. Introducing some of the most obvious coordination mechanisms would violate the spirit of Hest. How should that be fixed? Tune in next week!
       </description>
     </item>
 
@@ -515,6 +515,27 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></itunes:subtitle>
       <description><![CDATA[
         I have an idea for a feature called "accelerator functions", which are functions that define behaviour both within Hest itself and within the underlying runtime Hest sits atop (JavaScript, maybe someday "et al" too). Accelerators give you a way to write some heavily-constrained code that can run extra fast (directly against JS), but that can still be viewed and debugged as full-on Hest graphical code (which normally has a ton of overhead). This episode only discusses the feature in brief. The bulk of the episode uses accelerator functions as a lens to examine Hest's approach to static type checking, correctness guarantees, and the footguns you run into in their absence.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-25</guid>
+      <pubDate>4 Sep 2021 22:00:00 MST</pubDate>
+      <title>25 • We Can Put Lipstick on Our Pigs</title>
+      <itunes:title>We Can Put Lipstick on Our Pigs</itunes:title>
+      <itunes:episode>25</itunes:episode>
+      <itunes:duration>00:16:30</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/25.mp3" length="7924330" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        Listener questions? Send 'um in!
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        Listener questions? Send 'um in!
+        • @spiralganglion
+        • ivanreese@gmail.com
+
+        Hest's data model is simple, very simple, but not so simple as to avoid a digression into AoS vs SoA. Properties are our springboard into the main topic: what is to be done about the interface? A sidebar is a recipe for spooky action, and I don't like spooky action, and I definitely don't like meat.
       ]]></description>
     </item>
 
