@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>4 Sep 2021 22:00:00 MST</lastBuildDate>
+    <lastBuildDate>12 Sep 2021 21:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -536,6 +536,24 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
         • ivanreese@gmail.com
 
         Hest's data model is simple, very simple, but not so simple as to avoid a digression into AoS vs SoA. Properties are our springboard into the main topic: what is to be done about the interface? A sidebar is a recipe for spooky action, and I don't like spooky action, and I definitely don't like meat.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-26</guid>
+      <pubDate>12 Sep 2021 21:00:00 MST</pubDate>
+      <title>26 • As a Library</title>
+      <itunes:title>As a Library</itunes:title>
+      <itunes:episode>26</itunes:episode>
+      <itunes:duration>00:19:38</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/26.mp3" length="9423309" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        What if Hest was a library you could call from JavaScript?
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        • A strange kind of not invented here.
+        • "Easy to reason about" — quarter in the swear jar.
       ]]></description>
     </item>
 
