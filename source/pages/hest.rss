@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>12 Sep 2021 21:00:00 MST</lastBuildDate>
+    <lastBuildDate>19 Sep 2021 15:40:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -554,6 +554,23 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       <description><![CDATA[
         • A strange kind of not invented here.
         • "Easy to reason about" — quarter in the swear jar.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-27</guid>
+      <pubDate>19 Sep 2021 15:40:00 MST</pubDate>
+      <title>27 • Soft Ideas</title>
+      <itunes:title>Soft Ideas</itunes:title>
+      <itunes:episode>27</itunes:episode>
+      <itunes:duration>00:14:30</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/27.mp3" length="6959372" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        How ideas solidify as you think about them.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        How ideas solidify as you think about them.
       ]]></description>
     </item>
 
