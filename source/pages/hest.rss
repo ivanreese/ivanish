@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>19 Sep 2021 15:40:00 MST</lastBuildDate>
+    <lastBuildDate>25 Sep 2021 22:10:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -571,6 +571,23 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></itunes:subtitle>
       <description><![CDATA[
         How ideas solidify as you think about them.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-28</guid>
+      <pubDate>25 Sep 2021 22:10:00 MST</pubDate>
+      <title>28 • Functions</title>
+      <itunes:title>Functions</itunes:title>
+      <itunes:episode>28</itunes:episode>
+      <itunes:duration>00:26:20</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/28.mp3" length="12638482" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        Listener question: What's the current plan for functions in Hest?
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        Listener question: What's the current plan for functions in Hest?
       ]]></description>
     </item>
 
