@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>25 Sep 2021 22:10:00 MST</lastBuildDate>
+    <lastBuildDate>2 Oct 2021 20:20:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -588,6 +588,23 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></itunes:subtitle>
       <description><![CDATA[
         Listener question: What's the current plan for functions in Hest?
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-29</guid>
+      <pubDate>2 Oct 2021 20:20:00 MST</pubDate>
+      <title>29 • Some Good Tools</title>
+      <itunes:title>Some Good Tools</itunes:title>
+      <itunes:episode>29</itunes:episode>
+      <itunes:duration>00:23:49</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/29.mp3" length="11435324" type="audio/mpeg"/>
+      <itunes:explicit>yes</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        The only thing easier than making better tools for working with wires… is insisting that it'd be easy to make better tools for working with wires.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        The only thing easier than making better tools for working with wires… is insisting that it'd be easy to make better tools for working with wires.
       ]]></description>
     </item>
 
