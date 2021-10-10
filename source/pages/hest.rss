@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>2 Oct 2021 20:20:00 MST</lastBuildDate>
+    <lastBuildDate>9 Oct 2021 20:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -605,6 +605,23 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></itunes:subtitle>
       <description><![CDATA[
         The only thing easier than making better tools for working with wires… is insisting that it'd be easy to make better tools for working with wires.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-30</guid>
+      <pubDate>9 Oct 2021 20:00:00 MST</pubDate>
+      <title>30 • Schematics</title>
+      <itunes:title>Schematics</itunes:title>
+      <itunes:episode>30</itunes:episode>
+      <itunes:duration>00:13:55</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/30.mp3" length="6688415" type="audio/mpeg"/>
+      <itunes:explicit>yes</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        Similar to the one about SpaceChem, this episode looks at another piece of prior art I'm drawing on for the design of Hest: the Live Schematic simulations built by my company, which are so much like a "Future of Technical Documentation" tool that it seems obvious to me that we need something similar for software development.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        Similar to the one about SpaceChem, this episode looks at another piece of prior art I'm drawing on for the design of Hest: the Live Schematic simulations built by my company, which are so much like a "Future of Technical Documentation" tool that it seems obvious to me that we need something similar for software development.
       ]]></description>
     </item>
 
