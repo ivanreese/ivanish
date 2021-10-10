@@ -31,6 +31,9 @@
       <itunes:subtitle>
         The term Visual Programming is a bit of a misnomer. My preference is Graphical Programming, though it is hard to overcome cultural inertia. Oh, also, welcome to the show.
       </itunes:subtitle>
+      <description>
+        The term Visual Programming is a bit of a misnomer. My preference is Graphical Programming, though it is hard to overcome cultural inertia. Oh, also, welcome to the show.
+      </description>
     </item>
 
     <item>
@@ -49,6 +52,9 @@
       <itunes:subtitle>
         Why am I making Hest? Who is it for? When did I start? When will it end? What is it now? Where is it going? And what of this podcast?
       </itunes:subtitle>
+      <description>
+        Why am I making Hest? Who is it for? When did I start? When will it end? What is it now? Where is it going? And what of this podcast?
+      </description>
     </item>
 
     <item>
@@ -67,6 +73,9 @@
       <itunes:subtitle>
         Functions and data, conveyance, points and edges, and execution with a mandatory, explicit notion of time and space.
       </itunes:subtitle>
+      <description>
+        Functions and data, conveyance, points and edges, and execution with a mandatory, explicit notion of time and space.
+      </description>
     </item>
 
     <item>
@@ -85,6 +94,9 @@
       <itunes:subtitle>
         Grab the giant thumb, push it all the way to infinity at the top, or negative infinity at the bottom.
       </itunes:subtitle>
+      <description>
+        Grab the giant thumb, push it all the way to infinity at the top, or negative infinity at the bottom.
+      </description>
     </item>
 
     <item>
@@ -103,6 +115,9 @@
       <itunes:subtitle>
         Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace &amp; Gromit have their long-awaited debut on the show.
       </itunes:subtitle>
+      <description>
+        Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace &amp; Gromit have their long-awaited debut on the show.
+      </description>
     </item>
 
     <item>
@@ -121,6 +136,9 @@
       <itunes:subtitle>
         Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks.
       </itunes:subtitle>
+      <description>
+        Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks.
+      </description>
     </item>
 
     <item>
@@ -148,7 +166,7 @@
       <guid isPermaLink="false">hest-episode-8</guid>
       <pubDate>8 May 2021 00:00:00 MST</pubDate>
       <title>8 • SpaceChem</title>
-      <itunes:title>Focus Mode</itunes:title>
+      <itunes:title>SpaceChem</itunes:title>
       <itunes:episode>8</itunes:episode>
       <itunes:duration>00:09:53</itunes:duration>
       <enclosure
