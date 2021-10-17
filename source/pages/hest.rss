@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>9 Oct 2021 20:00:00 MST</lastBuildDate>
+    <lastBuildDate>16 Oct 2021 18:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -640,6 +640,31 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></itunes:subtitle>
       <description><![CDATA[
         Similar to the one about SpaceChem, this episode looks at another piece of prior art I'm drawing on for the design of Hest: the Live Schematic simulations built by my company, which are so much like a "Future of Technical Documentation" tool that it seems obvious to me that we need something similar for software development.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-31</guid>
+      <pubDate>16 Oct 2021 18:00:00 MST</pubDate>
+      <title>31 • Abstraction in VPLs</title>
+      <itunes:title>Abstraction in VPLs</itunes:title>
+      <itunes:episode>31</itunes:episode>
+      <itunes:duration>00:17:46</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/31.mp3" length="8526939" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        Sub-graphs, sub-patchers, grouping, etc.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        Marcin Ignac asked me the following <a href="https://mobile.twitter.com/marcinignac/status/1447880269172772868">on Twitter</a>:
+
+        "We are actually starting to think of abstractions/groups/sub-graphs in <a href="https://mobile.twitter.com/nodes_io">@nodes_io</a> just now. Would you have any pointers to environments doing it well or wishes for a better way of doing it?"
+
+        Yep, I've got wishes.
+
+        Speaking of Marcin's Nodes project, this is essential reading: <a href="https://nodes.io/story/">https://nodes.io/story/</a>
+
+        Every visual programming language should have that depth of thought put into it, and should share that thinking out loud. Beautiful stuff.
       ]]></description>
     </item>
 
