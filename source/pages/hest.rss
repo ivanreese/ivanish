@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>16 Oct 2021 18:00:00 MST</lastBuildDate>
+    <lastBuildDate>23 Oct 2021 19:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -656,15 +656,32 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
         Sub-graphs, sub-patchers, grouping, etc.
       ]]></itunes:subtitle>
       <description><![CDATA[
-        Marcin Ignac asked me the following <a href="https://mobile.twitter.com/marcinignac/status/1447880269172772868">on Twitter</a>:
-
-        "We are actually starting to think of abstractions/groups/sub-graphs in <a href="https://mobile.twitter.com/nodes_io">@nodes_io</a> just now. Would you have any pointers to environments doing it well or wishes for a better way of doing it?"
-
-        Yep, I've got wishes.
-
-        Speaking of Marcin's Nodes project, this is essential reading: <a href="https://nodes.io/story/">https://nodes.io/story/</a>
-
+        Marcin Ignac asked me the following <a href="https://mobile.twitter.com/marcinignac/status/1447880269172772868">on Twitter</a>:<br>
+        <br>
+        "We are actually starting to think of abstractions/groups/sub-graphs in <a href="https://mobile.twitter.com/nodes_io">@nodes_io</a> just now. Would you have any pointers to environments doing it well or wishes for a better way of doing it?"<br>
+        <br>
+        Yep, I've got wishes.<br>
+        <br>
+        Speaking of Marcin's Nodes project, this is essential reading: <a href="https://nodes.io/story/">https://nodes.io/story/</a><br>
+        <br>
         Every visual programming language should have that depth of thought put into it, and should share that thinking out loud. Beautiful stuff.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-32</guid>
+      <pubDate>23 Oct 2021 19:00:00 MST</pubDate>
+      <title>32 • What Gets Cut</title>
+      <itunes:title>What Gets Cut</itunes:title>
+      <itunes:episode>32</itunes:episode>
+      <itunes:duration>00:15:37</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/32.mp3" length="7498533" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        If I'm not able to build Hest as it's currently conceived, what will it end up looking like? What gets cut, what gets saved — and in what order?
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        If I'm not able to build Hest as it's currently conceived, what will it end up looking like? What gets cut, what gets saved — and in what order?
       ]]></description>
     </item>
 
