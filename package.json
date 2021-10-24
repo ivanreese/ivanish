@@ -7,20 +7,20 @@
   },
   "devDependencies": {
     "@mr-hope/gulp-sass": "latest",
-    "browser-sync": "latest",
+    "browser-sync": "^2.27.5",
     "chokidar": "^3.5.1",
-    "coffeescript": "latest",
+    "coffeescript": "^2.6.1",
     "del": "latest",
     "gulp": "gulpjs/gulp",
-    "gulp-autoprefixer": "latest",
-    "gulp-changed": "latest",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-changed": "^4.0.3",
     "gulp-coffee": "latest",
     "gulp-concat": "latest",
     "gulp-htmlmin": "latest",
     "gulp-kit": "ivanreese/gulp-kit",
     "gulp-notify": "latest",
     "gulp-rename": "latest",
-    "gulp-terser": "latest"
+    "gulp-terser": "^2.1.0"
   },
   "license": "UNLICENSED",
   "private": true
