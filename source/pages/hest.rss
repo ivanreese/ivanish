@@ -685,5 +685,22 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></description>
     </item>
 
+    <item>
+      <guid isPermaLink="false">hest-episode-33</guid>
+      <pubDate>23 Oct 2021 19:00:00 MST</pubDate>
+      <title>33 • Aesthetic Constraints</title>
+      <itunes:title>Aesthetic Constraints</itunes:title>
+      <itunes:episode>33</itunes:episode>
+      <itunes:duration>00:20:14</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/33.mp3" length="9711028" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        Why do all programming tools look so similar?
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        Why do all programming tools look so similar?
+      ]]></description>
+    </item>
+
   </channel>
 </rss>
