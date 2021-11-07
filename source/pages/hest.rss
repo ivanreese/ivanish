@@ -712,7 +712,7 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       <enclosure url="https://ivanish.s3.amazonaws.com/hest/34.mp3" length="8319649" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
-        Vertex, Edge, Triangle, Quad, Polygon/Face, Shading Group, Mesh, Object, Parent-Child Hierarchy, Scene, Project.
+        Vertex, Edge, Triangle, Quad, Polygon/Face, Smoothing Group, Mesh, Object, Parent-Child Hierarchy, Scene, Project.
       ]]></itunes:subtitle>
       <description><![CDATA[
         I'm not trying to invent a new genre, I'm just trying to be the <a href="https://www.youtube.com/watch?v=D2bC54zoIik">Estradasphere</a> of visual programming.
