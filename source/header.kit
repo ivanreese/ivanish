@@ -1,7 +1,29 @@
 <!-- @import header-min.kit -->
 <header>
   <canvas style="visibility: hidden" class="js-stars"></canvas>
-  <div>
-    The creative work of <a class="header-index-link" href="/">Ivan Reese</a>, <span>by <a href="/type">type</a> or <a href="/time">time</a>.</span>
-  </div>
+  <div be-enticed></div>
+  <script>
+    let choices = [
+      "&lt;x&gt;",
+      "accreted novelty",
+      "awkward artifice",
+      "creative work",
+      "do do do do",
+      "encroaching",
+      "feels",
+      "life n times",
+      "settings",
+      "small mood",
+      "sufficiency",
+      "sunken network",
+      "transitory dependencies",
+      "tung songs",
+      "wasted time",
+      "what it is",
+      "wrecked ship",
+    ];
+    let choice = choices[Date.now() / 10000 % choices.length |0];
+    let msg = `The ${choice} of <a class="header-index-link" href="/">Ivan Reese</a>, <span>by <a href="/type">type</a> or <a href="/time">time</a>.</span>`
+    document.querySelector("[be-enticed]").innerHTML = msg;
+  </script>
 </header>
