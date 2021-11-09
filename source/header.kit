@@ -41,7 +41,7 @@
       "y-axis",
       "z-axis",
     ];
-    let choice = choices[Date.now() / 10000 % choices.length |0];
+    let choice = choices[Date.now() / 4000 % choices.length |0];
     let msg = `The ${choice} of <a class="header-index-link" href="/">Ivan Reese</a>, <span>by <a href="/type">type</a> or <a href="/time">time</a>.</span>`
     document.querySelector("[be-enticed]").innerHTML = msg;
   </script>
