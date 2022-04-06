@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>14 Nov 2021 17:45:00 MST</lastBuildDate>
+    <lastBuildDate>5 Apr 2022 23:50:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -750,6 +750,23 @@ Places to contact me with feedback: https://twitter.com/spiralganglion • https
       ]]></itunes:subtitle>
       <description><![CDATA[
         I'm going to change the format of this show, for the next few months at least if not longer. We'll see! But stick around. There'll be more to come. I think. Probably! Maybe. Wait, where are you going? Aww beans.
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-36</guid>
+      <pubDate>5 Apr 2022 23:50:00 MST</pubDate>
+      <title>36 • Crosscut</title>
+      <itunes:title>Crosscut</itunes:title>
+      <itunes:episode>36</itunes:episode>
+      <itunes:duration>00:46:29</itunes:duration>
+      <enclosure url="https://ivanish.s3.amazonaws.com/hest/36.mp3" length="22314770" type="audio/mpeg"/>
+      <itunes:explicit>yes</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        Seven months of inking and switching later, a <a href="https://www.inkandswitch.com/crosscut/">novel saw</a> has been seen by all. In what interesting ways does said saw differ from Hest? In what ways are they similar? What even is Hest anymore? Listen on, Macduff.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        Seven months of inking and switching later, a <a href="https://www.inkandswitch.com/crosscut/">novel saw</a> has been seen by all. In what interesting ways does said saw differ from Hest? In what ways are they similar? What even is Hest anymore? Listen on, Macduff.
       ]]></description>
     </item>
 
