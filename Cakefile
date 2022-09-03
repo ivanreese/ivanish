@@ -1,3 +1,4 @@
+fs = require "fs"
 glob = require "glob"
 require "sweetbread"
 
@@ -43,6 +44,16 @@ task "build", "Compile everything", ()->
   for p in glob.sync "source/**/*.{rss,ico}"
     dest = p.replace "source/", "public/"
     Compilers.static p, dest
+
+  # Redirects
+  if process.env.NETLIFY
+    redirects = [
+      "/codex   " + process.env.CODEX_URL
+      "/meet    " + process.env.MEET_URL
+      "/zoom    " + process.env.ZOOM_URL
+    ]
+    fs.writeFileSync "public/_redirects", redirects.join "\n"
+
 
 task "watch", "Recompile on changes.", ()->
   watch "source", "build", reload
