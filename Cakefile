@@ -11,13 +11,13 @@ task "build", "Compile everything", ()->
   # Global styles
   patterns = ["source/style/**/vars.scss", "source/style/**/!(vars).scss"]
   paths = (glob.sync p for p in patterns).flat()
-  Compilers.scss paths, "public/styles.css"
+  Compilers.scss paths, "public/styles.css", {browserslist}
 
   # Page styles
   for p in glob.sync "source/pages/**/*.scss"
     name = p.replace("source/pages/","").replace(".scss","")
     mkdir "public/#{name}"
-    Compilers.scss p, "public/#{name}/#{name}.css"
+    Compilers.scss p, "public/#{name}/#{name}.css", {browserslist}
 
   # Global scripts
   paths = glob.sync "source/script/**/*.coffee"

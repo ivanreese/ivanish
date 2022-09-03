@@ -1,4 +1,4 @@
-ready ()->
+do ()->
   for canvas in document.querySelectorAll "canvas.js-scatter"
     context = canvas.getContext "2d"
 
@@ -84,3 +84,5 @@ ready ()->
       window.addEventListener "resize", resize false
       resize(false)()
       requestAnimationFrame resize true # This fixes a rendering glitch, probably caused by this code running before styles are finished
+
+  null

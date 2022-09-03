@@ -1,4 +1,4 @@
-ready ()->
+do ()->
   for canvas in document.querySelectorAll "canvas.js-streaks"
     context = canvas.getContext "2d"
     inner = document.querySelector ".above"
@@ -84,3 +84,5 @@ ready ()->
 
       window.addEventListener "resize", resize
       resize()
+
+  null

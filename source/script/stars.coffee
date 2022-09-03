@@ -1,4 +1,4 @@
-ready ()->
+do ()->
 
   ## BEGIN RAND TABLE
   # We use a rand table, rather than Math.random(), so that we can have determinstic randomness.
@@ -383,4 +383,4 @@ ready ()->
 
           first = false
 
-  undefined
+  null
