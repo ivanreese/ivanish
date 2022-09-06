@@ -1,6 +1,6 @@
 do ()->
   for canvas in document.querySelectorAll "canvas.js-scatter"
-    context = canvas.getContext "2d"
+    context = canvas.getContext "2d", willReadFrequently: true
 
     above = document.querySelector ".above" # The layer above the canvas, used for course-grained positioning
     inner = document.querySelector ".inner" # A layer inside .above, used for fine-grained positioning, which contains page content HTML

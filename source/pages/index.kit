@@ -18,7 +18,7 @@
       }
     }
 
-    header div {
+    header [be-enticed] {
       display: inline-block;
       position: relative;
       text-align: center;
@@ -30,7 +30,13 @@
       font-size: 1.4em;
     }
 
-    header div a {
+    @media(min-width: 600px) {
+      header [be-enticed] {
+        font-size: 1.6em;
+      }
+    }
+
+    header [be-enticed] a {
       color: hsla(240, 100%, 97%, .9);
       line-height: 1;
     }

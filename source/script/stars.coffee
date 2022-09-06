@@ -13,29 +13,25 @@ do ()->
   # At this size, it takes about ~2ms to populate the table on my machine
   randTableSize = 4096
 
-  # This is just a generic swap function. It seems faster to let the browser JIT this than to inline it ourselves.
-  swap = (i, j, p)->
-    tmp = p[i]
-    p[i] = p[j]
-    p[j] = tmp
-
   randTable = [0...randTableSize]
   j = 0
   for i in [0...randTableSize]
     j = (j + seed + randTable[i]) % randTableSize
-    swap i, j, randTable
+    tmp = randTable[i]
+    randTable[i] = randTable[j]
+    randTable[j] = tmp
+
   ## END RAND TABLE
 
   # Check the DOM to see which mode we'll be running in
   isInfinite = document.getElementById "starfailed-full"
   bw = if document.querySelector "[js-stars-bw]" then 0 else 1
-  hud = document.querySelector "hud" if window.location.port is "3000"
 
   for canvas in document.querySelectorAll "canvas.js-stars"
-    if window.getComputedStyle(canvas).display != "none"
+    if window.getComputedStyle(canvas).display isnt "none"
       do (canvas)->
         context = canvas.getContext "2d"
-        dpi = Math.max 1, Math.round(window.devicePixelRatio)
+        dpi = Math.max 1, Math.round window.devicePixelRatio
         width = 0
         height = 0
         density = 0
@@ -56,19 +52,13 @@ do ()->
         keyboardDown = false
         keyboardAccel = 0.5
         scrollPos = dpi * (document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop)
-        lastTime = 0
-        minFPS = 2
-        smoothedFPS = 60
-        # The closer these rates get to 1, the more sputtering
-        smoothFPSAdaptationRateUp = 1/300 # Rate when current FPS is higher than smoothed FPS
-        smoothFPSAdaptationRateDown = 1/60 # Rate when current FPS is lower than smoothed FPS
         alpha = 1
 
         # This is for the css
         canvas.setAttribute "bw", "" if bw is 0
 
         resize = ()->
-          width  = canvas.width = canvas.parentNode.offsetWidth * dpi
+          width = canvas.width = canvas.parentNode.offsetWidth * dpi
           height = canvas.height = canvas.parentNode.offsetHeight * dpi
           odensity = scale height/dpi, 0, 1000, 0.3, 1 # Scale the opacity of objects based on the canvas height
           sdensity = scale Math.sqrt(width * height)/dpi, 100, 1000, .2, 1 # Scale the number of stars based on the canvas size
@@ -79,9 +69,9 @@ do ()->
           maxVel = defaultMaxVel * Math.sqrt window.innerHeight # Scale the velocity based on the height of the screen
           first = true
 
-        doRender = (time)->
+        doRender = ()->
           renderRequested = false
-          renderStars time, normalDrawCall
+          renderStars normalDrawCall
 
         requestRender = ()->
           unless renderRequested
@@ -113,19 +103,19 @@ do ()->
         keyDown = (e)->
           keyboardUp = true if e.keyCode == 38
           keyboardDown = true if e.keyCode == 40
-          requestRender()
+          requestRender() if keyboardDown or keyboardUp
 
         keyUp = (e)->
           keyboardUp = false if e.keyCode == 38
           keyboardDown = false if e.keyCode == 40
-          requestRender()
+          # requestRender() if keyboardDown or keyboardUp
 
         requestResize = ()->
           if width isnt canvas.parentNode.offsetWidth * dpi
-            requestAnimationFrame (time)->
+            requestAnimationFrame ()->
               first = true
               resize()
-              renderStars time, firstDrawCall
+              renderStars firstDrawCall
 
         requestResize()
         window.addEventListener "resize", requestResize
@@ -153,24 +143,7 @@ do ()->
           context.lineTo x, y
           context.stroke()
 
-        renderStars = (time, drawCall)->
-          # Limit the dt range to avoid divide by zero errors, major weirdness from long pauses, etc
-          dt = clip time - lastTime, 16, 100
-          fps = 1000/dt
-          lastTime = time
-          smoothedFPS = if fps > smoothedFPS
-            smoothedFPS*(1-smoothFPSAdaptationRateUp) + fps*smoothFPSAdaptationRateUp
-          else
-            smoothedFPS*(1-smoothFPSAdaptationRateDown) + fps*smoothFPSAdaptationRateDown
-
-          # If we aren't moving (eg: the initial render), render at full quality
-          if vel is 0
-            frameRateLODStars = 1
-            frameRateLODBlobs = 1
-          else # The scene is moving, so adjust the LOD based on the frame rate
-            frameRateLODStars = scale smoothedFPS, 30, 60, 0.2, 1, true
-            frameRateLODBlobs = scale smoothedFPS, 10, 60, 0.3, 1, true
-
+        renderStars = (drawCall)->
           return unless scrollPos < Math.max(height, 1000) and !document.hidden
 
           if keyboardDown and not keyboardUp
@@ -183,7 +156,7 @@ do ()->
           vel += accel
           absVel = Math.abs vel
           if absVel > .5
-            vel /= if isInfinite then 1.02 else 1.1
+            vel /= if isInfinite then 1.02 else 1.05
           else
             vel /= (1 + absVel/5)
           vel = clip vel, -maxVel, maxVel
@@ -196,35 +169,32 @@ do ()->
             requestRender()
 
           if first
-            maxPixelStars = 400
+            maxPixelStars = 800
             maxStars = 120
-            maxSmallGlowingStars = 120
+            maxSmallGlowingStars = 240
             maxBlueBlobs = 0
             maxRedBlobs = 0
             maxBlackBlobs = 0
           else
-            maxPixelStars = 300
+            maxPixelStars = 200
             maxStars = 40
             maxSmallGlowingStars = 50
-            maxBlueBlobs = 60
-            maxRedBlobs = 60
-            maxBlackBlobs = 10
+            maxBlueBlobs = 120
+            maxRedBlobs = 100
+            maxBlackBlobs = 5
 
-          nPixelStars        = sdensity * frameRateLODStars * maxPixelStars |0
-          nStars             = sdensity * frameRateLODStars * maxStars |0
-          nSmallGlowingStars = sdensity * frameRateLODStars * maxSmallGlowingStars |0
-          nBlueBlobs         = bdensity * frameRateLODBlobs * maxBlueBlobs |0
-          nRedBlobs          = bdensity * frameRateLODBlobs * maxRedBlobs |0
+          nPixelStars        = sdensity * maxPixelStars |0
+          nStars             = sdensity * maxStars |0
+          nSmallGlowingStars = sdensity * maxSmallGlowingStars |0
+          nBlueBlobs         = bdensity * maxBlueBlobs |0
+          nRedBlobs          = bdensity * maxRedBlobs |0
           nBlackBlobs        = maxBlackBlobs
 
-          if hud?
-            hud.textContent = smoothedFPS.toPrecision(3)
-
-
           if not first
-            alpha = Math.pow(absVel/40, .4) * Math.cos clip absVel/40, 0, Math.PI
+            alpha = Math.pow(absVel/40, .5) * Math.cos clip absVel/7, 0, Math.PI
 
           context.lineCap = "butt"
+
 
           # Pixel Stars
           i = 0
@@ -236,16 +206,11 @@ do ()->
             r = randTable[o]
             x = x * width / randTableSize
             y = mod y * height / randTableSize - pos * increase, height
-            o = o / randTableSize * .9 + 0.1
+            o = o / randTableSize * .5 + 0.01
             r = r / randTableSize * 1 + .5
             drawCall x, y, r * dScaleHalfDpi, "hsla(300, 0%, 100%, #{o*alpha*odensity})", increase
             i++
 
-
-          if absVel > 3
-            context.lineCap = "butt"
-          else
-            context.lineCap = "round"
 
           # Stars
           i = 0
@@ -263,7 +228,7 @@ do ()->
             r = r / randTableSize * 4 + .2
             y = mod(r + y * height / randTableSize - pos * decrease, height+r*2)-r
             l = l / randTableSize * 20 + 80
-            o = o / randTableSize * decrease + 0.1
+            o = o / randTableSize * decrease + 0.05
             c = c / randTableSize * 120 + 200
             drawCall x, y, r * dScaleHalfDpi, "hsla(#{c}, #{30*bw}%, #{l}%, #{o*alpha*odensity})", decrease
             i++
@@ -271,6 +236,7 @@ do ()->
 
           if not first
             alpha = clip Math.pow(absVel/5, 3), 0, 2
+
 
           # Small Round Stars with circular glow rings
           i = 0
@@ -286,7 +252,7 @@ do ()->
             r = r / randTableSize * 2 + 1
             y = mod(r + y * height / randTableSize - pos * decrease, height+r*2)-r
             l = l / randTableSize * 20 + 60
-            o = o / randTableSize * decrease * .8 + 0.1
+            o = o / randTableSize * decrease * .8 + 0.05
             c = c / randTableSize * 200 + 200 % 360
 
             # far ring
@@ -303,13 +269,12 @@ do ()->
 
             i++
 
+          return first = false if first
+
 
           # For blobs
-          if first
-            alpha = .25
-          else
-            alpha = 0.025 + .8 - .8 * Math.cos(clip absVel/8, 0, Math.PI)
           context.lineCap = "round"
+          alpha = clip Math.pow(absVel/24, 1.4), 0, 0.1
 
 
           # Blue Blobs
@@ -347,6 +312,7 @@ do ()->
             r = randTable[y]
             l = randTable[r]
             h = randTable[l]
+            s = randTable[h]
             x = x / randTableSize * width
             _r = r / randTableSize
             velScale = 1 - .8 * _r
@@ -355,13 +321,14 @@ do ()->
             l = l / randTableSize * 40 + 25
             o = o / randTableSize * 0.1 + 0.05
             h = h / randTableSize * 55 + 330
-            s = 80 * bw
+            s = (s / randTableSize * 70 + 30) * bw
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
             i++
 
+
           # Black Blobs
-          alpha = 0.03 + Math.sqrt absVel
+          alpha = 0.002 + 0.05 * Math.sqrt absVel
 
           i = 0
           while i < nBlackBlobs
@@ -369,18 +336,15 @@ do ()->
             decrease = 1 - increase
             x = randTable[(i + 771) % randTableSize]
             y = randTable[x]
-            _r = randTable[y]
-            l = randTable[_r]
+            l = randTable[y]
             f = randTable[l]
             p = randTable[f]
-            l = l / randTableSize * 3 + 3 * increase + 2
-            r = _r / randTableSize * 100 + 100 * increase * increase * density + 50 * density
-            velScale = dScale * 700 / r / r + dScale * 12 / r
+            l = l / randTableSize * 2 + 3 * increase + 2
+            r = 200 * increase * increase * density + 50 * density
+            velScale = 600 / r / r + 10 / r
             y = mod(r + y / randTableSize * height - pos * velScale, height+r*2)-r
             x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(pos * velScale / height * f / randTableSize + p / randTableSize)
-            drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, #{l}%, #{0.1*alpha})", velScale
+            drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, #{l}%, #{alpha})", velScale
             i++
-
-          first = false
 
   null

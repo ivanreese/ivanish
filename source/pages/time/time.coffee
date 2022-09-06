@@ -1,6 +1,6 @@
 do ()->
   for canvas in document.querySelectorAll "canvas.js-streaks"
-    context = canvas.getContext "2d"
+    context = canvas.getContext "2d", willReadFrequently: true
     inner = document.querySelector ".above"
 
     img = new Image()
