@@ -65,6 +65,7 @@ task "build", "Compile everything", ()->
     redirects = [
       "/codex   " + process.env.CODEX_URL
       "/meet    " + process.env.MEET_URL
+      "/showdoc " + process.env.SHOWDOC_URL
       "/zoom    " + process.env.ZOOM_URL
     ]
     fs.writeFileSync "public/_redirects", redirects.join "\n"
