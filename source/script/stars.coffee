@@ -35,7 +35,7 @@ do ()->
       redBlobs:   h: [330, 55],  s: [30, 70], l: [25, 40]
       blackBlobs: h: 290,        s: 100,      l: [3, 2]
     bio:
-      stars:      h: [30, 25],   s: 50,       l: [80, 20]
+      stars:      h: [15, 40],   s: 35,       l: [20, 80]
       blueBlobs:  h: [220, 20],  s: [15, 10], l: [40, 20]
       redBlobs:   h: [5, 10],    s: [40, 20], l: [25, 40]
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
@@ -77,6 +77,7 @@ do ()->
         keyboardAccel = 0.5
         scrollPos = dpi * (document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop)
         alpha = 1
+        lastTime = 0
 
         # This is for the css
         canvas.setAttribute "bw", "" if bw
@@ -171,23 +172,28 @@ do ()->
         renderStars = (drawCall)->
           return unless scrollPos < Math.max(height, 1000) and !document.hidden
 
+          time = performance.now()
+          dt = Math.min 1/60, (time - lastTime)/1000
+          lastTime = time
+          timeScale = 60 * dt # the below is all still written assuming 60 fps
+
           if keyboardDown and not keyboardUp
             accel = +keyboardAccel
           else if keyboardUp and not keyboardDown
             accel = -keyboardAccel
           else
-            accel /= 1.05
+            accel /= 1 + .05 * timeScale
 
-          vel += accel
+          vel += accel * timeScale
           absVel = Math.abs vel
           if absVel > .5
-            vel /= if isInfinite then 1.02 else 1.05
+            vel /= 1 + (if isInfinite then .02 else .05) * timeScale
           else
-            vel /= (1 + absVel/5)
+            vel /= 1 + (absVel/5) * timeScale
           vel = clip vel, -maxVel, maxVel
           scaledVel = vel * dpi * dScale
-          pos -= scaledVel
-          absPos -= Math.abs scaledVel
+          pos -= scaledVel * timeScale
+          absPos -= Math.abs scaledVel * timeScale
 
           absVel = Math.abs vel
 
@@ -367,10 +373,10 @@ do ()->
             f = randTable[l]
             p = randTable[f]
             l = l / randTableSize * style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
-            r = 100 * increase * increase * density + 40 * density
+            r = 100 * increase * increase * density + 40
             velScale = 600 / r / r + 10 / r
             y = mod(r + y / randTableSize * height + absPos * velScale, height+r*2)-r
-            x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-absPos * velScale / height * f / randTableSize + p / randTableSize)
+            x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-absPos * velScale / 2000 * f / randTableSize + p / randTableSize)
             drawCall x, y, r * dScaleHalfDpi, "hsla(#{style.blackBlobs.h}, #{style.blackBlobs.s}%, #{l}%, #{alpha})", velScale
             i++
 
