@@ -25,7 +25,30 @@ do ()->
 
   # Check the DOM to see which mode we'll be running in
   isInfinite = document.getElementById "starfailed-full"
-  bw = if document.querySelector "[js-stars-bw]" then 0 else 1
+  bw = document.querySelector "[js-stars-bw]"
+  bio = document.querySelector "[js-stars-bio]"
+
+  styles =
+    normal:
+      stars:      h: [200, 200], s: 100,      l: [60, 20]
+      blueBlobs:  h: [207, 55],  s: [30, 70], l: [1, 74]
+      redBlobs:   h: [330, 55],  s: [30, 70], l: [25, 40]
+      blackBlobs: h: 290,        s: 100,      l: [3, 2]
+    bio:
+      stars:      h: [30, 25],   s: 50,       l: [80, 20]
+      blueBlobs:  h: [220, 20],  s: [15, 10], l: [40, 20]
+      redBlobs:   h: [5, 10],    s: [40, 20], l: [25, 40]
+      blackBlobs: h: 11,         s: 41,       l: [3, 2]
+    bw:
+      stars:      h: [0, 0],     s: 0,        l: [0, 0]
+      blueBlobs:  h: [0, 0],     s: [0, 0],   l: [0, 0]
+      redBlobs:   h: [0, 0],     s: [0, 0],   l: [25, 40]
+      blackBlobs: h: 0,          s: 0,        l: [3, 2]
+
+  style = switch
+    when bw then styles.bw
+    when bio then styles.bio
+    else styles.normal
 
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display isnt "none"
@@ -56,7 +79,8 @@ do ()->
         alpha = 1
 
         # This is for the css
-        canvas.setAttribute "bw", "" if bw is 0
+        canvas.setAttribute "bw", "" if bw
+        canvas.setAttribute "bio", "" if bio
 
         resize = ()->
           width = canvas.width = canvas.parentNode.offsetWidth * dpi
@@ -253,21 +277,22 @@ do ()->
             x = x * width / randTableSize
             r = r / randTableSize * 2 + 1
             y = mod(r + y * height / randTableSize - pos * decrease, height+r*2)-r
-            l = l / randTableSize * 20 + 60
+            l = l / randTableSize * style.stars.l[1] + style.stars.l[0]
             o = o / randTableSize * decrease * .8 + 0.05
-            c = c / randTableSize * 200 + 200 % 360
+            c = c / randTableSize * style.stars.h[1] + style.stars.h[0] % 360
+            s = style.stars.s
 
             # far ring
-            drawCall x, y, r * r * r * dScaleHalfDpi, "hsla(#{c}, #{70*bw}%, #{l}%, #{o/25*alpha})", decrease
+            drawCall x, y, r * r * r * dScaleHalfDpi, "hsla(#{c}, #{.7*s}%, #{l}%, #{o/25*alpha})", decrease
 
             # close ring
-            drawCall x, y, r * r * dScaleHalfDpi, "hsla(#{c}, #{50*bw}%, #{l}%, #{o/6*alpha})", decrease
+            drawCall x, y, r * r * dScaleHalfDpi, "hsla(#{c}, #{.5*s}%, #{l}%, #{o/6*alpha})", decrease
 
             # round star body
-            drawCall x, y, r * dScaleHalfDpi, "hsla(#{c}, #{20*bw}%, #{l}%, #{o*alpha})", decrease
+            drawCall x, y, r * dScaleHalfDpi, "hsla(#{c}, #{.2*s}%, #{l}%, #{o*alpha})", decrease
 
             # point of light
-            drawCall x, y, 1 * dScaleHalfDpi, "hsla(#{c}, #{100*bw}%, 90%, #{o * 1.5*alpha})", decrease
+            drawCall x, y, 1 * dScaleHalfDpi, "hsla(#{c}, #{s}%, 90%, #{o * 1.5*alpha})", decrease
 
             i++
 
@@ -295,9 +320,9 @@ do ()->
             velScale = 1 - .8 * _r
             r = _r * 120 * density + 20
             y = mod(r + y / randTableSize * height - absPos * velScale, height + r*2)-r
-            s = (s / randTableSize * 70 + 30) * bw
-            l = l / randTableSize * 74 + 1
-            h = h / randTableSize * 55 + 207
+            s = s / randTableSize * style.blueBlobs.s[1] + style.blueBlobs.s[0]
+            l = l / randTableSize * style.blueBlobs.l[1] + style.blueBlobs.l[0]
+            h = h / randTableSize * style.blueBlobs.h[1] + style.blueBlobs.h[0]
             o = o / randTableSize * 0.1 + 0.05
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
@@ -320,10 +345,10 @@ do ()->
             velScale = 1 - .8 * _r
             r = _r * 120 * density + 20
             y = mod(r + y / randTableSize * height - absPos * velScale, height + r*2)-r
-            l = l / randTableSize * 40 + 25
+            l = l / randTableSize * style.redBlobs.l[1] + style.redBlobs.l[0]
             o = o / randTableSize * 0.1 + 0.05
-            h = h / randTableSize * 55 + 330
-            s = (s / randTableSize * 70 + 30) * bw
+            h = h / randTableSize * style.redBlobs.h[1] + style.redBlobs.h[0]
+            s = s / randTableSize * style.redBlobs.s[1] + style.redBlobs.s[0]
             drawCall x, y, r * 1 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o*alpha})", velScale
             drawCall x, y, r * 2 * dScaleHalfDpi, "hsla(#{h}, #{s}%, #{l}%, #{o/2*alpha})", velScale
             i++
@@ -341,12 +366,12 @@ do ()->
             l = randTable[y]
             f = randTable[l]
             p = randTable[f]
-            l = l / randTableSize * 2 + 3 * increase + 2
+            l = l / randTableSize * style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
             r = 100 * increase * increase * density + 40 * density
             velScale = 600 / r / r + 10 / r
             y = mod(r + y / randTableSize * height + absPos * velScale, height+r*2)-r
             x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-absPos * velScale / height * f / randTableSize + p / randTableSize)
-            drawCall x, y, r * dScaleHalfDpi, "hsla(290, #{100*bw}%, #{l}%, #{alpha})", velScale
+            drawCall x, y, r * dScaleHalfDpi, "hsla(#{style.blackBlobs.h}, #{style.blackBlobs.s}%, #{l}%, #{alpha})", velScale
             i++
 
   null
