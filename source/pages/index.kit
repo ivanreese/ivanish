@@ -4,42 +4,34 @@
   <script defer src="index.js"></script>
 
   <style>
-    a.header-index-link { text-decoration: none; }
-    a.header-index-link:hover, a.header-index-link:visited:hover { color: white; }
+
+    :root {
+      --border-width: 2vmin;
+    }
 
     header {
-      height: 100vh;
+      height: calc(100vh - var(--border-width));
     }
 
-    @media(min-width: 600px) {
-      header {
-        height: calc(100vh - .5em - .5vw);
-        margin-bottom: calc(.5em + .5vw);
-      }
-    }
-
-    header [be-enticed] {
-      display: inline-block;
-      position: relative;
-      text-align: center;
-      color: white;
-      z-index: 2;
-      padding: 0;
+    header be-enticed {
       margin-top: calc(40vh - 1em);
+      padding: 0;
       line-height: 1.9;
       font-size: 1.4em;
     }
 
+    /* header be-enticed a.home-link { text-decoration: none; color: white; }
+    header be-enticed a.home-link:hover, a.home-link:visited:hover { color: white; } */
+
     @media(min-width: 600px) {
-      header [be-enticed] {
+      header be-enticed {
         font-size: 1.6em;
       }
     }
 
-    header [be-enticed] a {
+    /* header be-enticed a {
       color: hsla(240, 100%, 97%, .9);
-      line-height: 1;
-    }
+    } */
 
     main {
       padding: 0 3vw 16vh;
@@ -51,30 +43,58 @@
       }
     }
 
-    #index .hero {
-      position: absolute; /* Force the hero to draw on top of the header. */
-      border-radius: 100%;
+    /* This outer element makes a white circle behind the image, so that as the image fades out we don't see stars */
+    profile-pic {
+      position: absolute;
+
+      bottom: -35vh;
+      left: calc(50vw - 35vh);
+      width: 70vh;
+      height: 70vh;
       z-index: 11;
+
+      border: var(--border-width) solid white;
       background: white;
-      border: calc(.5em + .5vw) solid white;
-      /* The hero image is sized and positioned with JS, down below */
+      border-radius: 100%;
     }
 
-    #index .hero div {
+    @media(max-aspect-ratio: 1/1) {
+      profile-pic {
+        /* For the following calcs, the first number makes the pic transition seamlessly across the breakpoint. */
+        /* The second and third number form a pair that makes the pic grow and move upward as the screen narrows. */
+        bottom: calc(-35vw +  7vh -  7vw);
+        left:   calc( 15vw - 10vh + 10vw);
+        width:  calc( 70vw + 20vh - 20vw);
+        height: calc( 70vw + 20vh - 20vw);
+      }
+    }
+
+    /* This inner element is the actual profile pic image, which fades in and out. */
+    profile-pic div {
       width: 100%;
       height: 100%;
       border-radius: 100%;
       background-color: hsl(7, 7%, 73%);
-      /* background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1500.jpg"); */
-      background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/color2.jpg");
+      background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1800.webp");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: top center;
     }
 
-    /* @media(max-width: 1000px) { #index .hero div { background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1000.jpg"); } }
-    @media(max-width: 750px)  { #index .hero div { background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-750.jpg"); } }
-    @media(max-width: 500px)  { #index .hero div { background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-500.jpg"); } } */
+    /* Show an alternate image sometimes */
+    #index[js-stars-bw] profile-pic div {
+      background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1800.webp");
+    }
+
+    /* When the viewport width is less than 600, or the height is less than 900, switch to the smaller sizes  */
+    @media (max-width: 600px), (max-height: 900px) {
+      profile-pic div {
+        background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1200.webp");
+      }
+      #index[js-stars-bw] profile-pic div {
+        background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1200.webp");
+      }
+    }
 
     #index h1 {
       margin: 50vh 0 4vh;
@@ -118,40 +138,7 @@
 
   <title class="hide">Ivan Reese</title>
 
-  <div class="hero"><div></div></div>
-
-  <script>
-    // This sucks, but it makes Android happy UGH
-    (function(){
-      var width = null;
-      var heroImage = null;
-      function inlineResize() {
-        if (width != window.innerWidth) {
-          width = window.innerWidth
-          if (heroImage == null) {
-            heroImage = document.querySelector("#index .hero");
-            if (heroImage == null) { return }
-          }
-          if (window.innerWidth > window.innerHeight * .78) {
-            heroImage.style.top = (.65 * window.innerHeight) + "px";
-            heroImage.style.left = "50%";
-            heroImage.style.width = (.7 * window.innerHeight) + "px";
-            heroImage.style.height = (.7 * window.innerHeight) + "px";
-            heroImage.style.marginLeft = (-.35 * window.innerHeight) + "px";
-          } else {
-            heroImage.style.top = (window.innerHeight - .45 * window.innerWidth) + "px";
-            heroImage.style.left = (.1 * window.innerWidth) + "px";
-            heroImage.style.width = (.8 * window.innerWidth) + "px";
-            heroImage.style.height = (.8 * window.innerWidth) + "px";
-            heroImage.style.marginLeft = null
-          }
-        }
-      };
-      inlineResize();
-      requestAnimationFrame(inlineResize);
-      window.addEventListener("resize", inlineResize);
-    })();
-  </script>
+  <profile-pic><div></div></profile-pic>
 
   <section id="about">
     <h1>About</h1>

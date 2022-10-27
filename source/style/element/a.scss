@@ -7,10 +7,6 @@ a, a * {
   cursor: pointer;
 }
 
-a:visited {
-  color: inherit;
-}
-
-a:hover, a:visited:hover {
+a:hover {
   color: hsl(311, 100%, 25%);
 }

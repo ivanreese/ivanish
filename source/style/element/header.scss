@@ -7,12 +7,7 @@ header {
     position: absolute;
   }
 
-  a, a:visited {
-    color: white;
-    &:hover { color: #DDD; }
-  }
-
-  div {
+  be-enticed {
     display: inline-block;
     position: relative;
     font-size: 1.1em;
@@ -21,5 +16,17 @@ header {
     z-index: 2;
 
     @media (max-width: 450px) { font-size: 1em; }
+  }
+
+  witty-quip {
+    display: inline;
+  }
+
+  a {
+  }
+
+  a, a:visited {
+    color: white;
+    &:hover { color: #DDD; }
   }
 }
