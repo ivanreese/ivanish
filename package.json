@@ -4,7 +4,7 @@
   "description": "A personal website for Ivan Reese",
   "devDependencies": {
     "glob": "8.0.3",
-    "sweetbread": "0.0.4"
+    "sweetbread": "0.0.9"
   },
   "license": "Copyright (c) 2016-2022 Ivan Reese, excepting attributed images, fonts, and other content.",
   "private": true
