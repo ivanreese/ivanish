@@ -44,7 +44,6 @@ do ()->
           imageData: imageData
           intensity: intensity
           offset: 0
-          rand: 0.1 + Math.random() * 0.6
           x: x
           y: y
         else
@@ -53,17 +52,16 @@ do ()->
       updateTracers = ()->
         for tracer, i in tracers
           if tracer.offset < tracer.dist and (tracer.y-tracer.offset) > 0
-            if Math.random() < tracer.rand
-              tracer.offset++
+            tracer.offset++
 
-              byte = 0
+            byte = 0
 
-              while byte < tracer.imageData.data.length
-                tracer.imageData.data[byte] *= 1.003
-                byte++
-                null
+            while byte < tracer.imageData.data.length
+              tracer.imageData.data[byte] *= 1.003
+              byte++
+              null
 
-              context.putImageData tracer.imageData, tracer.x, tracer.y-tracer.offset
+            context.putImageData tracer.imageData, tracer.x, tracer.y-tracer.offset
           else
             nt = newTracer()
             tracers[i] = nt if nt?

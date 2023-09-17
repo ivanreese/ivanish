@@ -40,46 +40,49 @@ do ()->
         # Our size will be no smaller than 1/8th of the width of the image
         # Our size will scale proportionally to the size of the image
         # Our unscaled size will vary between 2^0 and 2^9, plus 8
-        size = 8 + wScale * Math.pow(2, Math.random() * 9) |0
+        exp = Math.random() * 7
+        size = 8 + wScale * Math.pow(2, exp) |0
         halfSize = size/2
         sizeSquared = size * size
         lowerLimit = Math.min ih*1/2, lowerLimit + 0.1 * wScale
         fn = if count%3 is 0 then Math.max else Math.min # Bias towards darker colors
-        reps = 0
-        done = false
 
-        while ++reps <= 20 and not done
-          x = Math.random() * (w-size) |0
-          y = Math.min h-size, iUpper + iTop + Math.random() * lowerLimit |0
-          nx = Math.max 0, Math.min w-size, if Math.random() < 0.5 then x + size else x - size
-          ny = Math.max iTop, Math.min h-size, if Math.random() < 0.5 then y + size else y - size
-          imageDataA = context.getImageData x, y, size, size # Source sample
-          imageDataB = context.getImageData nx, ny, size, size # Destination sample
-          byte = 0
-          colorDelta = 0
-          skip = false
-          while byte < imageDataA.data.length and not skip # Loop over each byte of each pixel of the source sample
-            alphaByte = byte - (byte % 4) + 3 # Grab the byte in the alpha channel for the current pixel
-            alphaA = imageDataA.data[alphaByte]
-            alphaB = imageDataB.data[alphaByte]
-            if alphaA is 0 or alphaB is 0 # If there's ANY transparency, bail
-              skip = true
-            else if colorDelta > 13 # Keep things subtle
-              skip = true
-            else if byte isnt alphaByte # Skip the alpha channel
-              px = Math.abs(((byte/4 |0) % size) - halfSize)|0
-              py = Math.abs(((byte/4 |0) / size) - halfSize)|0
-              if px + py < halfSize # This creates the diamond shape
-                byteA = imageDataA.data[byte]
-                byteB = imageDataB.data[byte]
-                colorDelta += Math.abs(byteA - byteB) / sizeSquared
-                imageDataB.data[byte] = fn(byteA, byteB) / 0.99 |0 # Apply the fn, then bias towards darker colors
-            byte++
-            null
-          if not skip and colorDelta > 3 # Don't bother drawing if it won't make much visible difference
-            context.putImageData imageDataB, nx, ny
-            done = true
-          null
+        # Bail whenever the color of the source and dest are more different than this threshold.
+        # The exponential part helps allow more color variation on big tiles, and the scalar is a manual param for aesthetic tuning.
+        excessColorDelta = Math.pow(exp, 1.7) * 1.1
+
+        x = Math.random() * (w-size) |0
+        y = Math.min h-size, iUpper + iTop + Math.random() * lowerLimit |0
+        nx = Math.max 0, Math.min w-size, if Math.random() < 0.5 then x + size else x - size
+        ny = Math.max iTop, Math.min h-size, if Math.random() < 0.5 then y + size else y - size
+        imageDataA = context.getImageData x, y, size, size # Source sample
+        imageDataB = context.getImageData nx, ny, size, size # Destination sample
+        byte = 0
+        colorDelta = 0
+
+        while byte < imageDataA.data.length # Loop over each byte of each pixel of the source sample
+          alphaByte = byte - (byte % 4) + 3 # Grab the byte in the alpha channel for the current pixel
+
+          # alphaA = imageDataA.data[alphaByte]
+          # alphaB = imageDataB.data[alphaByte]
+          # return if alphaA is 0 or alphaB is 0 # If there's ANY transparency, bail
+
+          if byte isnt alphaByte # Skip the alpha channel
+            px = Math.abs(((byte/4 |0) % size) - halfSize)|0
+            py = Math.abs(((byte/4 |0) / size) - halfSize)|0
+            if px + py < halfSize # This creates the diamond shape
+              byteA = imageDataA.data[byte]
+              byteB = imageDataB.data[byte]
+
+              colorDelta += Math.abs(byteA - byteB) / sizeSquared
+
+              imageDataB.data[byte] = fn(byteA, byteB) * 0.99 |0 # Apply the fn, then bias towards darker colors
+          byte++
+
+        return if colorDelta > excessColorDelta
+
+        context.putImageData imageDataB, nx, ny
+        null
 
       window.addEventListener "resize", resize false
       resize(false)()
