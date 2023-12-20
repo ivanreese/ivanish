@@ -1,8 +1,28 @@
 fs = require "fs"
 glob = require "glob"
+marked = require "marked"
+{ markedSmartypants } = require "marked-smartypants"
 require "sweetbread"
 
+marked.use(markedSmartypants());
+
 browserslist = "last 2 Chrome versions, last 2 ff versions, last 2 Safari versions, last 2 iOS versions"
+
+readFile = (filePath)->
+  fs.readFileSync(filePath).toString()
+
+mkdest = (p)-> mkdir p.split("/")[...-1].join("/")
+
+typePages =
+  Song: "music"
+  Thoughts: "thoughts"
+
+### Supported Frontmatter
+type: [any value listed in typePages]
+time: [any year]
+header: min
+main: [any text, injected into the <main> tag]
+###
 
 task "build", "Compile everything", ()->
   outerStart = performance.now()
@@ -16,6 +36,56 @@ task "build", "Compile everything", ()->
   for p in glob.sync "source/pages/*/"
     mkdir p.replace "source/pages", "public"
   log "Made new public folders   " + duration start
+
+  # MD
+  start = performance.now()
+
+  headerMin = readFile "source/header-min.kit"
+  header = readFile "source/header.kit"
+
+  for p in glob.sync "source/pages/**/*.md"
+    dest = p
+      .replace "source/pages", "public"
+      .replace ".md", "/index.html"
+      .replace "/index/", "/" # If the file was named index.md it'd be /index/index.html which we don't want
+
+    mkdest dest
+
+    parts = readFile(p).split "---"
+    frontmatter = parts[0]
+    markdown = parts[1...].join "---"
+
+    if not markdown
+      markdown = frontmatter
+      frontmatter = ""
+
+    markdown = markdown.replaceAll /^!\s+(.+)$/gm, "<title>$1</title>"
+
+    data = {}
+    for line in frontmatter.split "\n"
+      [k,v] = line.split /\s*:\s*/
+      data[k] = v
+
+    pageHeader = headerMin
+    pageHeader += "\n" + header unless data.header
+
+    related = if data.type and data.time
+      link = typePages[data.type] or throw "Missing type"
+      "<section class='related'><a href='/#{link}'>#{data.type}</a> from <a href='/#{data.time}'>#{data.time}</a></section>"
+    else
+      ""
+
+    result = [
+      pageHeader
+      "<main #{data.main or ''}>"
+      marked.parse markdown
+      related
+      "</main>"
+    ].join "\n"
+
+    fs.writeFileSync dest, result
+
+  log "Compiled public/**/*.html " + duration start
 
   # HTML
   start = performance.now()
@@ -53,9 +123,9 @@ task "build", "Compile everything", ()->
 
   # Static
   start = performance.now()
-  for p in glob.sync "source/**/*.!(kit|scss|coffee)"
+  for p in glob.sync "source/**/*.!(md|kit|scss|coffee)"
     dest = p.replace("source/", "public/").replace("/pages/", "")
-    mkdir dest.split("/")[...-1].join("/")
+    mkdest dest
     success = Compilers.static p, dest, quiet: true
     return unless success
   log "Copied static assets      " + duration start
