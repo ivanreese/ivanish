@@ -41,6 +41,8 @@ publish: false                 # todo!
 # TODO: hest-time-travel has multiple <main>s
 # TODO: Charges needs to do the related stuff nested inside some other DOM
 
+# TODO: Specifying the thumbnail and short description (used on year pages) in the frontmatter would be nice for og preview head meta
+
 compilePage = (head, header, p)->
 
   # Compute the destination path from the page path

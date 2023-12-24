@@ -28,7 +28,7 @@
       display: inline-flex;
       align-items: center;
       max-width: 15em;
-      margin: 1em 1em 2em;
+      margin: 1rem 1rem 2rem;
       text-align: left;
       font-size: 1.2em;
       line-height: 1.1;
@@ -36,23 +36,13 @@
       &:hover { opacity: 1; }
 
       img, canvas {
-        flex: 0 0 100px;
-        width: 100px;
-        height: 100px;
-        margin: .5rem;
+        flex: 0 0 5.2em;
+        width: 5.2em;
+        height: 5.2em;
+        margin: .5rem .6em;
         border-radius: 100%;
         * { border-radius: 100%; }
       }
-    }
-  }
-
-  .related {
-    margin-top: 4vh;
-    text-align: center;
-
-    a {
-      font-size: 1.2em;
-      padding: 0 .5em;
     }
   }
 }
