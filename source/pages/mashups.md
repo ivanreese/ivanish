@@ -23,6 +23,6 @@ Mariah Carey's **[All I Want For Christmas is You](https://www.youtube.com/watch
 
 <br>
 
-Finally, here's something lighter — a little joke about Jimmy's choice of commit message.
+Finally, here's something lighter — a little joke about [Jimmy](/future-of-coding-podcast)'s choice of commit message.
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/Z_esu9CyJxU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
