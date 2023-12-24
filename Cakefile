@@ -12,6 +12,7 @@ typePages =
   "2D": "art"
   "3D": "art"
   Album: "music"
+  Art: "art"
   Band: "music"
   Game: "code"
   Milk: "performance"
