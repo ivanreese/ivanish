@@ -1,28 +1,142 @@
 fs = require "fs"
 glob = require "glob"
-marked = require "marked"
-{ markedSmartypants } = require "marked-smartypants"
+markdownit = require("markdown-it") html: true, typographer: true
 require "sweetbread"
-
-marked.use(markedSmartypants());
 
 browserslist = "last 2 Chrome versions, last 2 ff versions, last 2 Safari versions, last 2 iOS versions"
 
-readFile = (filePath)->
-  fs.readFileSync(filePath).toString()
-
+readFile = (filePath)-> fs.readFileSync(filePath).toString()
 mkdest = (p)-> mkdir p.split("/")[...-1].join("/")
 
 typePages =
+  "2D": "art"
+  "3D": "art"
+  Album: "music"
+  Band: "music"
+  Game: "code"
+  Milk: "performance"
+  Performance: "performance"
+  Photography: "art"
+  Podcast: "thoughts"
+  "Procedural Art": "code" # not sure this makes sense — is this more art-y, or more code-y?
+  "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
+  Project: "project" # this is new-esq
+  Score: "music" # this is new
   Song: "music"
   Thoughts: "thoughts"
+  Video: "art"
+  Writing: "thoughts"
 
 ### Supported Frontmatter
-type: [any value listed in typePages]
-time: [any year]
-header: min
-main: [any text, injected into the <main> tag]
+type: [any typePages key]      # transcluding any text that doesn't match (see Shrinkin & Breakin)
+time: [any year] or Immemorial # transcluding any text that doesn't match
+header: min                    # tbd if there should be other options
+main: [any text]               # injected into the <main> tag
+publish: false                 # todo!
 ###
+
+# publish should probably also accept a yyyy-mm-dd date, for the RSS feed to know when an existing page is updated
+
+# TODO: hest-time-travel has multiple <main>s
+# TODO: Charges needs to do the related stuff nested inside some other DOM
+
+compilePage = (head, header, p)->
+
+  # Compute the destination path from the page path
+  dest = p
+    .replace "source/pages", "public"
+    .replace ".html", "/index.html"
+    .replace ".md", "/index.html"
+    .replace "/index/", "/" # If the file was named index.ext it'd be /index/index.html which we don't want
+
+  # Make any parent folders for this destination
+  mkdest dest
+
+  # Separate the frontmatter from the page body
+  parts = readFile(p).split "---"
+  frontmatter = parts[0]
+  body = parts[1...].join "---"
+  [body, frontmatter] = [frontmatter, ""] unless body
+
+  # Extract k-v pairs from the frontmatter
+  data = {}
+  for line in frontmatter.split "\n"
+    [k,v] = line.split /\s*:\s*/
+    data[k] = v if k
+
+  # Based on data.header, figure out what head[er] to prepend to the final page HTML
+  pageHeader = head
+  pageHeader += "\n" + header unless data.header
+
+  # Page bodies will be wrapped in a <main>, unless they already contain a <main>
+  # Also inject any attrs specified in data.main
+  hasMain = body.indexOf("<main") > -1
+  openMain = if hasMain then "" else if data.main then "<main #{data.main}>" else "<main>"
+  closeMain = if hasMain then "" else "</main>"
+
+  # Process custom <title> syntax
+  body = body.replaceAll /^!\s+(.+)$/gm, "<title>$1</title>"
+
+  # Process markdown pages
+  body = markdownit.render body if p.endsWith "md"
+
+  # Process markdown in <md> tags
+  body = body.replaceAll /( *)<md>(.+?)<\/md>/gs, (match, spaces, md)->
+    return [ # This return needs to be explicit for some reason I don't understand
+      "#{spaces}<p>"
+      markdownit.renderInline md
+        .split "\n"
+        .filter (v)-> v
+        .map (v)-> "#{spaces}  #{v}"
+      "#{spaces}</p>"
+    ].flat().join "\n"
+
+  # Warn if we encounter a pre, because that probably means markdown goofed
+    console.log "warning: <pre> in #{dest}" if body.indexOf("<pre") > -1
+
+  # Add rel="nofollow" to external links that don't already have a rel
+  body = body.replaceAll /<a .*?>/g, (match)->
+    if match.indexOf("href=\"/") isnt -1 # Internal link?
+      match
+    else if match.indexOf("href=\"#") isnt -1 # On-page link?
+      match
+    else if match.indexOf("rel=") isnt -1 # Has a rel?
+      match
+    else if match.indexOf("href") is -1 # Not a link, just an anchor?
+      match
+    else # External link, no rel
+      match.replace "<a ", "<a rel=\"nofollow\" "
+
+  # Add a <section class="related"> at the bottom of most pages
+  related = makeRelated data
+
+  # Combine all the parts of our page into the final HTML output
+  fs.writeFileSync dest, [
+    pageHeader
+    openMain
+    body
+    related
+    closeMain
+  ].join "\n"
+
+
+makeRelated = (data)->
+  if data.type
+    type = data.type
+    for name, page of typePages
+      type = type.replaceAll name, "<a href=\"/#{page}\">#{name}</a>"
+
+  if data.time
+    time = data.time
+      .replaceAll /(\d{4})/g, '<a href="/$1">$1</a>'
+      .replaceAll "Immemorial", '<a href="/time-immemorial">Time Immemorial</a>'
+
+  if type or time
+    inner = if type and time then "#{type} from #{time}" else type or time
+    "<section class=\"related\">\n  #{inner}\n</section>"
+  else
+    ""
+
 
 task "build", "Compile everything", ()->
   outerStart = performance.now()
@@ -37,62 +151,13 @@ task "build", "Compile everything", ()->
     mkdir p.replace "source/pages", "public"
   log "Made new public folders   " + duration start
 
-  # MD
+  # Pages
   start = performance.now()
-
-  headerMin = readFile "source/header-min.kit"
-  header = readFile "source/header.kit"
-
-  for p in glob.sync "source/pages/**/*.md"
-    dest = p
-      .replace "source/pages", "public"
-      .replace ".md", "/index.html"
-      .replace "/index/", "/" # If the file was named index.md it'd be /index/index.html which we don't want
-
-    mkdest dest
-
-    parts = readFile(p).split "---"
-    frontmatter = parts[0]
-    markdown = parts[1...].join "---"
-
-    if not markdown
-      markdown = frontmatter
-      frontmatter = ""
-
-    markdown = markdown.replaceAll /^!\s+(.+)$/gm, "<title>$1</title>"
-
-    data = {}
-    for line in frontmatter.split "\n"
-      [k,v] = line.split /\s*:\s*/
-      data[k] = v
-
-    pageHeader = headerMin
-    pageHeader += "\n" + header unless data.header
-
-    related = if data.type and data.time
-      link = typePages[data.type] or throw "Missing type"
-      "<section class='related'><a href='/#{link}'>#{data.type}</a> from <a href='/#{data.time}'>#{data.time}</a></section>"
-    else
-      ""
-
-    result = [
-      pageHeader
-      "<main #{data.main or ''}>"
-      marked.parse markdown
-      related
-      "</main>"
-    ].join "\n"
-
-    fs.writeFileSync dest, result
-
-  log "Compiled public/**/*.html " + duration start
-
-  # HTML
-  start = performance.now()
-  for p in glob.sync "source/pages/**/*.kit"
-    dest = p.replace("source/pages","public").replace(".kit",".html")
-    Compilers.kit p, dest, minify:!dev, quiet: true
-  log "Compiled public/**/*.html " + duration start
+  head = readFile "source/head.html"
+  header = readFile "source/header.html"
+  for p in glob.sync "source/pages/**/*.{md,html}"
+    compilePage head, header, p
+  log "Compiled pages            " + duration start
 
   # Global styles
   patterns = ["source/style/**/vars.scss", "source/style/**/!(vars).scss"]
@@ -123,7 +188,7 @@ task "build", "Compile everything", ()->
 
   # Static
   start = performance.now()
-  for p in glob.sync "source/**/*.!(md|kit|scss|coffee)"
+  for p in glob.sync "source/**/*.!(coffee|html|md|scss)"
     dest = p.replace("source/", "public/").replace("/pages/", "")
     mkdest dest
     success = Compilers.static p, dest, quiet: true

@@ -1,0 +1,121 @@
+type: Writing
+time: 2019
+main: class="writing"
+publish: false
+
+---
+
+
+<title>Art Programming, not Visual Programming</title>
+
+<section>
+  <p><em>This was prompted by, but is not meant to be critical of, some thoughts by Steve Krouse, a friend and fellow programming futurist. I'm going to expand a bit on <a href="https://futureofcoding.org/log.html#all-literals-are-guis">what he wrote</a>, then branch off it.</em></p>
+</section>
+
+<section>
+  <p>Take an existing text-based programming language.</p>
+
+  <p>Swap out all the literals (numbers, colors, strings) for GUIs. <a href="http://worrydream.com/Tangle/">Scrubbers for numbers</a>. Pickers for colors. A nice i18n-aware editor for strings. Any literal in your program can be configured with a GUI.</p>
+
+  <p>Then make GUIs for simple operators, like a nice GUI for math expressions, with plotting and helpful constants. Then a GUI for if-expressions and switch-expressions, a nice little <a href="https://commons.wikimedia.org/wiki/Logic_diagram">logic diagram</a> or <a href="http://sketch.systems">state machine</a>.</p>
+
+  <p>Make a GUI for defining functions, something that helps you see the cyclomatic graph and the structure of input and output. Make a GUI for organizing function calls, revealing the topology of your whole program.</p>
+
+  <p>Let these GUIs be expressions, and let them nest.</p>
+
+  <p>Keep tugging this thread, and you eventually end up with a luscious visual programming language. A collection of nested purpose-specific interfaces rather than one large interface, it will look different from typical visual programming languages. (How, exactly, all these GUIs are brought together in a cohesive way is left as an exercise of wild imagination for the reader.)</p>
+
+  <p>This collection of interfaces isn't going to significantly transform the programming experience. It'll improve the experience of configuring a program, because you can use a color picker instead of piddling and puttering your way to the right HSL value. It'll improve debugging, because you can plainly see that your switch statement has an unreachable branch. It'll change the physical feeling of programming, since you'll be moving a mouse.</p>
+
+  <p>But none of these GUIs will help you with abstraction, indirection, polymorphism, recursion, concurrency, distributed systems, etc. Why not? Because we forgot to account for those things when we made our GUIs above! We made GUIs for colors and function calls and states, but not reentrancy or process calculi. Oops.</p>
+
+  <p>So let's add GUIs for those, too — sure. But what if the programmer doesn't like our GUI for the PI calculus, and would rather a GUI for CSP?</p>
+
+  <p>What's missing is something we've seen in Racket (et al.) — rather than giving the programmer a fixed set of tools, give them tools for making tools.</p>
+
+  <p>You write Racket and Java with the same keyboard. They both have functions and data. The difference between them is in <em>what you say</em> and <em>what you accomplish</em> by saying it.</p>
+
+  <p>With our GUIs, we've changed <em>what you say</em> when programming. You don't say &quot;#FFF&quot;, you just pick a color. You don't say if-then-else, you build a little state chart.</p>
+
+  <p>But we haven't necessarily changed <em>what you accomplish</em>. To change that, you need to be able to get from Java to Racket. You can write Racket in Java. If we've just made Visual Java, can you use it to build Visual Racket?</p>
+
+  <p>To start, we need to give the programmer tools for building new GUIs.</p>
+
+  <p>How do you make a GUI? What is a GUI?</p>
+
+  <p>Whether procedurally generated, Photoshop, or paper, the image of a GUI obviously isn't enough. You also need to express what each part of the GUI does. How do you do that?</p>
+
+  <p>GUIs &quot;do&quot; at two levels, and we need to handle both.</p>
+
+  <p>(A) Less importantly, GUIs have an appearance that changes to reflect the state of the world, which means the visual programmer needs to imbue their GUIs with dynamic motion, color, visibility, etc. This can be a pure function of the state of the world, and we all know how to crack that nut. If we give the visual programmer tools for drawing, and <a href="http://worrydream.com/DrawingDynamicVisualizationsTalkAddendum/">allow those drawings to be parameterized</a>, we're off to a good start.</p>
+
+  <p>(NB. that this is the extent to which tools like Jupyter and Observable and LightTable are visual. They get off the train at this stop.)</p>
+
+  <p>(B) More importantly, GUIs have an effect on the state of the world. This is the heart of the matter. Any good toolset for making GUIs needs a robust means of describing effects. More broadly, we need really, really good tools for imbuing our GUIs with meaning.</p>
+
+  <p>The programming we have now expresses effects and imbues meaning in ways that have evolved over the past 60+ years, all the while taking as given the all but total assumption that programming is inherently linguistic.</p>
+
+  <p>For instance, you can bind a value to a name using an assignment operator like &quot;=&quot;. In a verbose language, that could look like, &quot;My name is Ivan.&quot; That's a statement.</p>
+
+  <p>What does a visual statement look like?</p>
+
+  <div class="hero">
+    <a href="https://en.wikipedia.org/wiki/Guernica_(Picasso)"><img alt="Guernica by Pablo Pacasso" src="https://d3um8l2sa8g9bu.cloudfront.net/art-programming/guernica.jpg"></a>
+  </div>
+
+  <p>That image has a meaning. The meaning is unambiguous.</p>
+
+  <p>Like the meaning of the word &quot;is&quot; or the operator &quot;=&quot;, the meaning of that image was communicated out-of-band. Once the meaning is known, you can use the image whenever you need to convey the meaning.</p>
+
+  <p>The process of making a visual programming language by re-presenting the primitives of a textual programming language will take us to a local maximum, where the only meanings we have available were the meanings that allowed for great expression via text.</p>
+
+  <p>You can make a language like AppleScript or Brainfuck or <a href="https://esolangs.org/wiki/Piet">Piet</a>, but these languages are still concerned with creating meaning via naming.</p>
+
+  <p>Experience has thus far shown us that this local maximum is perhaps lower than the local maximum reached by refining textual languages as text, further leveraging diff and hashing and Resharper and the like.</p>
+
+  <p>I contend that to reach a higher point in the visual programming design space, we need to start with a different set of primitives.</p>
+
+  <p>In short: If we're going to fuck with the &quot;text&quot; part of programming, we need to fuck with the &quot;language&quot; part of it too.</p>
+
+  <p>I propose that we dispense with the notion of a &quot;visual programming language&quot;, and start again from a notion of &quot;art programming&quot;.</p>
+
+  <p>Why &quot;Art&quot; Programming?</p>
+
+  <p>A big part of art (all art) is about meaning. Some art is intended to have a specific meaning. Some art is intended to have no meaning (but you can't stop the audience from projecting a meaning of their own). My drawing teacher said, &quot;We are meaning-making machines.&quot; We have little agency in the matter. We're quick to render a verdict: &quot;This painting of colored squares is meaningless!&quot; At best, we're often reduced to giving post-hoc rationalization for our feelings about a work.</p>
+
+  <p>The creation of a programming tool that features a visual interface, rather than a textual interface, requires us to create tools for working with meaning in a visual way. That's a different shade of meaning than we're used to.</p>
+
+  <p>It's not sufficient to say, &quot;red means error, green means success.&quot; That's all well and good until you need to make use of red as part of your data. </p>
+
+  <p>What would it mean to say &quot;art language&quot;? Would that be a style, like impressionist or cubist? Would it be a technique, like pointillism or encaustic? Would it be a medium, like gouache or oil or watercolor? Would it be a form, like painting, drawing, lithography, photography, sculpture?</p>
+
+  <p>Arguably, any of those. The point is, it's not directly analogous.</p>
+
+  <p>We should not look for the heart of &quot;art programming&quot; by analogy with &quot;linguistic programming&quot;. We should instead bootstrap art programming by any means necessary, and give it 60+ years to grow, all the while taking as given the all but total assumption that programming is artistic.</p>
+
+  <p>What MIGHT Art Programming look like?</p>
+
+  <p>You need the computer to understand some primitive notions upon which you can build. So what are some good primitive notions?</p>
+
+  <p>I learned some primitives at art school, in a design class. What's nice about design (as opposed to art) is that it attempts to be systematic. You want to be able to convey specific ideas unambiguously, without additional out-of-band communication. Through theories like <a href="https://en.wikipedia.org/wiki/Principles_of_grouping">Gestalt</a>, it tries to formalize this.</p>
+
+  <p>Here are some of those primitives:</p>
+
+  <ul>
+  <li>Proximity: Things are more related when they're closer together.</li>
+  <li>Similarity: Things are more related when they're the same shape, or the same color.</li>
+  <li>Arrangement: Things are more related when they're arranged in an obvious pattern, and unrelated when they're not.</li>
+  </ul>
+
+  <p>To get from here to a Turing machine, all we need is a notion of place, a notion of execution, and some executable operations like moving, reading, and writing.</p>
+
+  <p>We get the notion of place for free, because this is a visual language which inherently needs to be spatial. (A musical programming might substitute 2d space for <a href="//ivanish.ca/diminished-fifth/">2d time</a>). We also get the notion of movement for free. We can earn reading & writing using color, shape, proximity, similarity, arrangement, any other design primitive, or any combination thereof.</p>
+</section>
+
+<section>
+  <h3>CUTS</h3>
+
+  <p>The change we've made is akin to a change from coding in the Roman alphabet to coding in Kanji — or Emoji. Instead of typing if-then-else, you have a character palette from which you pick an inquisitive face for "if", a happy face for "then", and a sad face for "else". This is a live coding environment, so the faces change their skin color from yellow (inactive) to green (active). This makes the language more visual, and you have greater visibility into the current state of the world.</p>
+
+  <p>This is a dead end.</p>
+</section>

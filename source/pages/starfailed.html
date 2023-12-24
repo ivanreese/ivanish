@@ -1,0 +1,65 @@
+type: Procedural Art
+time: 2016
+main: id="starfailed"
+
+---
+
+
+<style>
+  header { background: none; }
+  header canvas { display: none; }
+  header be-enticed, header a, header a:visited { color: #33002A; }
+  header a:hover, header a:hover:visited { color: hsl(311, 100%, 25%); }
+
+  #starfailed .stars canvas.js-stars {
+    position: static;
+    height: 30em;
+  }
+
+  main#starfailed {
+    padding-top: 4vh;
+  }
+
+</style>
+
+<title class="center">Starfailed</title>
+
+<section class="hero">
+  <a href="/starfailed-full">
+    <div class="stars">
+      <canvas class="js-stars"></canvas>
+    </div>
+  </a>
+  <p>
+    Click this preview to see a fullscreen, infinite version.<br>You can use the arrow keys, too.
+  </p>
+</section>
+
+<section>
+  <p>
+    Some websites are just <i>unbelievably</i> quick — James Hague's wonderful <a rel="nofollow" href="http://prog21.dadgum.com">Programming In The 21st Century</a> is foremost in my mind, but there are <a rel="nofollow" href="https://www.deconstructconf.com">others</a>.
+    The common thrust is a return to the simple origins web design: inline CSS, no JS, no images. In effect, 1 HTTP request per page.
+    I challenged myself to see how close to that level of speed I could get, while still having a lush design with a touch of playfulness.
+  </p>
+  <p>
+    For the <a href="/">home page</a>, I wanted a big splashy graphic (to keep up with current fashions, naturally).
+    Of course, loading such a big graphic would miserably slow things down.
+    It occurred to me that I could procedurally generate something. The necessary JS would only be a few thousand bytes. The initial render could probably happen within a few milliseconds.
+    But what could I render that would be visually captivating?
+    The "star bar" at the top of <a rel="nofollow" href="http://socket.io">socket.io</a> has always stuck out in my mind as a super-simple, super-cool bit of web design.
+    Stars are pretty simple — a dark background, some points of light, maybe a few cloudy color regions for that <a rel="nofollow" href="http://www.homeworldremastered.com">Homeworld</a> feel.
+    Should be easy.
+  </p>
+  <p>
+    After a bit of experimentation, I managed to create a screenful of stars and nebula-esq clouds that looked almost photographic.
+    It loaded instantly, and rendered in under 40ms.
+    Success!
+  </p>
+  <p>
+    Then came optimization: Can I get that 40ms down to 20ms? Can I make it look as good on a dim monitor in daylight as on a bright monitor in the dark? And interactivity: Can I make the stars slide around while scrolling, for a striking parallax effect (a la <a rel="nofollow" href="http://firewatchgame.com">Firewatch</a>)?
+    Tweak tweak tweak tweak twe... and somewhere in the flurry, I caused a bug — or, rather, fixed a bug that had been present all along. While optimizing the initial setup, I corrected some code that was inadvertently reinitializing the buffer on each redraw.
+    Suddenly, instead of a fresh image every frame, I had stars and nebulae drawing again and again on top of the same buffer. They streaked and puffed and flooded the canvas with color.
+    And that was it, the high-impact splashy graphic I wanted for my home page.
+    It loads faster than any image, renders in a flash, and is an immediate statement of identity.
+  </p>
+</section>
