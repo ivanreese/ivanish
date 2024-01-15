@@ -26,7 +26,7 @@ header {
   }
 
   a, a:visited {
-    color: white;
-    &:hover { color: #DDD; }
+    color: inherit;
+    &:hover { opacity: .8; }
   }
 }
