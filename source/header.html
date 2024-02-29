@@ -1,7 +1,8 @@
 <header>
   <canvas style="visibility: hidden" class="js-stars"></canvas>
   <be-enticed>
-    The <witty-quip>disabled javascript</witty-quip> of <a class="home-link" href="/">Ivan Reese</a>, <span>by <a href="/type">type</a> or <a href="/time">time</a>.</span>
+    The <witty-quip><img src="/tadi.png"></witty-quip> of <a class="home-link" href="/">Ivan Reese</a>, <span>by <a
+        href="/type">type</a> or <a href="/time">time</a>.</span>
   </be-enticed>
   <script>
     let choices = [
@@ -29,8 +30,8 @@
       "sunken eyes",
       "whatever it is",
       "wrecked ship",
-    ];
-    let choice = choices[Math.random() * choices.length |0];
-    document.querySelector("witty-quip").textContent = choice;
+    ]
+    let choice = choices[Math.random() * choices.length | 0]
+    // document.querySelector("witty-quip").textContent = choice;
   </script>
 </header>

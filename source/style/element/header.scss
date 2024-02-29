@@ -20,6 +20,10 @@ header {
 
   witty-quip {
     display: inline;
+
+    & img {
+      height: 1em;
+    }
   }
 
   a {
