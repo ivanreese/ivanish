@@ -191,7 +191,7 @@ task "build", "Compile everything", ()->
 
   # Static
   start = performance.now()
-  for p in glob.sync "source/**/*.!(coffee|html|md|scss)"
+  for p in glob.sync("source/**/*.!(coffee|html|md|scss)").concat "source/404.html"
     dest = p.replace("source/", "public/").replace("/pages/", "")
     mkdest dest
     success = Compilers.static p, dest, quiet: true
