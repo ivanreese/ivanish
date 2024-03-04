@@ -3,6 +3,7 @@ do ()->
   main = document.querySelector "main"
   stars = document.querySelector "canvas"
   elm = document.querySelector "profile-pic div"
+  quip = document.querySelector "header witty-quip"
   elm.style.opacity = headerTarget = headerCurrent = 1
   headerDelta = 0
   dirty = false
@@ -17,6 +18,7 @@ do ()->
 
     if scrollTop > 700 and stars?
       stars.style.filter = "invert(1) saturate(0) brightness(0.666) contrast(2.3)"
+      quip.style.filter = "invert(1) saturate(0)"
       main.removeAttribute "js-stars-bio"
       main.setAttribute "js-stars-bw", ""
       stars = null
