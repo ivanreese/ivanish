@@ -7,7 +7,7 @@ time: 2024
 
 Here's a little tune from [Future of Coding episode 70](https://futureofcoding.org/episodes/70).
 
-One of our podcast episode inspired someone to write a blog post, which did okay on Hacker News. That of course means a hoard of jackals, gremlins, and dipshits descended upon [the comment section](https://news.ycombinator.com/item?id=38324486) spouting sewage like a poorly plumbed fountain.
+One of our podcast episodes inspired someone to write a blog post, which did okay on Hacker News. That of course means a hoard of jackals, gremlins, and dipshits descended upon [the comment section](https://news.ycombinator.com/item?id=38324486) spouting sewage like a poorly plumbed fountain.
 
 So I made a song about them. Here you can listen to two versions — an instrumental, and one with these fucking goobers included.
 
