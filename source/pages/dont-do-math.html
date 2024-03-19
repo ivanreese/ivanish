@@ -28,7 +28,18 @@ time: 2023
 </section>
 
 <section>
+
+  <style> style + h2 { margin-bottom: -2em } </style>
   <h2>Photos</h2>
-  <div class="hero"><img src="https://d3um8l2sa8g9bu.cloudfront.net/dont-do-math/glock.jpg"></div>
-  <div class="hero"><img src="https://d3um8l2sa8g9bu.cloudfront.net/dont-do-math/xylos.jpg"></div>
+
+  <style>
+    .hero.a, .hero.b {
+      box-shadow: -1em 2em 3em -1em #4209;
+    }
+    .hero.a { rotate: -2deg; position: relative; z-index: 2; }
+    .hero.b { rotate: -50deg }
+  </style>
+
+  <div class="hero a"><img src="https://d3um8l2sa8g9bu.cloudfront.net/dont-do-math/glock.jpg"></div>
+  <div class="hero b"><img src="https://d3um8l2sa8g9bu.cloudfront.net/dont-do-math/xylos.jpg"></div>
 </section>
