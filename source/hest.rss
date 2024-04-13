@@ -13,7 +13,7 @@
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
-    <lastBuildDate>17 Apr 2023 11:00:00 MST</lastBuildDate>
+    <lastBuildDate>12 Apr 2024 20:00:00 MST</lastBuildDate>
 
     <item>
       <guid isPermaLink="false">hest-episode-1</guid>
@@ -784,6 +784,23 @@ Places to contact me with feedback: https://ivanish.ca#contact
       ]]></itunes:subtitle>
       <description><![CDATA[
         As promised at the end of the previous episode, this one breaks the format a little. Granted, if this is going to be a once-a-year affair, I think it's reasonable to have <a href="https://ivanish.ca/wormhole">a bit of fun</a> with it, mmm?
+      ]]></description>
+    </item>
+
+    <item>
+      <guid isPermaLink="false">hest-episode-38</guid>
+      <pubDate>12 Apr 2024 20:00:00 MST</pubDate>
+      <title>38 • Of A History That Never Existed</title>
+      <itunes:title>Of A History That Never Existed</itunes:title>
+      <itunes:episode>38</itunes:episode>
+      <itunes:duration>00:26:48</itunes:duration>
+      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/38.mp3" length="12862269" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        This year in Hest: Amb Bi Omni d.ts & Switch
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        This year in Hest: Amb Bi Omni d.ts & Switch
       ]]></description>
     </item>
 
