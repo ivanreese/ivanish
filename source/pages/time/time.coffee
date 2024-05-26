@@ -14,15 +14,14 @@ do ()->
       tries = 0
 
       resize = ()->
-        if window.innerWidth isnt w
-          tracers = []
-          w = canvas.width = window.innerWidth
-          h = canvas.height = Math.max window.innerHeight, inner.clientHeight
-          frac = h / img.height
-          iw = img.width * frac
-          ih = img.height * frac
-          left = Math.max -iw * .4, w - iw
-          context.drawImage img, left, h - ih, iw, ih
+        tracers = []
+        w = canvas.width = window.innerWidth
+        h = canvas.height = window.innerHeight
+        frac = h / img.height
+        iw = img.width * frac
+        ih = img.height * frac
+        left = Math.max -iw * .4, w - iw
+        context.drawImage img, left, h - ih, iw, ih
 
       newTracer = ()->
         tw = 1 + Math.pow(Math.random()-.5, 2) * 40 |0

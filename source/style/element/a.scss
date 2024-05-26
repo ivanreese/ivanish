@@ -8,5 +8,5 @@ a, a * {
 }
 
 a:hover {
-  color: hsl(311, 100%, 25%);
+  color: var(--link-hover);
 }

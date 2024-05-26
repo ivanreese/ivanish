@@ -8,6 +8,12 @@ $black: #33002A; // approx: hsl(311, 100%, 10%);
   box-sizing: border-box;
 }
 
+:root {
+  --maxLineLength: $maxLineLength;
+  --link-hover: hsl(311, 100%, 25%);
+  --black: hsl(311, 100%, 10%);
+}
+
 @keyframes fade-in {
   from { opacity: 0 }
   to   { opacity: 1 }
