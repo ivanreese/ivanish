@@ -3,8 +3,6 @@ time: 2023
 
 ---
 
-<script defer src="/script/frame-src.js"></script>
-
 <style>
   .full-width iframe {
     margin: 0 5vw;

@@ -1,5 +1,5 @@
 do ()->
-  iframes = document.querySelectorAll "iframe"
+  iframes = document.querySelectorAll "iframe[frame-src]"
 
   deactivate = (elm)->
     return if elm._activated is false
