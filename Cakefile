@@ -132,8 +132,8 @@ makeRelated = (data)->
 
   if data.time
     time = data.time
-      .replaceAll /(\d{4})/g, '<a href="/$1">$1</a>'
-      .replaceAll "Immemorial", '<a href="/time-immemorial">Time Immemorial</a>'
+      .replaceAll /(\d{4})/g, '<a href="/time#$1">$1</a>'
+      .replaceAll "Immemorial", '<a href="/time#time-immemorial">Time Immemorial</a>'
 
   if type or time
     inner = if type and time then "#{type} from #{time}" else type or time
