@@ -26,6 +26,7 @@ typePages =
   Song: "music"
   Thoughts: "thoughts"
   Video: "art"
+  Visualization: "code"
   Writing: "thoughts"
 
 ### Supported Frontmatter

@@ -14,6 +14,7 @@ do ()->
       tries = 0
 
       resize = ()->
+        return if window.innerWidth is w
         tracers = []
         w = canvas.width = window.innerWidth
         h = canvas.height = window.innerHeight
