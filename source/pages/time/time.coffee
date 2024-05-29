@@ -40,7 +40,7 @@ do ()->
         intensity /= (tw*th)
 
         if intensity > Math.max(10, h * .6 - count)
-          dist: Math.pow(2, Math.pow(Math.random(), 4) * 7) |0
+          dist: Math.pow(2, Math.pow(Math.random(), 4) * 7) |0 # maximum height the tracer will rise to
           imageData: imageData
           intensity: intensity
           offset: 0
@@ -57,7 +57,7 @@ do ()->
             byte = 0
 
             while byte < tracer.imageData.data.length
-              tracer.imageData.data[byte] *= 1.003
+              tracer.imageData.data[byte] *= 1.003 # gets lighter as it rises
               byte++
               null
 
@@ -69,8 +69,8 @@ do ()->
 
       requestAnimationFrame update = (time)->
         tries = 0
-        count += 0.3
-        while tracers.length < h/30 and tries < 100
+        count += .1 # gradually expand the range of lightnesses that emit tracers
+        while tracers.length < h/30 and tries < 50
           t = newTracer()
           if t?
             tracers.push t
