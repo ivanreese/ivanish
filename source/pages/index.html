@@ -131,6 +131,13 @@ main: id="index" js-stars-bio
     .related {
       margin-top: 20vh;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+      gap: 2rem;
+      p { margin: 0; }
+    }
   </style>
 
   <title class="hide">Ivan Reese</title>
@@ -139,7 +146,7 @@ main: id="index" js-stars-bio
 
   <section id="about">
     <h1>About</h1>
-    <div class="columns">
+    <div class="grid">
       <md>
         I'm a computer programmer and multimedia artist.
         This website is an archive of playful things I've made, here for you to enjoy.
@@ -147,7 +154,6 @@ main: id="index" js-stars-bio
       <md>
         Where to start? Read on learn more about me,
         or dive in to the projects [by type](/type) or [by time](/time).
-        Maybe start at [2013](/2013) — it was a good year.
       </md>
     </div>
   </section>
@@ -184,11 +190,21 @@ main: id="index" js-stars-bio
         But art school didn't mesh with me, and I realized my joy came as much from technology as artistry.
       </md>
       <md>
-        So I flipped my plan inside-out, fashioning a career as an ***art computerist***, if you will.
-        I lucked into a community of computer researchers that embraced my outsider takes, and I couldn't be happier.
+        So I flipped myself inside-out, fashioning a career as an ***art computerist***, if you will.
+        I eventually fumbled my way into a community of oddball computer researchers, and I couldn't be happier.
       </md>
     </div>
   </section>
+
+  <style>
+    #contact {
+      a {
+        font-weight: bold;
+        padding-right: .3rem;
+      }
+      p { margin: .6rem 0 0 }
+    }
+  </style>
 
   <section id="contact">
     <h1>Contact</h1>
@@ -200,18 +216,14 @@ main: id="index" js-stars-bio
 
     <div class="label">Put Me In Your Internet</div>
 
-    <md>
-      [Bandcamp](https://spiralganglion.bandcamp.com)
-      [Future of Coding](https://futureofcoding.org)
-      [Github](https://github.com/ivanreese)
-      [LinkedIn](https://linkedin.com/in/ivanreese)
-      <a rel="nofollow me" href="https://mastodon.social/@spiralganglion">Mastodon</a>
-      [SoundCloud](https://soundcloud.com/spiralganglion)
-      [Steam](http://steamcommunity.com/id/spiralganglion/)
-      [Tumblr](https://ivanish.tumblr.com)
-      [Twitch](https://twitch.tv/spiralganglion)
-      [Twitter](https://twitter.com/spiralganglion)
-    </md>
+    <div class="links">
+      <md>[Future of Coding](https://futureofcoding.org) A community of computer researchers I co-organize.</md>
+      <p><a rel="nofollow me" href="https://mastodon.social/@spiralganglion">Mastodon</a> My social network of choice. I'm off-topic and playful.</p>
+      <md>[Bandcamp](https://spiralganglion.bandcamp.com) Some of my better albums, all of them free.</md>
+      <md>[Twitch](https://twitch.tv/spiralganglion) Occasional songwriting and coding streams.</md>
+      <md>[LinkedIn](https://linkedin.com/in/ivanreese) Pleased to make your acquaintance.</md>
+      <md>[Github](https://github.com/ivanreese) My open source silliness.</md>
+    </div>
 
   </section>
 
