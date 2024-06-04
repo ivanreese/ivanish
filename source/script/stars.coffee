@@ -1,27 +1,22 @@
 do ()->
 
-  ## BEGIN RAND TABLE
-  # We use a rand table, rather than Math.random(), so that we can have determinstic randomness.
+  # We use a rand table, rather than Math.random(), so that we can have deterministic randomness.
   # This is not a performance optimization — Math.random() is already VERY fast.
   # It just gives us repeatability from one frame to the next.
 
-  # Set determinstic to true for debugging, false for deployment
-  determinstic = false
-  seed = if determinstic then 2147483647 else Math.random() * 2147483647 |0
-
-  # Needs to be larger than the number of times we use it in one place, or else we'll get duplication.
-  # At this size, it takes about ~2ms to populate the table on my machine
+  # The table needs to be larger than the number of times we use it in one place, or else we'll get duplication.
+  # At this size, it takes about ~1ms to populate the table on my machine
   randTableSize = 4096
+
+  seed = 2 ** 31 - 1
+  seed = seed * Math.random() |0 # Comment-out this line for repeatable debugging
+  seed = 771 if seed % randTableSize is 1 # If the seed mod randTableSize is 1, we get awful results
 
   randTable = [0...randTableSize]
   j = 0
   for i in [0...randTableSize]
     j = (j + seed + randTable[i]) % randTableSize
-    tmp = randTable[i]
-    randTable[i] = randTable[j]
-    randTable[j] = tmp
-
-  ## END RAND TABLE
+    [randTable[i], randTable[j]] = [randTable[j], randTable[i]]
 
   # Check the DOM to see which mode we'll be running in
   isInfinite = document.getElementById "starfailed-full"
@@ -108,7 +103,7 @@ do ()->
           p = dpi * (document.body.scrollTop + document.body.parentNode.scrollTop - canvas.offsetTop)
           delta = p - scrollPos
           scrollPos = p
-          vel += delta / if isInfinite then 24 else 5
+          vel += delta / if isInfinite then 24 else if bio then 20 else 5
           requestRender()
 
         requestWheelRender = (e)->
@@ -172,6 +167,8 @@ do ()->
         renderStars = (drawCall)->
           return unless scrollPos < Math.max(height, 1000) and !document.hidden
 
+          return if not isInfinite and reduceMotion and not first
+
           time = performance.now()
           dt = Math.min 1/60, (time - lastTime)/1000
           lastTime = time
@@ -190,7 +187,9 @@ do ()->
             vel /= 1 + (if isInfinite then .02 else .05) * timeScale
           else
             vel /= 1 + (absVel/5) * timeScale
-          vel = clip vel, -maxVel, maxVel
+
+          vel = clip vel, -maxVel, maxVel unless bio
+
           scaledVel = vel * dpi * dScale
           pos -= scaledVel * timeScale
           absPos -= Math.abs scaledVel * timeScale

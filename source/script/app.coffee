@@ -14,3 +14,5 @@
   input *= outputMax - outputMin
   input += outputMin
   return input
+
+reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
