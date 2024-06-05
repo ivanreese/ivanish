@@ -171,7 +171,7 @@ task "build", "Compile everything", ()->
 
   # Global scripts
   paths = glob.sync "source/script/**/*.coffee"
-  success = Compilers.coffee paths, "public/scripts.js", minify:!dev
+  success = Compilers.coffee paths, "public/scripts.js", minify:false#!dev
   return unless success
 
   # Page styles
@@ -186,7 +186,7 @@ task "build", "Compile everything", ()->
   start = performance.now()
   for p in glob.sync "source/pages/**/*.coffee"
     dest = p.replace("source/pages","public").replace(".coffee",".js")
-    success = Compilers.coffee p, dest, minify:!dev, quiet: true
+    success = Compilers.coffee p, dest, quiet: true, minify: false#!dev
     return unless success
   log "Compiled public/**/*.js   " + duration start
 
