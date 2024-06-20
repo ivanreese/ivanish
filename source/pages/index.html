@@ -2,231 +2,224 @@ main: id="index" js-stars-bio
 
 ---
 
-  <script defer src="index.js"></script>
+<script defer src="index.js"></script>
 
-  <style>
+<style>
 
-    :root {
-      --border-width: 2vmin;
-    }
+  :root {
+    --border-width: 2vmin;
+  }
 
-    header {
-      height: calc(100vh - var(--border-width));
-    }
+  header {
+    height: calc(100vh - var(--border-width));
+  }
 
+  header be-enticed {
+    margin-top: calc(40vh - 1em);
+    padding: 0;
+    line-height: 1.9;
+    font-size: 1.4em;
+  }
+
+  header be-enticed a.home-link { text-decoration: none; color: white; }
+  header be-enticed a.home-link:hover, a.home-link:visited:hover { color: white; opacity: 1; }
+
+  @media(min-width: 600px) {
     header be-enticed {
-      margin-top: calc(40vh - 1em);
-      padding: 0;
-      line-height: 1.9;
-      font-size: 1.4em;
+      font-size: 1.6em;
     }
+  }
 
-    header be-enticed a.home-link { text-decoration: none; color: white; }
-    header be-enticed a.home-link:hover, a.home-link:visited:hover { color: white; opacity: 1; }
+  main {
+    padding: 0 3vw 16vh;
+  }
 
-    @media(min-width: 600px) {
-      header be-enticed {
-        font-size: 1.6em;
-      }
-    }
-
+  @media(min-width:58em) {
     main {
-      padding: 0 3vw 16vh;
+      padding: 0 0 16vh;
     }
+  }
 
-    @media(min-width:58em) {
-      main {
-        padding: 0 0 16vh;
-      }
-    }
+  /* This outer element makes a white circle behind the image, so that as the image fades out we don't see stars */
+  profile-pic {
+    display: block;
+    position: absolute;
 
-    /* This outer element makes a white circle behind the image, so that as the image fades out we don't see stars */
-    profile-pic {
-      position: absolute;
-
-      bottom: -35vh;
-      left: calc(50vw - 35vh);
-      width: 70vh;
-      height: 70vh;
-      z-index: 11;
-
-      border: var(--border-width) solid white;
-      background: white;
-      border-radius: 100%;
-    }
-
-    @media(max-aspect-ratio: 1/1) {
-      profile-pic {
-        /* For the following calcs, the first number makes the pic transition seamlessly across the breakpoint. */
-        /* The second and third number form a pair that makes the pic grow and move upward as the screen narrows. */
-        bottom: calc(-35vw +  7vh -  7vw);
-        left:   calc( 15vw - 10vh + 10vw);
-        width:  calc( 70vw + 20vh - 20vw);
-        height: calc( 70vw + 20vh - 20vw);
-      }
-    }
+    --size: min(80vw, 50vh);
+    bottom: calc(-0.5 * var(--size));
+    left: calc(50vw - 0.5 * var(--size));
+    width: var(--size);
+    z-index: 11; /* header is 10 */
+    border: var(--border-width) solid white;
+    background: white;
+    border-radius: 100%;
 
     /* This inner element is the actual profile pic image, which fades in and out. */
-    profile-pic div {
+    img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 1; /* Avoid pop-in while waiting for the image to load */
       border-radius: 100%;
       background-color: hsl(7, 7%, 73%);
-      background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1800.webp");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: top center;
     }
+  }
 
-    /* Show an alternate image sometimes */
-    #index[js-stars-bw] profile-pic div {
-      background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1800.webp");
+  .spook { display: none }
+  #index[js-stars-bw] .color { display: none; }
+  #index[js-stars-bw] .spook { display: block; }
+
+  #index h1 {
+    margin: 50vh 0 4vh;
+    font-size: 3em;
+    line-height: 1.3em;
+  }
+
+  #index #about h1 {
+    margin-top: 70vh;
+  }
+
+  #index #bio h1 {
+    margin-left: -4px;
+  }
+
+  #index #contact h1 {
+    margin-left: -3px;
+  }
+
+  .columns {
+    columns: 20em;
+    column-gap: 2em;
+    margin-bottom: 1vh;
+  }
+
+  .label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .75em;
+  }
+
+  p + .label {
+    margin-top: 2vh;
+  }
+
+  .related {
+    margin-top: 20vh;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 2rem;
+    p { margin: 0; }
+  }
+</style>
+
+<title class="hide">Ivan Reese</title>
+
+<profile-pic>
+  <picture class="color">
+    <source
+      srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1800.webp"
+      media="(min-width: 600px) and (min-height: 600px)">
+    <img
+      alt="Photo of Ivan with wild hair"
+      src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1200.webp">
+  </picture>
+
+  <picture class="spook">
+    <source
+      srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1800.webp"
+      media="(min-width: 600px) and (min-height: 600px)">
+    <img
+      loading="lazy"
+      alt="Spooky black and white photo of Ivan with wild hair"
+      src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1200.webp">
+  </picture>
+</profile-pic>
+
+<section id="about">
+  <h1>About</h1>
+  <div class="grid">
+    <md>
+      I research visual programming and develop multimedia.
+      This website is a growing catalog of things I've made.
+    </md>
+    <md>
+      Where to start? Scroll down to learn a little more about me,
+      or dive straight into my projects by [type](/type) or [time](/time).
+    </md>
+  </div>
+</section>
+
+
+<section id="bio">
+  <h1>Bio</h1>
+
+  <div class="columns">
+    <div class="label">Pronouns</div>
+    <p>He / him.</p>
+
+    <div class="label">Age</div>
+    <p>1986. I remember the pre-internet.</p>
+
+    <div class="label">Location</div>
+    <p>A remote forest in Alberta, Canada.</p>
+
+    <div class="label">Education</div>
+    <p>Art school dropout. Comp-sci dropout.</p>
+
+    <div class="label">Employment</div>
+    <p><a href="https://www.inkandswitch.com" rel="nofollow">Switched-on ink.</a></p>
+
+    <div class="label">Relationship</div>
+    <p><a href="https://www.instagram.com/fehuleather">Weirdness abounds.</a></p>
+  </div>
+
+  <div class="label">History</div>
+  <div class="columns">
+    <md>
+      In my teens I taught myself 3D animation, angling for a career as a ***computer artist***.
+      But art school didn't mesh with me, and I realized my joy came as much from technology as artistry.
+    </md>
+    <md>
+      So I flipped myself inside-out, fashioning a career as an ***art computerist***, if you will.
+      I eventually fumbled my way into a community of outsider computer researchers, and I couldn't be happier.
+    </md>
+  </div>
+</section>
+
+<style>
+  #contact {
+    a {
+      font-weight: bold;
+      padding-right: .3rem;
     }
+    p { margin: .6rem 0 0 }
+  }
+</style>
 
-    /* When the viewport width is less than 600, or the height is less than 900, switch to the smaller sizes  */
-    @media (max-width: 600px), (max-height: 900px) {
-      profile-pic div {
-        background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1200.webp");
-      }
-      #index[js-stars-bw] profile-pic div {
-        background-image: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1200.webp");
-      }
-    }
+<section id="contact">
+  <h1>Contact</h1>
 
-    #index h1 {
-      margin: 50vh 0 4vh;
-      font-size: 3em;
-      line-height: 1.3em;
-    }
+  <div class="label">Say Hello</div>
+  <p>
+    My first and last name with no spaces or punctuation, at Google's email service.
+  </p>
 
-    #index #about h1 {
-      margin-top: 70vh;
-    }
+  <div class="label">Put Me In Your Internet</div>
 
-    #index #bio h1 {
-      margin-left: -4px;
-    }
+  <div class="links">
+    <md>[Future of Coding](https://futureofcoding.org) A community of computer researchers I co-organize.</md>
+    <p><a rel="nofollow me" href="https://mastodon.social/@spiralganglion">Mastodon</a> My social network of choice. I'm off-topic and playful.</p>
+    <md>[Bandcamp](https://spiralganglion.bandcamp.com) Some of my better albums, all of them free.</md>
+    <md>[Twitch](https://twitch.tv/spiralganglion) Occasional songwriting and coding streams.</md>
+    <md>[LinkedIn](https://linkedin.com/in/ivanreese) Pleased to make your acquaintance.</md>
+    <md>[Github](https://github.com/ivanreese) My open source silliness.</md>
+  </div>
 
-    #index #contact h1 {
-      margin-left: -3px;
-    }
+</section>
 
-    .columns {
-      columns: 20em;
-      column-gap: 2em;
-      margin-bottom: 1vh;
-    }
-
-    .label {
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: .75em;
-    }
-
-    p + .label {
-      margin-top: 2vh;
-    }
-
-    .related {
-      margin-top: 20vh;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-      gap: 2rem;
-      p { margin: 0; }
-    }
-  </style>
-
-  <title class="hide">Ivan Reese</title>
-
-  <profile-pic><div></div></profile-pic>
-
-  <section id="about">
-    <h1>About</h1>
-    <div class="grid">
-      <md>
-        I research visual programming and develop multimedia.
-        This website is a growing catalog of things I've made.
-      </md>
-      <md>
-        Where to start? Scroll down to learn a little more about me,
-        or dive straight into my projects by [type](/type) or [time](/time).
-      </md>
-    </div>
-  </section>
-
-
-  <section id="bio">
-    <h1>Bio</h1>
-
-    <div class="columns">
-      <div class="label">Pronouns</div>
-      <p>He / him.</p>
-
-      <div class="label">Age</div>
-      <p>1986. I remember the pre-internet.</p>
-
-      <div class="label">Location</div>
-      <p>A remote forest in Alberta, Canada.</p>
-
-      <div class="label">Education</div>
-      <p>Art school dropout. Comp-sci dropout.</p>
-
-      <div class="label">Employment</div>
-      <p><a href="https://www.inkandswitch.com" rel="nofollow">Switched-on ink.</a></p>
-
-      <div class="label">Relationship</div>
-      <p><a href="https://www.instagram.com/fehuleather">Weirdness abounds.</a></p>
-    </div>
-
-    <div class="label">History</div>
-    <div class="columns">
-      <md>
-        In my teens I taught myself 3D animation, angling for a career as a ***computer artist***.
-        But art school didn't mesh with me, and I realized my joy came as much from technology as artistry.
-      </md>
-      <md>
-        So I flipped myself inside-out, fashioning a career as an ***art computerist***, if you will.
-        I eventually fumbled my way into a community of outsider computer researchers, and I couldn't be happier.
-      </md>
-    </div>
-  </section>
-
-  <style>
-    #contact {
-      a {
-        font-weight: bold;
-        padding-right: .3rem;
-      }
-      p { margin: .6rem 0 0 }
-    }
-  </style>
-
-  <section id="contact">
-    <h1>Contact</h1>
-
-    <div class="label">Say Hello</div>
-    <p>
-      My first and last name with no spaces or punctuation, at Google's email service.
-    </p>
-
-    <div class="label">Put Me In Your Internet</div>
-
-    <div class="links">
-      <md>[Future of Coding](https://futureofcoding.org) A community of computer researchers I co-organize.</md>
-      <p><a rel="nofollow me" href="https://mastodon.social/@spiralganglion">Mastodon</a> My social network of choice. I'm off-topic and playful.</p>
-      <md>[Bandcamp](https://spiralganglion.bandcamp.com) Some of my better albums, all of them free.</md>
-      <md>[Twitch](https://twitch.tv/spiralganglion) Occasional songwriting and coding streams.</md>
-      <md>[LinkedIn](https://linkedin.com/in/ivanreese) Pleased to make your acquaintance.</md>
-      <md>[Github](https://github.com/ivanreese) My open source silliness.</md>
-    </div>
-
-  </section>
-
-  <section class="related">
-    Where to go next? Check out my work —
-    <a href="/type">by type</a> or <a href="/time">by time</a>.
-  </section>
+<section class="related">
+  Where to go next? Check out my work —
+  <a href="/type">by type</a> or <a href="/time">by time</a>.
+</section>

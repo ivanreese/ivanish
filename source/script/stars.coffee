@@ -1,6 +1,5 @@
 do ()->
-
-  useP3 = false
+  useP3 = true
 
   # We use a rand table, rather than Math.random(), so that we can have deterministic randomness.
   # This is not a performance optimization — Math.random() is already VERY fast.
@@ -51,7 +50,7 @@ do ()->
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display isnt "none"
       do (canvas)->
-        context = canvas.getContext "2d", alpha: false, colorSpace: "display-p3"
+        context = canvas.getContext "2d", colorSpace: (if useP3 then "display-p3" else "srgb")
         dpi = Math.max 1, Math.round window.devicePixelRatio
         width = 0
         height = 0
@@ -169,7 +168,6 @@ do ()->
 
         renderStars = (drawCall)->
           return unless scrollPos < Math.max(height, 1000) and !document.hidden
-
           return if not isInfinite and reduceMotion and not first
 
           time = performance.now()
