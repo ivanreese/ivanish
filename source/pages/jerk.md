@@ -11,7 +11,10 @@ time: 2024
   <img src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk.jpg" alt="Cover art for the song — a photo of corn stocks, faded and yellow in the fall, with some hands mysteriously poking out from the back.">
 </div>
 
-<section>
+> If you'd like, you can listen to an audio version of this page. It includes all the contextually relevant bits of music, and a few ad libs not included in the text. But it doesn't include the links and images, naturally.
+> <p class="audio"><audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-post.mp3" controls preload="metadata"></audio></p>
+
+<br><br>
 
 In 2010 I quit my job to make indie games.
 
@@ -376,5 +379,3 @@ Am I a good enough musician to pull that off? Probably not. I didn't quite get t
 I'll probably come back to this idea again. I don't want to make music that only speeds up forever, or slows down forever. I want to find a way to make the tempo change, and the change of tempo change, and the change of the change of tempo change. (That's why the song is called "Jerk" — _I'm a jerk because I didn't do [the thing](https://en.wikipedia.org/wiki/Jerk_(physics))_.)
 
 And unlike the tower game, (and the other ideas we had, some of which have [appeared](https://en.wikipedia.org/wiki/Everything_(video_game)) elsewhere), I haven't seen anyone do a shrinking game. So I'll probably come back to that too.
-
-</section>
