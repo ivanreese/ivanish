@@ -1,10 +1,12 @@
 .audio {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
   vertical-align: middle;
   border: 8px solid #393939;
-  border-radius: 400px;
+  border-radius: 2.2em;
+  rotate: -.3deg;
   background: #393939;
   color: white;
 

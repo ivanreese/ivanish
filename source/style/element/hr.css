@@ -1,0 +1,6 @@
+hr {
+  margin: 3em 0;
+  rotate: .2deg;
+  border: none;
+  border-bottom: 3px solid var(--black);
+}

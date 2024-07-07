@@ -1,7 +1,3 @@
-$maxLineLength: 56em;
-
-$black: #33002A; // approx: hsl(311, 100%, 10%);
-
 *,
 *:before,
 *:after {
@@ -9,7 +5,7 @@ $black: #33002A; // approx: hsl(311, 100%, 10%);
 }
 
 :root {
-  --maxLineLength: $maxLineLength;
+  --maxLineLength: 56em;
   --link-hover: hsl(311, 100%, 25%);
   --black: hsl(311, 100%, 10%);
 }

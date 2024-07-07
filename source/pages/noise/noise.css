@@ -1,5 +1,5 @@
 section {
-  visibility: hidden; // Cloak while we load
+  visibility: hidden; /* Cloak while we load */
 }
 
 .anchor {
@@ -12,14 +12,14 @@ section {
   padding-top: 2em;
   padding-bottom: 1em;
   text-decoration: none;
-  
+
   &, &:hover, &:visited:hover { color: inherit; }
   &:focus { outline: 0; }
-  
+
   &:hover::before {
     position: absolute;
     left: -1.3em;
-    content: "⚓︎"; // Anchor
+    content: "⚓︎";
     font-size: .8em;
     line-height: 1.8;
   }
@@ -28,14 +28,14 @@ section {
 js-repl {
   display: block;
   margin: 1em 0 6em;
-  
+
   .CodeMirror {
     max-width: 100%;
     padding: .5em;
     border: .4em solid #33002A;
     border-bottom: 0;
   }
-  
+
   .results {
     color: white;
     margin: 0;
@@ -43,7 +43,7 @@ js-repl {
     overflow: auto;
     background: #33002A;
   }
-  
+
   canvas {
     width: 100%;
     height: 128px;
@@ -51,7 +51,7 @@ js-repl {
     border-top: 0;
     background: #33002A;
   }
-  
+
 }
 
 js-repl + .after {

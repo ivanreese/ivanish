@@ -28,14 +28,11 @@ header {
     }
   }
 
-  a {
-  }
-
   a,
   a:visited {
     color: inherit;
     &:hover {
-      color: inherit; // Need this for specificity in Chrome on the index page, ugh
+      color: inherit; /* Need this for specificity in Chrome on the index page, ugh */
       opacity: 0.8;
     }
   }

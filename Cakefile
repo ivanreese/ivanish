@@ -1,12 +1,5 @@
-fs = require "fs"
-glob = require "glob"
 markdownit = require("markdown-it") html: true, typographer: true
 require "sweetbread"
-
-browserslist = "last 2 Chrome versions, last 2 ff versions, last 2 Safari versions, last 2 iOS versions"
-
-readFile = (filePath)-> fs.readFileSync(filePath).toString()
-mkdest = (p)-> mkdir p.split("/")[...-1].join("/")
 
 typePages =
   "2D": "art"
@@ -44,37 +37,30 @@ publish: false                 # todo!
 
 # TODO: Specifying the thumbnail and short description (used on year pages) in the frontmatter would be nice for og preview head meta
 
-compilePage = (head, header, p)->
+compilePage = (head, header, path)->
 
-  # Compute the destination path from the page path
-  dest = p
-    .replace "source/pages", "public"
-    .replace ".html", "/index.html"
-    .replace ".md", "/index.html"
-    .replace "/index/", "/" # If the file was named index.ext it'd be /index/index.html which we don't want
-
-  # Make any parent folders for this destination
-  mkdest dest
-
-  # Separate the frontmatter from the page body
-  parts = readFile(p).split "---"
+  # Load the page source, then separate the frontmatter from the body
+  parts = read(path).split "---"
   frontmatter = parts[0]
   body = parts[1...].join "---"
-  [body, frontmatter] = [frontmatter, ""] unless body
+  # [body, frontmatter] = [frontmatter, ""] unless body
+  throw "Expect all pages to have frontmatter" unless body
 
   # Extract k-v pairs from the frontmatter
   data = {}
   for line in frontmatter.split "\n"
-    [k,v] = line.split /\s*:\s*/
+    [k, v] = line.split /\s*:\s*/
     data[k] = v if k
+
+  # Now we'll begin building the HTML
 
   # Based on data.header, figure out what head[er] to prepend to the final page HTML
   pageHeader = head
-  pageHeader += "\n" + header unless data.header
+  pageHeader += "\n" + header unless data.header # If we asked for "min", we skip adding the header
 
   # Page bodies will be wrapped in a <main>, unless they already contain a <main>
   # Also inject any attrs specified in data.main
-  hasMain = body.indexOf("<main") > -1
+  hasMain = body.includes "<main"
   openMain = if hasMain then "" else if data.main then "<main #{data.main}>" else "<main>"
   closeMain = if hasMain then "" else "</main>"
 
@@ -82,7 +68,7 @@ compilePage = (head, header, p)->
   body = body.replaceAll /^!\s+(.+)$/gm, "<title>$1</title>"
 
   # Process markdown pages
-  body = markdownit.render body if p.endsWith "md"
+  body = markdownit.render body if path.endsWith "md"
 
   # Process markdown in <md> tags
   body = body.replaceAll /( *)<md>(.+?)<\/md>/gs, (match, spaces, md)->
@@ -95,18 +81,18 @@ compilePage = (head, header, p)->
       "#{spaces}</p>"
     ].flat().join "\n"
 
-  # Warn if we encounter a pre, because that probably means markdown goofed
-    console.log "warning: <pre> in #{dest}" if body.indexOf("<pre") > -1
+  # Warn if we encountered a pre, because that probably means markdown goofed
+  console.log "warning: <pre> from #{path}" if body.includes "<pre"
 
   # Add rel="nofollow" to external links that don't already have a rel
   body = body.replaceAll /<a .*?>/g, (match)->
-    if match.indexOf("href=\"/") isnt -1 # Internal link?
+    if /href=.\//.test match # Internal link?
       match
-    else if match.indexOf("href=\"#") isnt -1 # On-page link?
+    else if /href=.#/.test match # On-page link?
       match
-    else if match.indexOf("rel=") isnt -1 # Has a rel?
+    else if match.includes "rel=" # Has a rel?
       match
-    else if match.indexOf("href") is -1 # Not a link, just an anchor?
+    else unless match.includes "href" # Not a link, just an anchor?
       match
     else # External link, no rel
       match.replace "<a ", "<a rel=\"nofollow\" "
@@ -115,13 +101,7 @@ compilePage = (head, header, p)->
   related = makeRelated data
 
   # Combine all the parts of our page into the final HTML output
-  fs.writeFileSync dest, [
-    pageHeader
-    openMain
-    body
-    related
-    closeMain
-  ].join "\n"
+  [pageHeader, openMain, body, related, closeMain].join "\n"
 
 
 makeRelated = (data)->
@@ -143,73 +123,45 @@ makeRelated = (data)->
 
 
 task "build", "Compile everything", ()->
-  outerStart = performance.now()
+  compile "everything", ()->
 
-  dev = not process.env.NETLIFY
+    rm "public"
 
-  # Folders
-  start = performance.now()
-  rm "public"
-  mkdir "public"
-  for p in glob.sync "source/pages/*/"
-    mkdir p.replace "source/pages", "public"
-  log "Made new public folders   " + duration start
+    head = read "source/head.html"
+    header = read "source/header.html"
 
-  # Pages
-  start = performance.now()
-  head = readFile "source/head.html"
-  header = readFile "source/header.html"
-  for p in glob.sync "source/pages/**/*.{md,html}"
-    compilePage head, header, p
-  log "Compiled pages            " + duration start
+    compile "pages", "source/pages/**/*.{md,html}", (path)->
+      dest = replace path,
+        "source/pages": "public"
+        ".html": "/index.html"
+        ".md": "/index.html"
+        "/index/": "/" # If the file was named index.ext it'd be /index/index.html which we don't want
+      write dest, compilePage head, header, path
 
-  # Global styles
-  patterns = ["source/style/**/vars.scss", "source/style/**/!(vars).scss"]
-  paths = (glob.sync p for p in patterns).flat()
-  success = Compilers.scss paths, "public/styles.css", { minify: !dev, browserslist }
-  return unless success
+    compile "global styles", ()->
+      write "public/styles.css", concat readAll "source/style/**/vars.css", "source/style/**/!(vars).css"
 
-  # Global scripts
-  paths = glob.sync "source/script/**/*.coffee"
-  success = Compilers.coffee paths, "public/scripts.js", minify:false#!dev
-  return unless success
+    compile "global scripts", ()->
+      write "public/scripts.js", coffee concat readAll "source/script/**/*.coffee"
 
-  # Page styles
-  start = performance.now()
-  for p in glob.sync "source/pages/**/*.scss"
-    dest = p.replace("source/pages","public").replace(".scss",".css")
-    success = Compilers.scss p, dest, minify: !dev, quiet: true, browserslist
-    return unless success
-  log "Compiled public/**/*.css  " + duration start
+    compile "page styles", "source/pages/**/*.css", (path)->
+      copy path, replace path, "source/pages":"public"
 
-  # Page scripts
-  start = performance.now()
-  for p in glob.sync "source/pages/**/*.coffee"
-    dest = p.replace("source/pages","public").replace(".coffee",".js")
-    success = Compilers.coffee p, dest, quiet: true, minify: false#!dev
-    return unless success
-  log "Compiled public/**/*.js   " + duration start
+    compile "page scripts", "source/pages/**/*.coffee", (path)->
+      dest = replace path, "source/pages":"public", "coffee":"js"
+      write dest, coffee read path
 
-  # Static
-  start = performance.now()
-  for p in glob.sync("source/**/*.!(coffee|html|md|scss)").concat "source/404.html"
-    dest = p.replace("source/", "public/").replace("/pages/", "")
-    mkdest dest
-    success = Compilers.static p, dest, quiet: true
-    return unless success
-  log "Copied static assets      " + duration start
+    compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
+      copy path, replace path, "source/":"public/", "/pages/":""
 
-  # Redirects
-  if process.env.NETLIFY
-    redirects = [
-      "/codex   " + process.env.CODEX_URL
-      "/meet    " + process.env.MEET_URL
-      "/showdoc " + process.env.SHOWDOC_URL
-      "/zoom    " + process.env.ZOOM_URL
-    ]
-    fs.writeFileSync "public/_redirects", redirects.join "\n"
-
-  log "Done building             " + duration outerStart, white
+    # Redirects
+    if process.env.NETLIFY
+      write "public/_redirects", [
+        "/codex   " + process.env.CODEX_URL
+        "/meet    " + process.env.MEET_URL
+        "/showdoc " + process.env.SHOWDOC_URL
+        "/zoom    " + process.env.ZOOM_URL
+      ].join "\n"
 
 
 task "watch", "Recompile on changes.", ()->
@@ -219,6 +171,6 @@ task "serve", "Spin up a live reloading server.", ()->
   serve "public"
 
 task "start", "Build, watch, and serve.", ()->
-  doInvoke "build"
-  doInvoke "watch"
-  doInvoke "serve"
+  invoke "build"
+  invoke "watch"
+  invoke "serve"

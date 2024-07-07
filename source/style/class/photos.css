@@ -1,24 +1,24 @@
 .photos {
   title { margin-bottom: 8vh; }
-  
+
   .slug {
     text-align: center;
-    
+
     & > * {
       display: inline-block;
       text-align: left;
     }
   }
-  
+
   .hero {
     margin: 20vh 0;
     height: 90vh;
-    
+
     img {
       max-width: 100%;
       max-height: 90vh;
     }
-    
+
     &.full {
       margin-left: calc(26em - 50vw);
       height: auto;
@@ -27,12 +27,12 @@
         max-width: none;
         max-height: none;
       }
-      
-      @media (max-width: $maxLineLength) {
+
+      @media (max-width: 56em) {
         margin-left: -3vw;
       }
     }
-    
+
     &.wide {
       height: auto;
       img {
@@ -40,7 +40,7 @@
         max-height: none;
       }
     }
-    
+
     &.tall {
       height: auto;
       img {
@@ -48,11 +48,11 @@
       }
     }
   }
-  
+
   .hero + p {
     margin-top: 20vh;
   }
-  
+
   h1 {
     margin-top: 12vh;
   }

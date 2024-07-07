@@ -71,7 +71,7 @@ In 2012, I was making a little home for myself in the _sound art_ scene. There w
 <style>
   #opportunities {
     margin: 1em 0;
-    md { display: block; max-width: 50% }
+    md { display: block; max-width: 50% } /* MAYBE THIS IS WRONG NOW?? */
     .a { margin-left: 30%; max-width: 60% }
     .b { margin-left: 10% }
     .c { margin-left: 60% }
@@ -179,7 +179,7 @@ I've started [normalizing sharing](https://mastodon.social/@spiralganglion/11206
   }
 </style>
 <div class="hero normalize">
-  <a rel="nofollow" href="https://mastodon.social/@spiralganglion/112062486570705551">
+  <a href="https://mastodon.social/@spiralganglion/112062486570705551">
     <img alt="a mastodon post: normalize sharing whatever this song is going to turn into, before it's turned into that" src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/normalize.jpg">
   </a>
 </div>
@@ -207,7 +207,7 @@ So instead of relying on this broken tool, I just made my own. I took my old Clo
   }
 </style>
 <div class="hero metro">
-  <a rel="nofollow" href="https://raised-sixth.surge.sh">
+  <a href="https://raised-sixth.surge.sh">
     <img alt="screenshot of the metronome" src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/metro.png">
   </a>
 </div>
@@ -349,7 +349,28 @@ The 2nd A-section, at 2:23, is… fucking great. It makes me so happy. It was a 
   <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/trash.mp3" controls preload="metadata"></audio>
 </p>
 
-…it sounds like junk by itself! But it just _melts_ into place with everything else around it. I've never used this cymbal before _because it sounds like junk_, so I had no idea it could _do this_. (Someday I'll tell the story of how I got all these cymbals.) And you can't quite perceive it, but there's a shaker doubling that cymbal, too. This is called "masking", and I love doing it.
+…it sounds like junk by itself! But it just _melts_ into place with everything else around it. I've never used this cymbal before _because it sounds like junk_, so I had no idea it could _do this_. And you can't quite perceive it, but there's a shaker doubling that cymbal, too. This is called "masking", and I love doing it.
+
+
+<style>
+  .hero.cymbals {
+    text-align: center;
+    img {
+      width: 45em;
+      border-radius: 1em;
+      rotate: -5deg;
+      box-shadow: -1em 2em 3em -1em #313338;
+    }
+    p {
+      font-size: .8em;
+      rotate: 3deg;
+    }
+  }
+</style>
+<div class="hero cymbals">
+  <img alt="My drum kit, with a dozen-ish weird cymbals. The kit is decorated with little fake plants, a John Deere tractors flag, a small plastic bust of Darth Maul, bright orange flagging tape, a tiny boob, and other nonsense doodads." src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/cymbals.jpg">
+  <p>(Someday I'll tell the story of how I got all these cymbals.)</p>
+</div>
 
 <br><br>
 

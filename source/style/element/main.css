@@ -1,11 +1,11 @@
 main {
   width: 100%;
-  max-width: $maxLineLength;
+  max-width: var(--maxLineLength);
   margin: 0 auto;
   padding: 8vh 2em 12vh;
   text-align: left;
 
-  @media (max-width: $maxLineLength) {
+  @media (max-width: 56em) {
     padding: 8vh 3vw 16vh;
   }
 }
