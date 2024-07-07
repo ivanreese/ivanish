@@ -1,5 +1,5 @@
-# ivanish
+# ivanish.ca
 
-A personal website.
+A deeply personal website.
 
 Install deps with `npm`. Build with `cake`. Deployed to Netlify on commit.
