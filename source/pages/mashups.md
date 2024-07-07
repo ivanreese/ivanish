@@ -17,7 +17,7 @@ Mariah Carey's **[All I Want For Christmas is You](https://www.youtube.com/watch
 
 <br>
 
-**[Erlang: The Movie](https://www.youtube.com/watch?v=BXmOlCy0oBM)** is miserably dry, despite the occasional dollop of retro charm. Joe Armstrong, the lovable creator of Erlang, comes across as a bit of a grump. There's much inadvertent humour in there, but it's buried — my "distractors cut" tries to pull that humour to the surface.
+**[Erlang: The Movie](https://www.youtube.com/watch?v=BXmOlCy0oBM)** is miserably dry, despite the occasional dollop of retro charm. Joe Armstrong, the lovable creator of Erlang, comes across as a bit of a grump. There's much inadvertent humour in there, but it's buried — my "distractors cut" tries to pull that humour to the surface.
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/UuSZ37vMIks?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 

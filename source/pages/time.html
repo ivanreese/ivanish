@@ -37,6 +37,17 @@ main: id="time"
 
   <h1 id="2024">2024</h1>
 
+  <a class="link" href="/jerk">
+    <img class="thumb" src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/thumb.jpg">
+    <span class="description">
+      <h2>Jerk</h2>
+      <span class="meta">
+        <h4>Song</h4>
+        <span>There are things you assumed were constant, but what if they aren’t?</span>
+      </span>
+    </span>
+  </a>
+
   <a class="link" href="/tone-dome">
     <img class="thumb" src="https://d3um8l2sa8g9bu.cloudfront.net/tone-dome/thumb.png">
     <span class="description">
@@ -1004,6 +1015,7 @@ main: id="time"
     --link-hover: #fff8;
     --maxLineLength: 48em;
     --border: min(.5vw - 5px, 2px);
+    --border-color: #ffffff19;
     --thumb: clamp(6rem, 15vw, 8rem);
     --pad: clamp(.4rem, 2vw - .5rem, 1rem);
     --extra-pad: clamp(var(--pad), 2rem - 2vw, 2rem);
@@ -1059,7 +1071,6 @@ main: id="time"
     gap: var(--pad);
     padding: var(--extra-pad) var(--pad);
     margin: var(--pad) 0;
-    border-radius: 4px;
     text-decoration: none;
     -webkit-backdrop-filter: blur(1px) saturate(200%) brightness(30%);
     backdrop-filter: blur(1px) saturate(200%) brightness(30%);
@@ -1078,11 +1089,10 @@ main: id="time"
   .thumb {
     width: var(--thumb);
     height: var(--thumb);
-    border-radius: 3px;
   }
 
   .description {
-    border-left: var(--border) solid #fff3;
+    border-left: var(--border) solid var(--border-color);
   }
 
   h1 {
@@ -1100,7 +1110,7 @@ main: id="time"
     margin-top: -.2rem;
     padding-bottom: var(--pad);
     padding-left: var(--pad);
-    border-bottom: var(--border) solid #fff3;
+    border-bottom: var(--border) solid var(--border-color);
     line-height: 1;
   }
 
@@ -1112,7 +1122,6 @@ main: id="time"
     img {
       margin-left: calc(-1 * var(--thumb) - var(--pad) - var(--border) - var(--pad) - var(--pad));
       max-width: calc(100% + var(--thumb) + var(--pad) + var(--border) + var(--pad) + var(--pad) + var(--pad));
-      border-radius: 6px;
       border: var(--border) solid black;
       box-shadow: 1em 1em 2em black;
     }

@@ -7,7 +7,7 @@ time: 2024
 
 I enjoy a good critique.
 
-I follow a few dozen reviewers and video essayists on YouTube — Jacob Geller, Contrapoints, Dunkey, and a bunch of up-and-comers. I listen to artless tech podcasts that gush over Apple. I read Pitchfork and Polygon. So, I'm not ashamed to admit, I enjoy a bland critique too. There's something about a review — a critical assessment — that I find compelling.
+I follow a few dozen reviewers and video essayists on YouTube — Jacob Geller, Contrapoints, Dunkey, and a bunch of up-and-comers. I listen to artless tech podcasts that gush over Apple. I read Pitchfork and Polygon. So, I'm not ashamed to admit, I enjoy a bland critique too. There's something about a review — a critical assessment — that I find compelling.
 
 I'm going to write my way through figuring out what that is, and then try to figure out what that might look like for programming tools.
 

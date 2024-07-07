@@ -60,8 +60,8 @@ So I did a bunch more research, rewrote the code so that it runs on the GPU, and
   <iframe frame-src="https://rmf.surge.sh"></iframe>
 </div>
 
-Now we're talking! The glows now show poles — red is a North pole, blue is a South pole. The dots around the outside are the 12 coils of wire in the stator, carefully arranged to turn 3-phase AC power into something called an RMF or Rotating Magnetic Field.
+Now we're talking! The glows now show poles — red is a North pole, blue is a South pole. The dots around the outside are the 12 coils of wire in the stator, carefully arranged to turn 3-phase AC power into something called an RMF or Rotating Magnetic Field.
 
 You can turn "Rotor Strength" down to zero and then all you'll see is the RMF. I was so thrilled when I got this working, and the field rotated smoothly.
 
-I learned a lot from this project — I'll do a more detailed writeup in the future.
+I learned a lot from this project — I'll do a more detailed writeup in the future.
