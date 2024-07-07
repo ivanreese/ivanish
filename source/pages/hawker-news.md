@@ -9,7 +9,7 @@ One of our [podcast episodes](https://futureofcoding.org/episodes/061) inspired 
 
 It did okay on Hacker News.
 
-Which, of course, means a hoard of jackals, gremlins, and dipshits descended upon [the comment section](https://news.ycombinator.com/item?id=38324486) spouting sewage like a poorly plumbed fountain.
+Which, of course, means a hoard of jackals, gremlins, and dipshits descended upon [the comment section](https://news.ycombinator.com/item?id=38324486) spouting sewage like an incorrectly plumbed fountain.
 
 So I made a song about them.
 
