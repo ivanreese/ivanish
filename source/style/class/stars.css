@@ -4,6 +4,7 @@
   visibility: visible!important; /* We have a problem with the JS running before the CSS is ready, so we do this to delay things a bit */
   background-color: hsl(250, 30%, 5%);
   background: radial-gradient(at bottom left, hsl(210, 100%, 8%) 0%, hsl(250,60%,10%) 20%, hsl(250,40%,7%) 40%, hsl(330, 40%, 9%) 80%, hsl(10, 50%, 13%) 100%);
+  content-visibility: auto;
 
   &[bw] {
     background: radial-gradient(at bottom left, #111 0%, #222 20%, #111 40%, #111 90%, #222 100%);

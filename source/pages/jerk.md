@@ -363,7 +363,7 @@ The 2nd A-section, at 2:23, is… fucking great. It makes me so happy. It was a 
     }
     p {
       font-size: .8em;
-      rotate: 3deg;
+      rotate: -5deg;
     }
   }
 </style>

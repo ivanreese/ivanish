@@ -5,7 +5,6 @@ main: id="index" js-stars-bio
 <script defer src="index.js"></script>
 
 <style>
-
   :root {
     --border-width: 2vmin;
   }
@@ -21,8 +20,16 @@ main: id="index" js-stars-bio
     font-size: 1.4em;
   }
 
-  header be-enticed a.home-link { text-decoration: none; color: white; }
-  header be-enticed a.home-link:hover, a.home-link:visited:hover { color: white; opacity: 1; }
+  header be-enticed a.home-link {
+    text-decoration: none;
+    color: white;
+  }
+
+  header be-enticed a.home-link:hover,
+  a.home-link:visited:hover {
+    color: white;
+    opacity: 1;
+  }
 
   @media(min-width: 600px) {
     header be-enticed {
@@ -110,6 +117,7 @@ main: id="index" js-stars-bio
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 2rem;
+
     p {
       margin: 0;
       text-wrap: balance;
@@ -122,21 +130,21 @@ main: id="index" js-stars-bio
 <profile-pic>
   <picture class="color">
     <source
-      srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1800.webp"
+      srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-1800.webp"
       media="(min-width: 600px) and (min-height: 600px)">
     <img
-      alt="Photo of Ivan with wild hair"
-      src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-portrait-1200.webp">
+      alt="Photo of Ivan wearing a bird mask"
+      src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-1200.webp">
   </picture>
 
   <picture class="spook">
     <source
-      srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1800.webp"
+      srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-bw-1800.webp"
       media="(min-width: 600px) and (min-height: 600px)">
     <img
       loading="lazy"
-      alt="Spooky black and white photo of Ivan with wild hair"
-      src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bio-bw-1200.webp">
+      alt="Spooky black and white photo of Ivan wearing a bird mask"
+      src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-bw-1200.webp">
   </picture>
 </profile-pic>
 
@@ -197,7 +205,10 @@ main: id="index" js-stars-bio
       font-weight: bold;
       padding-right: .3rem;
     }
-    p { margin: .6rem 0 0 }
+
+    p {
+      margin: .6rem 0 0
+    }
   }
 </style>
 

@@ -1,3 +1,9 @@
+@font-face {
+  font-display: block;
+  font-family: "sofia pro light";
+  src: url("https://d3um8l2sa8g9bu.cloudfront.net/assets/sofia-pro-light.woff2");
+}
+
 *,
 *:before,
 *:after {

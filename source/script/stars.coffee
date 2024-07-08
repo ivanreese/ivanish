@@ -1,6 +1,4 @@
 do ()->
-  useP3 = true
-
   # We use a rand table, rather than Math.random(), so that we can have deterministic randomness.
   # This is not a performance optimization — Math.random() is already VERY fast.
   # It just gives us repeatability from one frame to the next.
@@ -50,7 +48,7 @@ do ()->
   for canvas in document.querySelectorAll "canvas.js-stars"
     if window.getComputedStyle(canvas).display isnt "none"
       do (canvas)->
-        context = canvas.getContext "2d", colorSpace: (if useP3 then "display-p3" else "srgb")
+        context = canvas.getContext "2d"
         dpi = Math.max 1, Math.round window.devicePixelRatio
         width = 0
         height = 0
@@ -141,6 +139,7 @@ do ()->
               renderStars firstDrawCall
 
         requestResize()
+
         window.addEventListener "resize", requestResize
         if isInfinite
           window.addEventListener "wheel", requestWheelRender
@@ -151,6 +150,8 @@ do ()->
         window.addEventListener "keydown", keyDown
         window.addEventListener "keyup", keyUp
 
+        contentVisible = true
+        canvas.addEventListener "contentvisibilityautostatechange", (e)-> contentVisible = !e.skipped
 
         firstDrawCall = (x, y, r, s)->
           context.beginPath()
@@ -167,6 +168,7 @@ do ()->
           context.stroke()
 
         renderStars = (drawCall)->
+          return unless contentVisible
           return unless scrollPos < Math.max(height, 1000) and !document.hidden
           return if not isInfinite and reduceMotion and not first
 
@@ -240,7 +242,7 @@ do ()->
             y = mod y * height / randTableSize - pos * increase, height
             o = o / randTableSize * .5 + 0.01
             r = r / randTableSize * 1 + .5
-            drawCall x, y, r * dScaleHalfDpi, hsla(300, 0, 100, o*alpha*odensity), increase
+            drawCall x, y, r * dScaleHalfDpi, "hsl(#{300} #{0}% #{100}% / #{o*alpha*odensity})", increase
             i++
 
 
@@ -262,7 +264,7 @@ do ()->
             l = l / randTableSize * 20 + 80
             o = o / randTableSize * decrease + 0.05
             c = c / randTableSize * 120 + 200
-            drawCall x, y, r * dScaleHalfDpi, hsla(c, 30*bw, l, o*alpha*odensity), decrease
+            drawCall x, y, r * dScaleHalfDpi, "hsl(#{c} #{30*bw}% #{l}% / #{o*alpha*odensity})", decrease
             i++
 
 
@@ -289,16 +291,16 @@ do ()->
             s = style.stars.s
 
             # far ring
-            drawCall x, y, r * r * r * dScaleHalfDpi, hsla(c, .7*s, l, o/25*alpha), decrease
+            drawCall x, y, r * r * r * dScaleHalfDpi, "hsl(#{c} #{.7*s}% #{l}% / #{o/25*alpha})", decrease
 
             # close ring
-            drawCall x, y, r * r * dScaleHalfDpi, hsla(c, .5*s, l, o/6*alpha), decrease
+            drawCall x, y, r * r * dScaleHalfDpi, "hsl(#{c} #{.5*s}% #{l}% / #{o/6*alpha})", decrease
 
             # round star body
-            drawCall x, y, r * dScaleHalfDpi, hsla(c, .2*s, l, o*alpha), decrease
+            drawCall x, y, r * dScaleHalfDpi, "hsl(#{c} #{.2*s}% #{l}% / #{o*alpha})", decrease
 
             # point of light
-            drawCall x, y, 1 * dScaleHalfDpi, hsla(c, s, 90, o * 1.5*alpha), decrease
+            drawCall x, y, 1 * dScaleHalfDpi, "hsl(#{c} #{s}% #{90}% / #{o * 1.5*alpha})", decrease
 
             i++
 
@@ -330,8 +332,8 @@ do ()->
             l = l / randTableSize * style.blueBlobs.l[1] + style.blueBlobs.l[0]
             h = h / randTableSize * style.blueBlobs.h[1] + style.blueBlobs.h[0]
             o = o / randTableSize * 0.1 + 0.05
-            drawCall x, y, r * 1 * dScaleHalfDpi, hsla(h, s, l, o*alpha), velScale
-            drawCall x, y, r * 2 * dScaleHalfDpi, hsla(h, s, l, o/2*alpha), velScale
+            drawCall x, y, r * 1 * dScaleHalfDpi, "hsl(#{h} #{s}% #{l}% / #{o*alpha})", velScale
+            drawCall x, y, r * 2 * dScaleHalfDpi, "hsl(#{h} #{s}% #{l}% / #{o/2*alpha})", velScale
             i++
 
 
@@ -355,8 +357,8 @@ do ()->
             o = o / randTableSize * 0.1 + 0.05
             h = h / randTableSize * style.redBlobs.h[1] + style.redBlobs.h[0]
             s = s / randTableSize * style.redBlobs.s[1] + style.redBlobs.s[0]
-            drawCall x, y, r * 1 * dScaleHalfDpi, hsla(h, s, l, o*alpha), velScale
-            drawCall x, y, r * 2 * dScaleHalfDpi, hsla(h, s, l, o/2*alpha), velScale
+            drawCall x, y, r * 1 * dScaleHalfDpi, "hsl(#{h} #{s}% #{l}% / #{o*alpha})", velScale
+            drawCall x, y, r * 2 * dScaleHalfDpi, "hsl(#{h} #{s}% #{l}% / #{o/2*alpha})", velScale
             i++
 
 
@@ -377,33 +379,7 @@ do ()->
             velScale = 600 / r / r + 10 / r
             y = mod(r + y / randTableSize * height + absPos * velScale, height+r*2)-r
             x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-absPos * velScale / 2000 * f / randTableSize + p / randTableSize)
-            drawCall x, y, r * dScaleHalfDpi, hsla(style.blackBlobs.h, style.blackBlobs.s, l, alpha), velScale
+            drawCall x, y, r * dScaleHalfDpi, "hsl(#{style.blackBlobs.h} #{style.blackBlobs.s}% #{l}% / #{alpha})", velScale
             i++
 
           null
-
-  # By default, do a straightforward conversion
-  hsla = (h, s, l, a)-> "hsla(#{h}, #{s}%, #{l}%, #{a})"
-
-  # If the browser supports p3, run in p3.
-  # When other CSS color funcs add support for p3, we can use lch or oklch or something
-  if (useP3 and window.CSS.supports("color", "color(display-p3 1 1 1)"))
-    hsla = (h, s, l, a) ->
-      h /= 360
-      s /= 100
-      l /= 100
-      return "color(display-p3 #{l} #{l} #{l} / #{a})" if s is 0
-      q = if l < 0.5 then l * (1 + s) else l + s - l * s
-      p = 2 * l - q
-      r = hueToRgb p, q, h + 1 / 3
-      g = hueToRgb p, q, h
-      b = hueToRgb p, q, h - (1 / 3)
-      "color(display-p3 #{r} #{g} #{b} / #{a})"
-
-    hueToRgb = (p, q, t) ->
-      t += 1 if t < 0
-      t -= 1 if t > 1
-      return p + (q - p) * 6 * t if t < 1 / 6
-      return q if t < 1 / 2
-      return p + (q - p) * (2 / 3 - t) * 6 if t < 2 / 3
-      return p
