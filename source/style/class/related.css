@@ -1,7 +1,7 @@
 .related {
+  margin-bottom: 0;
   padding: 2vh 0 0;
   border-top: 3px solid currentColor;
-  rotate: .2deg;
   text-align: right;
-  margin-bottom: 0;
+  rotate: .2deg;
 }
