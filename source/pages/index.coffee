@@ -17,10 +17,9 @@ do ()->
     headerTarget = opacity
 
     if scrollTop > 700 and stars?
-      stars.style.filter = "invert(1) saturate(0) brightness(0.666) contrast(2.3)"
       quipImg?.style.filter = "invert(1) saturate(0)"
-      main.removeAttribute "js-stars-bio"
-      main.setAttribute "js-stars-bw", ""
+      main.setAttribute "spooky", ""
+      document.spooky = true
       stars = null
 
 

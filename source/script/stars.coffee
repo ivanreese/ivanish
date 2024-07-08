@@ -92,7 +92,7 @@ do ()->
 
         doRender = ()->
           renderRequested = false
-          renderStars normalDrawCall
+          renderStars if first then firstDrawCall else normalDrawCall
 
         requestRender = ()->
           unless renderRequested
@@ -151,7 +151,10 @@ do ()->
         window.addEventListener "keyup", keyUp
 
         contentVisible = true
-        canvas.addEventListener "contentvisibilityautostatechange", (e)-> contentVisible = !e.skipped
+        canvas.addEventListener "contentvisibilityautostatechange", (e)->
+          if contentVisible = !e.skipped
+            first = true
+            requestRender()
 
         firstDrawCall = (x, y, r, s)->
           context.beginPath()
@@ -229,6 +232,24 @@ do ()->
 
           context.lineCap = "butt"
 
+          if document.spooky
+            i = 0
+            context.fillStyle = "#bbb"
+            context.fillRect 0, 0, width, height
+            scaledVel = -1
+            while i < nPixelStars
+              increase = i/maxPixelStars
+              x = randTable[(i + 5432) % randTableSize]
+              y = randTable[x]
+              o = randTable[y]
+              r = randTable[o]
+              x = x * width / randTableSize
+              y = mod y * height / randTableSize - pos * increase, height
+              o = o / randTableSize * 1 + 0.01
+              r = r / randTableSize * 1 + .5
+              normalDrawCall x, y, 3 * r * dScaleHalfDpi, "hsl(0 0% 0% / #{o})", 10 + 10 * absVel * increase
+              i++
+            return
 
           # Pixel Stars
           i = 0

@@ -16,8 +16,6 @@
   --black: hsl(311, 100%, 10%);
 }
 
-@view-transition { navigation: auto; }
-
 @keyframes fade-in {
   from { opacity: 0 }
   to   { opacity: 1 }
