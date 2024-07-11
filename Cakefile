@@ -18,6 +18,7 @@ typePages =
   Score: "music" # this is new
   Song: "music"
   Thoughts: "thoughts"
+  Toy: "code"
   Video: "art"
   Visualization: "code"
   Writing: "thoughts"
