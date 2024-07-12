@@ -11,7 +11,7 @@ main: id="thoughts" class="types"
 
 <div id="wiggle"></div>
 
-<title>Thoughts</title>
+! Thoughts
 
 <div>
   <a href="/crosscut">
@@ -61,7 +61,7 @@ main: id="thoughts" class="types"
 </a> -->
 
 <script>
-  var F2, F3, G2, G3, Grad, PI, TAU, clip, fade, grad3, gradP, lerp, p, perlin2, perlin3, perm, scale, seed, simplex2, simplex3;
+  var running, F2, F3, G2, G3, Grad, PI, TAU, clip, fade, grad3, gradP, lerp, p, perlin2, perlin3, perm, scale, seed, simplex2, simplex3;
 
   PI = Math.PI;
 
@@ -397,6 +397,7 @@ main: id="thoughts" class="types"
   surfaces = {};
   width = 0;
   height = 0;
+  running = false;
   renderRequested = false;
   count = 0;
   phase = 0;
@@ -454,7 +455,9 @@ main: id="thoughts" class="types"
     if (isNaN(ms)) {
       return requestRender();
     }
-    requestRender();
+    if (running) {
+      requestRender();
+    }
     if (document.hidden) {
       return;
     }
@@ -525,5 +528,6 @@ main: id="thoughts" class="types"
   }
   window.addEventListener("resize", requestResize);
   resize();
+  running = !window.reduceMotion;
   render();
 </script>

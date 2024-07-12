@@ -8,7 +8,6 @@ typePages =
   "Art?": "art"
   Band: "music"
   Game: "code"
-  Milk: "performance"
   Performance: "performance"
   Photography: "art"
   Podcast: "thoughts"
