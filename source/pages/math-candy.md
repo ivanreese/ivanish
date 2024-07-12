@@ -4,29 +4,21 @@ time: 2009
 
 ---
 
-<style>
-  body { background: #d8ddd4; }
-  object, ruffle-object {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1;
-  }
-</style>
+! Math Candy
 
-<title>Ghosts, And</title>
+<section>
 
 <div class="hero">
-  <object data="https://d3um8l2sa8g9bu.cloudfront.net/ghosts-and/ghosts-and.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
+  <object data="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/ghosts-and.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
     <div class="flash-fallback">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/ghosts-and/ghosts-and.jpg">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/ghosts-and.jpg">
     </div>
   </object>
 </div>
 
-<p>
-  A procedural art piece done in Flash back in the AS2 era. It's pretty rough — I was only just learning how to code.
-  Here's how I described it at the time:
-</p>
+## Ghosts, And
+A procedural art piece done in Flash back in the AS2 era. It's pretty rough — I was only just learning how to code.
+Here's how I described it at the time:
 
 <blockquote>
   There's less than 2k of data in this "animation" (1608 bytes).
@@ -35,28 +27,64 @@ time: 2009
   There are 2 modes to this thing. I won't tell you how to switch modes, because the other mode is kinda dumb and I should have pulled it out. It's pretty easy to figure out.
 </blockquote>
 
-<p>Adorable, innit.</p>
+Adorable, innit.
 
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-<script>
-  window.RufflePlayer = window.RufflePlayer || {};
-  window.RufflePlayer.config = {
-      "autoplay": "on",
-      "unmuteOverlay": "hidden",
-      "wmode": "transparent",
-      "warnOnUnsupportedContent": false,
-      "contextMenu": "off",
-      "menu": false,
-      "splashScreen": true,
-      "frameRate": 60
-  };
-</script>
+</section>
 
 
+
+
+<section>
+
+<div class="hero">
+  <object data="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/stained-glass.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
+    <div class="flash-fallback">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/stained-glass.jpg">
+    </div>
+  </object>
+</div>
+
+## Stained Glass
+Another one.
+
+</section>
+
+
+<section>
+
+
+## Eigenvectors
+
+<div class="hero">
+  <object data="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/eigenvectors.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
+    <div class="flash-fallback">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/eigenvectors.jpg">
+    </div>
+  </object>
+</div>
+
+This is the third (or fourth?) piece of "math candy" I made in a two month span in 2009. Better than all the others in my opinion. It started off as an attempt to recreate Kiri's facebook pfp, but then I decided to pursue a different angle.
+
+Click to change modes:
+
+
+1. Addition (Traditional)
+1. Knitting Furiously (String Theory)
+1. Aurora (Traditional)
+1. Tapeworms (Figure Skating)
+1. Sparks (Ting Noise)
+1. Invert (Invert)
+1. Spermatozoom (Har Har)
+1. Tapeworms (Synchronized Swimming)
+
+And if you're wondering what an Eigenvector is, it's a mathematical term that basically means "The more things change, the more they stay the same". Sorta.
+
+
+</section>
 
 <!--
 
-Here's the AS2 code. I should rebuild this in JS.
+Here's the AS2 code for Ghosts, And. I should rebuild this in JS.
 
 var radius = getDist(Stage.width/2, Stage.height/2);
 var spirals = 0;
@@ -201,3 +229,31 @@ return dist;
 }
 
 -->
+
+<style>
+  body { background: #d8ded5; }
+  object, ruffle-object {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+</style>
+
+
+<script src="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/ruffle/ruffle.js"></script>
+<script>
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+      "autoplay": "on",
+      "contextMenu": "off",
+      "frameRate": 60,
+      "letterbox": "off",
+      "menu": false,
+      "quality": "low",
+      "scale": "noscale",
+      "splashScreen": true,
+      "unmuteOverlay": "hidden",
+      "warnOnUnsupportedContent": false,
+      "wmode": "transparent"
+  };
+</script>

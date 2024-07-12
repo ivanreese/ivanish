@@ -153,7 +153,7 @@ task "build", "Compile everything", ()->
       write dest, coffee read path
 
     compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
-      copy path, replace path, "source/":"public/", "/pages/":""
+      copy path, replace path, "source/":"public/", "/pages/":"/"
 
     # Redirects
     if process.env.NETLIFY
