@@ -1,5 +1,4 @@
 (function() {
-  if (window.reduceMotion) return;
   var API, canvas, context, count, dpr, elm, height, i, len, lines, makeL, makeP, moveL, moveP, rand, ref, render, renderRequested, requestRender, requestResize, resize, running, width;
   canvas = document.querySelector("#screensaver");
   context = canvas.getContext("2d");
@@ -92,6 +91,16 @@
   window.addEventListener("resize", requestResize);
   resize();
   lines = [makeL()];
-  running = true;
+  running = !window.reduceMotion;
+
+  if (!running) {
+    var start = performance.now()
+    var time = 0;
+    var counter = 5000;
+    while (performance.now() - start < 20  && counter-- > 0) {
+      render(time += 16);
+    }
+  }
+
   requestRender();
 }).call(this);
