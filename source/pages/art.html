@@ -6,21 +6,30 @@ main: id="art" class="types"
   header { background: none; }
   header canvas { display: none; }
   header be-enticed, header a, header a:visited { color: var(--black); }
-  header a:hover, header a:hover:visited { color: var(--link-hover); opacity: 1; }
+  header a:hover, header a:hover:visited,
+  a:hover, a:hover:visited {
+    color: black;
+    opacity: 1;
+    text-shadow: 0em 0em .5em color(srgb 0.01 0.03 0.05);
+    img {
+      opacity: 0.007;
+    }
+  }
 
   :root {
     background: black;
     --black: color(srgb 0.02 0.01 0.01);
-    text-shadow: .5em .5em 1em color(srgb 0.02 0.01 0.01);
+    text-shadow: .25em .25em .5em color(srgb 0.03 0.01 0.01);
+  }
+
+  html {
+    filter: brightness(10000%) contrast(400%);
   }
 
   img {
     opacity: 0.013;
   }
 
-  html {
-    filter: brightness(10000%) contrast(400%);
-  }
 </style>
 
 <title>Art</title>
