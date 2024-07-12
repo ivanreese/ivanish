@@ -32,7 +32,7 @@ js-repl {
   .CodeMirror {
     max-width: 100%;
     padding: .5em;
-    border: .4em solid #33002A;
+    border: .4em solid var(--black);
     border-bottom: 0;
   }
 
@@ -41,15 +41,15 @@ js-repl {
     margin: 0;
     padding: .2em 1em;
     overflow: auto;
-    background: #33002A;
+    background: var(--black);
   }
 
   canvas {
     width: 100%;
     height: 128px;
-    border: .4em solid #33002A;
+    border: .4em solid var(--black);
     border-top: 0;
-    background: #33002A;
+    background: var(--black);
   }
 
 }

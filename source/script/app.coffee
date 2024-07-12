@@ -15,4 +15,4 @@
   input += outputMin
   return input
 
-reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+window.reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
