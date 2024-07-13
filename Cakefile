@@ -65,7 +65,11 @@ compilePage = (head, header, path)->
   closeMain = if hasMain then "" else "</main>"
 
   # Process custom <title> syntax
-  body = body.replaceAll /^!\s+(.+)$/gm, "<title>$1</title>"
+  body = body.replaceAll /^\s+!\s+(.+)$/gm, "<title>$1</title>"
+  body = body.replaceAll /^\s+!-\s+(.+)$/gm, "<title class=\"hide\">$1</title>"
+
+  # Process custom <meta name="description"> syntax
+  body = body.replaceAll /^\s+!!\s+(.+)$/gm, "<meta name=\"description\">$1</meta>"
 
   # Process markdown pages
   body = markdownit.render body if path.endsWith "md"

@@ -3,7 +3,7 @@ time: 2013
 
 ---
 
-<title>I'm A Frayed Knot</title>
+! I'm A Frayed Knot
 
 <div class="hero">
   <img src="https://d3um8l2sa8g9bu.cloudfront.net/im-a-frayed-knot/im-a-frayed-knot.jpg">

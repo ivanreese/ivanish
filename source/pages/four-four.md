@@ -3,7 +3,9 @@ time: 2012
 
 ---
 
-<a id="a" href="/four-four"><title></title></a>
+<a id="a" href="/four-four">
+  ! FOUR FOUR
+</a>
 
 <style>
   html { background:black; }
