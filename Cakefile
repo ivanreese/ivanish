@@ -8,6 +8,7 @@ typePages =
   "Art?": "art"
   Band: "music"
   Game: "code"
+  "Interactive Art": "code" # not sure this makes sense — is this more art-y, or more code-y?
   Performance: "performance"
   Photography: "art"
   Podcast: "thoughts"
@@ -19,7 +20,6 @@ typePages =
   Thoughts: "thoughts"
   Toy: "code"
   Video: "art"
-  Visualization: "code"
   Writing: "thoughts"
 
 ### Supported Frontmatter

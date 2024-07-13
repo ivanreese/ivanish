@@ -207,7 +207,7 @@ So instead of relying on this broken tool, I just made my own. I took my old Clo
   }
 </style>
 <div class="hero metro">
-  <a href="https://raised-sixth.surge.sh">
+  <a href="/jerk/metronome">
     <img alt="screenshot of the metronome" src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/metro.png">
   </a>
 </div>
