@@ -54,9 +54,18 @@ compilePage = (head, header, path)->
 
   # Now we'll begin building the HTML
 
-  # Based on data.header, figure out what head[er] to prepend to the final page HTML
+  # Start with the <head>
   pageHeader = head
-  pageHeader += "\n" + header unless data.header # If we asked for "min", we skip adding the header
+
+  # If we have a description, it goes in the <head>
+  pageHeader += "<meta name=\"description\" content=\"#{data.desc}\">" if data.desc
+
+  # The <head> is now done
+  pageHeader += "\n</head>\n<body>"
+
+  # Based on data.header, figure out what <header> to prepend to the final page HTML
+  # The only currently support option is "min", in which case we skip the header
+  pageHeader += "\n" + header unless data.header is "min"
 
   # Page bodies will be wrapped in a <main>, unless they already contain a <main>
   # Also inject any attrs specified in data.main
@@ -67,9 +76,6 @@ compilePage = (head, header, path)->
   # Process custom <title> syntax
   body = body.replaceAll /^\s*!\s+(.+)$/gm, "<title>$1</title>"
   body = body.replaceAll /^\s*!-\s+(.+)$/gm, "<title class=\"hide\">$1</title>"
-
-  # Process custom <meta name="description"> syntax
-  body = body.replaceAll /^\s*!!\s+(.+)$/gm, "<meta name=\"description\" content=\"$1\">"
 
   # Process markdown pages
   body = markdownit.render body if path.endsWith "md"
