@@ -112,7 +112,7 @@ _There are things you assumed were constant, but what if they aren't?_
 
 In 2016 I was learning more and more about coding. Watching Strange Loop talks. Building stuff in the browser. (Flash was not coming to the iPhone, sigh.) Picking up ClojureScript.
 
-I [rebuilt the shrinking music](/diminished-fifth) in ClojureScript, in the browser. It sounded great. I loaded it up with samples from my last few albums, so that it sounded rich and textured and grounded in reality. I didn't just make it go slower forever, or faster forever — I gave it a custom function, interacting sine waves generating accelerations that'd pull it back and forth like an [infinite series diverging into the horizon](https://en.wikipedia.org/wiki/1_%E2%88%92_2_%2B_3_%E2%88%92_4_%2B_⋯).
+I [rebuilt the shrinking music](/diminished-fifth) in ClojureScript, in the browser. It sounded great. I loaded it up with samples from my last few albums, so that it sounded rich and textured and grounded in reality. I didn't just make it go slower forever, or faster forever — I gave it a custom function, interacting sine waves generating accelerations that'd pull it back and forth like an [infinite series diverging into the horizon](https://w.wiki/3Q9H).
 
 But that was it. A little side project.
 
