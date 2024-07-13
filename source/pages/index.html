@@ -64,6 +64,7 @@ main: id="index" js-stars-bio
     /* This inner element is the actual profile pic image, which fades in and out. */
     img {
       width: 100%;
+      height: auto;
       aspect-ratio: 1; /* Avoid pop-in while waiting for the image to load */
       border-radius: 100%;
       background-color: #ccc9cd;
@@ -134,6 +135,7 @@ main: id="index" js-stars-bio
       srcset="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-1800.webp"
       media="(min-width: 600px) and (min-height: 600px)">
     <img
+      width="1200" height="1200"
       alt="Photo of Ivan wearing a bird mask"
       src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-1200.webp">
   </picture>
@@ -144,6 +146,7 @@ main: id="index" js-stars-bio
       media="(min-width: 600px) and (min-height: 600px)">
     <img
       loading="lazy"
+      width="1200" height="1200"
       alt="Spooky black and white photo of Ivan wearing a bird mask"
       src="https://d3um8l2sa8g9bu.cloudfront.net/assets/bird-bw-1200.webp">
   </picture>
