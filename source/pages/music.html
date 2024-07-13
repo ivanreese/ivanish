@@ -153,7 +153,7 @@ main: id="music" class="types"
 <div>
   <h2 id="song">Song</h2>
   <a href="/dont-do-math">
-    <img src="https://d3um8l2sa8g9bu.cloudfront.net/dont-do-math/thumb.jpg">
+    <img src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/thumb.jpg">
     ★ Jerk
   </a>
   <a href="/dont-do-math">
@@ -221,3 +221,650 @@ main: id="music" class="types"
     Wormhole
   </a>
 </div>
+
+
+<script>
+  (function() {
+    var F2, G2, Grad, PI, TAU, absolutePos, bail, clip, container, curlAmt, deletePhasor, freshSnake, grad3, gradP, granularlize, hasMoved, height, lastMouseX, lastMouseY, lastTime, lerp, makeNoisePhasor, mouseDist, mouseDx, mouseDy, mouseX, mouseY, name, p, perm, phasorComplexityTuning, phasors, rand, render, renderRequested, requestRender, requestResize, resize, running, sampleNoisePhasor, scale, scaledSimplex2, setSeed, setupInput, setupSurface, simplex2, simplexScale, snakeParticleSpacing, snakeSpacing, snakes, spawnInterval, spawnSnake, spawnTime, surface, surfaces, timeScale, vecSnowDist, vectorSpacing, vectors, velAmt, width, worldTime;
+
+    surfaces = {
+      vectors: {
+        doSimulate: true,
+        doRender: false,
+        clear: true
+      },
+      particles: {
+        doSimulate: true,
+        doRender: true,
+        clear: true
+      },
+      simplex: {
+        doSimulate: false,
+        doRender: false
+      }
+    };
+
+    width = 0;
+
+    height = 0;
+
+    running = false;
+
+    renderRequested = false;
+
+    worldTime = 0;
+
+    lastTime = null;
+
+    timeScale = 1;
+
+    hasMoved = false;
+
+    mouseX = -1000;
+
+    mouseY = -1000;
+
+    lastMouseX = null;
+
+    lastMouseY = null;
+
+    mouseDx = null;
+
+    mouseDy = null;
+
+    mouseDist = null;
+
+    phasorComplexityTuning = 1 / 50;
+
+    phasors = {};
+
+    vectorSpacing = 5;
+
+    vectors = [];
+
+    snakes = [];
+
+    spawnTime = 0;
+
+    spawnInterval = 1;
+
+    snakes = [];
+
+    snakeSpacing = 20;
+
+    snakeParticleSpacing = 0.1;
+
+    velAmt = 0;
+
+    curlAmt = 0;
+
+    absolutePos = function(elm) {
+      elm.style["pointer-events"] = "none";
+      elm.style.position = "fixed";
+      elm.style.top = elm.style.left = "0";
+      elm.style.width = elm.style.height = "100%";
+    };
+
+    setupSurface = function(surface) {
+      surface.canvas = document.createElement("canvas");
+      document.body.appendChild(surface.canvas);
+      absolutePos(surface.canvas);
+      surface.context = surface.canvas.getContext("2d");
+      if (typeof surface.setup === "function") surface.setup(surface);
+    };
+
+    resize = function() {
+      var name, surface;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      for (name in surfaces) {
+        surface = surfaces[name];
+        surface.canvas.width = width;
+        surface.canvas.height = height;
+        if (typeof surface.resize === "function") {
+          surface.resize(surface);
+        }
+      }
+      return null;
+    };
+
+    requestResize = function() {
+      var heightChanged, widthChanged;
+      widthChanged = 2 < Math.abs(width - window.innerWidth);
+      heightChanged = 50 < Math.abs(height - window.innerHeight);
+      if (widthChanged || heightChanged) {
+        return requestAnimationFrame(function(time) {
+          var first;
+          first = true;
+          resize();
+          if (!renderRequested) {
+            return render();
+          }
+        });
+      }
+    };
+
+    setupInput = function() {
+      window.addEventListener("click", function(e) {
+        running = !running;
+        if (running) {
+          return render();
+        }
+      });
+      window.addEventListener("mousemove", function(e) {
+        hasMoved = true;
+        mouseX = e.clientX;
+        return mouseY = e.clientY;
+      });
+      return window.addEventListener("touchmove", function(e) {
+        hasMoved = true;
+        mouseX = e.touches[0].clientX;
+        return mouseY = e.touches[0].clientY;
+      });
+    };
+
+    PI = Math.PI;
+
+    TAU = PI * 2;
+
+    clip = function(input, inputMin, inputMax) {
+      if (inputMin == null) {
+        inputMin = 0;
+      }
+      if (inputMax == null) {
+        inputMax = 1;
+      }
+      return Math.min(inputMax, Math.max(inputMin, input));
+    };
+
+    scale = function(input, inputMin, inputMax, outputMin, outputMax, doClip) {
+      if (inputMin == null) {
+        inputMin = 0;
+      }
+      if (inputMax == null) {
+        inputMax = 1;
+      }
+      if (outputMin == null) {
+        outputMin = 0;
+      }
+      if (outputMax == null) {
+        outputMax = 1;
+      }
+      if (doClip == null) {
+        doClip = false;
+      }
+      if (inputMin === inputMax) {
+        return outputMin;
+      }
+      if (doClip) {
+        input = clip(input, inputMin, inputMax);
+      }
+      input -= inputMin;
+      input /= inputMax - inputMin;
+      input *= outputMax - outputMin;
+      input += outputMin;
+      return input;
+    };
+
+    lerp = function(a, b, t) {
+      return (1 - t) * a + t * b;
+    };
+
+    rand = function(min, max) {
+      if (max == null) {
+        max = min;
+        min = 0;
+      }
+      return scale(Math.random(), 0, 1, min, max);
+    };
+
+    granularlize = function(grainSize, i) {
+      return grainSize * Math.round(i / grainSize);
+    };
+
+    makeNoisePhasor = function(name, cycleTime, radius, phase, xOffset, yOffset) {
+      if (radius == null) {
+        radius = 1;
+      }
+      if (phase == null) {
+        phase = 0;
+      }
+      if (xOffset == null) {
+        xOffset = 0;
+      }
+      if (yOffset == null) {
+        yOffset = 0;
+      }
+      return phasors[name] = {
+        name: name,
+        type: "noise",
+        radius: radius * phasorComplexityTuning,
+        cycleTime: cycleTime,
+        phase: phase * TAU,
+        xOffset: xOffset * phasorComplexityTuning,
+        yOffset: yOffset * phasorComplexityTuning
+      };
+    };
+
+    sampleNoisePhasor = function(name, time, fn) {
+      var p, phasor, x, y;
+      if (fn == null) {
+        fn = simplex2;
+      }
+      phasor = phasors[name];
+      p = phasor.phase + TAU * time / phasor.cycleTime;
+      return {
+        x: x = Math.cos(p),
+        y: y = Math.sin(p),
+        v: fn(phasor.xOffset + phasor.radius * x, phasor.yOffset + phasor.radius * y)
+      };
+    };
+
+    deletePhasor = function(name) {
+      return delete phasors[name];
+    };
+
+    F2 = 0.5 * (Math.sqrt(3) - 1);
+
+    G2 = (3 - Math.sqrt(3)) / 6;
+
+    Grad = function(x, y, z) {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+    };
+
+    Grad.prototype.dot2 = function(x, y) {
+      return this.x * x + this.y * y;
+    };
+
+    Grad.prototype.dot3 = function(x, y, z) {
+      return this.x * x + this.y * y + this.z * z;
+    };
+
+    grad3 = [new Grad(1, 1, 0), new Grad(-1, 1, 0), new Grad(1, -1, 0), new Grad(-1, -1, 0), new Grad(1, 0, 1), new Grad(-1, 0, 1), new Grad(1, 0, -1), new Grad(-1, 0, -1), new Grad(0, 1, 1), new Grad(0, -1, 1), new Grad(0, 1, -1), new Grad(0, -1, -1)];
+
+    p = [151, 160, 137, 91, 90, 15, 131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23, 190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33, 88, 237, 149, 56, 87, 174, 20, 125, 136, 171, 168, 68, 175, 74, 165, 71, 134, 139, 48, 27, 166, 77, 146, 158, 231, 83, 111, 229, 122, 60, 211, 133, 230, 220, 105, 92, 41, 55, 46, 245, 40, 244, 102, 143, 54, 65, 25, 63, 161, 1, 216, 80, 73, 209, 76, 132, 187, 208, 89, 18, 169, 200, 196, 135, 130, 116, 188, 159, 86, 164, 100, 109, 198, 173, 186, 3, 64, 52, 217, 226, 250, 124, 123, 5, 202, 38, 147, 118, 126, 255, 82, 85, 212, 207, 206, 59, 227, 47, 16, 58, 17, 182, 189, 28, 42, 223, 183, 170, 213, 119, 248, 152, 2, 44, 154, 163, 70, 221, 153, 101, 155, 167, 43, 172, 9, 129, 22, 39, 253, 19, 98, 108, 110, 79, 113, 224, 232, 178, 185, 112, 104, 218, 246, 97, 228, 251, 34, 242, 193, 238, 210, 144, 12, 191, 179, 162, 241, 81, 51, 145, 235, 249, 14, 239, 107, 49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254, 138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180];
+
+    perm = new Array(512);
+
+    gradP = new Array(512);
+
+    setSeed = function(seed) {
+      var i, v;
+      if (seed > 0 && seed < 1) {
+        seed *= 65536;
+      }
+      seed = Math.floor(seed);
+      if (seed < 256) {
+        seed |= seed << 8;
+      }
+      i = 0;
+      while (i < 256) {
+        v = void 0;
+        if (i & 1) {
+          v = p[i] ^ seed & 255;
+        } else {
+          v = p[i] ^ seed >> 8 & 255;
+        }
+        perm[i] = perm[i + 256] = v;
+        gradP[i] = gradP[i + 256] = grad3[v % 12];
+        i++;
+      }
+    };
+
+    setSeed(0);
+
+    simplex2 = function(xin, yin) {
+      var gi0, gi1, gi2, i, i1, j, j1, n0, n1, n2, s, t, t0, t1, t2, x0, x1, x2, y0, y1, y2;
+      n0 = void 0;
+      n1 = void 0;
+      n2 = void 0;
+      s = (xin + yin) * F2;
+      i = Math.floor(xin + s);
+      j = Math.floor(yin + s);
+      t = (i + j) * G2;
+      x0 = xin - i + t;
+      y0 = yin - j + t;
+      i1 = void 0;
+      j1 = void 0;
+      if (x0 > y0) {
+        i1 = 1;
+        j1 = 0;
+      } else {
+        i1 = 0;
+        j1 = 1;
+      }
+      x1 = x0 - i1 + G2;
+      y1 = y0 - j1 + G2;
+      x2 = x0 - 1 + 2 * G2;
+      y2 = y0 - 1 + 2 * G2;
+      i &= 255;
+      j &= 255;
+      gi0 = gradP[i + perm[j]];
+      gi1 = gradP[i + i1 + perm[j + j1]];
+      gi2 = gradP[i + 1 + perm[j + 1]];
+      t0 = 0.5 - (x0 * x0) - (y0 * y0);
+      if (t0 < 0) {
+        n0 = 0;
+      } else {
+        t0 *= t0;
+        n0 = t0 * t0 * gi0.dot2(x0, y0);
+      }
+      t1 = 0.5 - (x1 * x1) - (y1 * y1);
+      if (t1 < 0) {
+        n1 = 0;
+      } else {
+        t1 *= t1;
+        n1 = t1 * t1 * gi1.dot2(x1, y1);
+      }
+      t2 = 0.5 - (x2 * x2) - (y2 * y2);
+      if (t2 < 0) {
+        n2 = 0;
+      } else {
+        t2 *= t2;
+        n2 = t2 * t2 * gi2.dot2(x2, y2);
+      }
+      return 70 * (n0 + n1 + n2);
+    };
+
+    freshSnake = function(snake) {
+      snake.x = snake.ox;
+      snake.y = snake.oy;
+      snake.hist = [];
+      return snake;
+    };
+
+    spawnSnake = function(x, y) {
+      return snakes.push(freshSnake({
+        ox: x,
+        oy: y
+      }));
+    };
+
+    surfaces.particles.resize = function() {
+      var k, l, ref, ref1, ref2, ref3, x, y;
+      if (snakes.length > 0) {
+        return;
+      }
+      for (x = k = 0, ref = width, ref1 = snakeSpacing; ref1 > 0 ? k <= ref : k >= ref; x = k += ref1) {
+        for (y = l = 0, ref2 = height, ref3 = snakeSpacing; ref3 > 0 ? l <= ref2 : l >= ref2; y = l += ref3) {
+          spawnSnake(x, y);
+        }
+      }
+      return null;
+    };
+
+    surfaces.particles.simulate = function(t) {
+      var k, newSnakes, newSpacing, ref, ref1, results, total, x, y;
+      velAmt = (0.01 + Math.pow(mouseX / width, 3)) * 100;
+      curlAmt = (0.01 + Math.pow(mouseY / height, 3)) * 100;
+      if (t > spawnTime) {
+        spawnTime += spawnInterval;
+        total = Math.ceil(width / snakeSpacing) * Math.ceil(height / snakeSpacing);
+        newSnakes = total - snakes.length;
+        newSpacing = Math.floor(snakeSpacing * total / newSnakes);
+        results = [];
+        for (x = k = 0, ref = width, ref1 = newSpacing; ref1 > 0 ? k <= ref : k >= ref; x = k += ref1) {
+          results.push((function() {
+            var l, ref2, ref3, results1;
+            results1 = [];
+            for (y = l = 0, ref2 = height, ref3 = newSpacing; ref3 > 0 ? l <= ref2 : l >= ref2; y = l += ref3) {
+              results1.push(spawnSnake(x, y));
+            }
+            return results1;
+          })());
+        }
+        return results;
+      }
+    };
+
+    surfaces.particles.render = function(ctx, t, dt) {
+      var h, i, k, l, len, lower, ref, scaledX, scaledY, snake, tail, upper, vecA, vecB, vecC, vecD;
+      if (!(snakes.length > 0)) {
+        return;
+      }
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "hsl(0, 0%, 100%)";
+      for (i = k = snakes.length - 1; k >= 0; i = k += -1) {
+        snake = snakes[i];
+        scaledX = snake.x / vectorSpacing;
+        scaledY = snake.y / vectorSpacing;
+        if (lower = vectors[Math.floor(scaledX)]) {
+          vecA = lower[Math.floor(scaledY)];
+          vecB = lower[Math.ceil(scaledY)];
+        }
+        if (upper = vectors[Math.ceil(scaledX)]) {
+          vecC = upper[Math.floor(scaledY)];
+          vecD = upper[Math.ceil(scaledY)];
+        }
+        if ((vecA != null) && (vecB != null) && (vecC != null) && (vecD != null)) {
+          vecSnowDist(dt, snake, vecA);
+          vecSnowDist(dt, snake, vecB);
+          vecSnowDist(dt, snake, vecC);
+          vecSnowDist(dt, snake, vecD);
+        }
+        ctx.beginPath();
+        ctx.moveTo(snake.x, snake.y);
+        ref = snake.hist;
+        for (l = 0, len = ref.length; l < len; l++) {
+          h = ref[l];
+          ctx.lineTo(h.x, h.y);
+        }
+        snake.hist.unshift({
+          x: snake.x,
+          y: snake.y
+        });
+        if (snake.hist.length > 7) {
+          snake.hist.pop();
+        }
+        if (snake.x < 0 || snake.y < 0 || snake.x > width || snake.y > height) {
+          tail = snake.hist[snake.hist.length - 1];
+          if (tail.x < 0 || tail.y < 0 || tail.x > width || tail.y > height) {
+            snakes.splice(i, 1);
+          }
+        }
+        ctx.stroke();
+      }
+      return true;
+    };
+
+    simplexScale = 0.003;
+
+    scaledSimplex2 = function(x, y) {
+      return 200 * simplex2(simplexScale * x, simplexScale * y);
+    };
+
+    vecSnowDist = function(dt, snake, vec) {
+      var a, b, dist, dx, dy, eps, n, n1, n2, strength;
+      dx = vec.x - snake.x;
+      dy = vec.y - snake.y;
+      dist = Math.sqrt(dx * dx + dy * dy);
+      strength = vec.strength * (1 - dist / vectorSpacing);
+      if (strength > 0) {
+        snake.x += strength * velAmt * dt * Math.cos(vec.angle * TAU);
+        snake.y += strength * velAmt * dt * Math.sin(vec.angle * TAU);
+        n = scaledSimplex2(snake.x, snake.y);
+        eps = 1;
+        n1 = scaledSimplex2(snake.x, snake.y + eps);
+        n2 = scaledSimplex2(snake.x, snake.y - eps);
+        a = (n1 - n2) / 2 * eps;
+        n1 = scaledSimplex2(snake.x + eps, snake.y);
+        n2 = scaledSimplex2(snake.x - eps, snake.y);
+        b = (n1 - n2) / 2 * eps;
+        snake.x += (+a * curlAmt * strength) * dt;
+        return snake.y += (-b * curlAmt * strength) * dt;
+      }
+    };
+
+    requestRender = function() {
+      if (!renderRequested) {
+        renderRequested = true;
+        return requestAnimationFrame(render);
+      }
+    };
+
+    bail = function(fn) {
+      lastMouseX = null;
+      lastMouseY = null;
+      return typeof fn === "function" ? fn() : void 0;
+    };
+
+    render = function(currentTime) {
+      var deltaMs, dt, name, surface;
+      renderRequested = false;
+      if (running) {
+        requestRender();
+      }
+      if (document.hidden) {
+        return bail(null);
+      }
+      if (isNaN(currentTime)) {
+        return bail(requestRender);
+      }
+      if (lastTime == null) {
+        lastTime = currentTime - 16;
+      }
+      deltaMs = Math.min(50, currentTime - lastTime);
+      dt = timeScale / 1000 * deltaMs;
+      lastTime = currentTime;
+      worldTime += dt;
+      if (hasMoved & (lastMouseX != null)) {
+        mouseDx = lastMouseX - mouseX;
+        mouseDy = lastMouseY - mouseY;
+        mouseDist = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
+      } else {
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+        mouseDx = 0;
+        mouseDy = 0;
+        mouseDist = 0;
+      }
+      for (name in surfaces) {
+        surface = surfaces[name];
+        if (!surface.doSimulate) {
+          continue;
+        }
+        if (hasMoved) {
+          if (typeof surface.move === "function") {
+            surface.move(mouseX, mouseY, worldTime, dt);
+          }
+        }
+        if (typeof surface.simulate === "function") {
+          surface.simulate(worldTime, dt);
+        }
+      }
+      for (name in surfaces) {
+        surface = surfaces[name];
+        if (!surface.doRender) {
+          continue;
+        }
+        if (surface.clear && surface.needsClear) {
+          surface.context.clearRect(0, 0, width, height);
+        }
+        surface.needsClear = typeof surface.render === "function" ? surface.render(surface.context, worldTime, dt) : void 0;
+      }
+      hasMoved = false;
+      lastMouseX = mouseX;
+      return lastMouseY = mouseY;
+    };
+
+    surfaces.vectors.resize = function(surface) {
+      var aName, i, j, k, l, len, len1, m, o, ref, ref1, sName, size, vec, vecList, x, xVecs, y, yVecs;
+      for (k = 0, len = vectors.length; k < len; k++) {
+        vecList = vectors[k];
+        for (l = 0, len1 = vecList.length; l < len1; l++) {
+          vec = vecList[l];
+          deletePhasor(vec.aName);
+          deletePhasor(vec.sName);
+        }
+      }
+      vectors = [];
+      size = Math.min(width, height);
+      vectorSpacing = Math.floor(size / 10);
+      xVecs = Math.ceil(width / vectorSpacing);
+      yVecs = Math.ceil(height / vectorSpacing);
+      for (i = m = 0, ref = xVecs; 0 <= ref ? m <= ref : m >= ref; i = 0 <= ref ? ++m : --m) {
+        x = i * vectorSpacing;
+        vectors[i] = [];
+        for (j = o = 0, ref1 = yVecs; 0 <= ref1 ? o <= ref1 : o >= ref1; j = 0 <= ref1 ? ++o : --o) {
+          y = j * vectorSpacing;
+          aName = "vectors-" + x + "-" + y + "a";
+          sName = "vectors-" + x + "-" + y + "s";
+          makeNoisePhasor(aName, 120, 25, 0, i * 8, j);
+          makeNoisePhasor(sName, 70, 30, 0, -i * 8, -j);
+          vectors[i].push(vec = {
+            aName: aName,
+            sName: sName,
+            x: x,
+            y: y,
+            initAngle: simplex2(i / 15, j / 15)
+          });
+          vec.angle = vec.initAngle + sampleNoisePhasor(vec.aName, 0).v;
+          vec.strength = 0;
+        }
+      }
+      return null;
+    };
+
+    surfaces.vectors.simulate = function(t, dt) {
+      var dist, dx, dy, k, l, len, len1, range, strength, vec, vecList;
+      for (k = 0, len = vectors.length; k < len; k++) {
+        vecList = vectors[k];
+        for (l = 0, len1 = vecList.length; l < len1; l++) {
+          vec = vecList[l];
+          dx = mouseX - vec.x;
+          dy = mouseY - vec.y;
+          dist = Math.sqrt(dx * dx + dy * dy);
+          range = 200;
+          strength = 1 - dist / range;
+          vec.angle = Math.atan2(dy, dx) / TAU;
+          if (strength > 0) {
+            vec.strength = 3 * strength;
+          }
+        }
+      }
+      return null;
+    };
+
+    surfaces.vectors.render = function(ctx, t) {
+      var k, l, len, len1, vec, vecList, x, y;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#999";
+      for (k = 0, len = vectors.length; k < len; k++) {
+        vecList = vectors[k];
+        for (l = 0, len1 = vecList.length; l < len1; l++) {
+          vec = vecList[l];
+          ctx.beginPath();
+          x = vec.x;
+          y = vec.y;
+          ctx.moveTo(x, y);
+          x = vec.x + vec.strength * vectorSpacing / 2 * Math.cos(vec.angle * TAU);
+          y = vec.y + vec.strength * vectorSpacing / 2 * Math.sin(vec.angle * TAU);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
+      }
+      return true;
+    };
+
+    container = document.body;
+
+    for (name in surfaces) {
+      surface = surfaces[name];
+      setupSurface(surface);
+    }
+
+    setupInput();
+
+    window.addEventListener("resize", requestResize);
+
+    resize();
+
+    running = !window.reduceMotion;
+
+    render();
+
+  }).call(this);
+
+</script>
