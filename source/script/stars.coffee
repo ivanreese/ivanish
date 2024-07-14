@@ -263,7 +263,7 @@ do ()->
             y = mod y * height / randTableSize - pos * increase, height
             o = o / randTableSize * .5 + 0.01
             r = r / randTableSize * 1 + .5
-            drawCall x, y, r * dScaleHalfDpi, "hsl(#{300} #{0}% #{100}% / #{o*alpha*odensity})", increase
+            firstDrawCall x, y, r * dScaleHalfDpi, "hsl(#{300} #{0}% #{100}% / #{o*alpha*odensity})", increase
             i++
 
 
