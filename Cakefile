@@ -157,7 +157,7 @@ generateRSS = (published)->
 
       link = replace dest, "public/": "", "/index.html": ""
 
-      published = new Date(published + "T00:00:00").toUTCString()
+      published = new Date(published + "T12:00:00").toUTCString()
         # .toLocaleString "en-US", timeZone: "MST", year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short"
 
       body = body.replaceAll "\n", ""
