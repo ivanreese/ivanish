@@ -1,5 +1,5 @@
 type: Blog
-ppublish: 2024-07-18
+publish: 2024-07-18
 
 ---
 

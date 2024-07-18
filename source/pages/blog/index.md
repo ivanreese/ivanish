@@ -31,7 +31,9 @@ desc: Rubbing two brain cells for warmth.
 # 2021
 [Workspace: 2021](workspace-2021)
 
-// [Steve Krouse's Lunch with Alan Kay](lunch-with-alan-kay)
+# 2019
+[Steve Krouse's Lunch with Alan Kay](lunch-with-alan-kay)
+
 // [Mental Models (WIP)](mental-models)
 // [Sound Theory (WIP)](sound-theory)
 // [Correspondence (WIP)](correspondence)
