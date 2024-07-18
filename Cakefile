@@ -5,8 +5,9 @@ typePages =
   "2D": "art"
   "3D": "art"
   Album: "music"
-  "Art?": "art"
+  "Art": "art"
   Band: "music"
+  Blog: "blog"
   Game: "code"
   "Interactive Art": "code" # not sure this makes sense — is this more art-y, or more code-y?
   Performance: "performance"
@@ -41,6 +42,10 @@ compilePage = (head, header, path)->
 
   # Load the page source, then separate the frontmatter from the body
   parts = read(path).split "---"
+
+  # If the page doesn't have frontmatter, just copy it over to the public folder
+  return parts[0] if parts.length is 1
+
   frontmatter = parts[0]
   body = parts[1...].join "---"
   # [body, frontmatter] = [frontmatter, ""] unless body
@@ -58,10 +63,14 @@ compilePage = (head, header, path)->
   pageHeader = head
 
   # If we have a description, it goes in the <head>
-  pageHeader += "<meta name=\"description\" content=\"#{data.desc}\">" if data.desc
+  pageHeader += "  <meta name=\"description\" content=\"#{data.desc}\">" if data.desc
+
+  # TODO: If we have an image we can use for rich previews, it goes in the <head>
+  data.image ?= "assets/og.jpg"
+  pageHeader += "  <meta property=\"og:image\" content=\"https://d3um8l2sa8g9bu.cloudfront.net/#{data.image}\">"
 
   # The <head> is now done
-  pageHeader += "\n</head>\n<body>"
+  pageHeader += "</head>\n<body>"
 
   # Based on data.header, figure out what <header> to prepend to the final page HTML
   # The only currently support option is "min", in which case we skip the header
@@ -107,14 +116,14 @@ compilePage = (head, header, path)->
     else # External link, no rel
       match.replace "<a ", "<a rel=\"nofollow\" "
 
-  # Add a <section class="related"> at the bottom of most pages
-  related = makeRelated data
+  # Add a <footer> at the bottom of most pages
+  related = makeFooter data
 
   # Combine all the parts of our page into the final HTML output
   [pageHeader, openMain, body, related, closeMain].join "\n"
 
 
-makeRelated = (data)->
+makeFooter = (data)->
   if data.type
     type = data.type
     for name, page of typePages
@@ -127,7 +136,7 @@ makeRelated = (data)->
 
   if type or time
     inner = if type and time then "#{type} from #{time}" else type or time
-    "<section class=\"related\">\n  #{inner}\n</section>"
+    "<footer>\n  #{inner}\n</footer>"
   else
     ""
 

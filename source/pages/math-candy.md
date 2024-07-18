@@ -240,7 +240,7 @@ return dist;
 </style>
 
 
-<script src="https://d3um8l2sa8g9bu.cloudfront.net/math-candy/ruffle/ruffle.js"></script>
+<script src="https://d3um8l2sa8g9bu.cloudfront.net/assets/ruffle/ruffle.js"></script>
 <script>
   window.RufflePlayer = window.RufflePlayer || {};
   window.RufflePlayer.config = {

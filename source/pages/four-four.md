@@ -22,7 +22,7 @@ time: 2012
     text-align: center;
   }
 
-  .related {
+  footer {
     position: absolute;
     bottom: 0;
     right: 0;
