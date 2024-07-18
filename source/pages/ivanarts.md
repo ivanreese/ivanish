@@ -58,7 +58,7 @@ time: Immemorial
 
 <section>
 
-  [Bryce 3D](https://en.wikipedia.org/wiki/Bryce_(software)) was the first graphics program I learned in depth. My parents bought me a copy as a birthday present when I turned 11 or 12 years old. Every day after school, I'd come home and spend <i>the entire rest of the evening</i> playing around, making silly space opera-themed renderings.
+  [Bryce 3D](https://en.wikipedia.org/wiki/Bryce_(software)) was the first graphics program I learned in depth. My parents bought me a copy when I was 12 or 13 years old. Every day after school, I'd come home and spend <i>the entire rest of the evening</i> playing around, making silly space opera-themed renderings.
 
   A little later, I tried out a program called [PiXELS:3D Studio](https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x) (oh, 90s software names).
 
@@ -68,7 +68,7 @@ time: Immemorial
 
   Me: "I don't know how to make a website."
 
-  Him: "You get this program called [Freeway](https://en.wikipedia.org/wiki/Freeway_(software)), and you can put images in it. Then you go to this website called [Angelfire](https://en.wikipedia.org/wiki/Angelfire) and they let you upload your website for free."
+  Him: "You get this program called [Freeway](https://en.wikipedia.org/wiki/Freeway_(software)), and you can put images in it. Then you go to [Angelfire](https://en.wikipedia.org/wiki/Angelfire) and they let you upload for free."
 
   So I did.
 
