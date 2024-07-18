@@ -3,5 +3,6 @@
   <channel>
     <title>Ivanish</title>
     <link>https://ivanish.ca</link>
+    <link href="https://ivanish.ca/rss" rel="self"/>
     <copyright>Copyright should be abolished.</copyright>
     <description>Ivan Reese is a visual programming researcher and multimedia artist.</description>
