@@ -9,12 +9,11 @@ typePages =
   Band: "music"
   Blog: "blog"
   Game: "code"
-  "Interactive Art": "code" # not sure this makes sense — is this more art-y, or more code-y?
+  "Interactive": "code"
   Performance: "performance"
   Photography: "art"
   Podcast: "thoughts"
-  "Procedural Art": "code" # not sure this makes sense — is this more art-y, or more code-y?
-  "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
+  "Generative Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
   Project: "project" # this is new-esq
   Score: "music" # this is new
   Song: "music"

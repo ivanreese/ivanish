@@ -1,4 +1,4 @@
-type: writing
+type: Blog
 time: 2024
 
 ---

@@ -28,17 +28,22 @@ desc: Rubbing two brain cells for warmth.
 <section id="posts">
 
   # 2024
-  [Get off Slack](get-off-slack)
+  [Body Issues (Stub)](/body-issues)
+  [Get off Slack (Stub)](/get-off-slack)
+  [Criticism (Draft)](/criticism)
 
   # 2021
-  [Workspace: 2021](workspace-2021)
+  [Workspace: 2021 (Pointless)](/workspace-2021)
 
   # 2019
-  [Steve Krouse's Lunch with Alan Kay](lunch-with-alan-kay)
+  [Steve Krouse's Lunch with Alan Kay (Dumb)](/lunch-with-alan-kay)
+  [Art Programming (Draft)](/art-programming)
 
-  // [Mental Models (WIP)](mental-models)
-  // [Sound Theory (WIP)](sound-theory)
-  // [Correspondence (WIP)](correspondence)
+  # 2018
+  [Mental Models (Draft)](/mental-models)
+  [Sound Theory (Draft)](/sound-theory)
+  [Correspondence (Dumb Draft)](/correspondence)
+
 </section>
 
 <style>
@@ -63,6 +68,8 @@ desc: Rubbing two brain cells for warmth.
   [eli_oat](https://eli.li)
   [Jimmy Miller](https://jimmyhmiller.github.io)
   [Justin Barclay](https://justinbarclay.ca/)
+  [Kartik Agaram](http://akkartik.name)
+  [Mariano Guerra](https://marianoguerra.org)
   [Szymon Kaliski](https://szymonkaliski.com/)
   [tevis thompson](http://tevisthompson.com/)
   [TodePond](https://todepond.com)
@@ -75,7 +82,22 @@ desc: Rubbing two brain cells for warmth.
   #blogroll {
     h1, a {
       display: inline-block;
-      rotate: -15deg;
+      rotate: -12deg;
+      margin-bottom: 1em;
     }
   }
 </style>
+
+<section>
+
+  # How I Blog
+
+  Most of this website, I talk about what I do. It's a scrapbook. The audience is me. A deeply personal website.
+
+  Here, I tell you what to do. I talk to you. It's a soapbox. The audience is you. Still, a deeply personal website.
+
+  <br><br>
+
+  I work on posts in the open. They'll live here, flagged as some sort of draft, until they're done. When they're done, I'll add them to my [RSS feed](/rss).
+
+</section>

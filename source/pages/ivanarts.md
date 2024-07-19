@@ -1,6 +1,6 @@
 type: Art… I guess?
 time: Immemorial
-published: 2024-07-15
+publish: 2024-07-15
 
 ---
 
