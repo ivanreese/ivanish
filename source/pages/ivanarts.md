@@ -1,5 +1,6 @@
 type: Art… I guess?
 time: Immemorial
+published: 2024-07-15
 
 ---
 
@@ -10,7 +11,28 @@ time: Immemorial
     background: #ddd;
   }
 
-  figure {
+  @media(min-width:500px) {
+    .hero {
+      width: 50%;
+      margin: 0 0 .5em;
+
+      &.left {
+        float: left;
+        margin-right: 1em;
+      }
+      &.right {
+        float: right;
+        margin-left: 1em;
+
+        /* Without this, the paragraph covers this float */
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+
+
+  .retro {
     display: block;
     margin: 0;
     padding: 4px;
@@ -20,7 +42,7 @@ time: Immemorial
     background: #ccc;
   }
 
-  figcaption {
+  .retro div {
     margin: 0;
     padding: .5em .5em 0;
     color: black;
@@ -55,34 +77,60 @@ time: Immemorial
   }
 </style>
 
-
 <section>
+
+  <figure class="hero left">
+    <img
+      width="650" height="485"
+      alt="Screenshot of Bryce3D showing a wacky user interface with big chunky buttons"
+      src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/bryce.webp">
+    <figcaption>(source: <a href="https://www.reddit.com/r/nostalgia/comments/3kkac4/bryce_3d/">r/nostalgia</a>)</figcaption>
+  </figure>
 
   [Bryce 3D](https://en.wikipedia.org/wiki/Bryce_(software)) was the first graphics program I learned in depth. My parents bought me a copy when I was 12 or 13 years old. Every day after school, I'd come home and spend <i>the entire rest of the evening</i> playing around, making silly space opera-themed renderings.
 
-  A little later, I tried out a program called [PiXELS:3D Studio](https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x) (oh, 90s software names).
+  To this day, I think there's something magical about the user interface. The big chunky camera controls — rendered by the program itself, as the back of the box proudly proclaimed — made it feel more like you were playing a strategy game than using an art tool.
 
-  One of the other kids in 8th grade wanted to be my friend. We started riding bikes together around town, practicing wheelies and hopping down stairs and other skatepark-reject tricks. He knew I was _really_ into making 3d art, and he was just getting into making stuff too.
+</section>
+<section>
 
-  Him: "Do you have a website?"
+  <figure class="hero right">
+    <img
+      width="650" height="485"
+      alt="Screenshot of PiXELS:3D Studio, a particularly ugly classic Macintosh application"
+      src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/pixels.jpeg">
+    <figcaption>(source: <a href="https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x">Macintosh Repository</a>)</figcaption>
+  </figure>
 
-  Me: "I don't know how to make a website."
+  A little later, I picked up a program with the oh-so-90s name [PiXELS:3D Studio](https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x). This one was quite nifty. It exclusively used this stuff called [NURBS](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline) — non-uniform rational basis splines. You created shapes by taking a single flat square, subdividing it an amount of your choosing along the length and width, and then folding it into your desired shape. Want a cylinder? Curl the square into a tube like you would with a sheet of paper. A sphere? Pinch the top and bottom of that tube. A cube? Squish the sides and pluck out the corners. Oh but wait — every NURBS object is smooth. That means to make a sharp edge, you need to add a bunch of subdivision and squeeze them together. Or… you could just make 6 flat squares, one for each side of the cube, and group them together. Weird. Okay.
 
-  Him: "You get this program called [Freeway](https://en.wikipedia.org/wiki/Freeway_(software)), and you can put images in it. Then you go to [Angelfire](https://en.wikipedia.org/wiki/Angelfire) and they let you upload for free."
+  So this program was great for making flat blobby things like water and round blobby things like aliens. It also had some wonderful shader-building tools, and inverse kinematics, and more. But it was terribly slow. And crashed a lot. And frequently made your saved files have 0 bytes. Notwithstanding, I spent years making art with it.
+
+</section>
+<section>
+
+  Around the same time, one of the other kids in my grade wanted to be friends. We started riding bikes together around town, practicing wheelies and hopping down stairs and other skatepark-reject tricks. He knew I was _really_ into making 3d art, and he was just getting into making stuff too.
+
+  > Him: "Do you have a website?"
+  >
+  > Me: "I don't know how to make a website."
+  >
+  > Him: "You get this program called [Freeway](https://en.wikipedia.org/wiki/Freeway_(software)), and you can put images in it. Then you go to [Angelfire](https://en.wikipedia.org/wiki/Angelfire) and they let you upload for free."
 
   So I did.
 
-
-<figure>
-  <iframe src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/site/ivanarts.html"></iframe>
-  <figcaption>This is a fully-interactive version of my first website. Go on — click around.</figcaption>
-</figure>
-
 </section>
-
 <section>
 
-  Here's my profile from the PiXELS:3D message board.
+<div class="retro">
+  <iframe src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/site/ivanarts.html"></iframe>
+  <div>This is a fully-interactive version of my first website. Go on — click around.</div>
+</div>
+
+</section>
+<section>
+
+  Bonus: here's my profile from the PiXELS:3D message board.
 
   > I am a 15-year-old great-grandpa, and a grade 10 student living in central Alberta, Canada, and I just happen to be 6'4". It was an accident involving dental floss and lab monkeys. Anyways, I have recently decided (based on my cuz's idea) to go by my middle name, Diego, as it sounds cooler then Ivan (In his, his girlfriend's, and my opinion). I welcome any feedback on this decision.
   >
