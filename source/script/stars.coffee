@@ -1,3 +1,8 @@
+# TODO: When you first start running,
+# small movements make ugly looking circles.
+# We should not render big circles until after
+# some minimum velocity has been reached.
+
 do ()->
   # We use a rand table, rather than Math.random(), so that we can have deterministic randomness.
   # This is not a performance optimization — Math.random() is already VERY fast.

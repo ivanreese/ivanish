@@ -28,6 +28,7 @@ desc: Rubbing two brain cells for warmth.
 <section id="posts">
 
   # 2024
+  [Stage Fright (Stub)](/stage-fright)
   [Body Issues (Stub)](/body-issues)
   [Get off Slack (Stub)](/get-off-slack)
   [Criticism (Draft)](/criticism)
