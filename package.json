@@ -8,8 +8,11 @@
     "marked-directive": "^1.0.4",
     "marked-smartypants": "^1.1.7",
     "showdown": "^2.1.0",
-    "sweetbread": "^0.2.0"
+    "sweetbread": "^0.2.1"
   },
   "license": "Copyright should be abolished.",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "gl-matrix": "^4.0.0-beta.2"
+  }
 }

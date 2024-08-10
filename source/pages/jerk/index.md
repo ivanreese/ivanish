@@ -1,5 +1,5 @@
-type: Song
-time: 2024
+# don't specify type or time, because there's a custom footer
+
 publish: 2024-07-08
 
 ---
@@ -283,6 +283,8 @@ The snarly bass begged for crash cymbals, which screamed for icy piano… and th
   <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-nu-metal.mp3" controls preload="metadata"></audio>
 </p>
 
+(If you'd like, [here's the full song](https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-nu-metal-full.mp3) in this unfinished nu metal state.)
+
 <br><br><br>
 
 At the end of the weekend, I sent the song to my friend Lu — maybe they'd want it for [their video](https://www.todepond.com/pondcast/finding-ninety-nine-sands/)?
@@ -401,3 +403,9 @@ Am I a good enough musician to pull that off? Probably not. I didn't quite get t
 I'll probably come back to this idea again. I don't want to make music that only speeds up forever, or slows down forever. I want to find a way to make the tempo change, and the change of tempo change, and the change of the change of tempo change. (That's why the song is called "Jerk" — _I'm a jerk because I didn't do [the thing](https://en.wikipedia.org/wiki/Jerk_(physics))_.)
 
 And unlike the tower game, (and the other ideas we had, some of which have [appeared](https://en.wikipedia.org/wiki/Everything_(video_game)) elsewhere), I haven't seen anyone do a shrinking game. So I'll probably come back to that too.
+
+<footer>
+  <a href="/music#song">Song</a> from <a href="/2024">2024</a>.
+
+  This post [was discussed](https://news.ycombinator.com/item?id=41154895) on [Hacker News](/hawker-news).
+</footer>

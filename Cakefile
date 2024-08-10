@@ -15,8 +15,8 @@ typePages =
   Podcast: "thoughts"
   "Generative Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
   Project: "project" # this is new-esq
-  Score: "music" # this is new
-  Song: "music"
+  Score: "music#score" # this is new
+  Song: "music#song"
   Thoughts: "thoughts"
   Toy: "code"
   Video: "art"
@@ -214,12 +214,19 @@ task "build", "Compile everything", ()->
     compile "page styles", "source/pages/**/*.css", (path)->
       copy path, replace path, "source/pages":"public"
 
-    compile "page scripts", "source/pages/**/*.coffee", (path)->
+    compile "page coffee", "source/pages/**/*.coffee", (path)->
       dest = replace path, "source/pages":"public", "coffee":"js"
       write dest, coffee read path
 
+    compile "page civet", "source/pages/**/*.civet", (path)->
+      dest = replace path, "source/pages":"public", "civet":"js"
+      write dest, civet read path
+
     compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
       copy path, replace path, "source/":"public/", "/pages/":"/"
+
+    compile "deps", "node_modules/gl-matrix/dist/esm/**/*", (path)->
+      copy path, replace path, "node_modules/gl-matrix/dist/esm/":"public/js/gl-matrix/",
 
     # Redirects
     if process.env.NETLIFY
