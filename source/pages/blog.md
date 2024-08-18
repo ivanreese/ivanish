@@ -5,33 +5,56 @@ desc: Rubbing two brain cells for warmth.
 
 ! Blog
 
-![Under Construction](https://d3um8l2sa8g9bu.cloudfront.net/blog/construction.gif)
-
 <style>
-  body {
-    background-color: oklch(100% .1 20);
-    color: oklch(20% 1 160);
+  main {
+    position: relative;
   }
-  main img {
-    display: block;
-    margin: calc(-4vh - 5em) auto -8em;
+  #podes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1600px;
+    z-index: -1;
   }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: hsl(0, 0%, 6%); }
+    main { color: hsl(0, 0%, 70%); }
+    a:hover, a:visited:hover { color: #FFF; }
+  }
+
   title {
     font-weight: 900;
   }
+
   h1 {
     font-size: 2em;
     font-weight: 900;
   }
 </style>
 
+<!--
+<script type="importmap">{"imports": {"gl-matrix": "/js/gl-matrix/gl-matrix.js"}}</script>
+<script type="module" src="podes.js"></script>
+-->
+
 <section id="posts">
+
+  Hey, this page is… to say it is under "active development" would be misleadingly auspicious. This blog is palliative care for my ambitions. My big ideas lie here, wrong, like yolk seeping down the nest. If I haven't sent you a link to a specific post, then these pages aren't for you — they're for me. But… you can read them, because you understand.
 
   # 2024
   [Stage Fright (Stub)](/stage-fright)
+
+  this shouldn't be under "blog" because it's a project:
   [Body Issues (Stub)](/body-issues)
+
   [Get off Slack (Stub)](/get-off-slack)
   [Criticism (Draft)](/criticism)
+
+  I should do posts about:
+  * Hyperzine, as a proto local-first app, which used the filesystem itself as database (and point of coordination between multiple apps)
+  * The experience of writing code in a specific PL that's meant to be legible to people who don't know that PL.
 
   # 2021
   [Workspace: 2021 (Pointless)](/workspace-2021)
@@ -100,5 +123,9 @@ desc: Rubbing two brain cells for warmth.
   <br><br>
 
   I work on posts in the open. They'll live here, flagged as some sort of draft, until they're done. When they're done, I'll add them to my [RSS feed](/rss).
+
+  <br><br>
+
+  Why do I even need a blog? If I'm writing about something, then that *thing* is the category for the writing. Like, if I write about Hyperzine, that should go under Code. So maybe the blog should only be for things that I think about, or want to talk about, that have nothing to do with something I've made.
 
 </section>

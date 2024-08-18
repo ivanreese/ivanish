@@ -1,0 +1,139 @@
+import { Mat3 } from 'gl-matrix';
+(()->
+
+  // Only run if:
+  // Dark mode.
+  // It's night time.
+  // Low random chance?
+
+  const canvas = document.createElement "canvas"
+  canvas.id = "podes"
+  document.querySelector("main")!.prepend canvas
+
+  const gl = canvas.getContext("webgl2") as WebGL2RenderingContext
+  return unless gl?
+
+  function createShader(type:GLenum, path:string)
+    const source = await fetch(path).then (x:Response)-> x.text()
+    const shader = gl.createShader(type)!
+    gl.shaderSource shader, source
+    gl.compileShader shader
+    const success:boolean = gl.getShaderParameter shader, gl.COMPILE_STATUS
+    unless success
+      console.log gl.getShaderInfoLog shader
+      gl.deleteShader shader
+    return shader
+
+  const vert = await createShader gl.VERTEX_SHADER, "vert.glsl"
+  const frag = await createShader gl.FRAGMENT_SHADER, "frag.glsl"
+
+  return unless vert? and frag?
+
+  const program = gl.createProgram()!
+  gl.attachShader program, vert
+  gl.attachShader program, frag
+  gl.linkProgram program
+  const success:boolean = gl.getProgramParameter program, gl.LINK_STATUS
+  unless success
+    console.log gl.getProgramInfoLog program
+    gl.deleteProgram program
+    return
+
+  // look up where the vertex data needs to go.
+  // Looking up attribute locations (and uniform locations) is something you should do during initialization, not in your render loop.
+  const positionAttributeLocation = gl.getAttribLocation(program, "a_position")
+
+  // lookup uniforms
+  var colorLocation = gl.getUniformLocation program, "u_color"
+  var matrixLocation = gl.getUniformLocation program, "u_matrix"
+
+  // Create a buffer and put a 2 points in it for 1 line
+  const positionBuffer = gl.createBuffer()
+
+  // Bind it to ARRAY_BUFFER (think of it as ARRAY_BUFFER = positionBuffer)
+  // WebGL lets us manipulate many resources on global bind points.
+  // You can think of bind points as internal global variables inside WebGL.
+  // First you bind a resource to a bind point.
+  // Then, all other functions refer to the resource through the bind point.
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+
+  // Now we can put data in that buffer by referencing it through the bind point
+  var positions = [
+    -2, -2,
+    2, 2
+  ]
+  // gl.bufferData then copies that data to the positionBuffer on the GPU.
+  // It's using the position buffer because we bound it to the ARRAY_BUFFER bind point above.
+  // gl.STATIC_DRAW tells WebGL we are not likely to change this data much, to help it optimize certain things.
+  gl.bufferData gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW
+
+  // Create a vertex array object (attribute state)
+  // Now that we've put data in a buffer we need to tell the attribute how to get data out of it.
+  // First we need to create a collection of attribute state called a Vertex Array Object.
+  const vao = gl.createVertexArray()
+
+  // and make it the one we're currently working with
+  // we need to make that the current vertex array so that all of our attribute settings will apply to that set of attribute state
+  gl.bindVertexArray vao
+
+  // Turn on the attribute
+  // Now we finally setup the attributes in the vertex array.
+  // First off we need to turn the attribute on.
+  // This tells WebGL we want to get data out of a buffer.
+  // If we don't turn on the attribute then the attribute will have a constant value
+  gl.enableVertexAttribArray positionAttributeLocation
+
+  // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
+  // Then we need to specify how to pull the data out
+  const size = 2          // 2 components per iteration
+  const type = gl.FLOAT   // the data is 32bit floats
+  const normalize = false // don't normalize the data
+  const stride = 0        // 0 = move forward size * sizeof(type) each iteration to get the next position
+  const offset = 0        // start at the beginning of the buffer
+  gl.vertexAttribPointer positionAttributeLocation, size, type, normalize, stride, offset
+
+  // A hidden part of gl.vertexAttribPointer is that it binds the current ARRAY_BUFFER to the attribute.
+  // In other words now this attribute is bound to positionBuffer.
+  // That means we're free to bind something else to the ARRAY_BUFFER bind point.
+  // The attribute will continue to use positionBuffer.
+
+  function resize()
+    if canvas.width is not canvas.clientWidth or canvas.height is not canvas.clientHeight
+      canvas.width = canvas.clientWidth
+      canvas.height = canvas.clientHeight
+      gl.viewport 0, 0, canvas.width, canvas.height
+
+  function render(t:number)
+    resize()
+
+    t /= 1000
+
+    // Clear the canvas
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    // Tell it to use our program (pair of shaders)
+    gl.useProgram(program);
+
+    // Bind the attribute/buffer set we want.
+    gl.bindVertexArray(vao);
+
+    // Compute the matrices
+    var matrix = new Mat3().rotate(t)
+
+    // Set the matrix.
+    gl.uniformMatrix3fv matrixLocation, false, matrix
+
+    // Draw in Red
+    gl.uniform4fv colorLocation, [1, 0, 0, 1]
+
+    // Draw the line
+    var primitiveType = gl.LINES
+    var offset = 0
+    var count = 2
+    gl.drawArrays primitiveType, offset, count
+
+    requestAnimationFrame render
+  requestAnimationFrame render
+
+)()
