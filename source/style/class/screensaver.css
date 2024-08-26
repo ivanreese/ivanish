@@ -1,0 +1,17 @@
+#screensaver {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  object-position: top left;
+  background: white;
+  border: 2vmin solid #f2f2f2;
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  #screensaver {
+    filter: invert(1);
+  }
+}
