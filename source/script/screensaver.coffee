@@ -1,6 +1,6 @@
 do ()->
-  sleepAfter = 120 * 1000
-  checkEvery = 10 * 1000
+  sleepAfter = 1 * 1000
+  checkEvery = 1 * 1000
 
   sleeping = false
   loadNextClip = false
@@ -8,7 +8,8 @@ do ()->
 
   video = document.createElement "video"
   video.autoplay = true
-  video.playsinline = true
+  video.setAttribute "muted", ""
+  video.setAttribute "playsinline", ""
   video.id = "screensaver"
   video.addEventListener "ended", ()-> loadNextClip = true
 
