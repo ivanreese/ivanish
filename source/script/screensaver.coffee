@@ -1,6 +1,6 @@
 do ()->
-  sleepAfter = 1 * 1000
-  checkEvery = 1 * 1000
+  sleepAfter = 120 * 1000
+  checkEvery = 10 * 1000
 
   sleeping = false
   loadNextClip = false
