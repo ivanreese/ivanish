@@ -55,6 +55,7 @@ desc: Rubbing two brain cells for warmth.
   I should do posts about:
   * Hyperzine, as a proto local-first app, which used the filesystem itself as database (and point of coordination between multiple apps)
   * The experience of writing code in a specific PL that's meant to be legible to people who don't know that PL.
+  * My experiences living with rural internet — no cell service (for SMS 2FA), 1s RTT, the whole trustd fiasco — and the web dev skills / tech aesthetics I've developed in this environment (subsetting fonts, hand-optimizing SVGs, optimizing images before I share them so the upload is quicker, avoiding JS/CSS dependencies entirely, menu bar widget showing my network traffic, TripMode). Maybe also talk about what a goddamn qualitify-of-life difference Starlink has made (allowing me to do calls, meaning I can a podcast and work for I&S).
 
   # 2021
   [Workspace: 2021 (Pointless)](/workspace-2021)
