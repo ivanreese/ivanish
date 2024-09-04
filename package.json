@@ -4,11 +4,11 @@
   "description": "A personal website for Ivan Reese",
   "devDependencies": {
     "markdown-it": "^14.0.0",
-    "marked": "^13.0.2",
-    "marked-directive": "^1.0.4",
-    "marked-smartypants": "^1.1.7",
+    "marked": "^14.1.0",
+    "marked-directive": "^1.0.6",
+    "marked-smartypants": "^1.1.8",
     "showdown": "^2.1.0",
-    "sweetbread": "^0.2.1"
+    "sweetbread": "^0.2.2"
   },
   "license": "Copyright should be abolished.",
   "private": true,
