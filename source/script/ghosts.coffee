@@ -1,6 +1,6 @@
 do ()->
   # 1 in 10 chance to run ghosts
-  return if Math.random() > 1 / 10
+  return if Math.random() > (1 / 10)
 
   # Grab the last paragraph
   return unless elm = Array.from(document.getElementsByTagName("p")).at(-1)
