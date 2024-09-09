@@ -13,7 +13,7 @@ typePages =
   Performance: "performance"
   Photography: "art"
   Podcast: "thoughts"
-  "Generative Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
+  "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
   Project: "project" # this is new-esq
   Score: "music#score" # this is new
   Song: "music#song"
