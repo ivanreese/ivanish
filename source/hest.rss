@@ -819,5 +819,22 @@ Places to contact me with feedback: https://ivanish.ca#contact
       ]]></description>
     </item>
 
+    <item>
+      <guid isPermaLink="false">hest-episode-40</guid>
+      <pubDate>7 Nov 2024 18:00:00 MST</pubDate>
+      <title>40 • Live as in Alive</title>
+      <itunes:title>Live as in Alive</itunes:title>
+      <itunes:episode>40</itunes:episode>
+      <itunes:duration>00:41:15</itunes:duration>
+      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/40.mp3" length="19802803" type="audio/mpeg"/>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:subtitle><![CDATA[
+        I have a swirl of feelings and this is the only way I know to express them.
+      ]]></itunes:subtitle>
+      <description><![CDATA[
+        I have a swirl of feelings and this is the only way I know to express them.
+      ]]></description>
+    </item>
+
   </channel>
 </rss>
