@@ -1,5 +1,5 @@
-type: Thoughts
-time: 2018
+type: Project
+time: 2018–Onwards
 
 ---
 
@@ -14,7 +14,7 @@ time: 2018
 
 ! Visual Programming Codex
 
-I've long been fond of visual programming languages. In my early years, I spent hours with HyperCard and HyperStudio, drag-and-drop game making tools, and various [3D graphics](http://localhost:3000/art/#3d) and VFX packages. At University, I took a class on Max/MSP and picked up Pure Data, then put those skills to use for a series of [sound art performances](http://localhost:3000/performance/#sound-art).
+I've long been fond of visual programming languages. In my early years, I spent hours with HyperCard and HyperStudio, drag-and-drop game making tools, and various [3D graphics](/art/#3d) and VFX packages. At University, I took a class on Max/MSP and picked up Pure Data, then put those skills to use for a series of [sound art performances](/performance/#sound-art).
 
 I work as a programmer, writing textual code. But I yearn for more visual approaches to programming. I'd love to work professionally in a spatial programming tool, with color and animation and icons to express meaning.
 

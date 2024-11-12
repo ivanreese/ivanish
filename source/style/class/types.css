@@ -35,7 +35,7 @@
       text-decoration: none;
       &:hover { opacity: 1; }
 
-      img, canvas {
+      img, canvas, video {
         flex: 0 0 5.2em;
         width: 5.2em;
         height: 5.2em;

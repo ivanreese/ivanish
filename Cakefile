@@ -12,15 +12,15 @@ typePages =
   "Interactive": "code"
   Performance: "performance"
   Photography: "art"
-  Podcast: "thoughts"
+  Podcast: "uncategorized"
   "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
   Project: "project" # this is new-esq
   Score: "music#score" # this is new
   Song: "music#song"
-  Thoughts: "thoughts"
+  Thoughts: "uncategorized"
   Toy: "code"
   Video: "art"
-  Writing: "thoughts"
+  Writing: "uncategorized"
 
 ### Supported Frontmatter
 type: [any typePages key]      # transcluding any text that doesn't match (see Shrinkin & Breakin)
@@ -231,10 +231,16 @@ task "build", "Compile everything", ()->
     # Redirects
     if process.env.NETLIFY
       write "public/_redirects", [
-        "/codex   " + process.env.CODEX_URL
-        "/meet    " + process.env.MEET_URL
-        "/showdoc " + process.env.SHOWDOC_URL
-        "/zoom    " + process.env.ZOOM_URL
+        # Sugar
+        "/contact          /#contact"
+        # Cool URLs don't change
+        "/hest-podcast     /hest/podcast"
+        "/hest-time-travel /hest/time-travel"
+        # Not secret, just don't want nasty URLs in my repo
+        "/codex            " + process.env.CODEX_URL
+        "/meet             " + process.env.MEET_URL
+        "/showdoc          " + process.env.SHOWDOC_URL
+        "/zoom             " + process.env.ZOOM_URL
       ].join "\n"
 
 

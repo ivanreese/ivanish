@@ -9,7 +9,7 @@ time: 2019
 
   <section>
 
-    <p><i>April 2021 update: There's a new podcast all about Hest. <a href="/hest-podcast">Check it out.</a></i></p>
+    <p><i>April 2021 update: There's a new podcast all about Hest. <a href="/hest/podcast">Check it out.</a></i></p>
 
     <p>In this post I'll describe the design of Hest, just enough to explain what's going on in these two tweets. Then I'll talk about a problem with time travel that's recently had me stumped.</p>
   </section>
@@ -63,7 +63,7 @@ time: 2019
   </section>
 
   <div class="hero">
-    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/3ds-max.jpg">
+    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3ds-max.jpg">
     <p>3DS Max is my third favourite 3D graphics program.</p>
   </div>
 
@@ -74,7 +74,7 @@ time: 2019
   </section>
 
   <div class="hero">
-    <img style="border-radius:100%;" src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/inf.gif">
+    <img style="border-radius:100%;" src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/inf.gif">
     <p>An infinite loop.</p>
   </div>
 
@@ -89,7 +89,7 @@ time: 2019
   </section>
 
   <div class="hero">
-    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/pub.gif">
+    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/pub.gif">
     <p>You decide just how quickly execution should progress.</p>
   </div>
 
@@ -103,7 +103,7 @@ time: 2019
     <p>But... why not just have one thing happen at a time, and still offer the fluid control over time? Wouldn't that be simpler? Well, consider this arrangement.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/0.png">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/0.png">
       <p>A function with two edges leading in, two edges leading out.</p>
     </div>
 
@@ -191,12 +191,12 @@ time: 2019
     <p>Consider this setup.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/1.png">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/1.png">
       <p>A function with one edge in, one edge out. Data is travelling along the inbound edge.</p>
     </div>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/2.png">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/2.png">
       <p>A moment later, we see the result of the function flowing out.</p>
     </div>
 
@@ -205,19 +205,19 @@ time: 2019
     <p>Here's where it gets painful.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/3.png">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3.png">
       <p>A function with two edges in, one edge out. Data is travelling along the left inbound edge.</p>
     </div>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/4.png">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/4.png">
       <p>A moment later, we see the result of the function flowing out.</p>
     </div>
 
     <p>Again, it's easy to intuitively predict what should happen if time is reversed — the state of the sim should return to how it was in the first image. That works fine if we use a Replay or Rewind strategy, but not if we implement full-on backward execution. Why? Because under backward execution, we need a strategy for figuring out which inbound edges a point should travel back up. Recall from before that the only sane propagation strategy is to have points travel out from all edges. The same reasoning applies backwards, too. That means instead of returning to the first image, we'd end up with data on both inbound edges.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/5.png">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/5.png">
       <p>Backwards execution sends data where we don't want it.</p>
     </div>
 
@@ -227,7 +227,7 @@ time: 2019
   </section>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest-time-travel/moving-point.gif">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/moving-point.gif">
       <p>You can drag data from one path to another, or drive it with the keyboard which is way more fun.</p>
     </div>
 

@@ -133,7 +133,7 @@ That's the version of me you probably first met.
 
 _There are things you assumed were constant, but what if they aren't?_
 
-I am tired of being a computer programmer. I am tired of writing code. It is a grid of letters. It is monospaced. It does not move. You cannot make it shrink and grow, stretch it out, squish it together. Well… [maybe you can](/hest-time-travel). <small>You just have to get away from static text. <small>You need to be in an environment where it makes sense for things to shrink and grow, <small>for cracks to open up that you can slip down inside.</small></small></small>
+I am tired of being a computer programmer. I am tired of writing code. It is a grid of letters. It is monospaced. It does not move. You cannot make it shrink and grow, stretch it out, squish it together. Well… [maybe you can](/hest). <small>You just have to get away from static text. <small>You need to be in an environment where it makes sense for things to shrink and grow, <small>for cracks to open up that you can slip down inside.</small></small></small>
 
 And I am bored of not making music.
 
