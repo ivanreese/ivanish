@@ -385,9 +385,10 @@ requestRender = function() {
     return requestAnimationFrame(render);
   }
 };
+const initialTime = Math.random() * 10000
 render = function(ms) {
   var t;
-  t = ms / 1000;
+  t = initialTime + ms / 1000;
   renderRequested = false;
   if (isNaN(ms)) {
     return requestRender();
@@ -407,7 +408,7 @@ x1 = function(t) {
 };
 y1 = function(t) {
   seed = 1697;
-  return 0.1 * height + 200 + 50 * simplex2(seed + noiseRadius * Math.cos(TAU * t / 20), noiseRadius * Math.sin(TAU * t / 20));
+  return 0.1 * height + 120 + 50 * simplex2(seed + noiseRadius * Math.cos(TAU * t / 20), noiseRadius * Math.sin(TAU * t / 20));
 };
 x2 = function(t) {
   seed = 1317;
@@ -415,10 +416,10 @@ x2 = function(t) {
 };
 y2 = function(t) {
   seed = 697;
-  return 0.1 * height + 200 + 50 * simplex2(seed + noiseRadius * Math.cos(TAU * t / 40), noiseRadius * Math.sin(TAU * t / 40));
+  return 0.1 * height + 160 + 50 * simplex2(seed + noiseRadius * Math.cos(TAU * t / 40), noiseRadius * Math.sin(TAU * t / 40));
 };
 renderMain = function(time, blur) {
-  blurTime = 1.2 + Math.cos(TAU * time * .01);
+  blurTime = 6 + 5 * Math.sin(TAU * time * .01);
   blurSamples = 100;
   var ctx, delay, frac, i, l, m, ref, ref1, results, steps, t, tFrac, x, y;
   ctx = surfaces.main.context;
