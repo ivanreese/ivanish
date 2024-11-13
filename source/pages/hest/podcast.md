@@ -26,6 +26,7 @@ time: 2021-onward
     gap: .5em;
     margin-top: 1em;
     margin-bottom: 0;
+    clear: both;
 
     b {
       opacity: .5;
