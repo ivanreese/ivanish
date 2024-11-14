@@ -31,7 +31,6 @@ publish: yyyy-mm-dd            # will make the page appear in the rss feed
 desc: [any text]               # generates a description for the <head>
 ###
 
-# TODO: hest-time-travel has multiple <main>s
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
 # TODO: Use desc for the year page description?
 # TODO: specify an image in the frontmatter for OG?
