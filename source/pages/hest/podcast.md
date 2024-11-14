@@ -211,3 +211,20 @@ I recommend listening to the show from the beginning. But, for the benefit of fo
 
 ## <b>1</b> Graphical Programming <span>22 Mar 2021</span>
 <audio src="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/1.mp3" controls preload="metadata"></audio>
+
+<br><br><br>
+<button id="play-all">Play All</button>
+
+<script>
+  let playing = false
+  const btn = document.querySelector("#play-all")
+  const all = document.querySelectorAll("audio")
+  btn.onclick = ()=> {
+    playing = !playing;
+    btn.textContent = playing ? "Ahh stop!" : "Play All"
+    Array.from(all).forEach((a)=> {
+      playing ? a.play() : a.pause();
+      a.volume = playing ? 0.2 : 1;
+    })
+  }
+</script>
