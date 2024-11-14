@@ -1,294 +1,292 @@
 type: Thoughts
 time: 2019
+main: class="writing"
 
 ---
 
-<main class="writing">
+! Hest, Time Travel
 
-  ! Hest, Time Travel
+<section>
+
+  <p><i>April 2021 update: There's a new podcast all about Hest. <a href="/hest/podcast">Check it out.</a></i></p>
+
+  <p>In this post I'll describe the design of Hest, just enough to explain what's going on in these two tweets. Then I'll talk about a problem with time travel that's recently had me stumped.</p>
+</section>
+
+<section class="tweets full">
+  <style>
+    .tweets {
+      text-align: center;
+    }
+    .fake-tweet {
+      display: inline-flex;
+      flex-direction: column;
+      gap: .5em;
+      max-width: 28em;
+      margin: 1em;
+      padding: 1em;
+      border: 1px solid #777;
+      border-radius: .8em;
+      background: #1a1a1a;
+      font-family: system-ui;
+      color: white;
+      text-align: left;
+
+      .row {
+        display: flex;
+        gap: .5em;
+        align-items: center;
+      }
+
+      img {
+        border-radius: 4em;
+        width: 3.5em;
+        height: 3.5em;
+      }
+
+      video {
+        width: 100%;
+        border: 1px solid #fff3;
+        border-radius: .8em;
+      }
+
+      em {
+        font-style: normal;
+        color: #fff8;
+        font-size: .9em;
+      }
+
+      .meta {
+        padding: .5em 0 0;
+        border-top: 1px solid #fff3;
+      }
+    }
+  </style>
+
+  <div class="fake-tweet">
+    <div class="row">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/pizza-face/pizza-face-thumb.png" alt="">
+      <div>
+        <div>Ivan Reese</div>
+        <em>@spiralganglion</em>
+      </div>
+    </div>
+    <p>
+      This is my new project, Hest.<br><br>• A drawing tool with visual programming features.<br>• Everything is both code and data.<br>• Execution happens in time and space.<br>• You control time.<br><br>Here it is doing "shitty math" — where your operators are little boxes.
+      <em>#screenshotsaturday</em>
+    </p>
+    <video src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/shitty-math.mp4" autoplay loop muted playsinline></video>
+    <em>11:57AM • June 29, 2019</em>
+    <div class="meta row">
+      <div>15 Replies</div>
+      <div>473 Favourites</div>
+    </div>
+  </div>
+
+  <div class="fake-tweet">
+    <div class="row">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/pizza-face/pizza-face-thumb.png" alt="">
+      <div>
+        <div>Ivan Reese</div>
+        <em>@spiralganglion</em>
+      </div>
+    </div>
+    <p>
+      The little "comets" are... data? And the black paths are, what, function calls?<br><br>So you can grab data en route to a function? And move it with the arrow keys? And then drop it back on a path?<br><br>Sure, but like I already have a step debugger, why?
+    </p>
+    <video src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/comets.mp4" autoplay loop muted playsinline></video>
+    <em>10:14PM • July 2, 2019</em>
+    <div class="meta row">
+      <div>4 Replies</div>
+      <div>33 Favourites</div>
+    </div>
+  </div>
+</section>
+
+<div class="writing spacious">
+
+  <style>.spacious section { margin: 20vh 0; }</style>
 
   <section>
+    <h1>Design</h1>
 
-    <p><i>April 2021 update: There's a new podcast all about Hest. <a href="/hest/podcast">Check it out.</a></i></p>
-
-    <p>In this post I'll describe the design of Hest, just enough to explain what's going on in these two tweets. Then I'll talk about a problem with time travel that's recently had me stumped.</p>
+    <p>Hest is a tool for making highly interactive simulations, like games or explorable explanations. The Hest editor is meant to be reminiscent of a 3D graphics program like Modo or Maya. You create a sim by drawing or importing graphic assets, sounds, text, or other media, and then adding behaviour and interactivity. You manipulate and connect and detail and inspect and tweak things until they look right and work the way you want. The graphics of the sim and the visual code that bring it to life coexist in the same infinite canvas, are edited using the same direct manipulation drawing tools, and are always running live.</p>
   </section>
 
-  <section class="tweets full">
-    <style>
-      .tweets {
-        text-align: center;
-      }
-      .fake-tweet {
-        display: inline-flex;
-        flex-direction: column;
-        gap: .5em;
-        max-width: 28em;
-        margin: 1em;
-        padding: 1em;
-        border: 1px solid #777;
-        border-radius: .8em;
-        background: #1a1a1a;
-        font-family: system-ui;
-        color: white;
-        text-align: left;
-
-        .row {
-          display: flex;
-          gap: .5em;
-          align-items: center;
-        }
-
-        img {
-          border-radius: 4em;
-          width: 3.5em;
-          height: 3.5em;
-        }
-
-        video {
-          width: 100%;
-          border: 1px solid #fff3;
-          border-radius: .8em;
-        }
-
-        em {
-          font-style: normal;
-          color: #fff8;
-          font-size: .9em;
-        }
-
-        .meta {
-          padding: .5em 0 0;
-          border-top: 1px solid #fff3;
-        }
-      }
-    </style>
-
-    <div class="fake-tweet">
-      <div class="row">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/pizza-face/pizza-face-thumb.png" alt="">
-        <div>
-          <div>Ivan Reese</div>
-          <em>@spiralganglion</em>
-        </div>
-      </div>
-      <p>
-        This is my new project, Hest.<br><br>• A drawing tool with visual programming features.<br>• Everything is both code and data.<br>• Execution happens in time and space.<br>• You control time.<br><br>Here it is doing "shitty math" — where your operators are little boxes.
-        <em>#screenshotsaturday</em>
-      </p>
-      <video src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/shitty-math.mp4" autoplay loop muted playsinline></video>
-      <em>11:57AM • June 29, 2019</em>
-      <div class="meta row">
-        <div>15 Replies</div>
-        <div>473 Favourites</div>
-      </div>
-    </div>
-
-    <div class="fake-tweet">
-      <div class="row">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/pizza-face/pizza-face-thumb.png" alt="">
-        <div>
-          <div>Ivan Reese</div>
-          <em>@spiralganglion</em>
-        </div>
-      </div>
-      <p>
-        The little "comets" are... data? And the black paths are, what, function calls?<br><br>So you can grab data en route to a function? And move it with the arrow keys? And then drop it back on a path?<br><br>Sure, but like I already have a step debugger, why?
-      </p>
-      <video src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/comets.mp4" autoplay loop muted playsinline></video>
-      <em>10:14PM • July 2, 2019</em>
-      <div class="meta row">
-        <div>4 Replies</div>
-        <div>33 Favourites</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="writing spacious">
-
-    <style>.spacious section { margin: 20vh 0; }</style>
-
-    <section>
-      <h1>Design</h1>
-
-      <p>Hest is a tool for making highly interactive simulations, like games or explorable explanations. The Hest editor is meant to be reminiscent of a 3D graphics program like Modo or Maya. You create a sim by drawing or importing graphic assets, sounds, text, or other media, and then adding behaviour and interactivity. You manipulate and connect and detail and inspect and tweak things until they look right and work the way you want. The graphics of the sim and the visual code that bring it to life coexist in the same infinite canvas, are edited using the same direct manipulation drawing tools, and are always running live.</p>
-    </section>
-
-    <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3ds-max.jpg">
-      <p>3DS Max is my third favourite 3D graphics program.</p>
-    </div>
-
-    <section>
-      <p>Hest's programming model emerges from the two most universal primitives in computer graphics — points, which are a position in space, and edges, which connect points together. For the purposes of programming, edges have a sense of direction — a <i>start</i> point and an <i>end</i> point. You can tell a point to behave like a function. You can also tell a point to travel along an edge — we say that the point is <i>conveyed</i> along the edge. When the point arrives at the end of the edge it'll invoke the function-like behaviour of the end point, if any. In other words, points in motion are data and points at rest are functions. The function consumes (destroys) the incoming data, and creates new data points to travel along every outbound edge. That's the gist of how code is executed. There's a lot more to the programming model (including wholly other ways to make execution happen, emerging from the same primitives), but it'll have to be the subject of another post.</p>
-
-      <p>As an aside, I should note that the images and GIFs of Hest in this post are each meant to illustrate specific concepts or editor features, and aren't meant to be understandable as code. Also, I'm not showing the editor GUI yet because it's just a scaffold, not yet given due design attention. Hest is going to take years to build, and I only recently moved from <a rel="nofollow" href="https://www.youtube.com/watch?v=f84n5oFoZBc">hammock time</a> to full-on development. Also, note that I refer to people using Hest as <i>artists</i>, even though they are also programming in a Turing complete language. With those points of possible confusion out of the way, let's talk about time travel.</p>
-    </section>
-
-    <div class="hero">
-      <img style="border-radius:100%;" src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/inf.gif">
-      <p>An infinite loop.</p>
-    </div>
-
-    <section>
-      <h1>Time Travel</h1>
-
-      <p>You choose how time progresses. The passage of time is just an attribute of the objects in Hest, so you can have different parts of your sim running at different rates. Generally, core functions, libraries, and your main simulation logic run <i>as fast as possible</i>. But you probably also want to have a part of your sim that runs at a finite, constant rate, where your game's graphics and GUI exist.</p>
-
-      <p>When debugging, you can run time in slow motion. This lets you follow data as it moves through the sim. By default, data points are labelled to show what values they contain, so you get the benefits of a debugger — seeing your current variable values in every scope, stepping through code — but you don't need to completely stop time. You can still interact with your sim, and see it slowly respond.</p>
-
-      <p>You can also run time backwards. By the end of this post we will have thoroughly explored the consequences of going back in time.</p>
-    </section>
-
-    <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/pub.gif">
-      <p>You decide just how quickly execution should progress.</p>
-    </div>
-
-    <section>
-      <h1>Concurrency</h1>
-
-      <p>As you've seen, there can be a lot of data moving all at once throughout your sim. Scrubbing time forward and back are how you'll keep tabs on it all. This is very different from typical programming models where only one thing happens at a time, in series. Even traditional concurrency is generally treated as a parallel collection of separate sequential processes.</p>
-
-      <p>Hest could be like that too. But by giving you powerful control over the flow of time, you're better equipped work with a more complex programming model. And consider the inverse: by creating a more complex programming model, I'm putting pressure on myself to make the tools for systems thinking (like time travel) as powerful as I can.</p>
-
-      <p>But... why not just have one thing happen at a time, and still offer the fluid control over time? Wouldn't that be simpler? Well, consider this arrangement.</p>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/0.png">
-        <p>A function with two edges leading in, two edges leading out.</p>
-      </div>
-
-      <p>That data travels along the edge and arrives at the function. The function and data have their interaction, new data is created as a result, and should then flow out from the function. <i>Flow out from the function.</i> What, exactly, does that mean?</p>
-
-      <p>One option, employed by most node-and-line visual programming languages, is that execution is depth-first. The new data flows out along one edge, onward through the rest of the sim until it's done its journey. Then, data flows out along the other edge. Typically, the edge that was created first flows first. <b>Only one data point is ever moving at a time.</b> Simpler, right?</p>
-
-      <p>In these languages, you don't actually <i>see</i> the data flowing. But in Hest you do, and you're encouraged to follow the data closely. If Hest adopted this depth-first approach, following the data closely would mean that after arriving at the end of the journey of the first point and all its descendants, you'd need to snap back to this function and follow the second point down the second edge. That would be a disorienting context switch for the artist, execution moving suddenly from one location in the infinite code canvas to another, no obvious connection between the termination of one point's journey and the resumption of another. This would happen incredibly frequently, a sudden jump for every <a rel="nofollow" href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic path</a> through the simulation's code graph.</p>
-
-      <p>Must it be that disorienting? No, this experience could be helped a lot by UI affordances — perhaps a sidebar list showing the queue of points waiting to be propagated; waiting data points rendered perched on the lip of their functions like runners at the starting line; onion-skin rendering showing the ghostly paths of previously travelled points in one color and not yet travelled points in another. It's easy to paper over design weaknesses with GUI, but it's better if we dig down toward the underlying problem.</p>
-
-      <p>Here's a deeper problem with single-point execution: data points travel out from a function along edges in the order the edges were created. That's invisible state. You could number the edges, and allow the artist to reorder the numbers. Even then, it's hard to explain what those numbered edges mean in terms of the core concepts of the language. That's the ultimate root of the problem: points and edges exist, and have geometric relationships, and that's it. Introducing some sort of order between edges leaks information about the philosophy of execution into the otherwise very purely geometric essence of the model.</p>
-
-      <p>There's also an aesthetic problem. When building software thats meant to be live edited, like a game in Unity or a synthesizer in Max/MSP, the thing you're building exists continuously. If the code that powers it is full of skips and jumps, that's a kind of discreteness. Normally, you don't notice or care about that, because the code always runs so fast it blurs together into a continuous-feeling result. Add time travel to the mix, and you'll jarringly move from a world of fluidity at high speed to stuttering and snapping discreteness in slow motion. That feels weird.</p>
-
-      <div class="hero">
-        <iframe style="border: 0; margin: 0 auto; max-width: 700px; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2686252296/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/track=3195205369/transparent=true/" seamless><a href="https://woulg.bandcamp.com/album/last-time">Last Time by woulg</a></iframe>
-        <p>A perfect 5th interval is just a very fast 2-against-3 polyrhythm.</p>
-      </div>
-
-      <p>Time travel makes executing one data point at a time a confusing mess. So instead we do this: data flows out from every outbound edge simultaneously. Yes, this can be complex and confusing. Yes, it requires special GUI affordances. But it doesn't require hidden state, it keeps things feeling continuous at every time scale, it matches how flow-based systems like electrical or hydraulic circuits work in real life. It's not perfect, but it is predictable.</p>
-
-      <p>Upon reflection, embracing this style of concurrency is <a rel="nofollow" href="https://twitter.com/spiralganglion/status/1165173920351211520">less familiar feeling</a>, and I find that valuable in my design process. It also makes programming in Hest feel more like a video game, like <a rel="nofollow" href="https://github.com/ivanreese/visual-programming-codex/blob/master/inspirations.md">Factorio or SpaceChem</a>, which is something I'm actively seeking.</p>
-    </section>
-
-    <section>
-      <h1>Edit, Then Reverse</h1>
-
-      <p>There are a bunch of different things that could happen when you pause time, edit the code graph, and then want to travel back in time. Here are five:</p>
-
-      <ol>
-        <li>Disallowed</li>
-        <li>Revert</li>
-        <li>Replay</li>
-        <li>Rewind</li>
-        <li>Backwards</li>
-      </ol>
-
-
-      <p>
-        <h3>1. Disallowed</h3>
-        The simplest. If you pause and edit the code graph, going back in time might create temporal paradoxes or invalid states. So we just block you from doing that until you click some sort of "Restart" button, clearing all the simulation state.
-      </p>
-
-
-      <p>
-        <h3>2. Revert</h3>
-        Simple. After making edits, if you reverse past the point where you made the edits, the edits are undone. When you move forward past that point again, the edits reoccur. This avoids paradoxes when going backwards, though it does allow for invalid state until you restart. Presumably, when stopping and restarting execution, Hest would ask which version of the sim you'd like to keep.
-      </p>
-
-      <p>
-        <h3>3. Replay</h3>
-        Slightly complex. As you edit the code, the engine automatically reruns execution from the beginning to the current time, using the new code. This means you'll never get an invalid state or a paradox, but it might be really slow, and the further you are from the start time the slower it is. It also means you blow away your paused state, which decreases the amount of interactive editing you can do, in a way that becomes inferior to editing text (where you can pass through invalid code states on your way to a new valid state, then save).
-      </p>
-
-      <p>
-        <h3>4. Rewind</h3>
-        Complex. This is like <a rel="nofollow" href="https://en.wikipedia.org/wiki/Braid_(video_game)">Braid</a>. If you rewind time, things return to the places/states they were before, even if you have altered the code graph. We do this by storing a history of where data has been, and simply restore that history. It's more interactive and it doesn't destroy the current execution state as you edit the code. But it creates a ton of paradoxes and invalid states — if you edit the code, rewind time even a little bit, and then run execution forward the same amount, you aren't guaranteed to return to the same state you were just in before you rewound.
-      </p>
-
-      <p>
-        <h3>5. Backwards</h3>
-        Wickedly complex. Every function needs to do something meaningful whether executing forwards or backwards through time. This will create fewer paradoxes and invalid states than Rewind, because if you rewind time a little bit, and then run it forward the same amount, you are more likely to return to the same state. When executing backwards, if we don't have the data needed to meaningfully satisfy a function, we can use default data or generate random data, so long as we get the same result every time when returning to the future we travelled back from. Backwards execution is really nice when combined the picking up and manually moving data around in the system, since it means you can drop data down on an edge and it will flow forward and backward as if it had been there all along.
-      </p>
-
-      <br><br>
-
-      <p>The approach that's likely to work best is a hybrid of the above, inviting the artist to control the time travel strategy to achieve the outcome they want based on what they're trying to do.</p>
-      <ul>
-        <li>Like Disallow, we probably want to mark in the timeline the current time whenever code graph edits are made, so that the artist can see that things prior to that point in time will be possibly invalid or paradoxical.</li>
-        <li>Like Revert, we could allow the artist to record their code changes as happening within the timeline (rather than outside it). This lets you choose whether to rewind code changes, or not, when scrubbing through time. Lots of ways this could be designed, so I'd find whichever one feels best.</li>
-        <li>Like Replay, there could be a button to tell Hest to reevaluate from the beginning (perhaps replaying all user input along the way) up to the current moment in time.</li>
-        <li>Like Rewind, when scrubbing the timeline the system would exactly reproduce the data that existed at that time, akin to scrubbing time in Braid without letting go of the time travel button.</li>
-        <li>Like Backwards, the artist could tell Hest to actively run execution forward or backward, which would overwrite the timeline history as it goes (or possibly create a new branch of timeline history stemming off from the moment where you started executing). We might want to do something like greying-out the timeline when you edit the code graph to show that it's probably not valid anymore, and then color it in when running execution.</li>
-      </ul>
-
-      <p>That's a rough outline of time scrubbing strategies. I'm still working through this space, considering a lot of options and running experiments in Hest. But in general, I've been operating under the assumption that backwards execution is a necessity, even if other strategies like rewind are included too.</p>
-    </section>
-
-    <section>
-      <h1>The Problem</h1>
-
-      <p>This is a problem I ran into while pondering the backwards execution strategy. It might be a dealbreaker. If that's the case, I'm not sure how to make Hest have the <i>pick up and move live data</i> experience I want.</p>
-
-      <p>Consider this setup.</p>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/1.png">
-        <p>A function with one edge in, one edge out. Data is travelling along the inbound edge.</p>
-      </div>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/2.png">
-        <p>A moment later, we see the result of the function flowing out.</p>
-      </div>
-
-      <p>Looking at the second image, it's easy to predict what should happen when the flow of time is reversed. Regardless of the time reversing strategy employed, the state of the sim will return to what it was in the first image.</p>
-
-      <p>Here's where it gets painful.</p>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3.png">
-        <p>A function with two edges in, one edge out. Data is travelling along the left inbound edge.</p>
-      </div>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/4.png">
-        <p>A moment later, we see the result of the function flowing out.</p>
-      </div>
-
-      <p>Again, it's easy to intuitively predict what should happen if time is reversed — the state of the sim should return to how it was in the first image. That works fine if we use a Replay or Rewind strategy, but not if we implement full-on backward execution. Why? Because under backward execution, we need a strategy for figuring out which inbound edges a point should travel back up. Recall from before that the only sane propagation strategy is to have points travel out from all edges. The same reasoning applies backwards, too. That means instead of returning to the first image, we'd end up with data on both inbound edges.</p>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/5.png">
-        <p>Backwards execution sends data where we don't want it.</p>
-      </div>
-
-      <p>If we continued executing in reverse for a good while, and then executed forward again, it's easy to imagine all those unintentionally generated data points flowing to parts of the system that they shouldn't. We'd create a simulation state that would never exist when running forward from a clean start.</p>
-
-      <p>Why not collect some amount of history data and use it to determine which edge a data point flowed in through? Well, that doesn't interact nicely with one of the most powerful complements to slow motion: the ability to grab data and move it around the system. If you scoop up a data point, drop it somewhere else, and then reverse, I want the data point to travel back along the path it's on as though it had been there all along. So when it crosses over the previous function, we <i>must</i> have a strategy for deciding which paths it travels without relying on history.</p>
-    </section>
-
-      <div class="hero">
-        <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/moving-point.gif">
-        <p>You can drag data from one path to another, or drive it with the keyboard which is way more fun.</p>
-      </div>
-
-    <section>
-      <p>So that's where I've been stuck for the past while. Which time reversing strategy (or strategies) should I use, and in what ways should the downsides of reversing be tamed? I'd like to find an approach that emerges cleanly from the geometric underpinnings, and not just paper over the problem with assistive GUI.</p>
-
-      <br><br>
-
-      <p>I hope you've enjoyed this design excursion. I'll be sharing more about Hest as it happens on Twitter, where you can also <a rel="nofollow" href="https://twitter.com/spiralganglion/status/1165883102549307392">give feedback on this blog post</a>. If you want more in-depth discussion about Hest, or computer science and HCI broadly, the <a rel="nofollow" href="https://futureofcoding.org">Future of Coding</a> community is a great place. See you there!</p>
-    </section>
+  <div class="hero">
+    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3ds-max.jpg">
+    <p>3DS Max is my third favourite 3D graphics program.</p>
   </div>
-</main>
+
+  <section>
+    <p>Hest's programming model emerges from the two most universal primitives in computer graphics — points, which are a position in space, and edges, which connect points together. For the purposes of programming, edges have a sense of direction — a <i>start</i> point and an <i>end</i> point. You can tell a point to behave like a function. You can also tell a point to travel along an edge — we say that the point is <i>conveyed</i> along the edge. When the point arrives at the end of the edge it'll invoke the function-like behaviour of the end point, if any. In other words, points in motion are data and points at rest are functions. The function consumes (destroys) the incoming data, and creates new data points to travel along every outbound edge. That's the gist of how code is executed. There's a lot more to the programming model (including wholly other ways to make execution happen, emerging from the same primitives), but it'll have to be the subject of another post.</p>
+
+    <p>As an aside, I should note that the images and GIFs of Hest in this post are each meant to illustrate specific concepts or editor features, and aren't meant to be understandable as code. Also, I'm not showing the editor GUI yet because it's just a scaffold, not yet given due design attention. Hest is going to take years to build, and I only recently moved from <a rel="nofollow" href="https://www.youtube.com/watch?v=f84n5oFoZBc">hammock time</a> to full-on development. Also, note that I refer to people using Hest as <i>artists</i>, even though they are also programming in a Turing complete language. With those points of possible confusion out of the way, let's talk about time travel.</p>
+  </section>
+
+  <div class="hero">
+    <img style="border-radius:100%;" src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/inf.gif">
+    <p>An infinite loop.</p>
+  </div>
+
+  <section>
+    <h1>Time Travel</h1>
+
+    <p>You choose how time progresses. The passage of time is just an attribute of the objects in Hest, so you can have different parts of your sim running at different rates. Generally, core functions, libraries, and your main simulation logic run <i>as fast as possible</i>. But you probably also want to have a part of your sim that runs at a finite, constant rate, where your game's graphics and GUI exist.</p>
+
+    <p>When debugging, you can run time in slow motion. This lets you follow data as it moves through the sim. By default, data points are labelled to show what values they contain, so you get the benefits of a debugger — seeing your current variable values in every scope, stepping through code — but you don't need to completely stop time. You can still interact with your sim, and see it slowly respond.</p>
+
+    <p>You can also run time backwards. By the end of this post we will have thoroughly explored the consequences of going back in time.</p>
+  </section>
+
+  <div class="hero">
+    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/pub.gif">
+    <p>You decide just how quickly execution should progress.</p>
+  </div>
+
+  <section>
+    <h1>Concurrency</h1>
+
+    <p>As you've seen, there can be a lot of data moving all at once throughout your sim. Scrubbing time forward and back are how you'll keep tabs on it all. This is very different from typical programming models where only one thing happens at a time, in series. Even traditional concurrency is generally treated as a parallel collection of separate sequential processes.</p>
+
+    <p>Hest could be like that too. But by giving you powerful control over the flow of time, you're better equipped work with a more complex programming model. And consider the inverse: by creating a more complex programming model, I'm putting pressure on myself to make the tools for systems thinking (like time travel) as powerful as I can.</p>
+
+    <p>But... why not just have one thing happen at a time, and still offer the fluid control over time? Wouldn't that be simpler? Well, consider this arrangement.</p>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/0.png">
+      <p>A function with two edges leading in, two edges leading out.</p>
+    </div>
+
+    <p>That data travels along the edge and arrives at the function. The function and data have their interaction, new data is created as a result, and should then flow out from the function. <i>Flow out from the function.</i> What, exactly, does that mean?</p>
+
+    <p>One option, employed by most node-and-line visual programming languages, is that execution is depth-first. The new data flows out along one edge, onward through the rest of the sim until it's done its journey. Then, data flows out along the other edge. Typically, the edge that was created first flows first. <b>Only one data point is ever moving at a time.</b> Simpler, right?</p>
+
+    <p>In these languages, you don't actually <i>see</i> the data flowing. But in Hest you do, and you're encouraged to follow the data closely. If Hest adopted this depth-first approach, following the data closely would mean that after arriving at the end of the journey of the first point and all its descendants, you'd need to snap back to this function and follow the second point down the second edge. That would be a disorienting context switch for the artist, execution moving suddenly from one location in the infinite code canvas to another, no obvious connection between the termination of one point's journey and the resumption of another. This would happen incredibly frequently, a sudden jump for every <a rel="nofollow" href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">cyclomatic path</a> through the simulation's code graph.</p>
+
+    <p>Must it be that disorienting? No, this experience could be helped a lot by UI affordances — perhaps a sidebar list showing the queue of points waiting to be propagated; waiting data points rendered perched on the lip of their functions like runners at the starting line; onion-skin rendering showing the ghostly paths of previously travelled points in one color and not yet travelled points in another. It's easy to paper over design weaknesses with GUI, but it's better if we dig down toward the underlying problem.</p>
+
+    <p>Here's a deeper problem with single-point execution: data points travel out from a function along edges in the order the edges were created. That's invisible state. You could number the edges, and allow the artist to reorder the numbers. Even then, it's hard to explain what those numbered edges mean in terms of the core concepts of the language. That's the ultimate root of the problem: points and edges exist, and have geometric relationships, and that's it. Introducing some sort of order between edges leaks information about the philosophy of execution into the otherwise very purely geometric essence of the model.</p>
+
+    <p>There's also an aesthetic problem. When building software thats meant to be live edited, like a game in Unity or a synthesizer in Max/MSP, the thing you're building exists continuously. If the code that powers it is full of skips and jumps, that's a kind of discreteness. Normally, you don't notice or care about that, because the code always runs so fast it blurs together into a continuous-feeling result. Add time travel to the mix, and you'll jarringly move from a world of fluidity at high speed to stuttering and snapping discreteness in slow motion. That feels weird.</p>
+
+    <div class="hero">
+      <iframe style="border: 0; margin: 0 auto; max-width: 700px; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2686252296/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/track=3195205369/transparent=true/" seamless><a href="https://woulg.bandcamp.com/album/last-time">Last Time by woulg</a></iframe>
+      <p>A perfect 5th interval is just a very fast 2-against-3 polyrhythm.</p>
+    </div>
+
+    <p>Time travel makes executing one data point at a time a confusing mess. So instead we do this: data flows out from every outbound edge simultaneously. Yes, this can be complex and confusing. Yes, it requires special GUI affordances. But it doesn't require hidden state, it keeps things feeling continuous at every time scale, it matches how flow-based systems like electrical or hydraulic circuits work in real life. It's not perfect, but it is predictable.</p>
+
+    <p>Upon reflection, embracing this style of concurrency is <a rel="nofollow" href="https://twitter.com/spiralganglion/status/1165173920351211520">less familiar feeling</a>, and I find that valuable in my design process. It also makes programming in Hest feel more like a video game, like <a rel="nofollow" href="https://github.com/ivanreese/visual-programming-codex/blob/master/inspirations.md">Factorio or SpaceChem</a>, which is something I'm actively seeking.</p>
+  </section>
+
+  <section>
+    <h1>Edit, Then Reverse</h1>
+
+    <p>There are a bunch of different things that could happen when you pause time, edit the code graph, and then want to travel back in time. Here are five:</p>
+
+    <ol>
+      <li>Disallowed</li>
+      <li>Revert</li>
+      <li>Replay</li>
+      <li>Rewind</li>
+      <li>Backwards</li>
+    </ol>
+
+
+    <p>
+      <h3>1. Disallowed</h3>
+      The simplest. If you pause and edit the code graph, going back in time might create temporal paradoxes or invalid states. So we just block you from doing that until you click some sort of "Restart" button, clearing all the simulation state.
+    </p>
+
+
+    <p>
+      <h3>2. Revert</h3>
+      Simple. After making edits, if you reverse past the point where you made the edits, the edits are undone. When you move forward past that point again, the edits reoccur. This avoids paradoxes when going backwards, though it does allow for invalid state until you restart. Presumably, when stopping and restarting execution, Hest would ask which version of the sim you'd like to keep.
+    </p>
+
+    <p>
+      <h3>3. Replay</h3>
+      Slightly complex. As you edit the code, the engine automatically reruns execution from the beginning to the current time, using the new code. This means you'll never get an invalid state or a paradox, but it might be really slow, and the further you are from the start time the slower it is. It also means you blow away your paused state, which decreases the amount of interactive editing you can do, in a way that becomes inferior to editing text (where you can pass through invalid code states on your way to a new valid state, then save).
+    </p>
+
+    <p>
+      <h3>4. Rewind</h3>
+      Complex. This is like <a rel="nofollow" href="https://en.wikipedia.org/wiki/Braid_(video_game)">Braid</a>. If you rewind time, things return to the places/states they were before, even if you have altered the code graph. We do this by storing a history of where data has been, and simply restore that history. It's more interactive and it doesn't destroy the current execution state as you edit the code. But it creates a ton of paradoxes and invalid states — if you edit the code, rewind time even a little bit, and then run execution forward the same amount, you aren't guaranteed to return to the same state you were just in before you rewound.
+    </p>
+
+    <p>
+      <h3>5. Backwards</h3>
+      Wickedly complex. Every function needs to do something meaningful whether executing forwards or backwards through time. This will create fewer paradoxes and invalid states than Rewind, because if you rewind time a little bit, and then run it forward the same amount, you are more likely to return to the same state. When executing backwards, if we don't have the data needed to meaningfully satisfy a function, we can use default data or generate random data, so long as we get the same result every time when returning to the future we travelled back from. Backwards execution is really nice when combined the picking up and manually moving data around in the system, since it means you can drop data down on an edge and it will flow forward and backward as if it had been there all along.
+    </p>
+
+    <br><br>
+
+    <p>The approach that's likely to work best is a hybrid of the above, inviting the artist to control the time travel strategy to achieve the outcome they want based on what they're trying to do.</p>
+    <ul>
+      <li>Like Disallow, we probably want to mark in the timeline the current time whenever code graph edits are made, so that the artist can see that things prior to that point in time will be possibly invalid or paradoxical.</li>
+      <li>Like Revert, we could allow the artist to record their code changes as happening within the timeline (rather than outside it). This lets you choose whether to rewind code changes, or not, when scrubbing through time. Lots of ways this could be designed, so I'd find whichever one feels best.</li>
+      <li>Like Replay, there could be a button to tell Hest to reevaluate from the beginning (perhaps replaying all user input along the way) up to the current moment in time.</li>
+      <li>Like Rewind, when scrubbing the timeline the system would exactly reproduce the data that existed at that time, akin to scrubbing time in Braid without letting go of the time travel button.</li>
+      <li>Like Backwards, the artist could tell Hest to actively run execution forward or backward, which would overwrite the timeline history as it goes (or possibly create a new branch of timeline history stemming off from the moment where you started executing). We might want to do something like greying-out the timeline when you edit the code graph to show that it's probably not valid anymore, and then color it in when running execution.</li>
+    </ul>
+
+    <p>That's a rough outline of time scrubbing strategies. I'm still working through this space, considering a lot of options and running experiments in Hest. But in general, I've been operating under the assumption that backwards execution is a necessity, even if other strategies like rewind are included too.</p>
+  </section>
+
+  <section>
+    <h1>The Problem</h1>
+
+    <p>This is a problem I ran into while pondering the backwards execution strategy. It might be a dealbreaker. If that's the case, I'm not sure how to make Hest have the <i>pick up and move live data</i> experience I want.</p>
+
+    <p>Consider this setup.</p>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/1.png">
+      <p>A function with one edge in, one edge out. Data is travelling along the inbound edge.</p>
+    </div>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/2.png">
+      <p>A moment later, we see the result of the function flowing out.</p>
+    </div>
+
+    <p>Looking at the second image, it's easy to predict what should happen when the flow of time is reversed. Regardless of the time reversing strategy employed, the state of the sim will return to what it was in the first image.</p>
+
+    <p>Here's where it gets painful.</p>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3.png">
+      <p>A function with two edges in, one edge out. Data is travelling along the left inbound edge.</p>
+    </div>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/4.png">
+      <p>A moment later, we see the result of the function flowing out.</p>
+    </div>
+
+    <p>Again, it's easy to intuitively predict what should happen if time is reversed — the state of the sim should return to how it was in the first image. That works fine if we use a Replay or Rewind strategy, but not if we implement full-on backward execution. Why? Because under backward execution, we need a strategy for figuring out which inbound edges a point should travel back up. Recall from before that the only sane propagation strategy is to have points travel out from all edges. The same reasoning applies backwards, too. That means instead of returning to the first image, we'd end up with data on both inbound edges.</p>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/5.png">
+      <p>Backwards execution sends data where we don't want it.</p>
+    </div>
+
+    <p>If we continued executing in reverse for a good while, and then executed forward again, it's easy to imagine all those unintentionally generated data points flowing to parts of the system that they shouldn't. We'd create a simulation state that would never exist when running forward from a clean start.</p>
+
+    <p>Why not collect some amount of history data and use it to determine which edge a data point flowed in through? Well, that doesn't interact nicely with one of the most powerful complements to slow motion: the ability to grab data and move it around the system. If you scoop up a data point, drop it somewhere else, and then reverse, I want the data point to travel back along the path it's on as though it had been there all along. So when it crosses over the previous function, we <i>must</i> have a strategy for deciding which paths it travels without relying on history.</p>
+  </section>
+
+    <div class="hero">
+      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/moving-point.gif">
+      <p>You can drag data from one path to another, or drive it with the keyboard which is way more fun.</p>
+    </div>
+
+  <section>
+    <p>So that's where I've been stuck for the past while. Which time reversing strategy (or strategies) should I use, and in what ways should the downsides of reversing be tamed? I'd like to find an approach that emerges cleanly from the geometric underpinnings, and not just paper over the problem with assistive GUI.</p>
+
+    <br><br>
+
+    <p>I hope you've enjoyed this design excursion. I'll be sharing more about Hest as it happens on Twitter, where you can also <a rel="nofollow" href="https://twitter.com/spiralganglion/status/1165883102549307392">give feedback on this blog post</a>. If you want more in-depth discussion about Hest, or computer science and HCI broadly, the <a rel="nofollow" href="https://futureofcoding.org">Future of Coding</a> community is a great place. See you there!</p>
+  </section>
+</div>

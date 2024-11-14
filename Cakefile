@@ -71,11 +71,9 @@ compilePage = (head, header, path)->
   # The only currently support option is "min", in which case we skip the header
   pageHeader += "\n" + header unless data.header is "min"
 
-  # Page bodies will be wrapped in a <main>, unless they already contain a <main>
-  # Also inject any attrs specified in data.main
-  hasMain = body.includes "<main"
-  openMain = if hasMain then "" else if data.main then "<main #{data.main}>" else "<main>"
-  closeMain = if hasMain then "" else "</main>"
+  # Page bodies will be wrapped in a <main>
+  openMain = if data.main then "<main #{data.main}>" else "<main>"
+  closeMain = "</main>"
 
   # Process custom <title> syntax
   body = body.replaceAll /^\s*!\s+(.+)$/gm, "<title>$1</title>"
