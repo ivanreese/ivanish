@@ -22,3 +22,13 @@ main.full {
     height: 100%;
   }
 }
+
+main > .full {
+  --space: calc(100vw + 4em - var(--maxLineLength));
+  margin-left: calc(-0.5 * var(--space));
+  width: 100vw;
+
+  @media (max-width: 56em) {
+    margin-left: -3vw;
+  }
+}
