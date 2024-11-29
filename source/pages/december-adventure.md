@@ -7,6 +7,7 @@ I'm going to try doing a [December Adventure](https://eli.li/december-adventure)
 
 Some ideas for things I might work on:
 
+* CSS feed — an RSS feed of just the custom styles for of each page on my site (because I love CSS)
 * [Visual Programming Codex](/codex) needs an overhaul, probably using the same approach as the [Future of Coding wiki](https://wiki.futureofcoding.org).
 * Speaking of: fix some bugs in the FoC Wiki
 * Hest and/or Dust
