@@ -139,16 +139,15 @@ makeFooter = (data)->
   else
     ""
 
-alphaSort = new Intl.Collator('en').compare
 
-generateRSS = (published)->
-  posts = published
-    .sort (a, b)-> b[0].localeCompare(a[0])
+generateFeed = (published)->
+  published
+    .sort (a, b)-> b[0].localeCompare a[0]
     .slice(0, 20) # Include only the 20 most recent posts
     .map ([published, body, dest])->
 
-      pattern = /<title>(.*?)<\/title>/
-      title = body.match(pattern)[1]
+      pattern = /<title.*?>(.*?)<\/title>/
+      title = body.match(pattern)?.at 1
       body = body.replace pattern, ""
 
       link = replace dest, "public/": "", "/index.html": ""
@@ -156,21 +155,35 @@ generateRSS = (published)->
       published = new Date(published + "T12:00:00").toUTCString()
         # .toLocaleString "en-US", timeZone: "MST", year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short"
 
-      body = body.replaceAll "\n", ""
+      [published, body, dest, title, link]
 
-      """
-        <item>
-          <title>#{title}</title>
-          <link>https://ivanish.ca/#{link}</link>
-          <guid isPermaLink="false">/#{link}</guid>
-          <pubDate>#{published}</pubDate>
-          <description>
-            <![CDATA[#{body}]]>
-          </description>
-        </item>\n
-      """.split("\n").map((l)-> "    " + l).join("\n")
+feedItem = (title, link, published, body)->
+  """
+    <item>
+      <title>#{title}</title>
+      <link>https://ivanish.ca/#{link}</link>
+      <guid isPermaLink="false">/#{link}</guid>
+      <pubDate>#{published}</pubDate>
+      <description>
+        <![CDATA[#{body}]]>
+      </description>
+    </item>\n
+  """.split("\n").map((l)-> "    " + l).join("\n")
 
-  [read("source/rss"), posts, "  </channel>", "</rss>"].flat().join "\n"
+generateRSS = (published)->
+  posts = generateFeed published
+    .map ([published, body, dest, title, link])-> feedItem title, link, published, body.replaceAll "\n", ""
+  [read("source/feeds/rss"), posts, "  </channel>", "</rss>"].flat().join "\n"
+
+generateCSS = (published)->
+  posts = generateFeed published
+    .map ([published, body, dest, title, link])->
+      pattern = /<style>([\s\S]*?)<\/style>/ig
+      styles = Array.from(body.matchAll(pattern)).map (match)-> match[1]
+      return "" unless styles.length
+      styles = styles.join "\n\n"
+      feedItem title, link, published, styles
+  [read("source/feeds/css"), posts, "  </channel>", "</rss>"].flat().join "\n"
 
 
 task "build", "Compile everything", ()->
@@ -200,6 +213,9 @@ task "build", "Compile everything", ()->
 
     # Generate the RSS feed
     write "public/rss", generateRSS published
+
+    # Generate the CSS feed
+    write "public/css", generateCSS published
 
     # Compile the rest of the stuff
     compile "global styles", ()->
