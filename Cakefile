@@ -181,8 +181,7 @@ generateCSS = (published)->
       pattern = /<style>([\s\S]*?)<\/style>/ig
       styles = Array.from(body.matchAll(pattern)).map (match)-> match[1]
       return "" unless styles.length
-      styles = styles.join "\n\n"
-      feedItem title, link, published, styles
+      feedItem title, link, published, "<pre><code>#{styles.join "\n\n"}</code></pre>"
   [read("source/feeds/css"), posts, "  </channel>", "</rss>"].flat().join "\n"
 
 
