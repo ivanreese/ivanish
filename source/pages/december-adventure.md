@@ -38,6 +38,7 @@ Some ideas for things I might work on:
 * general cleanup of this website — the various `<canvas>` JS files are a mess, and I could probably refactor them and make a shared std lib that they all build on.
 * PPLs stuff! Oh no forgot about that.
 * Did I ever make a page for Salamander?
+* Knob
 * Tone Dome and FOUR FOUR need writeups (hey… that's not coding!)
 * Need to make music for Lu's TORN LEAF thing (what is happening to this list?)
 * Edit the two FoC Episodes (get the fuck out of here, non-coding stuff)
