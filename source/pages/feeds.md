@@ -7,6 +7,11 @@ publish: 2024-12-01
 
 <style>
   /* Hey, thanks for checking out my CSS feed! */
+  .easter-egg {
+    background-image: linear-gradient(to right in oklch, color(display-p3 .2 0 .2), color(display-p3 0 .2 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 </style>
 
 I think RSS is the bees knees!
@@ -23,9 +28,13 @@ Syndicated gardening!
 </section><section>
 
 ## My CSS feed: [ivanish.ca/css](/css)
-This is the sicko-mode RSS feed, for real web-heads. It's mostly the same as the RSS feed, but instead of publishing the *content* of each post / page, it just publishes the *custom style rules*. It's my love letter to CSS, my favourite programming language. This is a fun way to get a notification when I publish a new post / page, and then you can click through and read it on my site — you know, to see how the styles look when executed lovingly by your browser.
+This is the sicko-mode RSS feed, for real web-heads. It's mostly the same as the RSS feed, but instead of publishing the *content* of each post / page, it just publishes the <span class="easter-egg">custom style rules.</span>
 
-(This was my first ever [December Adventure](/december-adventure) project.)
+It's my love letter to CSS, my favourite programming language.
+
+This is a fun way to get a notification when I publish a new post / page, and then you can click through and read it on my site — you know, to see how the styles look when executed lovingly by your browser.
+
+(This was also my first ever [December Adventure](/december-adventure) project.)
 
 
 </section><section>
