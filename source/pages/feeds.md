@@ -23,7 +23,7 @@ publish: 2024-12-01
   }
 </style>
 
-I think RSS is the bees knees!
+I think RSS is the bee's knees!
 
 There are two ways to consume my website via your feed reader of choice:
 
