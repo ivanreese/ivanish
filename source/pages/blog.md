@@ -44,6 +44,8 @@ desc: Rubbing two brain cells for warmth.
   Hey, this page is… to say it is under "active development" would be misleadingly auspicious. This blog is palliative care for my ambitions. My big ideas lie here, wrong, like yolk seeping down the nest. If I haven't sent you a link to a specific post, then these pages aren't for you — they're for me. But… you can read them, because you understand.
 
   # 2024
+  [Feeds](/feeds)
+
   [Stage Fright (Stub)](/stage-fright)
 
   this shouldn't be under "blog" because it's a project:

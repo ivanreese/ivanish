@@ -3,11 +3,27 @@
 
 ! December Adventure
 
-I'm going to try doing a [December Adventure](https://eli.li/december-adventure). I've never done one before. I'll log my progress here each day as I go. [Wish me luck!](https://mastodon.social/@spiralganglion)
+<section>
 
+I'm going to try doing a [December Adventure](https://eli.li/december-adventure).
+
+I've never done one before.
+
+I'll log my progress here each day as I go.
+
+[Wish me luck!](https://mastodon.social/@spiralganglion)
+
+</section><section>
+
+## 2024
+
+* **1st** — **[CSS feed](/feeds)** — An RSS feed of my CSS rules.
+
+</section><section>
+
+## Prelude
 Some ideas for things I might work on:
 
-* CSS feed — an RSS feed of just the custom styles for of each page on my site (because I love CSS)
 * [Visual Programming Codex](/codex) needs an overhaul, probably using the same approach as the [Future of Coding wiki](https://wiki.futureofcoding.org).
 * Speaking of: fix some bugs in the FoC Wiki
 * Hest and/or Dust
@@ -23,3 +39,5 @@ Some ideas for things I might work on:
 * Need to make music for Lu's TORN LEAF thing (what is happening to this list?)
 * Edit the two FoC Episodes (get the fuck out of here, non-coding stuff)
 * Really need to watch The Thing at som- (okay, I'm cutting you off)
+
+</section>
