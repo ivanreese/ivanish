@@ -7,10 +7,19 @@ publish: 2024-12-01
 
 <style>
   /* Hey, thanks for checking out my CSS feed! */
-  .easter-egg {
-    background-image: linear-gradient(to right in oklch, color(display-p3 .2 0 .2), color(display-p3 0 .2 0));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+  /* The CSS rules on my site are where I experiment. Hacks abound. Bad is practiced. But, hey, best foot forward: */
+  @supports(background-image: linear-gradient(in oklch, color(display-p3 0 0 0), #000)) {
+
+    .easter-egg {
+      background-image: linear-gradient(to right in oklch, color(display-p3 .2 0 .2), color(display-p3 0 .2 0));
+      background-clip: text;
+
+      /* DYK? This isn't technically a prefix — it's a compat standard. Cursed. */
+      /* https://compat.spec.whatwg.org/#the-webkit-text-fill-color */
+      -webkit-text-fill-color: transparent;
+    }
+
   }
 </style>
 
