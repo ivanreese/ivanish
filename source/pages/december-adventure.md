@@ -20,7 +20,7 @@ I'll log my progress here each day as I go.
 
 ## 2024
 
-* **2nd** — **[BPS](/december-adventure/2024/2)** — [Eli](https://eli.li/december-adventure-2024#section) made some [falling sand](https://smallandnearlysilent.com/bp-sand/). I made more of it.
+* **2nd** — **[BPS](/december-adventure/2024/2)** — Eli made a falling sand metronome. I made it [keep getting faster](/jerk).
 * **1st** — **[CSS feed](/feeds)** — An RSS feed of my CSS rules.
 
 </section><section>
