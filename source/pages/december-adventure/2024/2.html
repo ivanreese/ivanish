@@ -1,0 +1,195 @@
+header: min
+main: class="full"
+
+---
+
+<style>
+  body,
+  html {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100%;
+  }
+  main.full canvas {
+    width: 100%;
+    height: auto;
+    background-color: wheat;
+  }
+  .controls {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1ex;
+    background-color: salmon;
+  }
+  input,
+  button {
+    font-size: 1.5rem;
+  }
+</style>
+
+<canvas></canvas>
+<div class="controls">
+  <span><input type="number" value="60" min="1" /> BPM</span>
+  <button>You see, the thing is…</button>
+</div>
+
+<script>
+  const canvas = document.querySelector("canvas");
+  const ctx = canvas.getContext("2d");
+  const controls = document.querySelector(".controls");
+  const bpmInput = document.querySelector("input");
+  const button = document.querySelector("button");
+
+  const TAU = Math.PI * 2;
+
+  let bpm = bpmInput.value;
+  let isRunning = false;
+  let sandParticles = [];
+  let restingParticles = [];
+  let intervalId;
+  let peak = 0;
+  let interval = 1000;
+
+  // Set canvas size to avoid overlapping with controls
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight - controls.offsetHeight;
+    peak = canvas.height;
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  const audioCtx = new window.AudioContext();
+
+  function playTone(f = 440) {
+    // Fade in / out
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(Math.min(0.25, interval / 50), audioCtx.currentTime + 0.001);
+    gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
+
+    const oscillator = audioCtx.createOscillator();
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(f + Math.random() * 10, audioCtx.currentTime); // 440 Hz tone
+    oscillator.connect(gainNode).connect(audioCtx.destination);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.1); // Short beep
+  }
+
+  function createSandParticle() {
+    const r = Math.min(window.innerWidth, window.innerHeight) / 150;
+    const size = r + Math.random() * r;
+    return {
+      x: Math.random() * canvas.width,
+      y: -size,
+      size,
+      velocityY: Math.random() * r,
+    };
+  }
+
+  // Update sand particle positions
+  function updateSand() {
+    for (let i = sandParticles.length - 1; i >= 0; i--) {
+      const particle = sandParticles[i];
+
+      particle.velocityY += 0.1; // Accelerate! Gravity!
+      particle.y += particle.velocityY;
+
+      // Check if sand particle has hit the bottom
+      if (particle.y + particle.size >= canvas.height) {
+        // Increase the range within which we'll check for collisions
+        peak = Math.min(peak, particle.y - particle.size);
+
+        sandParticles.splice(i, 1);
+        restingParticles.push(particle);
+        playTone(550);
+        continue;
+      }
+
+      // Check if sand particle has landed on another particle
+      if (particle.y + particle.size >= peak) {
+        for (let otherParticle of restingParticles) {
+          let r = Math.max(particle.size, otherParticle.size);
+          let distY = otherParticle.y - particle.y - r;
+          let distX = Math.abs(otherParticle.x - particle.x);
+          if (distY <= 0 && distX < particle.size) {
+            peak = Math.min(peak, particle.y - particle.size);
+            particle.y = otherParticle.y - r;
+            sandParticles.splice(i, 1);
+            restingParticles.push(particle);
+            playTone(660);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  // Draw sand particles on the canvas
+  function drawSand() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "teal";
+    ctx.globalAlpha = 0.5;
+
+    for (let particle of sandParticles) {
+      for (var i = -1; i <= 1; i++) {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y - (i * particle.velocityY) / 2, particle.size, 0, TAU);
+        ctx.fill();
+      }
+    }
+
+    ctx.globalAlpha = 1;
+
+    for (let particle of restingParticles) {
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, TAU);
+      ctx.fill();
+    }
+  }
+
+  button.addEventListener("click", () => {
+    isRunning = !isRunning;
+    if (isRunning) {
+      updateInterval();
+      button.textContent = "Oh no, that's no good!";
+    } else {
+      clearInterval(intervalId);
+      demoMode = false;
+      button.textContent = "Well actually… maybe…";
+    }
+  });
+
+  // Update the setInterval
+  function updateInterval() {
+    clearInterval(intervalId);
+    interval = (60 / bpm) * 1000; // Convert BPM to interval in milliseconds
+    intervalId = setInterval(rainGrain, interval);
+  }
+
+  // The interval code
+  function rainGrain() {
+    // Every time we place a grain of sand, check whether the BPM has changed
+    let newBpm = parseInt(bpmInput.value);
+    const pow = newBpm < 200 ? 1.005 : newBpm < 1000 ? 1.001 : 1.0005;
+    bpmInput.value = newBpm = Math.ceil(newBpm ** pow);
+
+    if (bpm != newBpm) {
+      bpm = newBpm;
+      updateInterval();
+    }
+
+    sandParticles.push(createSandParticle()); // Generate new sand
+    playTone(); // Play the tone
+  }
+
+  function animate() {
+    updateSand();
+    drawSand();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
