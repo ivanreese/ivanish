@@ -20,6 +20,7 @@ I'll log my progress here each day as I go.
 
 ## 2024
 
+* **3rd** — Worked on a website for a local group of basket weavers.
 * **2nd** — **[BPS](/december-adventure/2024/2)** — Eli made a falling sand metronome. I made it [keep getting faster](/jerk).
 * **1st** — **[CSS feed](/feeds)** — An RSS feed of my CSS rules.
 
@@ -33,7 +34,6 @@ Some ideas for things I might work on:
 * Hest and/or Dust
 * Get my [Blog](/blog) figured out
 * Make some procedural creatures (I've got a particular tentacle monster from the Flash era that I'd love to revive, perhaps as an SVG)
-* Weaving Connections website (I guess)
 * ZERO VOID page
 * RakeBook (both the project and a webpage for it)
 * general cleanup of this website — the various `<canvas>` JS files are a mess, and I could probably refactor them and make a shared std lib that they all build on.
