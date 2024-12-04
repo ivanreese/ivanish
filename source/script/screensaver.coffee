@@ -1,5 +1,5 @@
 do ()->
-  sleepAfter = 120 * 1000
+  sleepAfter = 300 * 1000
   checkEvery = 10 * 1000
 
   sleeping = false
