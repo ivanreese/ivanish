@@ -11,7 +11,7 @@ jobs:
 
   # This workflow contains a single job called "build"
   build:
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
