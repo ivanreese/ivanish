@@ -1,6 +1,6 @@
 type: Blog
 time: 2024
-published 2024-12-01
+published 2024-12-06
 
 ---
 
@@ -8,26 +8,18 @@ published 2024-12-01
 
 <section>
 
-I'm going to try doing a [December Adventure](https://eli.li/december-adventure).
+I'm currently doing my first [December Adventure](https://eli.li/december-adventure). Here's my daily log.
 
-I've never done one before.
-
-I'll log my progress here each day as I go.
-
-[Wish me luck!](https://mastodon.social/@spiralganglion)
-
-</section><section>
-
-## 2024
-
+* **6th** — That's tomorrow. It's in the future. I haven't done it yet.
+* **5th** — I'm taking a lil class called "Prototyping Programming Languages", and the assignment this week is to implement unification for a lil Prolog-like lang, so I did some of that.
+* **4th** — No personal project today, just work programming: I made a camera out of a piece of paper.
 * **3rd** — Worked on a website for a local group of basket weavers.
 * **2nd** — **[BPS](/december-adventure/2024/2)** — Eli made a falling sand metronome. I made it [keep getting faster](/jerk).
 * **1st** — **[CSS feed](/feeds)** — An RSS feed of my CSS rules.
 
 </section><section>
 
-## Prelude
-Some ideas for things I might work on:
+Some ideas for things I might work on next:
 
 * [Visual Programming Codex](/codex) needs an overhaul, probably using the same approach as the [Future of Coding wiki](https://wiki.futureofcoding.org).
 * Speaking of: fix some bugs in the FoC Wiki

@@ -37,8 +37,8 @@ Beard
 - Irritates
 - Wish I was entirely hairless
 
-Arms
-- Extensive scarring due to self-harm
+Skin
+- Extensive scarring due to years of self-harm
 
 Hands
 - Obsessively bites nails, especially when stressed
@@ -46,7 +46,6 @@ Hands
 Chest
 — Indented due to Marfan's symptoms
 - Reduced lung capacity
-- Mild scarring due to self-harm
 
 Back
 - Stretch marks due to Marfan's symptoms

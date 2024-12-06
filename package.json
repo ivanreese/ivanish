@@ -7,8 +7,5 @@
     "sweetbread": "^0.3.0"
   },
   "license": "Copyright should be abolished.",
-  "private": true,
-  "dependencies": {
-    "gl-matrix": "^4.0.0-beta.2"
-  }
+  "private": true
 }

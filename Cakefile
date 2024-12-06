@@ -29,6 +29,7 @@ header: min                    # tbd if there should be other options
 main: [any text]               # injected into the <main> tag
 publish: yyyy-mm-dd            # will make the page appear in the rss feed
 desc: [any text]               # generates a description for the <head>
+image: [s3 path, no leading /] # prefixes with cloudfront and puts og-image in <head>
 ###
 
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
