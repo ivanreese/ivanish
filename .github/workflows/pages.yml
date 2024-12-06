@@ -11,7 +11,7 @@ jobs:
 
   # This workflow contains a single job called "build"
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
@@ -24,7 +24,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '23.3.0'
+          node-version: "23.3.0"
+          cache: "npm"
 
       - name: Build the site
         run: |
