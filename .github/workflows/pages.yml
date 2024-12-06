@@ -15,13 +15,22 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4
       
-      - uses: actions/setup-node@v4.1.0
+      - uses: actions/setup-node@v4
         with:
           node-version: '23.3.0'
 
-      - name: Run a multi-line script
+      - name: Build the site
         run: |
           npm install
           npm exec cake build
+
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
+      
+      - name: Deploy the site
+        uses: actions/deploy-pages@v4
