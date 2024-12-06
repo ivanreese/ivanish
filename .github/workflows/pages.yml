@@ -1,0 +1,27 @@
+name: Pages
+
+on:
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4.2.2
+      
+      - uses: actions/setup-node@v4.1.0
+        with:
+          node-version: '23.3.0'
+
+      - name: Run a multi-line script
+        run: |
+          npm install
+          cake build
