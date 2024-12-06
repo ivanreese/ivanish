@@ -24,4 +24,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           npm install
-          cake build
+          npm exec cake build
