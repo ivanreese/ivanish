@@ -2,4 +2,4 @@
 
 A deeply personal website.
 
-Install deps with `npm`. Build with `cake`. Deployed to Netlify on commit.
+Install deps with `npm`. Build with `cake`. Deployed to Vercel on commit.
