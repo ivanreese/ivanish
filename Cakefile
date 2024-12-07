@@ -255,6 +255,8 @@ task "build", "Compile everything", ()->
         "/zoom             " + process.env.ZOOM_URL
       ].join "\n"
 
+    console.log("process.env.VERCEL " + process.env.VERCEL)
+    console.log("process.env.CODEX_URL " + process.env.CODEX_URL)
     if true or process.env.VERCEL
       write "vercel.json", JSON.stringify redirects: [
         # Sugar
