@@ -10,7 +10,7 @@ publish: 2024-12-06
 
 I'm currently doing my first [December Adventure](https://eli.li/december-adventure). Here's my daily log.
 
-* **7th** — It takes ~60 seconds for Netlify to build my site. That's slow. So I'm trying out Render, Github Pages, Vercel, Cloudflare…
+* **7th** — I've moved my website to a new host, and added a [little page](/site) talking about the site.
 * **6th** — Worked on turning [Tone Dome](/tone-dome) into a MIDI instrument.
 * **5th** — I'm taking a lil class called "Prototyping Programming Languages", and the assignment this week is to implement unification for a lil Prolog-like lang, so I did some of that.
 * **4th** — No personal project today, just work programming: I made a camera out of a piece of paper.
