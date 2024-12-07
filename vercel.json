@@ -1,0 +1,7 @@
+{
+  "redirects":[
+    { "source": "/contact",          "destination": "/#contact",               "permanent": false },
+    { "source": "/hest-podcast",     "destination": "/hest/podcast",           "permanent": false },
+    { "source": "/hest-time-travel", "destination": "/hest/time-travel",       "permanent": false }
+  ]
+}
