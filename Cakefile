@@ -255,18 +255,18 @@ task "build", "Compile everything", ()->
         "/zoom             " + process.env.ZOOM_URL
       ].join "\n"
 
-    # if process.env.VERCEL
-    #   write "vercel.json", JSON.stringify redirects: [
-    #     # Sugar
-    #     { source: "/contact",          destination: "/#contact",           permanent: false }
-    #     # Cool URLs don't change
-    #     { source: "/hest-podcast",     destination: "/hest/podcast",       permanent: false }
-    #     { source: "/hest-time-travel", destination: "/hest/time-travel",   permanent: false }
-    #     # Not secret, just don't want nasty URLs in my repo
-    #     { source: "/codex",            destination: process.env.CODEX_URL, permanent: false }
-    #     { source: "/meet",             destination: process.env.MEET_URL,  permanent: false }
-    #     { source: "/zoom",             destination: process.env.ZOOM_URL,  permanent: false }
-    #   ]
+    if true or process.env.VERCEL
+      write "vercel.json", JSON.stringify redirects: [
+        # Sugar
+        { source: "/contact",          destination: "/#contact",           permanent: false }
+        # Cool URLs don't change
+        { source: "/hest-podcast",     destination: "/hest/podcast",       permanent: false }
+        { source: "/hest-time-travel", destination: "/hest/time-travel",   permanent: false }
+        # Not secret, just don't want nasty URLs in my repo
+        { source: "/codex",            destination: "1process.env.CODEX_URL", permanent: false }
+        { source: "/meet",             destination: "1process.env.MEET_URL",  permanent: false }
+        { source: "/zoom",             destination: "1process.env.ZOOM_URL",  permanent: false }
+      ]
 
 
 task "watch", "Recompile on changes.", ()->
