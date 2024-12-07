@@ -238,8 +238,8 @@ task "build", "Compile everything", ()->
     compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
       copy path, replace path, "source/":"public/", "/pages/":"/"
 
-    compile "deps", "node_modules/gl-matrix/dist/esm/**/*", (path)->
-      copy path, replace path, "node_modules/gl-matrix/dist/esm/":"public/js/gl-matrix/",
+    # compile "deps", "node_modules/gl-matrix/dist/esm/**/*", (path)->
+    #   copy path, replace path, "node_modules/gl-matrix/dist/esm/":"public/js/gl-matrix/",
 
     # Redirects
     if process.env.NETLIFY
@@ -252,9 +252,21 @@ task "build", "Compile everything", ()->
         # Not secret, just don't want nasty URLs in my repo
         "/codex            " + process.env.CODEX_URL
         "/meet             " + process.env.MEET_URL
-        "/showdoc          " + process.env.SHOWDOC_URL
         "/zoom             " + process.env.ZOOM_URL
       ].join "\n"
+
+    if process.env.VERCEL
+      write "vercel.json", JSON.stringify redirects: [
+        # Sugar
+        { source: "/contact",          destination: "/#contact",           permanent: false }
+        # Cool URLs don't change
+        { source: "/hest-podcast",     destination: "/hest/podcast",       permanent: false }
+        { source: "/hest-time-travel", destination: "/hest/time-travel",   permanent: false }
+        # Not secret, just don't want nasty URLs in my repo
+        { source: "/codex",            destination: process.env.CODEX_URL, permanent: false }
+        { source: "/meet",             destination: process.env.MEET_URL,  permanent: false }
+        { source: "/zoom",             destination: process.env.ZOOM_URL,  permanent: false }
+      ]
 
 
 task "watch", "Recompile on changes.", ()->
