@@ -1,6 +1,6 @@
 type: Blog
 time: 2024
-publish: false
+publish: 2024-12-7
 
 ---
 
