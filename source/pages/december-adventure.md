@@ -1,6 +1,6 @@
 type: Blog
 time: 2024
-publish: 2024-12-06
+publish: 2024-12-09
 
 ---
 
@@ -10,6 +10,8 @@ publish: 2024-12-06
 
 I'm currently doing my first [December Adventure](https://eli.li/december-adventure). Here's my daily log.
 
+* **9th** — Wrote a bunch of Swift today. I quite like making mobile apps. It's a novelty for me. I'm also, separately, testing out whether I can edit this site from my phone. If you're reading this, it worked!!
+* **8th** — Did some voice acting and scoring for a little secret project.
 * **7th** — I've moved my website to a new host, and added a [little page](/site) talking about the site.
 * **6th** — Worked on turning [Tone Dome](/tone-dome) into a MIDI instrument.
 * **5th** — I'm taking a lil class called "Prototyping Programming Languages", and the assignment this week is to implement unification for a lil Prolog-like lang, so I did some of that.
