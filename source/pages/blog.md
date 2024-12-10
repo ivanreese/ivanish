@@ -45,6 +45,7 @@ desc: Rubbing two brain cells for warmth.
   # 2024
   [Site](/site)
   [Feeds](/feeds)
+  [December Adventure](/december-adventure)
 
   [Stage Fright (Stub)](/stage-fright)
 
