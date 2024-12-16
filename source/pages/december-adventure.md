@@ -10,7 +10,8 @@ publish: 2024-12-14
 
 I'm currently doing my first [December Adventure](https://eli.li/december-adventure). Here's my daily log.
 
-* **14th** — Took a break. Played with my daughter all day. She put up "have you seen my lost stuffie?" posters around the house. She made me some "all cake" of crackers, chocolate chips, goat cheese, and berries. She built a tent out of a sheet and some microphone stands. I was just, you know, present. 
+* **15th** — More work on the weaving website.
+* **14th** — Took a break. Played with my daughter all day. She put up "have you seen my lost stuffie?" posters around the house. She made me some "all cake" of crackers, chocolate chips, goat cheese, and berries. She built a tent out of a sheet and some microphone stands. I was just, you know, present.
 * **13th** — Figured out how to make my Apple Pencil vibrate.
 * **12th** — Recorded some cheesy 80s-ass "computer stuff is happening" music.
 * **11th** — Made some digital paper wiggle around to verify that, yep, its paper.
