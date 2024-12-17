@@ -10,6 +10,7 @@ publish: 2024-12-14
 
 I'm currently doing my first [December Adventure](https://eli.li/december-adventure). Here's my daily log.
 
+* **16th** — All my personal project time these days goes to the weaving website. At work, though, I made some really nice sparkline-esq debug visualizations, and used them to meticulously tune a gesture.
 * **15th** — More work on the weaving website.
 * **14th** — Took a break. Played with my daughter all day. She put up "have you seen my lost stuffie?" posters around the house. She made me some "all cake" of crackers, chocolate chips, goat cheese, and berries. She built a tent out of a sheet and some microphone stands. I was just, you know, present.
 * **13th** — Figured out how to make my Apple Pencil vibrate.
