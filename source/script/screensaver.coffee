@@ -29,7 +29,7 @@ do ()->
     if loadNextClip
       loadNextClip = false
       n = Math.ceil Math.random() * 20
-      video.src = "https://d3um8l2sa8g9bu.cloudfront.net/screensaver/#{n}.mp4"
+      video.src = "https://cdn.ivanish.ca/screensaver/#{n}.mp4"
 
   window.addEventListener "keydown", bump, passive: true
   window.addEventListener "mousemove", bump, passive: true

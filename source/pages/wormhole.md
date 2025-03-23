@@ -16,8 +16,8 @@ But where did that [Hest](/hest) digression go? Where *should* it have gone? The
 To create a wormhole, one requires a tremendous amount of matter be packed into a very small space, such that it forms a singularity which pierces the veil of spacetime, connecting two remote points. But to create a *podcast wormhole*, you just need a cello and french horn and a few hours with the house to yourself.
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/wormhole/wormhole.mp3">Wormhole</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/wormhole/wormhole.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/wormhole/wormhole.mp3">Wormhole</a>
+  <audio src="https://cdn.ivanish.ca/wormhole/wormhole.mp3" controls preload="metadata"></audio>
 </p>
 
 ---
@@ -25,7 +25,7 @@ To create a wormhole, one requires a tremendous amount of matter be packed into 
 The thumbnail for this post is a little supernova I made in 2002 (10th grade) when I was learning photoshop.
 
 <div class="hero">
-  <img src="https://d3um8l2sa8g9bu.cloudfront.net/wormhole/supernova.jpg">
+  <img src="https://cdn.ivanish.ca/wormhole/supernova.jpg">
 </div>
 
 ---

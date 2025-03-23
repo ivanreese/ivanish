@@ -9,11 +9,11 @@ publish: 2024-07-08
 ! Jerk
 
 <div class="hero">
-  <img src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk.jpg" alt="Cover art for the song — a photo of corn stocks, faded and yellow in the fall, with some hands mysteriously poking out from the back.">
+  <img src="https://cdn.ivanish.ca/jerk/jerk.jpg" alt="Cover art for the song — a photo of corn stocks, faded and yellow in the fall, with some hands mysteriously poking out from the back.">
 </div>
 
 > If you'd like, you can listen to an audio version of this page. It includes all the contextually relevant bits of music, and a few ad libs not included in the text. But it doesn't include the links and images, naturally.
-> <p class="audio"><audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-post.mp3" controls preload="metadata"></audio></p>
+> <p class="audio"><audio src="https://cdn.ivanish.ca/jerk/jerk-post.mp3" controls preload="metadata"></audio></p>
 
 <br><br>
 
@@ -151,7 +151,7 @@ I've started noodling again.
 
 <p class="audio">
   <span>Jerk (Improv)</span>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-rough.mp3" controls preload="metadata"></audio>
+  <audio src="https://cdn.ivanish.ca/jerk/jerk-rough.mp3" controls preload="metadata"></audio>
 </p>
 
 <br><br>
@@ -160,7 +160,7 @@ I've started turning these noodles into tunes.
 
 <p class="audio">
   <span>Jerk (Progression)</span>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-demo.mp3" controls preload="metadata"></audio>
+  <audio src="https://cdn.ivanish.ca/jerk/jerk-demo.mp3" controls preload="metadata"></audio>
 </p>
 
 <br><br>
@@ -181,7 +181,7 @@ I've started [normalizing sharing](https://mastodon.social/@spiralganglion/11206
 </style>
 <div class="hero normalize">
   <a href="https://mastodon.social/@spiralganglion/112062486570705551">
-    <img alt="a mastodon post: normalize sharing whatever this song is going to turn into, before it's turned into that" src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/normalize.jpg">
+    <img alt="a mastodon post: normalize sharing whatever this song is going to turn into, before it's turned into that" src="https://cdn.ivanish.ca/jerk/normalize.jpg">
   </a>
 </div>
 
@@ -209,7 +209,7 @@ So instead of relying on this broken tool, I just made my own. I took my old Clo
 </style>
 <div class="hero metro">
   <a href="/jerk/metronome">
-    <img alt="screenshot of the metronome" src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/metro.png">
+    <img alt="screenshot of the metronome" src="https://cdn.ivanish.ca/jerk/metro.png">
   </a>
 </div>
 
@@ -231,7 +231,7 @@ Speeding up, yes. I'd tried it both ways. I knew how they each felt. Slowing dow
   }
 </style>
 <div class="hero moire">
-  <img alt="Screenshot of the metronome recorded into Ableton Live, looking very much unlike a regular pattern, with wavy moire interference lines." src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/moire.png">
+  <img alt="Screenshot of the metronome recorded into Ableton Live, looking very much unlike a regular pattern, with wavy moire interference lines." src="https://cdn.ivanish.ca/jerk/moire.png">
 </div>
 
 <br><br>
@@ -279,11 +279,11 @@ It had a weird B-section, and I kinda liked it, but it wasn't quite working. Whe
 The snarly bass begged for crash cymbals, which screamed for icy piano… and the song sort of accidentally wound up with a tacky Nu Metal breakdown in the middle. Oops.
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-nu-metal.mp3">Jerk (Nu Metal)</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-nu-metal.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/jerk/jerk-nu-metal.mp3">Jerk (Nu Metal)</a>
+  <audio src="https://cdn.ivanish.ca/jerk/jerk-nu-metal.mp3" controls preload="metadata"></audio>
 </p>
 
-(If you'd like, [here's the full song](https://d3um8l2sa8g9bu.cloudfront.net/jerk/jerk-nu-metal-full.mp3) in this unfinished nu metal state.)
+(If you'd like, [here's the full song](https://cdn.ivanish.ca/jerk/jerk-nu-metal-full.mp3) in this unfinished nu metal state.)
 
 <br><br><br>
 
@@ -300,7 +300,7 @@ At the end of the weekend, I sent the song to my friend Lu — maybe they'd want
 </style>
 
 <div class="hero lu">
-  <img alt="Screenshot of a conversation with Lu, where I ask if I should release the song, save it for something, not release it. They tell me to save it, and release it, and not not release it." src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/lu.png">
+  <img alt="Screenshot of a conversation with Lu, where I ask if I should release the song, save it for something, not release it. They tell me to save it, and release it, and not not release it." src="https://cdn.ivanish.ca/jerk/lu.png">
 </div>
 
 I didn't release it. I kept working on it for a while. Trying to carve away sections where my playing was trash, or I'd made instrument choices that weren't working.
@@ -341,15 +341,15 @@ The mix is trash. The day I released it, right before the final render, I made t
 <br><br>
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/jerk/a2.mp3">2nd A-section</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/a2.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/jerk/a2.mp3">2nd A-section</a>
+  <audio src="https://cdn.ivanish.ca/jerk/a2.mp3" controls preload="metadata"></audio>
 </p>
 
 The 2nd A-section, at 2:23, is… fucking great. It makes me so happy. It was a total accident, too. Everything just worked together, right from the get go, totally unplanned. Sure, it's just a drone on E, but who cares, it grooves. And that trashy [china](https://en.wikipedia.org/wiki/China_cymbal)-esq crash cymbal that keeps coming in and out (at double duration each time — eighth notes, then quarter, half, whole, breve) sits _perfectly_ in the mix. See, look what happens when I pull it out…
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/jerk/trash.mp3">Trash</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/trash.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/jerk/trash.mp3">Trash</a>
+  <audio src="https://cdn.ivanish.ca/jerk/trash.mp3" controls preload="metadata"></audio>
 </p>
 
 …it sounds like junk by itself! But it just _melts_ into place with everything else around it. I've never used this cymbal before _because it sounds like junk_, so I had no idea it could _do this_. And you can't quite perceive it, but there's a shaker doubling that cymbal, too. This is called "masking", and I love doing it.
@@ -371,7 +371,7 @@ The 2nd A-section, at 2:23, is… fucking great. It makes me so happy. It was a 
   }
 </style>
 <div class="hero cymbals">
-  <img alt="My drum kit, with a dozen-ish weird cymbals. The kit is decorated with little fake plants, a John Deere tractors flag, a small plastic bust of Darth Maul, bright orange flagging tape, a tiny boob, and other nonsense doodads." src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/cymbals.jpg">
+  <img alt="My drum kit, with a dozen-ish weird cymbals. The kit is decorated with little fake plants, a John Deere tractors flag, a small plastic bust of Darth Maul, bright orange flagging tape, a tiny boob, and other nonsense doodads." src="https://cdn.ivanish.ca/jerk/cymbals.jpg">
   <p>(Someday I'll tell the story of how I got all these cymbals.)</p>
 </div>
 
@@ -380,8 +380,8 @@ The 2nd A-section, at 2:23, is… fucking great. It makes me so happy. It was a 
 There's an imperceptible little draaag where all the instruments slow down a tiny bit, and then they all race ahead to catch up to the beat. I did it by accident when recording the very first drum track, and then just repeated the same mistake in every layer that followed. The drag is so small, but it feels so weirdly good to just stretch out how you feel the moment passing. The interplay between the space and your body.
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/jerk/drag.mp3">Drag</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/jerk/drag.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/jerk/drag.mp3">Drag</a>
+  <audio src="https://cdn.ivanish.ca/jerk/drag.mp3" controls preload="metadata"></audio>
 </p>
 
 <br><br>

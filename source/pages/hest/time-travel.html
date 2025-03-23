@@ -65,7 +65,7 @@ main: class="writing"
 
   <div class="fake-tweet">
     <div class="row">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/pizza-face/pizza-face-thumb.png" alt="">
+      <img src="https://cdn.ivanish.ca/pizza-face/pizza-face-thumb.png" alt="">
       <div>
         <div>Ivan Reese</div>
         <em>@spiralganglion</em>
@@ -75,7 +75,7 @@ main: class="writing"
       This is my new project, Hest.<br><br>• A drawing tool with visual programming features.<br>• Everything is both code and data.<br>• Execution happens in time and space.<br>• You control time.<br><br>Here it is doing "shitty math" — where your operators are little boxes.
       <em>#screenshotsaturday</em>
     </p>
-    <video src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/shitty-math.mp4" autoplay loop muted playsinline></video>
+    <video src="https://cdn.ivanish.ca/hest/time-travel/shitty-math.mp4" autoplay loop muted playsinline></video>
     <em>11:57AM • June 29, 2019</em>
     <div class="meta row">
       <div>15 Replies</div>
@@ -85,7 +85,7 @@ main: class="writing"
 
   <div class="fake-tweet">
     <div class="row">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/pizza-face/pizza-face-thumb.png" alt="">
+      <img src="https://cdn.ivanish.ca/pizza-face/pizza-face-thumb.png" alt="">
       <div>
         <div>Ivan Reese</div>
         <em>@spiralganglion</em>
@@ -94,7 +94,7 @@ main: class="writing"
     <p>
       The little "comets" are... data? And the black paths are, what, function calls?<br><br>So you can grab data en route to a function? And move it with the arrow keys? And then drop it back on a path?<br><br>Sure, but like I already have a step debugger, why?
     </p>
-    <video src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/comets.mp4" autoplay loop muted playsinline></video>
+    <video src="https://cdn.ivanish.ca/hest/time-travel/comets.mp4" autoplay loop muted playsinline></video>
     <em>10:14PM • July 2, 2019</em>
     <div class="meta row">
       <div>4 Replies</div>
@@ -114,7 +114,7 @@ main: class="writing"
   </section>
 
   <div class="hero">
-    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3ds-max.jpg">
+    <img src="https://cdn.ivanish.ca/hest/time-travel/3ds-max.jpg">
     <p>3DS Max is my third favourite 3D graphics program.</p>
   </div>
 
@@ -125,7 +125,7 @@ main: class="writing"
   </section>
 
   <div class="hero">
-    <img style="border-radius:100%;" src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/inf.gif">
+    <img style="border-radius:100%;" src="https://cdn.ivanish.ca/hest/time-travel/inf.gif">
     <p>An infinite loop.</p>
   </div>
 
@@ -140,7 +140,7 @@ main: class="writing"
   </section>
 
   <div class="hero">
-    <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/pub.gif">
+    <img src="https://cdn.ivanish.ca/hest/time-travel/pub.gif">
     <p>You decide just how quickly execution should progress.</p>
   </div>
 
@@ -154,7 +154,7 @@ main: class="writing"
     <p>But... why not just have one thing happen at a time, and still offer the fluid control over time? Wouldn't that be simpler? Well, consider this arrangement.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/0.png">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/0.png">
       <p>A function with two edges leading in, two edges leading out.</p>
     </div>
 
@@ -242,12 +242,12 @@ main: class="writing"
     <p>Consider this setup.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/1.png">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/1.png">
       <p>A function with one edge in, one edge out. Data is travelling along the inbound edge.</p>
     </div>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/2.png">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/2.png">
       <p>A moment later, we see the result of the function flowing out.</p>
     </div>
 
@@ -256,19 +256,19 @@ main: class="writing"
     <p>Here's where it gets painful.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/3.png">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/3.png">
       <p>A function with two edges in, one edge out. Data is travelling along the left inbound edge.</p>
     </div>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/4.png">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/4.png">
       <p>A moment later, we see the result of the function flowing out.</p>
     </div>
 
     <p>Again, it's easy to intuitively predict what should happen if time is reversed — the state of the sim should return to how it was in the first image. That works fine if we use a Replay or Rewind strategy, but not if we implement full-on backward execution. Why? Because under backward execution, we need a strategy for figuring out which inbound edges a point should travel back up. Recall from before that the only sane propagation strategy is to have points travel out from all edges. The same reasoning applies backwards, too. That means instead of returning to the first image, we'd end up with data on both inbound edges.</p>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/5.png">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/5.png">
       <p>Backwards execution sends data where we don't want it.</p>
     </div>
 
@@ -278,7 +278,7 @@ main: class="writing"
   </section>
 
     <div class="hero">
-      <img src="https://d3um8l2sa8g9bu.cloudfront.net/hest/time-travel/moving-point.gif">
+      <img src="https://cdn.ivanish.ca/hest/time-travel/moving-point.gif">
       <p>You can drag data from one path to another, or drive it with the keyboard which is way more fun.</p>
     </div>
 

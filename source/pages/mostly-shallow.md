@@ -26,8 +26,8 @@ The depth data is really inconsistent and low-res, with weird sampling / interpo
 
 Here are some images from the [LA Ink & Switch Unconf](https://www.inkandswitch.com/events/2024-unconf-losangeles/).
 
-![The camera got confused when taking this photo of Marcel, so his face is flat with a background exploding outward around him](https://d3um8l2sa8g9bu.cloudfront.net/mostly-shallow/marcel.png)
-![Worm-eye view of Taylor, with a disintegrating hand and big grin](https://d3um8l2sa8g9bu.cloudfront.net/mostly-shallow/taylor.png)
-![Forrest with a point-cloud finger held out in front of his face](https://d3um8l2sa8g9bu.cloudfront.net/mostly-shallow/forrest.png)
+![The camera got confused when taking this photo of Marcel, so his face is flat with a background exploding outward around him](https://cdn.ivanish.ca/mostly-shallow/marcel.png)
+![Worm-eye view of Taylor, with a disintegrating hand and big grin](https://cdn.ivanish.ca/mostly-shallow/taylor.png)
+![Forrest with a point-cloud finger held out in front of his face](https://cdn.ivanish.ca/mostly-shallow/forrest.png)
 
 I needed a depth-punny name, so I just went with an [MBV reference (warning: flashing)](https://www.youtube.com/watch?v=nwfCoKNI5hs).

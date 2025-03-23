@@ -7,7 +7,7 @@ do ()->
 
     img = new Image()
     img.crossOrigin = "Anonymous"
-    img.src = "https://d3um8l2sa8g9bu.cloudfront.net/type/bg.png"
+    img.src = "https://cdn.ivanish.ca/type/bg.png"
     img.onload = ()->
       w = 0 # Width of the window
       h = 0 # Height of the window, which will be expanded as necessary to fit the image

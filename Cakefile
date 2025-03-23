@@ -63,7 +63,7 @@ compilePage = (head, header, path)->
 
   # TODO: If we have an image we can use for rich previews, it goes in the <head>
   data.image ?= "assets/og.jpg"
-  pageHeader += "  <meta property=\"og:image\" content=\"https://d3um8l2sa8g9bu.cloudfront.net/#{data.image}\">"
+  pageHeader += "  <meta property=\"og:image\" content=\"https://cdn.ivanish.ca/#{data.image}\">"
 
   # The <head> is now done
   pageHeader += "</head>\n<body>"

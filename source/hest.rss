@@ -9,7 +9,7 @@
     <language>en</language>
     <itunes:category text="Technology"/>
     <itunes:explicit>yes</itunes:explicit>
-    <itunes:image href="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/art.png"/>
+    <itunes:image href="https://cdn.ivanish.ca/hest/podcast/art.png"/>
     <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
@@ -20,7 +20,7 @@
       <itunes:title>Graphical Programming</itunes:title>
       <itunes:episode>1</itunes:episode>
       <itunes:duration>00:13:26</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/1.mp3" length="6448321" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/1.mp3" length="6448321" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         The term Visual Programming is a bit of a misnomer. My preference is Graphical Programming, though it is hard to overcome cultural inertia. Oh, also, welcome to the show.
@@ -37,7 +37,7 @@
       <itunes:title>Why?</itunes:title>
       <itunes:episode>2</itunes:episode>
       <itunes:duration>00:13:03</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/2.mp3" length="6269044" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/2.mp3" length="6269044" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Why am I making Hest? Who is it for? When did I start? When will it end? What is it now? Where is it going? And what of this podcast?
@@ -54,7 +54,7 @@
       <itunes:title>Waterslide Kid</itunes:title>
       <itunes:episode>3</itunes:episode>
       <itunes:duration>00:13:36</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/3.mp3" length="6535234" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/3.mp3" length="6535234" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Functions and data, conveyance, points and edges, and execution with a mandatory, explicit notion of time and space.
@@ -71,7 +71,7 @@
       <itunes:title>Giant Thumb</itunes:title>
       <itunes:episode>4</itunes:episode>
       <itunes:duration>00:15:03</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/4.mp3" length="7232325" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/4.mp3" length="7232325" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle>
         Grab the giant thumb, push it all the way to infinity at the top, or negative infinity at the bottom.
@@ -88,7 +88,7 @@
       <itunes:title>The Space</itunes:title>
       <itunes:episode>5</itunes:episode>
       <itunes:duration>00:19:37</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/5.mp3" length="9424137" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/5.mp3" length="9424137" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle>
         Fully explore the space of your designs, even if it makes you into an infamous grump. Also, I sometimes make up jargon like Graphical Programming, and today we have another: Participatory Execution. Finally, Wallace &amp; Gromit have their long-awaited debut on the show.
@@ -105,7 +105,7 @@
       <itunes:title>No Moon</itunes:title>
       <itunes:episode>6</itunes:episode>
       <itunes:duration>00:26:54</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/6.mp3" length="12915283" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/6.mp3" length="12915283" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Virtual edges and pocket dimensions might be key pieces of a workable approach to abstraction, something that Hest sorely lacks.
@@ -122,7 +122,7 @@
       <itunes:title>Focus Mode</itunes:title>
       <itunes:episode>7</itunes:episode>
       <itunes:duration>00:18:44</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/7.mp3" length="8992810" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/7.mp3" length="8992810" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Data as player character. Continuity and intimacy. The well of video games. Putting your finger on the data and following it from birth to death. A patchwork quilt of understanding, versus a single continuous thread.
@@ -139,7 +139,7 @@
       <itunes:title>SpaceChem</itunes:title>
       <itunes:episode>8</itunes:episode>
       <itunes:duration>00:09:53</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/8.mp3" length="4747609" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/8.mp3" length="4747609" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Hest owes more to SpaceChem than any other inspiration. It's a beautiful little gem of a game, released by Zachtronics back in 2011. SpaceChem challenges you to design, develop, and debug complex systems, with an interface that looks a bit like a node-and-wire visual programming language. But the feel of playing it is wholly unique, and worth reflecting on and drawing from.
@@ -156,7 +156,7 @@
       <itunes:title>Uncoordinated Anthill</itunes:title>
       <itunes:episode>9</itunes:episode>
       <itunes:duration>00:16:10</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/9.mp3" length="7768337" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/9.mp3" length="7768337" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Hest is a long way from finished — a long way from viable, even. It's still riddled with design issues. Let's take a look at one of the big ones: with the current design, there are no mechanisms for coordination. Introducing some of the most obvious coordination mechanisms would violate the spirit of Hest. How should that be fixed? Tune in next week!
@@ -173,7 +173,7 @@
       <itunes:title>Fibers</itunes:title>
       <itunes:episode>10</itunes:episode>
       <itunes:duration>00:14:07</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/10.mp3" length="6776715" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/10.mp3" length="6776715" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Lots of anthills, and a handful of cake too.
@@ -200,7 +200,7 @@ Also — hi! I'm writing a much longer description than normal because my explan
       <itunes:title>Reconcile</itunes:title>
       <itunes:episode>11</itunes:episode>
       <itunes:duration>00:09:30</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/11.mp3" length="4563262" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/11.mp3" length="4563262" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Each part of the whole can have different philosophies.
@@ -217,7 +217,7 @@ Also — hi! I'm writing a much longer description than normal because my explan
       <itunes:title>Not the Goal</itunes:title>
       <itunes:episode>12</itunes:episode>
       <itunes:duration>00:16:12</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/12.mp3" length="7776875" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/12.mp3" length="7776875" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Driven by principles, driving on engineering.
@@ -234,7 +234,7 @@ Also — hi! I'm writing a much longer description than normal because my explan
       <itunes:title>Begin Third Batch</itunes:title>
       <itunes:episode>13</itunes:episode>
       <itunes:duration>00:19:28</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/13.mp3" length="9345025" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/13.mp3" length="9345025" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         A real grab bag episode. Closing some threads on fibers, fine find and replace, how this show gets made, and what we get to look forward to next.
@@ -255,7 +255,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>The Pit of Your Stomach</itunes:title>
       <itunes:episode>14</itunes:episode>
       <itunes:duration>00:14:27</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/14.mp3" length="6941407" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/14.mp3" length="6941407" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Why not just make all data points take the same amount of time to convey along every path?
@@ -272,7 +272,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>One (Hundred) Rendering Trees</itunes:title>
       <itunes:episode>15</itunes:episode>
       <itunes:duration>00:15:02</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/15.mp3" length="7218201" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/15.mp3" length="7218201" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Glamorous Toolkit has an interesting approach to rendering, a good contrast to the approach I'm taking with Hest.
@@ -290,7 +290,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Pluggable Dog</itunes:title>
       <itunes:episode>16</itunes:episode>
       <itunes:duration>00:14:02</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/16.mp3" length="6743458" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/16.mp3" length="6743458" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Hest's approach to rendering: a pluggable "renderer" abstraction, with bespoke renderers for any given platform or backend that you might want to use, and a protocol for nesting renderers.
@@ -309,7 +309,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>requestAnimationFroop</itunes:title>
       <itunes:episode>17</itunes:episode>
       <itunes:duration>00:15:26</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/17.mp3" length="7410882" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/17.mp3" length="7410882" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Shut it down!
@@ -326,7 +326,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>How Hest Code Is Executed</itunes:title>
       <itunes:episode>18</itunes:episode>
       <itunes:duration>00:12:36</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/18.mp3" length="6053958" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/18.mp3" length="6053958" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         In detail, here's how Hest's evaluator advances the simulation state. This episode covers the simple parts. Next week, we'll look at the emergent chaotic bits.
@@ -343,7 +343,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Excess Unwanted Growth</itunes:title>
       <itunes:episode>19</itunes:episode>
       <itunes:duration>00:17:41</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/19.mp3" length="8488025" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/19.mp3" length="8488025" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         A sort of metaprogramming that emerged from Hest's graphic and execution models.
@@ -360,7 +360,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Numerical Precision</itunes:title>
       <itunes:episode>20</itunes:episode>
       <itunes:duration>00:16:30</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/20.mp3" length="7923061" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/20.mp3" length="7923061" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Hest does most of its math using integers, not floats. Why?
@@ -377,7 +377,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Terminology</itunes:title>
       <itunes:episode>21</itunes:episode>
       <itunes:duration>00:23:06</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/21.mp3" length="11091587" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/21.mp3" length="11091587" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Point, dot, position? Edge, wire, path? And, whence Hest?
@@ -394,7 +394,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Niceties Now or Later?</itunes:title>
       <itunes:episode>22</itunes:episode>
       <itunes:duration>00:10:50</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/22.mp3" length="5200198" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/22.mp3" length="5200198" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Should nice, fun, playful tools and capabilities be built directly in the editor now? Or should those things be held back, waiting until the language model is robust enough to build them within it?
@@ -411,7 +411,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Barnacles</itunes:title>
       <itunes:episode>23</itunes:episode>
       <itunes:duration>00:11:02</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/23.mp3" length="5299402" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/23.mp3" length="5299402" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle>
         Speculating on nice affordances for programmers to hook into Hest's editor features.
@@ -428,7 +428,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Hest's Approach to Static Type Checking</itunes:title>
       <itunes:episode>24</itunes:episode>
       <itunes:duration>00:10:16</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/24.mp3" length="4927890" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/24.mp3" length="4927890" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         On cake, and the eating of it.
@@ -445,7 +445,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>We Can Put Lipstick on Our Pigs</itunes:title>
       <itunes:episode>25</itunes:episode>
       <itunes:duration>00:16:30</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/25.mp3" length="7924330" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/25.mp3" length="7924330" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Listener questions? Send 'um in!
@@ -466,7 +466,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>As a Library</itunes:title>
       <itunes:episode>26</itunes:episode>
       <itunes:duration>00:19:38</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/26.mp3" length="9423309" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/26.mp3" length="9423309" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         What if Hest was a library you could call from JavaScript?
@@ -484,7 +484,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Soft Ideas</itunes:title>
       <itunes:episode>27</itunes:episode>
       <itunes:duration>00:14:30</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/27.mp3" length="6959372" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/27.mp3" length="6959372" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         How ideas solidify as you think about them.
@@ -501,7 +501,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Functions</itunes:title>
       <itunes:episode>28</itunes:episode>
       <itunes:duration>00:26:20</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/28.mp3" length="12638482" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/28.mp3" length="12638482" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Listener question: What's the current plan for functions in Hest?
@@ -518,7 +518,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Some Good Tools</itunes:title>
       <itunes:episode>29</itunes:episode>
       <itunes:duration>00:23:49</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/29.mp3" length="11435324" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/29.mp3" length="11435324" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
         The only thing easier than making better tools for working with wires… is insisting that it'd be easy to make better tools for working with wires.
@@ -535,7 +535,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Schematics</itunes:title>
       <itunes:episode>30</itunes:episode>
       <itunes:duration>00:13:55</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/30.mp3" length="6688415" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/30.mp3" length="6688415" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Similar to the one about SpaceChem, this episode looks at another piece of prior art I'm drawing on for the design of Hest: the Live Schematic simulations built by my company, which are so much like a "Future of Technical Documentation" tool that it seems obvious to me that we need something similar for software development.
@@ -552,7 +552,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Abstraction in VPLs</itunes:title>
       <itunes:episode>31</itunes:episode>
       <itunes:duration>00:17:46</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/31.mp3" length="8526939" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/31.mp3" length="8526939" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Sub-graphs, sub-patchers, grouping, etc.
@@ -577,7 +577,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>What Gets Cut</itunes:title>
       <itunes:episode>32</itunes:episode>
       <itunes:duration>00:15:37</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/32.mp3" length="7498533" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/32.mp3" length="7498533" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         If I'm not able to build Hest as it's currently conceived, what will it end up looking like? What gets cut, what gets saved — and in what order?
@@ -594,7 +594,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Aesthetic Constraints</itunes:title>
       <itunes:episode>33</itunes:episode>
       <itunes:duration>00:20:14</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/33.mp3" length="9711028" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/33.mp3" length="9711028" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Why do all programming tools look so similar?
@@ -611,7 +611,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Crib Autodesk's Homework</itunes:title>
       <itunes:episode>34</itunes:episode>
       <itunes:duration>00:17:20</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/34.mp3" length="8319649" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/34.mp3" length="8319649" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Vertex, Edge, Triangle, Quad, Polygon/Face, Smoothing Group, Mesh, Object, Parent-Child Hierarchy, Scene, Project.
@@ -628,7 +628,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Kraft Dinner</itunes:title>
       <itunes:episode>35</itunes:episode>
       <itunes:duration>00:06:36</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/35.mp3" length="3173501" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/35.mp3" length="3173501" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
         I'm going to change the format of this show, for the next few months at least if not longer. We'll see! But stick around. There'll be more to come. I think. Probably! Maybe. Wait, where are you going? Aww beans.
@@ -645,7 +645,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Crosscut</itunes:title>
       <itunes:episode>36</itunes:episode>
       <itunes:duration>00:46:29</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/36.mp3" length="22314770" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/36.mp3" length="22314770" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
         Seven months of inking and switching later, a <a href="https://www.inkandswitch.com/crosscut/">novel saw</a> has been seen by all. In what interesting ways does said saw differ from Hest? In what ways are they similar? What even is Hest anymore? Listen on, Macduff.
@@ -662,7 +662,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Rabbit Hole</itunes:title>
       <itunes:episode>37</itunes:episode>
       <itunes:duration>00:50:53</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/37.mp3" length="85488057" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/37.mp3" length="85488057" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
         As promised at the end of the previous episode, this one breaks the format a little. Granted, if this is going to be a once-a-year affair, I think it's reasonable to have <a href="https://ivanish.ca/wormhole">a bit of fun</a> with it, mmm?
@@ -679,7 +679,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Of A History That Never Existed</itunes:title>
       <itunes:episode>38</itunes:episode>
       <itunes:duration>00:26:48</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/38.mp3" length="12862269" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/38.mp3" length="12862269" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         This year in Hest: Amb Bi Omni d.ts & Switch
@@ -696,7 +696,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Jerk</itunes:title>
       <itunes:episode>39</itunes:episode>
       <itunes:duration>00:40:30</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/39.mp3" length="58336766" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/39.mp3" length="58336766" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
         The story behind one of my songs, tracing its roots back through several failed career changes, through my life slowing to a crawl, how I got serious about programming, the damage it's done to me, and a recurring idea that informed Hest and, well, so many other things. Note that there's nothing new to learn about Hest here. This one is just a story.
@@ -713,7 +713,7 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <itunes:title>Live as in Alive</itunes:title>
       <itunes:episode>40</itunes:episode>
       <itunes:duration>00:41:15</itunes:duration>
-      <enclosure url="https://d3um8l2sa8g9bu.cloudfront.net/hest/podcast/mp3/40.mp3" length="19802803" type="audio/mpeg"/>
+      <enclosure url="https://cdn.ivanish.ca/hest/podcast/mp3/40.mp3" length="19802803" type="audio/mpeg"/>
       <itunes:explicit>no</itunes:explicit>
       <itunes:subtitle><![CDATA[
         I have a swirl of feelings and this is the only way I know to express them.

@@ -83,7 +83,7 @@ publish: 2024-07-15
     <img
       width="650" height="485"
       alt="Screenshot of Bryce3D showing a wacky user interface with big chunky buttons"
-      src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/bryce.webp">
+      src="https://cdn.ivanish.ca/ivanarts/bryce.webp">
     <figcaption>(source: <a href="https://www.reddit.com/r/nostalgia/comments/3kkac4/bryce_3d/">r/nostalgia</a>)</figcaption>
   </figure>
 
@@ -98,7 +98,7 @@ publish: 2024-07-15
     <img
       width="650" height="485"
       alt="Screenshot of PiXELS:3D Studio, a particularly ugly classic Macintosh application"
-      src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/pixels.jpeg">
+      src="https://cdn.ivanish.ca/ivanarts/pixels.jpeg">
     <figcaption>(source: <a href="https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x">Macintosh Repository</a>)</figcaption>
   </figure>
 
@@ -123,7 +123,7 @@ publish: 2024-07-15
 <section>
 
 <div class="retro">
-  <iframe src="https://d3um8l2sa8g9bu.cloudfront.net/ivanarts/site/ivanarts.html"></iframe>
+  <iframe src="https://cdn.ivanish.ca/ivanarts/site/ivanarts.html"></iframe>
   <div>This is a fully-interactive version of my first website. Go on — click around.</div>
 </div>
 

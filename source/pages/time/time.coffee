@@ -5,7 +5,7 @@ do ()->
 
     img = new Image()
     img.crossOrigin = "Anonymous"
-    img.src = "https://d3um8l2sa8g9bu.cloudfront.net/time/bg.jpg"
+    img.src = "https://cdn.ivanish.ca/time/bg.jpg"
     img.onload = ()->
       w = 0
       h = 0

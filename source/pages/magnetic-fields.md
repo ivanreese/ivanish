@@ -20,7 +20,7 @@ I tried to learn how magnets work by making them from scratch.
 In the below simulation, you can drag the white dot at the center.
 
 <div class="full-width">
-  <iframe frame-src="https://d3um8l2sa8g9bu.cloudfront.net/magnetic-fields/wire/index.html"></iframe>
+  <iframe frame-src="https://cdn.ivanish.ca/magnetic-fields/wire/index.html"></iframe>
 </div>
 
 This first experiment (above) was about simulating the field around a single wire carrying DC.
@@ -34,7 +34,7 @@ The particles are flowing in the direction of magnetic North. The blue glow arou
 In the below, try dragging one dot on top of the other. Looks like a pulsar, hey?
 
 <div class="full-width">
-  <iframe frame-src="https://d3um8l2sa8g9bu.cloudfront.net/magnetic-fields/wires/index.html"></iframe>
+  <iframe frame-src="https://cdn.ivanish.ca/magnetic-fields/wires/index.html"></iframe>
 </div>
 
 This experiment (above) involved two wires, each carrying the current in opposite directions (outward on the left, inward on the right).
@@ -45,7 +45,7 @@ Physically impossible (probably), kinda nonsense, but very useful for exploring 
 
 
 <div class="full-width">
-  <iframe frame-src="https://d3um8l2sa8g9bu.cloudfront.net/magnetic-fields/wiress/index.html"></iframe>
+  <iframe frame-src="https://cdn.ivanish.ca/magnetic-fields/wiress/index.html"></iframe>
 </div>
 
 More wires now, to better understand if the way I'm modelling the field actually works the way it ought to.
@@ -57,7 +57,7 @@ For instance, the glows around wires (showing field intensity) now incorporates 
 So I did a bunch more research, rewrote the code so that it runs on the GPU, and set up a rough SDF model of an electric motor:
 
 <div class="full-width">
-  <iframe frame-src="https://d3um8l2sa8g9bu.cloudfront.net/magnetic-fields/rmf/index.html"></iframe>
+  <iframe frame-src="https://cdn.ivanish.ca/magnetic-fields/rmf/index.html"></iframe>
 </div>
 
 Now we're talking! The glows now show poles — red is a North pole, blue is a South pole. The dots around the outside are the 12 coils of wire in the stator, carefully arranged to turn 3-phase AC power into something called an RMF or Rotating Magnetic Field.

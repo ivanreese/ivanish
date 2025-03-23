@@ -6,7 +6,7 @@ do ()->
   for lastFrameNum, seqIndex in seqs
     for frameNum in [1..lastFrameNum]
       frames.push elm = document.createElement "div"
-      elm.style.backgroundImage = "url(https://d3um8l2sa8g9bu.cloudfront.net/brain-scrubber/assets/#{seqIndex}/#{frameNum}.jpg)"
+      elm.style.backgroundImage = "url(https://cdn.ivanish.ca/brain-scrubber/assets/#{seqIndex}/#{frameNum}.jpg)"
       elm.style.opacity = 0
       document.body.appendChild elm
 

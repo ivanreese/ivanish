@@ -16,13 +16,13 @@ So I made a song about them.
 Here you can listen to two versions — an instrumental, and one with these fucking goobers included.
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/hawker-news/hawker-news-instrumental.mp3">Hawker News (Instrumental)</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/hawker-news/hawker-news-instrumental.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/hawker-news/hawker-news-instrumental.mp3">Hawker News (Instrumental)</a>
+  <audio src="https://cdn.ivanish.ca/hawker-news/hawker-news-instrumental.mp3" controls preload="metadata"></audio>
 </p>
 
 <p class="audio">
-  <a download href="https://d3um8l2sa8g9bu.cloudfront.net/hawker-news/hawker-news-gremlins.mp3">Hawker News (Gremlins)</a>
-  <audio src="https://d3um8l2sa8g9bu.cloudfront.net/hawker-news/hawker-news-gremlins.mp3" controls preload="metadata"></audio>
+  <a download href="https://cdn.ivanish.ca/hawker-news/hawker-news-gremlins.mp3">Hawker News (Gremlins)</a>
+  <audio src="https://cdn.ivanish.ca/hawker-news/hawker-news-gremlins.mp3" controls preload="metadata"></audio>
 </p>
 
 Kudos to Lu for ["Oh, Berd"](https://www.youtube.com/watch?v=WMJ1H3Ai-qs)
