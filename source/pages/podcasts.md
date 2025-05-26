@@ -50,7 +50,7 @@ Legend:
 * Panic Podcast
 * Playdate Podcast
 * `B` Simple Beep
-* `B` Advent of Computing
+* `NB` Advent of Computing
 * Under the Radar
 * Causal Islands
 * Build Software Quickly
