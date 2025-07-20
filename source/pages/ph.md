@@ -24,7 +24,7 @@ I *also* have a rented flute, and while I recorded a bunch of it for this song, 
 Other instruments:
 
 * the 100 year-old hand-me-down wind organ from a local church that now lives next to my piano
-* lots of bass and alto clarinet
+* lots of bass and soprano clarinet
 * the french horn Schuyler just randomly gave me
 * singing bowl
 * one little tiny synth bit that you'll never in a million years hear and go "that's the synth"; the thing you _think_ is the synth is actually the cello with a really tight high-feedback delay.
