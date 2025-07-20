@@ -1,6 +1,5 @@
 type: Blog
 time: 2025
-publish: 2025-07-01
 ---
 
 ! Feeling Good Being Bad
