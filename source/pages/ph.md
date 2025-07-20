@@ -18,7 +18,7 @@ It started as a piano jam, and I found a little ostinato in 11/8 that I decided 
 
 I've had a rented cello for the past month or so, and that features pretty heavily. I think cello pizz + BC + organ is how I'm gonna do basslines from now on.
 
-I *also* have a rented flute, and while I recorded a bunch of it for this song, none of it made the cut (…yet, I guess).
+I *also* have a rented flute, and while I recorded a bunch of it for this song, [none of it made the cut](/feeling-good-being-bad) (…yet, I guess).
 
 Other instruments:
 

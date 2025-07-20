@@ -1,10 +1,9 @@
 type: Blog
 time: 2025
+publish: 2025-07-19
 ---
 
 ! Feeling Good Being Bad
-
-> This post is an unfinished draft.
 
 I rented a flute!
 
@@ -15,8 +14,6 @@ It comes in three pieces, and I had to figure out how to put them together, and 
 Getting it to make a sound was also harder than I expected. It's a bit like blowing across a bottle, sure, but much more sensitive to angle, and you have to control your breath a lot more.
 
 I'm really bad at playing the flute.
-
-[video of me playing the flute for 30 seconds, with a little thumb in the corner for rotation. if you click the thumb without dragging, the video should spin very slightly. dragging and flinging should have velocity]
 
 In my life, I've always felt a little ashamed to be bad at something. I wouldn't want to play flute in public, or tell someone "I play the flute", because that suggests competence. If they then found out I played the flute *like a child*, that'd be a disappointment. People are often adult by default, and easy to disappoint.
 
