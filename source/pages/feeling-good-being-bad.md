@@ -4,6 +4,8 @@ time: 2025
 
 ! Feeling Good Being Bad
 
+> This post is an unfinished draft.
+
 I rented a flute!
 
 I don't play the flute; never even touched one. But I've played a bunch of other instruments, so at this point I know the difficulty curve pretty well.
