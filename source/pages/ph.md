@@ -7,7 +7,10 @@ publish: 2025-07-20
 
 WIP on a new song.
 
-<p class="audio"><audio src="https://cdn.ivanish.ca/ph/ph-short.mp3" controls preload="metadata"></audio></p>
+<p class="audio">
+  <a download href="https://cdn.ivanish.ca/ph/ph-short.mp3">Download</a>
+  <audio src="https://cdn.ivanish.ca/ph/ph-short.mp3" controls preload="metadata"></audio>
+</p>
 
 This is just the first half, which I think I've "finished", and it's somewhat self-contained… so this might be it.
 
