@@ -12,7 +12,7 @@ I *came up* in the early web multimedia era of [Youtube poop](https://en.wikiped
 
 So here you go!
 
-November 2025 — Russell Holzman's **[drum cover](https://www.youtube.com/shorts/WRRZOJWZYRI)** of Flawed Mangoes' **[Swimming](https://www.youtube.com/watch?v=5k7ccAEaY0Q)** has the same V I VI progression as Pat's Soundhouse's [Car Alarm](https://www.youtube.com/watch?v=jcutNFPwXPE).
+November 2025 — Russell Holzman's **[dnb guitar](https://www.youtube.com/shorts/WRRZOJWZYRI)** of Flawed Mangoes' **[Swimming](https://www.youtube.com/watch?v=5k7ccAEaY0Q)** has the same V I VI progression as Pat's Soundhouse's [Car Alarm](https://www.youtube.com/watch?v=jcutNFPwXPE).
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/VZVDQhbf-d0?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 
