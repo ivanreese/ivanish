@@ -1,5 +1,6 @@
 type: Game
 time: 2013
+publish: 2025-11-29
 
 ---
 
@@ -10,20 +11,15 @@ time: 2013
   <p>Artwork by <a href="https://ca.linkedin.com/in/dione-mcguire">Dione McGuire</a></p>
 </div>
 
-<p>A five artists, one designer, and one programmer flailed around in a small room for 48 hours, and emerged with an experiential sonic puzzle game for Global Game Jam 2013.<p>
+<p>This is a game I worked on for Global Game Jam 2013, part of a team of seven stationed at the University of Calgary library. After 48 hours, we emerged with this little experiential wordless puzzle, which you can play right here.<p>
 
 <div class="hero">
   <object data="https://cdn.ivanish.ca/refract/refract.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash"></object>
 </div>
 
-<section>
-  <h2>Download: <a href="https://cdn.ivanish.ca/refract/refract.zip">refract.zip</a></h2>
-  <p>
-    130mb. For Mac (.app) and Windows (.exe).
-    The game takes about 5 minutes to play through.
-    If you have any technical trouble, check the Readme.
-  </p>
-</section>
+<p>
+  As best as I recall, nobody else but me had made a game before. At first, it took a bit of effort and hand-wringing to get everyone thinking at the right scale of ambition given our time limit. We settled on the minimal control scheme and the general theme and gameplay within the first few hours, and then mocked-up a handful of scenes to sort out what kinds of interactions could work with them — lots of back and forth on that. We knew we wanted the game to be wordless, since that felt pretty fresh at the time (remember this is three years before The Witness). I built a little game engine in Flash. We had one designer/PM who helped with some of the gameplay thinking and made sure everyone was unblocked. The rest of the team was five artists, who all worked in parallel and helped each other out with encouragement. Late into the second night, I raced home and came back with a bunch of small soundmakers and some recording gear, and we found a dark empty stairwell to record in. I think that bit — the sound design — was so crucial to the game working at all, and we're lucky it turned out as well as it did considering how last-minute it was. The other crucial bit was Dione's artwork — she was the most seasoned, and it her work that gives the game its feeling.
+</p>
 
 <p><a rel="nofollow" href="https://web.archive.org/web/20130831061508/http://globalgamejam.org/2013/refract">Refract on the GGJ Site (Archived)</a> | <a rel="nofollow" href="http://www.youtube.com/watch?v=I20LQaFMUEE">Presentation Video</a> | <a rel="nofollow" href="https://web.archive.org/web/20130131084534/http://indiestatik.com/2013/01/29/global-game-jam-raises-its-output-and-pulses-with-roughly-3000-free-games/">Indiestatik Review (Archived)</a></p>
 
@@ -39,7 +35,7 @@ time: 2013
   object, ruffle-object {
     width: 100%;
     height: auto;
-    aspect-ratio: 1;
+    aspect-ratio: 960 / 540;
   }
 </style>
 
@@ -50,10 +46,10 @@ time: 2013
   window.RufflePlayer.config = {
       "autoplay": "on",
       "contextMenu": "off",
-      "frameRate": 60,
-      "letterbox": "off",
+      "frameRate": 30,
+      "letterbox": "on",
       "menu": false,
-      "quality": "low",
+      "quality": "best",
       "scale": "noscale",
       "splashScreen": true,
       "unmuteOverlay": "hidden",
