@@ -244,7 +244,7 @@ Then I'd pick up a different instrument, and start recording again, a little lat
 
 After I had a bunch of layers, I started mixing them together. EQ. Compressor. Reverb. Gain. I'd turn each layer down until you could barely hear it. Hide all the sounds behind each other. Every sound in the song is hidden behind the song. In psychoacoustics, this is called "[masking](https://en.wikipedia.org/wiki/Auditory_masking)", and I _love_ doing it.
 
-I noticed that this song was… fun. You could loop a few bars, and they'd _ever so slightly_ push and pull at your feeling of time. Then loop the next few bars, and they'd do it again. So that's how I worked — advance the loop, fix the sound, advance the loop, fix the sound, advance the loop, fix the sound…
+I noticed that this song was… fun. You could loop a few bars, and they'd _ever so slightly_ push and pull at your feeling of time. Then loop the next few bars, and they'd do it again. So that's how I worked — advance the loop, fix the sound, advance the loop, fix the sound, advance the loop, fix the sound…
 
 <style>
   .hero.faster {
@@ -273,7 +273,7 @@ The song was taking shape.
 
 It had a weird B-section, and I kinda liked it, but it wasn't quite working. When I record a song, I usually like to try at least one or two new ways of playing an instrument. This song has two.
 
-* First, the kick drum hits all coincide with a staccato blast of bass from the pump organ — a technique I picked up from Louis Cole, an [incredible drummer](https://www.youtube.com/watch?v=Ois3gfcwKSA) who [uses his left hand](https://www.youtube.com/watch?v=hT7x1NvGf5k) on a keyboard to play basslines in sync with his kickdrum. Of course, my drum kit and pump organ are in separate rooms, and not easily moved, so I had to record them separately. That was a chore, but I love how it turned out.
+* First, the kick drum hits all coincide with a staccato blast of bass from the pump organ — a technique I picked up from Louis Cole, an [incredible drummer](https://www.youtube.com/watch?v=Ois3gfcwKSA) who [uses his left hand](https://www.youtube.com/watch?v=hT7x1NvGf5k) on a keyboard to play basslines in sync with his kickdrum. Of course, my drum kit and pump organ are in separate rooms, and not easily moved, so I had to record them separately. That was a chore, but I love how it turned out.
 * Second, there's a distorted bass guitar. You don't hear distorted bass all that often, and the song already has a pretty thick low end from the pump organ, so I figured some crunchy bass guitar would sit nicely in the low-hundred Hz. I have a little fender amp that sounds shockingly good considering how small and cheap it is. I played a P-bass through the gain channel, and it sounded snarly as hell.
 
 The snarly bass begged for crash cymbals, which screamed for icy piano… and the song sort of accidentally wound up with a tacky Nu Metal breakdown in the middle. Oops.

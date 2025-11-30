@@ -30,4 +30,4 @@ Here are some images from the [LA Ink & Switch Unconf](https://www.inkandswitch.
 ![Worm-eye view of Taylor, with a disintegrating hand and big grin](https://cdn.ivanish.ca/mostly-shallow/taylor.png)
 ![Forrest with a point-cloud finger held out in front of his face](https://cdn.ivanish.ca/mostly-shallow/forrest.png)
 
-I needed a depth-punny name, so I just went with an [MBV reference (warning: flashing)](https://www.youtube.com/watch?v=nwfCoKNI5hs).
+I needed a depth-punny name, so I just went with an [MBV reference (warning: flashing)](https://www.youtube.com/watch?v=nwfCoKNI5hs).

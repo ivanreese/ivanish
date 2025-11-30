@@ -12,13 +12,13 @@ I *came up* in the early web multimedia era of [Youtube poop](https://en.wikiped
 
 So here you go!
 
-November 2025 — Russell Holzman's **[dnb guitar](https://www.youtube.com/shorts/WRRZOJWZYRI)** of Flawed Mangoes' **[Swimming](https://www.youtube.com/watch?v=5k7ccAEaY0Q)** has the same V I VI progression as Pat's Soundhouse's **[Car Alarm](https://www.youtube.com/watch?v=jcutNFPwXPE)**.
+November 2025 — Russell Holzman's **[dnb guitar](https://www.youtube.com/shorts/WRRZOJWZYRI)** of Flawed Mangoes' **[Swimming](https://www.youtube.com/watch?v=5k7ccAEaY0Q)** has the same V I VI progression as Pat's Soundhouse's **[Car Alarm](https://www.youtube.com/watch?v=jcutNFPwXPE)**.
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/VZVDQhbf-d0?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 <br>
 
-December 2023 — Mariah Carey's **[All I Want For Christmas is You](https://www.youtube.com/watch?v=yXQViqx6GMY)** and Battles' **[Atlas](https://www.youtube.com/watch?v=IpGp-22t0lU)** both share a particular triplet feel. I spent about a week with them rattling around together in my head before I finally sat down to bash out this edit. The video is meant to be hypnagogic, and the music is meant to be irresistibly danceable. Play it loud!
+December 2023 — Mariah Carey's **[All I Want For Christmas is You](https://www.youtube.com/watch?v=yXQViqx6GMY)** and Battles' **[Atlas](https://www.youtube.com/watch?v=IpGp-22t0lU)** both share a particular triplet feel. I spent about a week with them rattling around together in my head before I finally sat down to bash out this edit. The video is meant to be hypnagogic, and the music is meant to be irresistibly danceable. Play it loud!
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/BiIhFNz_um0?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 
@@ -30,6 +30,6 @@ August 2018 — **[Erlang: The Movie](https://www.youtube.com/watch?v=BXmOlCy0oB
 
 <br>
 
-April 2023 — Finally, here's something lighter, a little joke about [Jimmy](/future-of-coding-podcast)'s choice of commit message.
+April 2023 — Finally, here's something lighter, a little joke about [Jimmy](/future-of-coding-podcast)'s choice of commit message.
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/Z_esu9CyJxU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>

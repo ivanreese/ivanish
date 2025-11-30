@@ -15,7 +15,7 @@ publish: 2024-12-01
       background-image: linear-gradient(to right in oklch, color(display-p3 .2 0 .2), color(display-p3 0 .2 0));
       background-clip: text;
 
-      /* DYK? This isn't technically a prefix — it's a compat standard. Cursed. */
+      /* DYK? This isn't technically a prefix — it's a compat standard. Cursed. */
       /* https://compat.spec.whatwg.org/#the-webkit-text-fill-color */
       -webkit-text-fill-color: transparent;
     }
@@ -41,7 +41,7 @@ This is the sicko-mode RSS feed, for real web-heads. It's mostly the same as the
 
 It's my love letter to CSS, my favourite programming language.
 
-This is a fun way to get a notification when I publish a new post / page, and then you can click through and read it on my site — you know, to see how the styles look when executed lovingly by your browser.
+This is a fun way to get a notification when I publish a new post / page, and then you can click through and read it on my site — you know, to see how the styles look when executed lovingly by your browser.
 
 (This was also my first ever [December Adventure](/december-adventure) project.)
 

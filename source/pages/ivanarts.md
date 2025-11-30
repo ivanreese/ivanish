@@ -89,7 +89,7 @@ publish: 2024-07-15
 
   [Bryce 3D](https://en.wikipedia.org/wiki/Bryce_(software)) was the first graphics program I learned in depth. My parents bought me a copy when I was 12 or 13 years old. Every day after school, I'd come home and spend <i>the entire rest of the evening</i> playing around, making silly space opera-themed renderings.
 
-  To this day, I think there's something magical about the user interface. The big chunky camera controls — rendered by the program itself, as the back of the box proudly proclaimed — made it feel more like you were playing a strategy game than using an art tool.
+  To this day, I think there's something magical about the user interface. The big chunky camera controls — rendered by the program itself, as the back of the box proudly proclaimed — made it feel more like you were playing a strategy game than using an art tool.
 
 </section>
 <section>
@@ -102,7 +102,7 @@ publish: 2024-07-15
     <figcaption>(source: <a href="https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x">Macintosh Repository</a>)</figcaption>
   </figure>
 
-  A little later, I picked up a program with the oh-so-90s name [PiXELS:3D Studio](https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x). This one was quite nifty. It exclusively used this stuff called [NURBS](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline) — non-uniform rational basis splines. You created shapes by taking a single flat square, subdividing it an amount of your choosing along the length and width, and then folding it into your desired shape. Want a cylinder? Curl the square into a tube like you would with a sheet of paper. A sphere? Pinch the top and bottom of that tube. A cube? Squish the sides and pluck out the corners. Oh but wait — every NURBS object is smooth. That means to make a sharp edge, you need to add a bunch of subdivision and squeeze them together. Or… you could just make 6 flat squares, one for each side of the cube, and group them together. Weird. Okay.
+  A little later, I picked up a program with the oh-so-90s name [PiXELS:3D Studio](https://www.macintoshrepository.org/897-pixels-3d-studio-2-1-x). This one was quite nifty. It exclusively used this stuff called [NURBS](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline) — non-uniform rational basis splines. You created shapes by taking a single flat square, subdividing it an amount of your choosing along the length and width, and then folding it into your desired shape. Want a cylinder? Curl the square into a tube like you would with a sheet of paper. A sphere? Pinch the top and bottom of that tube. A cube? Squish the sides and pluck out the corners. Oh but wait — every NURBS object is smooth. That means to make a sharp edge, you need to add a bunch of subdivision and squeeze them together. Or… you could just make 6 flat squares, one for each side of the cube, and group them together. Weird. Okay.
 
   So this program was great for making flat blobby things like water and round blobby things like aliens. It also had some wonderful shader-building tools, and inverse kinematics, and more. But it was terribly slow. And crashed a lot. And frequently made your saved files have 0 bytes. Notwithstanding, I spent years making art with it.
 
@@ -124,7 +124,7 @@ publish: 2024-07-15
 
 <div class="retro">
   <iframe src="https://cdn.ivanish.ca/ivanarts/site/ivanarts.html"></iframe>
-  <div>This is a fully-interactive version of my first website. Go on — click around.</div>
+  <div>This is a fully-interactive version of my first website. Go on — click around.</div>
 </div>
 
 </section>

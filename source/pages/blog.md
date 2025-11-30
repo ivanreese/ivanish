@@ -40,7 +40,7 @@ desc: Rubbing two brain cells for warmth.
 
 <section id="posts">
 
-  Hey, this page is… to say it is under "active development" would be misleadingly auspicious. This blog is palliative care for my ambitions. My big ideas lie here, wrong, like yolk seeping down the nest. If I haven't sent you a link to a specific post, then these pages aren't for you — they're for me. But… you can read them, because you understand.
+  Hey, this page is… to say it is under "active development" would be misleadingly auspicious. This blog is palliative care for my ambitions. My big ideas lie here, wrong, like yolk seeping down the nest. If I haven't sent you a link to a specific post, then these pages aren't for you — they're for me. But… you can read them, because you understand.
 
   # 2025
   [Feeling good being bad](/feeling-good-being-bad)
@@ -63,7 +63,7 @@ desc: Rubbing two brain cells for warmth.
   I should do posts about:
   * Hyperzine, as a proto local-first app, which used the filesystem itself as database (and point of coordination between multiple apps)
   * The experience of writing code in a specific PL that's meant to be legible to people who don't know that PL. (The FoC Wiki build script)
-  * My experiences living with rural internet — no cell service (for SMS 2FA), 1s RTT, the whole trustd fiasco — and the web dev skills / tech aesthetics I've developed in this environment (subsetting fonts, hand-optimizing SVGs, optimizing images before I share them so the upload is quicker, avoiding JS/CSS dependencies entirely, menu bar widget showing my network traffic, TripMode). Maybe also talk about what a goddamn quality-of-life difference Starlink has made (allowing me to do calls, meaning I can a podcast and work for I&S).
+  * My experiences living with rural internet — no cell service (for SMS 2FA), 1s RTT, the whole trustd fiasco — and the web dev skills / tech aesthetics I've developed in this environment (subsetting fonts, hand-optimizing SVGs, optimizing images before I share them so the upload is quicker, avoiding JS/CSS dependencies entirely, menu bar widget showing my network traffic, TripMode). Maybe also talk about what a goddamn quality-of-life difference Starlink has made (allowing me to do calls, meaning I can a podcast and work for I&S).
   * Why 1000fps is magical for writing simulation logic
   * How I do font subsetting
 

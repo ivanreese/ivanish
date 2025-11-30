@@ -37,6 +37,6 @@ I have a lot of animations, only some of which respect `prefers-reduced-motion`.
 
 I haven't done any accessibility work.
 
-It's hosted on Vercel now, as of December 7th (today, as I write this). I don't like the company or the people behind it or the culture around it. But, I tested a whole bunch of other hosts, and Vercel was the fastest to go from `git push` to an updated site — 10 seconds flat. My previous host, Netlify, was the slowest — 90 seconds. I'm willing to tolerate a bit of "Do everything in JS bro" culture if it means I can iterate more quickly.
+It's hosted on Vercel now, as of December 7th (today, as I write this). I don't like the company or the people behind it or the culture around it. But, I tested a whole bunch of other hosts, and Vercel was the fastest to go from `git push` to an updated site — 10 seconds flat. My previous host, Netlify, was the slowest — 90 seconds. I'm willing to tolerate a bit of "Do everything in JS bro" culture if it means I can iterate more quickly.
 
 I'll probably have more to say here soon! Thanks for reading. I love that you're interested. The web warms my heart, too.
