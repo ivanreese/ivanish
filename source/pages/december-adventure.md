@@ -7,6 +7,27 @@ publish: 2024-12-14
 ! December Adventure
 
 <section>
+<h1 id="2025">2025</h1>
+
+Last year's [December Adventure](https://eli.li/december-adventure) started strong then promptly derailed.
+
+I have no reason to imagine this year will be any different.
+
+Except for the "started strong" part. I don't have any ideas as good as the [CSS feed](/feeds).
+
+The key is going to be setting low expectations and building up steam, I think.
+
+![](https://cdn.ivanish.ca/december-adventure/trees.webp)
+
+<style>
+  .js-stars { filter: hue-rotate(-90deg) saturate(50%); }
+  body { color: black; background: hsl(216, 39%, 83%) }
+  img { width: 100%; max-width: 600px; }
+</style>
+
+</section>
+<section>
+<h1 id="2024">2024</h1>
 
 I'm currently doing my first [December Adventure](https://eli.li/december-adventure). Here's my daily log.
 
