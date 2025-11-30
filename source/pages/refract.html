@@ -31,11 +31,15 @@ publish: 2025-11-29
 <p>My thanks to Dione McGuire, Elizabeth Wright, Tom Sarsons, Melvin Kwan, Sarah Ahmed, and Louis Ducsharm for the wonderful weekend.</p>
 
 <style>
-  body { background: #d8ded5; }
+  body {
+    color: white;
+    background-color: hsl(250, 30%, 5%);
+  }
   object, ruffle-object {
     width: 100%;
     height: auto;
     aspect-ratio: 960 / 540;
+    background: hsl(240, 30%, 10%)
   }
 </style>
 
@@ -44,7 +48,7 @@ publish: 2025-11-29
 <script>
   window.RufflePlayer = window.RufflePlayer || {};
   window.RufflePlayer.config = {
-      "autoplay": "on",
+      "autoplay": "off",
       "contextMenu": "off",
       "frameRate": 30,
       "letterbox": "on",
