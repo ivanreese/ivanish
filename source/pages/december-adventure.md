@@ -1,5 +1,5 @@
-type: Blog
-time: 2024
+type: Project
+time: 2024-2025
 publish: 2025-11-30
 
 ---
