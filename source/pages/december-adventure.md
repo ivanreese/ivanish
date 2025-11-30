@@ -17,11 +17,11 @@ Except for the "started strong" part. I don't have any ideas as good as the [CSS
 
 The key is going to be setting low expectations and building up steam, I think.
 
+Here's my daily log.
+
+* **0th** — It's weird that the first day of the month is the ordinal 1. Months are 1-indexed. "The 1st of the month". So if the last day of the previous month is the predecessor, you either need to say "the zeroth of the month" or just skip zero and call it the "negative first", which I like better except skipping zero feels like standing on top of a mountain in a storm, wearing copper armor, shouting ALL GODS ARE BASTARDS. Don't mess with powers beyond your comprehension.
+
 ![](https://cdn.ivanish.ca/december-adventure/trees.webp)
-
-### Log
-
-* **0th** — It's weird that the first day of the month is the ordinal 1. Months are 1-indexed. "The 1st of the month". So if the last day of the previous month is the predecessor, you either need to say "the zeroth of the month" or just skip zero and call it the "negative first", which I like better except skipping zero feels like standing on top of a mountain in a storm, wearing copper armor, shouting ALL GODS ARE BASTARDS.
 
 <style>
   .js-stars { filter: hue-rotate(-90deg) saturate(50%); }
