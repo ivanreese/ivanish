@@ -5,6 +5,8 @@ time: 2024
 
 ! Body Issues
 
+> This is an unfinished draft.
+
 > Content warning: body dysmorphia, self-harm, partial nudity.
 
 Scalp

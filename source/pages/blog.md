@@ -54,9 +54,6 @@ desc: Rubbing two brain cells for warmth.
 
   [Stage Fright (Stub)](/stage-fright)
 
-  this shouldn't be under "blog" because it's a project:
-  [Body Issues (Stub)](/body-issues)
-
   [Get off Slack (Stub)](/get-off-slack)
   [Criticism (Draft)](/criticism)
 
