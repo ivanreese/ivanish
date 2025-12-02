@@ -6,17 +6,6 @@ desc: Rubbing two brain cells for warmth.
 ! Blog
 
 <style>
-  main {
-    position: relative;
-  }
-  #podes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1600px;
-    z-index: -1;
-  }
 
   @media (prefers-color-scheme: dark) {
     body { background: hsl(0, 0%, 6%); }
@@ -33,10 +22,6 @@ desc: Rubbing two brain cells for warmth.
     font-weight: 900;
   }
 </style>
-
-<!--
-<script type="module" src="podes.js"></script>
--->
 
 <section id="posts">
 
@@ -97,14 +82,12 @@ desc: Rubbing two brain cells for warmth.
 
   # Blogroll
 
-  [droqen](https://kinopio.club/loading--c6rgUnlHCH8386yogunZ-)
   [eli_oat](https://eli.li)
   [Jimmy Miller](https://jimmyhmiller.github.io)
   [Justin Barclay](https://justinbarclay.ca/)
   [Kartik Agaram](http://akkartik.name)
   [Mariano Guerra](https://marianoguerra.org)
   [Szymon Kaliski](https://szymonkaliski.com/)
-  [tevis thompson](http://tevisthompson.com/)
   [TodePond](https://todepond.com)
   [tonsky.me](https://tonsky.me/)
   [Xavier Lambein](https://lambein.xyz)

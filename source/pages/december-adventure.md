@@ -19,6 +19,7 @@ The key is going to be setting low expectations and building up steam, I think.
 
 Here's my daily log.
 
+* **1st** — My 6yo is sick — can't keep food down — and my partner is away, so today I was a dad and not a computer user. After she fell asleep, I sat beside her in bed and did a bit of pre-cleanup on this site. That's my first adventure this month: attending to a long list of website desires.
 * **0th** — It's weird that the first day of the month is the ordinal 1. Months are 1-indexed. "The 1st of the month". So if the last day of the previous month is the predecessor, you either need to say "the zeroth of the month" or just skip zero and call it the "negative first", which I like better except skipping zero feels like standing on top of a mountain in a storm, wearing copper armor, shouting ALL GODS ARE BASTARDS. Don't toy with powers beyond your comprehension.
 
 ![](https://cdn.ivanish.ca/december-adventure/trees.webp)

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="fediverse:creator" content="@spiralganglion@mastodon.social">
+
+  <link rel="preload" href="https://cdn.ivanish.ca/assets/sofia-pro-light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="shortcut icon" sizes="192x192" href="https://cdn.ivanish.ca/assets/favicon-192x192.png">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss">
+  <link rel="me" href="https://mastodon.social/@spiralganglion">
+  <link rel="stylesheet" href="/styles.css">
+
+  <script defer src="/scripts.js"></script>
+  <script type="speculationrules"> { "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "eager" }] } </script>
+  <script data-goatcounter="https://ivanish.goatcounter.com/count" async fetchpriority="low" src="https://gc.zgo.at/count.js"></script>
+
+</head>
+<body>
+
+  <header>
+    <canvas class="js-stars"></canvas>
+    <be-enticed>
+      The <witty-quip></witty-quip> <a class="home-link" href="/">Ivan Reese</a>,
+      <span>by <a href="/type">type</a> or <a href="/time">time</a>.</span>
+    </be-enticed>
+    <script>
+      let choices = [
+        "accretion disk around",
+        "actions or words of",
+        "ding, says",
+        "goings on in",
+        "is what it is to",
+        "it,",
+        "life, n-times by",
+        "necessisity from",
+        "no, loudly, ",
+        "obtaining wave",
+        "quietus",
+        "rainbow",
+        "realistic",
+        "this",
+        "what",
+        "where went",
+        "will it",
+        "wrecked ship",
+        "[0,1)"
+      ]
+      let choice = choices[Math.random() * choices.length | 0]
+      document.querySelector("witty-quip").innerHTML = choice;
+    </script>
+  </header>
+
+  {{content}}
+
+</body>
+</html>

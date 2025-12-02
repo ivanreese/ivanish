@@ -29,12 +29,11 @@ header: min                    # tbd if there should be other options
 main: [any text]               # injected into the <main> tag
 publish: yyyy-mm-dd            # will make the page appear in the rss feed
 desc: [any text]               # generates a description for the <head>
-image: [s3 path, no leading /] # prefixes with cloudfront and puts og-image in <head>
+image: [s3 path, no leading /] # prefixes with cdn and puts og-image in <head>
 ###
 
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
 # TODO: Use desc for the year page description?
-# TODO: specify an image in the frontmatter for OG?
 
 compilePage = (head, header, path)->
 
@@ -53,7 +52,22 @@ compilePage = (head, header, path)->
     [k, v] = line.split /\s*:\s*/
     data[k] = v if k
 
-  # Now we'll begin building the HTML
+  # Decide which render function to use
+  render = if data.template then renderTemplate else renderTraditional
+
+  # Render the page
+  render head, header, path, data, body
+
+renderTemplate = (head, header, path, data, body)->
+
+  html = read "template/default.html"
+  replace html, "{{content}}", body
+
+  # Return the data, the processed html, and the body (for RSS)
+  [data, html, body]
+
+
+renderTraditional = (head, header, path, data, body)->
 
   # Start with the <head>
   pageHeader = head
@@ -241,6 +255,11 @@ task "build", "Compile everything", ()->
     # compile "deps", "node_modules/gl-matrix/dist/esm/**/*", (path)->
     #   copy path, replace path, "node_modules/gl-matrix/dist/esm/":"public/js/gl-matrix/",
 
+task "diff", "Test build system changes.", ()->
+  invoke "build"
+  execSync "rsync -a --delete public ../ivanish-diff"
+  execSync "git -C ../ivanish-diff add --all"
+  execSync "git -C ../ivanish-diff/public diff --cached"
 
 task "watch", "Recompile on changes.", ()->
   watch "source", "build", reload
