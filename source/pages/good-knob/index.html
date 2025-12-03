@@ -5,10 +5,13 @@ time: 2014
 
 <style>
 	html { background: #c2c1c0; }
-	body { margin: 0; overflow: hidden; }
 	header { display: none; }
-	main { max-width: none; }
-	canvas { width: 100%; height: 100%; }
+	canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
 	footer {
 		position: absolute;
 		bottom: 0;
@@ -18,6 +21,6 @@ time: 2014
 	}
 </style>
 
-<canvas></canvas>
+<canvas id="good-knob"></canvas>
 
 <script defer src="app.js"></script>

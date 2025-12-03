@@ -74,7 +74,7 @@ g = null
 
 # BEGIN
 requestAnimationFrame ()->
-	canvas = document.querySelector "canvas"
+	canvas = document.querySelector "canvas#good-knob"
 	g = canvas.getContext "2d"
 	resize()
 
@@ -260,6 +260,7 @@ draw = ()->
 
 	drawPoint(center, "#fff")
 	drawComputedValue()
+
 	# drawPoint(start, "#F70")
 	# drawPoint(activeCenter, "#F00", 2)
 	# drawRecent()
