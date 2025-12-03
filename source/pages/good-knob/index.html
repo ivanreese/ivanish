@@ -11,16 +11,45 @@ time: 2014
 		inset: 0;
 		width: 100%;
 		height: 100%;
+		z-index: -1;
 	}
 	footer {
 		position: absolute;
 		bottom: 0;
 		right: 0;
 		padding: 1em;
+	}
+	* {
+		text-align: center;
 		color: white;
 	}
+	title {
+		margin-block: 5vh -.8rem;
+		color: white;
+		font-family: hopper;
+	}
+	div {
+		position: absolute;
+		bottom: 20vh;
+		right: 50%;
+		translate: 50% 0;
+		font-size: clamp(1rem, 1.3vw, 1.5rem);
+		font-family: gull;
+	}
+	@font-face {
+		font-display: block;
+		font-family: hopper;
+		src: url("hopper.woff2");
+	}
+	@font-face {
+		font-display: block;
+		font-family: gull;
+		src: url("gull.woff2");
+	}
 </style>
-
 <canvas id="good-knob"></canvas>
 
-<script defer src="app.js"></script>
+<title>good knob</title>
+<div>slide it! pump it! crank it! <a href="https://github.com/ivanreese/ivanish/blob/main/source/pages/good-knob/app.coffee">why not!</a></div>
+
+<script defer src="knob.js"></script>

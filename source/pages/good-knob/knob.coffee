@@ -1,6 +1,9 @@
+# Oh Hi!
+# I wrote this code in 2014.
+# Boy, I've learned a lot since then.
+
 TAU = 2*Math.PI
 DEG = 180/Math.PI
-RAD = Math.PI/180
 
 Array.prototype.sum = ()-> if this.length is 0 then 0 else this.reduce (a, b)-> a+b
 Array.prototype.average = ()-> if this.length is 0 then 0 else this.sum() / this.length
@@ -56,7 +59,6 @@ delta = 				newPoint()
 centerTransitionTime = 100
 recentAngleBasis = 0
 recent = [{x:0, y:0}]
-# recent = [{x:282,y:204},{x:282,y:205},{x:283,y:205},{x:284,y:206},{x:285,y:207},{x:287,y:208},{x:288,y:209},{x:289,y:209},{x:289,y:210},{x:291,y:210},{x:291,y:211},{x:292,y:212},{x:293,y:213},{x:295,y:214},{x:295,y:216},{x:296,y:216},{x:298,y:218},{x:299,y:219},{x:300,y:220},{x:302,y:221},{x:303,y:222},{x:305,y:222},{x:305,y:224},{x:308,y:225},{x:310,y:226},{x:311,y:229},{x:313,y:230},{x:316,y:231},{x:317,y:233},{x:320,y:236},{x:323,y:237},{x:325,y:239},{x:328,y:242},{x:331,y:242},{x:331,y:244},{x:334,y:244},{x:334,y:245},{x:335,y:246},{x:336,y:247},{x:337,y:247},{x:339,y:249},{x:341,y:250},{x:343,y:251},{x:346,y:251},{x:348,y:252},{x:348,y:253},{x:348,y:254},{x:350,y:254},{x:351,y:254},{x:351,y:256},{x:353,y:256}]
 dragging = false
 computedValue = 0
 squareness = 0
@@ -200,7 +202,6 @@ drawRecent = ()->
 	g.stroke()
 
 drawRecentBounds = ()->
-
 	g.beginPath()
 	g.strokeStyle = "#F00"
 	g.strokeRect(recentMin.x, recentMin.y, recentSize.x, recentSize.y)
