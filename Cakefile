@@ -35,59 +35,65 @@ image: [s3 path, no leading /] # prefixes with cdn and puts og-image in <head>
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
 # TODO: Use desc for the year page description?
 
-compilePage = (head, header, path)->
+loadPage = (path)->
 
-  # Load the page source, then separate the frontmatter from the body
+  # Load the page source, and split it up
   parts = read(path).split "---"
 
-  # If the page doesn't have frontmatter, just copy it over to the public folder
-  return parts[0] if parts.length is 1
+  # If the page has no frontmatter section, it's static
+  return { html: parts[0] } if parts.length is 1
 
-  frontmatter = parts[0]
+  # Extract the frontmatter
+  frontmatter = {}
+  for line in parts[0].split "\n"
+    [k, v] = line.split /\s*:\s*/
+    frontmatter[k] = v if k
+
+  # Assemble the body
   body = parts[1...].join "---"
 
-  # Extract k-v pairs from the frontmatter
-  data = {}
-  for line in frontmatter.split "\n"
-    [k, v] = line.split /\s*:\s*/
-    data[k] = v if k
+  return { frontmatter, body }
 
-  # Decide which render function to use
-  render = if data.template then renderTemplate else renderTraditional
+compileContent = (path)->
 
-  # Render the page
-  render head, header, path, data, body
+  { frontmatter, body, html } = loadPage path
 
-renderTemplate = (head, header, path, data, body)->
+  # If the page had no frontmatter, it's static
+  return [{}, html, ""] if html
 
   html = read "template/default.html"
   replace html, "{{content}}", body
 
-  # Return the data, the processed html, and the body (for RSS)
-  [data, html, body]
+  # Return the frontmatter, the processed html, and the body (for RSS)
+  [frontmatter, html, body]
 
 
-renderTraditional = (head, header, path, data, body)->
+compilePage = (head, header, path)->
+
+  { frontmatter, body, html } = loadPage path
+
+  # If the page had no frontmatter, it's static
+  return [{}, html, ""] if html
 
   # Start with the <head>
   pageHeader = head
 
   # If we have a description, it goes in the <head>
-  pageHeader += "  <meta name=\"description\" content=\"#{data.desc}\">" if data.desc
+  pageHeader += "  <meta name=\"description\" content=\"#{frontmatter.desc}\">" if frontmatter.desc
 
   # TODO: If we have an image we can use for rich previews, it goes in the <head>
-  data.image ?= "assets/og.jpg"
-  pageHeader += "  <meta property=\"og:image\" content=\"https://cdn.ivanish.ca/#{data.image}\">"
+  frontmatter.image ?= "assets/og.jpg"
+  pageHeader += "  <meta property=\"og:image\" content=\"https://cdn.ivanish.ca/#{frontmatter.image}\">"
 
   # The <head> is now done
   pageHeader += "</head>\n<body>"
 
-  # Based on data.header, figure out what <header> to prepend to the final page HTML
+  # Based on frontmatter.header, figure out what <header> to prepend to the final page HTML
   # The only currently support option is "min", in which case we skip the header
-  pageHeader += "\n" + header unless data.header is "min"
+  pageHeader += "\n" + header unless frontmatter.header is "min"
 
   # Page bodies will be wrapped in a <main>
-  openMain = if data.main then "<main #{data.main}>" else "<main>"
+  openMain = if frontmatter.main then "<main #{frontmatter.main}>" else "<main>"
   closeMain = "</main>"
 
   # Process custom <title> syntax
@@ -128,23 +134,23 @@ renderTraditional = (head, header, path, data, body)->
       match.replace "<a ", "<a rel=\"nofollow\" "
 
   # Add a <footer> at the bottom of most pages
-  footer = makeFooter data
+  footer = makeFooter frontmatter
 
   # Combine all the parts of our page into the final HTML output
   html = [pageHeader, openMain, body, footer, closeMain].join "\n"
 
-  # Return the data, the processed html, and the body (for RSS)
-  [data, html, body]
+  # Return the frontmatter, the processed html, and the body (for RSS)
+  [frontmatter, html, body]
 
 
-makeFooter = (data)->
-  if data.type
-    type = data.type
+makeFooter = (frontmatter)->
+  if frontmatter.type
+    type = frontmatter.type
     for name, page of typePages
       type = type.replaceAll name, "<a href=\"/#{page}\">#{name}</a>"
 
-  if data.time
-    time = data.time
+  if frontmatter.time
+    time = frontmatter.time
       .replaceAll /(\d{4})/g, '<a href="/time#$1">$1</a>'
       .replaceAll "Immemorial", '<a href="/time#time-immemorial">Time Immemorial</a>'
 
@@ -211,6 +217,21 @@ task "build", "Compile everything", ()->
     # Store all the published pages we encounter, so we can generate an rss feed
     published = []
 
+    compile "content", "content/**/*.{md,html}", (path)->
+      dest = replace path,
+        "content": "public"
+        ".html": "/index.html"
+        ".md": "/index.html"
+        "/index/": "/" # If the file was named index.ext it'd be /index/index.html which we don't want
+
+      [frontmatter, html, body] = compileContent path
+
+      # If this page has a published date, store it for the RSS feed
+      published.push [frontmatter.publish, body, dest] if frontmatter.publish?.match /^\d{4}-\d{2}-\d{2}$/
+
+      write dest, html
+
+
     compile "pages", "source/pages/**/*.{md,html}", (path)->
       dest = replace path,
         "source/pages": "public"
@@ -218,10 +239,10 @@ task "build", "Compile everything", ()->
         ".md": "/index.html"
         "/index/": "/" # If the file was named index.ext it'd be /index/index.html which we don't want
 
-      [data, html, body] = compilePage head, header, path
+      [frontmatter, html, body] = compilePage head, header, path
 
       # If this page has a published date, store it for the RSS feed
-      published.push [data.publish, body, dest] if data.publish?.match /^\d{4}-\d{2}-\d{2}$/
+      published.push [frontmatter.publish, body, dest] if frontmatter.publish?.match /^\d{4}-\d{2}-\d{2}$/
 
       write dest, html
 
