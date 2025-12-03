@@ -162,8 +162,8 @@ window.onpointerup = (e)->
 	dragging = false
 
 window.onpointermove = (e)->
-	if dragging
-		update(computePosition(e.pageX, e.pageY))
+	e.preventDefault()
+	update(computePosition(e.pageX, e.pageY)) if dragging
 
 
 # MMMMMMMATH
