@@ -1,5 +1,9 @@
-markdownit = require("markdown-it") html: true, typographer: true
 require "sweetbread"
+
+coffeescript = require "coffeescript"
+coffee = (code)-> coffeescript.compile code, bare: true, inlineMap: true
+
+markdownit = require("markdown-it") html: true, typographer: true
 
 typePages =
   "2D": "art"
@@ -273,14 +277,15 @@ task "build", "Compile everything", ()->
     compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
       copy path, replace path, "source/":"public/", "/pages/":"/"
 
-    # compile "deps", "node_modules/gl-matrix/dist/esm/**/*", (path)->
-    #   copy path, replace path, "node_modules/gl-matrix/dist/esm/":"public/js/gl-matrix/",
-
 task "diff", "Test build system changes.", ()->
   invoke "build"
   execSync "rsync -a --delete public ../ivanish-diff"
   execSync "git -C ../ivanish-diff add --all"
   execSync "git -C ../ivanish-diff/public diff --cached"
+
+task "diff-good", ()->
+  execSync "git -C ../ivanish-diff add --all"
+  execSync "git -C ../ivanish-diff/public commit -m '∆'"
 
 task "watch", "Recompile on changes.", ()->
   watch "source", "build", reload
