@@ -66,7 +66,7 @@ compileContent = (path)->
   return [{}, html, ""] if html
 
   html = read "template/default.html"
-  replace html, "{{content}}", body
+  html = replace html, "{{content}}": body
 
   # Return the frontmatter, the processed html, and the body (for RSS)
   [frontmatter, html, body]
@@ -270,22 +270,16 @@ task "build", "Compile everything", ()->
       dest = replace path, "source/pages":"public", "coffee":"js"
       write dest, coffee read path
 
-    compile "page civet", "source/pages/**/*.civet", (path)->
-      dest = replace path, "source/pages":"public", "civet":"js"
-      write dest, civet read path
-
     compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
       copy path, replace path, "source/":"public/", "/pages/":"/"
 
 task "diff", "Test build system changes.", ()->
   invoke "build"
-  execSync "rsync -a --delete public ../ivanish-diff"
-  execSync "git -C ../ivanish-diff add --all"
-  execSync "git -C ../ivanish-diff/public diff --cached"
+  execSync "git diff --no-index public-snapshot public"
 
-task "diff-good", ()->
-  execSync "git -C ../ivanish-diff add --all"
-  execSync "git -C ../ivanish-diff/public commit -m '∆'"
+task "kiss", "Save current public as known-good.", ()->
+  rm "public-snapshot"
+  execSync "cp -r public public-snapshot"
 
 task "watch", "Recompile on changes.", ()->
   watch "source", "build", reload
