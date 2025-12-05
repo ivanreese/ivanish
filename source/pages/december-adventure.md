@@ -1,6 +1,6 @@
 type: Project
 time: 2024-2025
-publish: 2025-11-30
+publish: 2025-12-04
 
 ---
 
@@ -19,7 +19,7 @@ The key is going to be setting low expectations and building up steam, I think.
 
 Here's my daily log.
 
-* **4th** — I continued chipping away at my [Cakefile](https://github.com/ivanreese/ivanish/blob/main/Cakefile). The hours melt away and nothing seems to happen. Now it's after midnight — I could sleep and feel rested in the morning, and resign myself to accompishing nothing, or stay up and then, in an hour, sleep and feel less rested, and resign myself to accomplishing nothing. I feel this sort of neutral, numbing sadness every day. It's not ennui, it's something else. I am overflowing with ideas big and small, and I have the skills to do them. But I feel like I get —maybe— one solid productive day a month, at this rate. The rest of the time just evaporates.
+* **4th** — I continued chipping away at my [Cakefile](https://github.com/ivanreese/ivanish/blob/main/Cakefile). The hours melt away and nothing seems to happen. Now it's after midnight — I could sleep and feel rested in the morning, and resign myself to accompishing nothing, or stay up and then, in an hour, sleep and feel less rested, and resign myself to accomplishing nothing. I feel this sort of neutral, numbing sadness every day. It's not ennui, it's something else. I am overflowing with ideas big and small, and I have the skills to do them. But I feel like I get —maybe— one solid productive day a month, at this rate. The rest of the time just evaporates. [some time passes] Okay, so I've stayed up a bit. I added a command to my cakefile — `cake diff` — which will compare the compiled output to a known-good copy, and another command — `cake kiss` — that will snapshot the current compiled output as the new known-good. I like that "diff" and "kiss" look similar but different, I like the "make them kiss" of it all, I like thinking about tasty cake and coffee when I program, and I really like this pattern of diffing compiler output against known-good output. And that… gives me a feeling of accomplishment.
 * **3rd** — Tiny update to [Please Reload](https://github.com/ivanreese/please-reload), my plucky little local web server library, to allow extending the set of supported MIME types and do a better job of managing websockets connections. It's used by [Sweetbread](https://github.com/ivanreese/sweetbread), my toolkit for crafting Cakefiles like [the one that builds this very website](https://github.com/ivanreese/ivanish/blob/main/Cakefile). I came sooo close to rewriting [Cake](https://coffeescript.org/v2/annotated-source/cake.html) myself, perhaps as part of [i, my personal cli](https://github.com/ivanreese/i), but that'll have to wait. Yes, yes, welcome to my yak farm. _Addendum: seems I broke the websockets._
 * **2nd** — Various housekeeping, including reviving my [GOOD KNOB](/good-knob)
 * **1st** — My 6yo is sick — can't keep food down — and my partner is away, so today I was a dad and not a computer user. After she fell asleep, I sat beside her in bed and did a bit of pre-cleanup on this site. That's my first adventure this month: attending to a long list of website desires.

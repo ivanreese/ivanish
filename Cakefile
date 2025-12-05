@@ -39,7 +39,32 @@ image: [s3 path, no leading /] # prefixes with cdn and puts og-image in <head>
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
 # TODO: Use desc for the year page description?
 
-# Helpers #
+# Helpers #########################################################################################
+
+expandMacros = (path, text, frontmatter = {}, limit = 10)->
+  while text.includes "{{"
+    throw "What the fuck are you doing?" unless limit--
+
+    text = text.replace /( *){{(.+?)}}/g, (match, spaces, macro)->
+      macro = macro.trim()
+
+      # Comment syntax — removed at compile time
+      return "" if macro.startsWith "#"
+
+      # Optional frontmatter — returns empty string if missing
+      if macro.endsWith "?"
+        key = macro.slice 0, -1
+        return if frontmatter[key] then spaces + frontmatter[key] else ""
+
+      # Required frontmatter — returns the value or the original macro if missing
+      if frontmatter[macro]
+        return spaces + frontmatter[macro]
+
+      # Unrecognized macro — leave it as-is
+      log "Unrecognized macro: #{macro} in #{green path}"
+      return " ?" + macro + "? "
+
+  text
 
 compact = (arr)-> arr.filter (v)-> v
 indent = (str="", spaces="  ")-> splitLines(str).map((line)-> spaces + line).join "\n"
@@ -112,48 +137,53 @@ toFullUrl = (path)->
   path = if segs.at(-1).includes "." then path else withTrailingSlash path
   path
 
+tidy = (path, source)->
+  replace path,
+    [source]: "public"
+    ".html": "/index.html"
+    ".md": "/index.html"
+    "/index/": "/" # If the file was named index.ext it'd be /index/index.html which we don't want
 
-# COMPILATION #
+# COMPILATION #####################################################################################
 
+# Takes a file path, loads and parses the page, returns frontmatter object and body text
 loadPage = (path)->
 
   # Load the page source, and split it up
   parts = read(path).split "---"
 
-  # If the page has no frontmatter section, it's static
-  return { html: parts[0] } if parts.length is 1
-
-  # Extract the frontmatter
+  # Initially, we assume pages have no frontmatter section
   frontmatter = {}
-  for line in splitLines parts[0]
-    [k, v] = line.split /\s*:\s*/
-    frontmatter[k] = v if k
+  body = parts[0]
 
-  # Assemble the body
-  body = parts[1...].join "---"
+  # But if the page is sectioned, parse the frontmatter and reassemble the body
+  if parts.length > 1
+    for line in splitLines parts[0]
+      [k, v] = line.split /\s*:\s*/
+      frontmatter[k] = v if k
+    body = parts[1...].join "---"
 
-  return { frontmatter, body }
+  { frontmatter, body }
 
-compileContent = (path)->
+# Returns compiled html and body
+compileContent = ({ path, frontmatter, body})->
 
-  { frontmatter, body, html } = loadPage path
+  # Expand macros
+  body = expandMacros path, body, frontmatter
 
-  # If the page had no frontmatter, it's static
-  return [{}, html, ""] if html
+  template = frontmatter.template ? "default"
 
-  html = read "template/default.html"
+  html = read "template/#{template}.html"
   html = replace html, "{{content}}": body
 
-  # Return the frontmatter, the processed html, and the body (for RSS)
-  [frontmatter, html, body]
+  # Expand macros
+  html = expandMacros path, html, frontmatter
 
+  # Return the processed html, and the body (for RSS)
+  {html, body}
 
-compilePage = (head, header, path)->
-
-  { frontmatter, body, html } = loadPage path
-
-  # If the page had no frontmatter, it's static
-  return [{}, html, ""] if html
+# Returns compiled html and body
+compilePage = ({head, header, path, frontmatter, body})->
 
   # Start with the <head>
   pageHeader = head
@@ -196,7 +226,7 @@ compilePage = (head, header, path)->
     ].flat().join "\n"
 
   # Warn if we encountered a pre, because that probably means markdown goofed
-  console.log "warning: <pre> from #{path}" if body.includes "<pre"
+  log "warning: <pre> from #{green path}" if body.includes "<pre"
 
   # Add rel="nofollow" to external links that don't already have a rel
   body = body.replaceAll /<a .*?>/g, (match)->
@@ -211,14 +241,20 @@ compilePage = (head, header, path)->
     else # External link, no rel
       match.replace "<a ", "<a rel=\"nofollow\" "
 
+  # Expand macros
+  body = expandMacros path, body, frontmatter
+
   # Add a <footer> at the bottom of most pages
   footer = makeFooter frontmatter
 
   # Combine all the parts of our page into the final HTML output
   html = [pageHeader, openMain, body, footer, closeMain].join "\n"
 
-  # Return the frontmatter, the processed html, and the body (for RSS)
-  [frontmatter, html, body]
+  # Expand macros
+  html = expandMacros path, html, frontmatter
+
+  # Return the processed html, and the body (for RSS)
+  {html, body}
 
 
 makeFooter = (frontmatter)->
@@ -283,14 +319,8 @@ generateCSS = (published)->
       feedItem title, link, published, "<pre><code>#{styles.join "\n\n"}</code></pre>"
   [read("source/feeds/css"), posts, "  </channel>", "</rss>"].flat().join "\n"
 
-
-
 generateRedirectPages = ()->
-  redirects = read "Redirects.txt"
-  lines = trimAll splitLines redirects
-  pages = []
-
-  for line in lines
+  for line in trimAll splitLines read "Redirects.txt"
     continue unless line.startsWith "/" # Bare text is treated as a comment and ignored
 
     [oldPath, newPath] = line.split /\s+/
@@ -301,26 +331,18 @@ generateRedirectPages = ()->
       log "Redirects.txt contains an invalid destination path: #{green newPath}"
       continue
 
-    # If both the oldPath and the newPath include an extension, we'll assume they're static assets.
-    # In this case, we copy newPath->oldPath (using a hardlink). We have to do this because we don't
-    # control the server, so we can't do a 301 or 302, so this is the next best option.
-    if oldPath.includes(".") and newPath.includes(".")
-      # paths are relative to the public folder, so we need to find the source file
-      newFile = glob("{content,template}#{newPath}")[0]
-      linkFile newFile, "public#{oldPath}" if newFile
-      continue
+    # info the page would have had if it were a real page
+    path = "content#{withTrailingSlash oldPath}index.html"
+    frontmatter = template: "redirect", redirect: newPath, index: false
+    body = ""
 
-    # If the oldPath includes .html, we need to make sure it skips the /name.html -> /name/index.html rewrite.
-    wasHtml = oldPath.endsWith ".html"
+    { html } = compileContent { path, frontmatter, body }
 
-    # path the page would have had if it were a real page
-    path = if wasHtml then "content#{oldPath}" else "content#{withTrailingSlash oldPath}index.html"
+    dest = tidy path, "content"
 
-    # Generate the source text for the redirect page. It's all frontmatter.
-    fm = ["template: redirect", "redirect_url: #{newPath}", "index: false"]
-    fm.push "clean: false" if wasHtml
-    source = ["---", fm..., "---"].join "\n"
+    write dest, html
 
+# TASKS ###########################################################################################
 
 task "build", "Compile everything", ()->
   compile "everything", ()->
@@ -334,13 +356,10 @@ task "build", "Compile everything", ()->
     published = []
 
     compile "content", "content/**/*.{md,html}", (path)->
-      dest = replace path,
-        "content": "public"
-        ".html": "/index.html"
-        ".md": "/index.html"
-        "/index/": "/" # If the file was named index.ext it'd be /index/index.html which we don't want
+      dest = tidy path, "content"
 
-      [frontmatter, html, body] = compileContent path
+      { frontmatter, body } = loadPage path
+      { html, body } = compileContent { path, frontmatter, body }
 
       # If this page has a published date, store it for the RSS feed
       published.push [frontmatter.publish, body, dest] if frontmatter.publish?.match /^\d{4}-\d{2}-\d{2}$/
@@ -348,13 +367,10 @@ task "build", "Compile everything", ()->
       write dest, html
 
     compile "pages", "source/pages/**/*.{md,html}", (path)->
-      dest = replace path,
-        "source/pages": "public"
-        ".html": "/index.html"
-        ".md": "/index.html"
-        "/index/": "/" # If the file was named index.ext it'd be /index/index.html which we don't want
+      dest = tidy path, "source/pages"
 
-      [frontmatter, html, body] = compilePage head, header, path
+      { frontmatter, body } = loadPage path
+      { html, body } = compilePage { head, header, path, frontmatter, body }
 
       # If this page has a published date, store it for the RSS feed
       published.push [frontmatter.publish, body, dest] if frontmatter.publish?.match /^\d{4}-\d{2}-\d{2}$/
@@ -366,6 +382,9 @@ task "build", "Compile everything", ()->
 
     # Generate the CSS feed
     write "public/css", generateCSS published
+
+    # yep
+    generateRedirectPages()
 
     # Compile the rest of the stuff
     compile "global styles", ()->
