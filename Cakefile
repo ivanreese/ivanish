@@ -39,6 +39,82 @@ image: [s3 path, no leading /] # prefixes with cdn and puts og-image in <head>
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
 # TODO: Use desc for the year page description?
 
+# Helpers #
+
+compact = (arr)-> arr.filter (v)-> v
+indent = (str="", spaces="  ")-> splitLines(str).map((line)-> spaces + line).join "\n"
+splitOnce = (str, sep)->
+  i = str.indexOf sep
+  if i is -1 then [str] else [str.slice(0, i), str.slice(i + sep.length)]
+splitLines = (str)-> str.split "\n"
+trim = (s)-> s.trim()
+trimAll = (arr)-> arr.map trim
+
+# Split str to the left of the first occurrence of char
+# splitBefore("1234", "3") => ["12", "34"]
+# splitBefore("1234", "5") => ["", "1234"]
+splitBefore = (str, char)->
+  index = Math.max str.indexOf(char), 0
+  [str.slice(0, index), str.slice(index)]
+
+# Split str to the right of the first occurrence of char
+# splitAfter("1234", "3") => ["123", "4"]
+# splitAfter("1234", "5") => ["1234", ""]
+splitAfter = (str, char)->
+  index = str.indexOf char
+  splitIndex = if index is -1 then str.length else index + 1
+  [str.slice(0, splitIndex), str.slice(splitIndex)]
+
+# Returns tuples with the link text and href
+extractMdLinks = (sourceText)->
+  Array.from(sourceText.matchAll /\[(.*?)\]\((.*?)\)/g).map ([_, linkText, linkUrl])-> [linkText, linkUrl]
+
+getValuesOfAttributes = (src, attr)->
+  compact [
+    src.match new RegExp "#{attr}=\"[^\"]+\"", "g" # double quotes
+    src.match new RegExp "#{attr}='[^']+'", "g"    # single quotes
+  ]
+    .flat()
+    .map (match)-> match.slice attr.length + 2, -1 # attr="foo" -> foo
+
+# Turn arbitrary text into nice(ish) url-safe "slugs". Eg: `This isn't *so* bad!` becomes `this-isnt-so-bad`
+slugify = (s)-> s.toLowerCase().replaceAll(/['']/g, "").replace(/[^a-z0-9]+/g, " ").trim().replaceAll(/ +/g, "-")
+
+# Similar to the above, but preserves more of unicode (eg: letters with accents)
+anchorize = (s)-> s.toLowerCase().replaceAll("&amp;","and").replaceAll(/['']/g, "").replace(/[^\p{L}\p{N}]/gu, " ").trim().replaceAll(/ +/g, "-")
+
+cdata = (s)-> "<![CDATA[#{s}]]>"
+
+# Remove HTML tags — eg, for cleaning up the description frontmatter for inclusion in <meta>
+# TODO: make this smart enough to ignore code blocks inside <pre>
+plainify = (s)-> s.replace /<[^>]+>/g, ""
+
+# Replace all instances of an html tag in a string, using a given replacement function
+replaceHtmlTag = (html, tag, cb)->
+  regex = new RegExp "( *)<#{tag}(?![a-zA-Z])([^>]*)>(.*?)</#{tag}>", "gs"
+  html.replaceAll regex, (match, spaces, attrs, contents)-> cb contents.trim(), attrs, spaces
+
+# For natural sorting
+compare = new Intl.Collator("en").compare
+
+# Some date string handling
+isISOString = (str)-> /^\d{4}-\d{2}-\d{2}/.test str
+dateIsInTheFuture = (str)-> compare(str, new Date().toISOString().slice(0, 10)) > 0
+
+# URL handling
+withLeadingSlash = (path)-> if path.startsWith "/" then path else "/" + path
+withTrailingSlash = (path)-> if path.endsWith "/" then path else path + "/"
+withOuterSlashes = (path)-> withLeadingSlash withTrailingSlash path
+
+toFullUrl = (path)->
+  path = if path.startsWith "http" then path else "https://ivanish.ca" + withLeadingSlash path
+  segs = path.split "/"
+  path = if segs.at(-1).includes "." then path else withTrailingSlash path
+  path
+
+
+# COMPILATION #
+
 loadPage = (path)->
 
   # Load the page source, and split it up
@@ -49,7 +125,7 @@ loadPage = (path)->
 
   # Extract the frontmatter
   frontmatter = {}
-  for line in parts[0].split "\n"
+  for line in splitLines parts[0]
     [k, v] = line.split /\s*:\s*/
     frontmatter[k] = v if k
 
@@ -114,9 +190,7 @@ compilePage = (head, header, path)->
   body = body.replaceAll /( *)<md>(.+?)<\/md>/gs, (match, spaces, md)->
     return [ # This return needs to be explicit for some reason I don't understand
       "#{spaces}<p>"
-      markdownit.renderInline md
-        .split "\n"
-        .filter (v)-> v
+      compact splitLines markdownit.renderInline md
         .map (v)-> "#{spaces}  #{v}"
       "#{spaces}</p>"
     ].flat().join "\n"
@@ -183,17 +257,17 @@ generateFeed = (published)->
       [published, body, dest, title, link]
 
 feedItem = (title, link, published, body)->
-  """
+  indent """
     <item>
       <title>#{title}</title>
       <link>https://ivanish.ca/#{link}</link>
       <guid isPermaLink="false">/#{link}</guid>
       <pubDate>#{published}</pubDate>
       <description>
-        <![CDATA[#{body}]]>
+        #{cdata body}
       </description>
     </item>\n
-  """.split("\n").map((l)-> "    " + l).join("\n")
+  """, "    "
 
 generateRSS = (published)->
   posts = generateFeed published
@@ -208,6 +282,44 @@ generateCSS = (published)->
       return "" unless styles.length
       feedItem title, link, published, "<pre><code>#{styles.join "\n\n"}</code></pre>"
   [read("source/feeds/css"), posts, "  </channel>", "</rss>"].flat().join "\n"
+
+
+
+generateRedirectPages = ()->
+  redirects = read "Redirects.txt"
+  lines = trimAll splitLines redirects
+  pages = []
+
+  for line in lines
+    continue unless line.startsWith "/" # Bare text is treated as a comment and ignored
+
+    [oldPath, newPath] = line.split /\s+/
+    continue unless oldPath and newPath
+
+    # Only two destination types are supported: absolute path and full URL
+    unless newPath.startsWith("/") or newPath.startsWith("http")
+      log "Redirects.txt contains an invalid destination path: #{green newPath}"
+      continue
+
+    # If both the oldPath and the newPath include an extension, we'll assume they're static assets.
+    # In this case, we copy newPath->oldPath (using a hardlink). We have to do this because we don't
+    # control the server, so we can't do a 301 or 302, so this is the next best option.
+    if oldPath.includes(".") and newPath.includes(".")
+      # paths are relative to the public folder, so we need to find the source file
+      newFile = glob("{content,template}#{newPath}")[0]
+      linkFile newFile, "public#{oldPath}" if newFile
+      continue
+
+    # If the oldPath includes .html, we need to make sure it skips the /name.html -> /name/index.html rewrite.
+    wasHtml = oldPath.endsWith ".html"
+
+    # path the page would have had if it were a real page
+    path = if wasHtml then "content#{oldPath}" else "content#{withTrailingSlash oldPath}index.html"
+
+    # Generate the source text for the redirect page. It's all frontmatter.
+    fm = ["template: redirect", "redirect_url: #{newPath}", "index: false"]
+    fm.push "clean: false" if wasHtml
+    source = ["---", fm..., "---"].join "\n"
 
 
 task "build", "Compile everything", ()->
@@ -234,7 +346,6 @@ task "build", "Compile everything", ()->
       published.push [frontmatter.publish, body, dest] if frontmatter.publish?.match /^\d{4}-\d{2}-\d{2}$/
 
       write dest, html
-
 
     compile "pages", "source/pages/**/*.{md,html}", (path)->
       dest = replace path,
@@ -275,7 +386,7 @@ task "build", "Compile everything", ()->
 
 task "diff", "Test build system changes.", ()->
   invoke "build"
-  execSync "git diff --no-index public-snapshot public"
+  execSync "git diff --no-index public-snapshot public || true"
 
 task "kiss", "Save current public as known-good.", ()->
   rm "public-snapshot"

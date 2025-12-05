@@ -1,0 +1,2 @@
+/hest-podcast      /hest/podcast
+/hest-time-travel  /hest/time-travel
