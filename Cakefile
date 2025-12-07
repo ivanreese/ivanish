@@ -51,6 +51,12 @@ expandMacros = (path, text, frontmatter = {}, limit = 10)->
       # Comment syntax — removed at compile time
       return "" if macro.startsWith "#"
 
+      # switch macro
+      #   when "year" then new Date().getFullYear().toString()
+      #   when "site-name" then "ivanish.ca"
+      #   else
+      #     # fall through to frontmatter expansion...
+
       # Optional frontmatter — returns empty string if missing
       if macro.endsWith "?"
         key = macro.slice 0, -1
