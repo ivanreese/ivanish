@@ -6,10 +6,12 @@ time: 2013
 <style>
   @media(min-width:500px) {
     .hero {
+      position: relative; /* for z-index */
       float: left;
       margin-right: 1em;
       width: 50%;
       margin-bottom: 0;
+      z-index: 2; /* render in front of the <p> elements, which otherwise block clicks */
     }
 
     .hero img {

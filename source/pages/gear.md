@@ -1,4 +1,4 @@
-type: Writing
+type: Scrap
 time: 2024
 draft: true
 ---

@@ -1,30 +1,30 @@
 <header>
   <canvas class="js-stars"></canvas>
   <be-enticed>
-    The <witty-quip></witty-quip> <a class="home-link" href="/">Ivan Reese</a>,
+    <witty-quip></witty-quip> <a class="home-link" href="/">Ivan Reese</a>,
     <span>by <a href="/type">type</a> or <a href="/time">time</a>.</span>
   </be-enticed>
   <script>
     let choices = [
-      "accretion disk around",
-      "actions or words of",
-      "ding, says",
-      "goings on in",
-      "is what it is to",
-      "it,",
-      "life, n-times by",
-      "necessisity from",
-      "no, loudly, ",
-      "obtaining wave",
-      "quietus",
-      "rainbow",
-      "realistic",
-      "this",
-      "what",
-      "where went",
-      "will it",
-      "wrecked ship",
-      "[0,1)"
+      "Accretion disk, ",
+      "The actions or words of",
+      "The -ding, says",
+      "The goings gone",
+      "It is what it is to",
+      "This's it,",
+      "The life, n-times by",
+      "The necessisity from",
+      "The no, loudly, ",
+      "The obtaining wave",
+      "The quietus",
+      "The realistic",
+      "This",
+      "The what",
+      "The where went",
+      "Will it",
+      "The wrecked ship",
+      "[0,1) and then some,",
+      ""
     ]
     let choice = choices[Math.random() * choices.length | 0]
     document.querySelector("witty-quip").innerHTML = choice;

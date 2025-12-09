@@ -5,26 +5,25 @@ coffee = (code)-> coffeescript.compile code, bare: true, inlineMap: true
 
 markdownit = require("markdown-it") html: true, typographer: true
 
+# label: path
 typePages =
-  "2D": "art"
-  "3D": "art"
-  Album: "music"
-  "Art": "art"
-  Band: "music"
+  "2D": "art#2d"
+  "3D": "art#3d"
+  Album: "music#album"
+  Art: "art"
+  Band: "music#band"
   Blog: "blog"
-  Game: "code"
-  "Interactive": "code"
+  Game: "code#game"
+  Interactive: "code#interactive"
   Performance: "performance"
-  Photography: "art"
-  Podcast: "uncategorized"
+  Photography: "art#photography"
   "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
   Project: "project" # this is new-esq
   Score: "music#score" # this is new
   Song: "music#song"
-  Thoughts: "uncategorized"
-  Toy: "code"
-  Video: "art"
-  Writing: "uncategorized"
+  Scrap: "uncategorized" # Loose pages that don't belong to any ontology.
+  Toy: "code#toy"
+  Video: "art#video"
 
 ### Supported Frontmatter
 type: [any typePages key]      # transcluding any text that doesn't match (see Shrinkin & Breakin)
@@ -36,41 +35,34 @@ desc: [any text]               # generates a description for the <head>
 image: [s3 path, no leading /] # prefixes with cdn and puts og-image in <head>
 ###
 
+macros = (macro, path, text, frontmatter, spaces)-> switch
+  # Comment
+  when macro.startsWith "#" then ""
+
+  # Optional frontmatter
+  when macro.endsWith "?" then frontmatter[macro.slice 0, -1] ? ""
+
+  # Required frontmatter
+  when frontmatter[macro] then frontmatter[macro]
+
+  # Unrecognized
+  else
+    log "Unrecognized macro: #{macro} in #{green path}"
+    " ?" + macro + "? "
+
 # TODO: Charges needs to do the footer stuff nested inside some other DOM
 # TODO: Use desc for the year page description?
 
 # Helpers #########################################################################################
+handlebars = /{{(.+?)}}/g
 
-expandMacros = (path, text, frontmatter = {}, limit = 10)->
-  while text.includes "{{"
-    throw "What the fuck are you doing?" unless limit--
-
-    text = text.replace /( *){{(.+?)}}/g, (match, spaces, macro)->
-      macro = macro.trim()
-
-      # Comment syntax — removed at compile time
-      return "" if macro.startsWith "#"
-
-      # switch macro
-      #   when "year" then new Date().getFullYear().toString()
-      #   when "site-name" then "ivanish.ca"
-      #   else
-      #     # fall through to frontmatter expansion...
-
-      # Optional frontmatter — returns empty string if missing
-      if macro.endsWith "?"
-        key = macro.slice 0, -1
-        return if frontmatter[key] then spaces + frontmatter[key] else ""
-
-      # Required frontmatter — returns the value or the original macro if missing
-      if frontmatter[macro]
-        return spaces + frontmatter[macro]
-
-      # Unrecognized macro — leave it as-is
-      log "Unrecognized macro: #{macro} in #{green path}"
-      return " ?" + macro + "? "
-
-  text
+expandMacros = (path, text, frontmatter, limit = 10)->
+  # bail unless we have macros to expand
+  return text unless text.includes "{{"
+  # expand all known macros
+  text = text.replace handlebars, (_, macro)-> macros trim(macro), path, text, frontmatter
+  # recurse
+  if limit-- then expandMacros path, text, frontmatter, limit else throw "What the fuck are you doing?"
 
 compact = (arr)-> arr.filter (v)-> v
 indent = (str="", spaces="  ")-> splitLines(str).map((line)-> spaces + line).join "\n"
@@ -123,7 +115,7 @@ plainify = (s)-> s.replace /<[^>]+>/g, ""
 # Replace all instances of an html tag in a string, using a given replacement function
 replaceHtmlTag = (html, tag, cb)->
   regex = new RegExp "( *)<#{tag}(?![a-zA-Z])([^>]*)>(.*?)</#{tag}>", "gs"
-  html.replaceAll regex, (match, spaces, attrs, contents)-> cb contents.trim(), attrs, spaces
+  html.replaceAll regex, (match, spaces, attrs, contents)-> cb trim(contents), attrs, spaces
 
 # For natural sorting
 compare = new Intl.Collator("en").compare
@@ -166,7 +158,7 @@ loadPage = (path)->
   if parts.length > 1
     for line in splitLines parts[0]
       [k, v] = line.split /\s*:\s*/
-      frontmatter[k] = v if k
+      frontmatter[k] = trim v if v
     body = parts[1...].join "---"
 
   { frontmatter, body }
@@ -180,9 +172,9 @@ compileContent = ({ path, frontmatter, body})->
   template = frontmatter.template ? "default"
 
   html = read "template/#{template}.html"
-  html = replace html, "{{content}}": body
 
   # Expand macros
+  frontmatter.content = body # TODO: use a proper "page" object
   html = expandMacros path, html, frontmatter
 
   # Return the processed html, and the body (for RSS)

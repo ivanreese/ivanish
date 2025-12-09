@@ -217,13 +217,20 @@ do ()->
             maxBlueBlobs = 0
             maxRedBlobs = 0
             maxBlackBlobs = 0
+          else if bio or isInfinite
+            maxPixelStars = 300
+            maxStars = 60
+            maxSmallGlowingStars = 120
+            maxBlueBlobs = 120
+            maxRedBlobs = 100
+            maxBlackBlobs = 7
           else
             maxPixelStars = 200
             maxStars = 40
             maxSmallGlowingStars = 50
             maxBlueBlobs = 120
             maxRedBlobs = 100
-            maxBlackBlobs = 5
+            maxBlackBlobs = 0
 
           nPixelStars        = sdensity * maxPixelStars |0
           nStars             = sdensity * maxStars |0
