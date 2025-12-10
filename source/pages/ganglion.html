@@ -28,8 +28,38 @@ time: 2005 through 2011
 
   <style>
     video {
-      width: 640px;
-      max-width: 100%;
+      width: 100%;
+    }
+    object, ruffle-object {
+      width: 100%;
+      height: auto;
+      margin-block: 0;
+      aspect-ratio: 1;
+      background: #fff;
     }
   </style>
 </section>
+
+<div class="hero">
+  <object data="https://cdn.ivanish.ca/ganglion/orb.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash"></object>
+</div>
+
+<script src="https://cdn.ivanish.ca/assets/ruffle/ruffle.js"></script>
+<script>
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+      autoplay: "on",
+      backgroundColor: "#fff",
+      contextMenu: "off",
+      frameRate: 40,
+      letterbox: "off",
+      menu: false,
+      quality: "best",
+      scale: "showall",
+      forceScale: true,
+      splashScreen: false,
+      unmuteOverlay: "hidden",
+      warnOnUnsupportedContent: false,
+      wmode: "transparent"
+  };
+</script>

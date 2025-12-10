@@ -1,7 +1,7 @@
 require "sweetbread"
 
 coffeescript = require "coffeescript"
-coffee = (code)-> coffeescript.compile code, bare: true, inlineMap: true
+coffee = (code)-> coffeescript.compile code, bare: true
 
 markdownit = require("markdown-it") html: true, typographer: true
 
@@ -242,11 +242,14 @@ compilePage = ({head, header, path, frontmatter, body})->
   # Expand macros
   body = expandMacros path, body, frontmatter
 
-  # Add a <footer> at the bottom of most pages
-  footer = makeFooter frontmatter
+  # If the page doesn't include a footer marker, make one
+  footerMarker = if body.includes "! footer" then "" else "! footer"
 
   # Combine all the parts of our page into the final HTML output
-  html = [pageHeader, openMain, body, footer, closeMain].join "\n"
+  html = [pageHeader, openMain, body, footerMarker, closeMain].join "\n"
+
+  # Replace the footer marker with a real footer
+  html = html.replace "! footer", makeFooter frontmatter
 
   # Expand macros
   html = expandMacros path, html, frontmatter
