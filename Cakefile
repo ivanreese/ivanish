@@ -243,13 +243,13 @@ compilePage = ({head, header, path, frontmatter, body})->
   body = expandMacros path, body, frontmatter
 
   # If the page doesn't include a footer marker, make one
-  footerMarker = if body.includes "! footer" then "" else "! footer"
+  footerMarker = if body.includes "<!-- footer -->" then "" else "<!-- footer -->"
 
   # Combine all the parts of our page into the final HTML output
   html = [pageHeader, openMain, body, footerMarker, closeMain].join "\n"
 
   # Replace the footer marker with a real footer
-  html = html.replace "! footer", makeFooter frontmatter
+  html = html.replace "<!-- footer -->", makeFooter frontmatter
 
   # Expand macros
   html = expandMacros path, html, frontmatter
