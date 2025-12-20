@@ -2,6 +2,8 @@ type: Blog
 
 ---
 
+<img alt="THIS POST IS A DRAFT" src="cdn://assets/draft.webp" width="200" style="rotate:135deg; float: right; margin: 1em;">
+
 ! Future of the Future of Coding Community
 
 # History

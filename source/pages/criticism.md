@@ -3,6 +3,8 @@ time: 2024
 
 ---
 
+<img alt="THIS POST IS A DRAFT" src="cdn://assets/draft.webp" width="70" style="margin: 5em">
+
 ! Criticism
 
 I enjoy a good critique.

@@ -3,7 +3,7 @@ time: 2025
 
 ---
 
-> This is a draft
+<img alt="THIS POST IS A DRAFT" src="cdn://assets/draft.webp" width="100%" style="aspect-ratio: 8">
 
 ! These Words Mean The Same Thing
 

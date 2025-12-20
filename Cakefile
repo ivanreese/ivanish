@@ -211,6 +211,10 @@ compilePage = ({head, header, path, frontmatter, body})->
   # Process custom comment syntax
   body = body.replaceAll /^\s*\/\/.*$/gm, ""
 
+  # Process custom cdn syntax
+  body = body.replaceAll "cdn://", "https://cdn.ivanish.ca/"
+
+
   # Process markdown pages
   body = markdownit.render body if path.endsWith "md"
 

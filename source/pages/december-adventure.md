@@ -1,6 +1,6 @@
 type: Project
 time: 2024-2025
-publish: 2025-12-11
+publish: 2025-12-20
 
 ---
 
@@ -9,7 +9,21 @@ publish: 2025-12-11
 <section>
 <h1 id="2025">2025</h1>
 
-* **13th** — I've got the house to myself today. Spent the morning feeling ennui. After a few hours, a thought occurred: "I could be working on Dry Garden." That instantly made me feel motivated. I'm not actually going to work on Dry Garden — need to finished editing 2 FoC episodes — but it was enough to get me moving. (Dry Garden is [a game](https://vezwork.github.io/polylab/dist/demo/2025_2/residency/枯山水) I'm making with Elliot Evans. Might allocate some Dec Adv time to it, we'll see.)
+* **20th** — Cut up one of Astrid's silicone snack containers, salvaged a grip pad from a broken clamp to attach to another clamp, wrapped a towel to wick drips into a pan, and then emptied said pan every 5 minutes for 3 hours while I ran the pump for our cistern. That got us enough drinking water to make it through until next week. Roughed-in a [now](/now) page.
+* **19th** — New puppy day! <img alt="an 8 week-old golden retriever sleeps on a big red pillow" src="cdn://december-adventure/marse.webp" class="marse"> Per Astrid's insistence, same breed and name as our previous pup who passed suddenly in October. It's -25°C all week, and puppies need to pee every 20 minutes, so I'm enjoying the constant ~50° temperature shock.
+
+    Spent the afternoon shooting the shit with rabbits and reeds and co. Worked a little bit on sparklines for that secret project I mentioned on the 12th.
+* **18th** — No coding today. No plumbing either. And no snow. And no puppy. And no computing pioneers. I read a modest proposal to revive/reimagine an old but influential graphical software environment, and it has further stoked my fire. My personal life is structured such that it is hard for me to do enough "computer" without consequences. This causes me no end of strife, self-loathing, doubt, physical pain... all the feelings. Maybe tomorrow it will be different. I wish I could just…
+* **17th** Today was:
+  * call with computing pioneers who shall not be named
+  * school cancelled midday due to — surprise — 25cm of snow
+  * water leak in the basement, caught just before it did any permanent damage. wonder if we can get a plumber (snow, holidays)
+  * rushing to finish some renovations (due to water leak one year ago that destroyed half our basement) and then clean up (been living out of boxes), so that
+  * we can get a new puppy Friday?
+* **16th** — Can't remember if I did anything more substantial than [this](https://mastodon.social/@spiralganglion/115731132962412672).
+* **15th** — Worked on a mockup for a gestural notebook interface. If you want to see it, go to the FoC slack and check #two-minute-week before it disappears into the void.
+* **14th** — you want it? well then catch! strike. get ready for the big push! my spider sense is… is gone. i've got a picture to prove it. (Podcast editing.)
+* **13th** — I've got the house to myself today. Spent the morning feeling ennui. After a few hours, a thought occurred: "I could be working on Dry Garden." That instantly made me feel motivated. I'm not actually going to work on Dry Garden — need to finished editing 2 FoC episodes — but it was enough to get me moving. (Dry Garden is [a game](https://vezwork.github.io/polylab/dist/demo/2025_2/residency/枯山水) I'm making with Elliot Evans. Might allocate some Dec Adv time to it, we'll see.) Later: finished my remix of all the pastagang albums, and then [streamed podcast editing](https://www.twitch.tv/videos/2643255574).
 * **12th** — There's a fun but still secret Ink & Switch project that I'm building tooling for. Completely and utterly unrelated to the previous sentence — cannot stress this enough: there's no connection. don't know why you'd think there is. seriously, look elsewhere, you won't find anything here — I spent my afternoon learning how to write synthesizer patches using a weird sound programming language.
 * **11th** — Stayed up late editing the upcoming year-in-review episode, again. Pasta Gang released thr- eight albums this year? So I'm making another remix pulling together tracks from all of them. I also attempted a mashup of Radiohead's Identikit's [broken hearts / make it rain](https://youtu.be/QZfK4zOQQ3E?t=115) and Wet Leg's CPR's [I'm in love / you're to blame](https://youtu.be/HeL2M8jBEI4?t=131), but it sucked so I deleted it.
 * **10th** — Stayed up late editing the upcoming year-in-review episode. Every one of the song/album picks is getting a little special remix, so that the song matches the pace of the conversation (and vice versa).
@@ -34,14 +48,19 @@ Except for the "started strong" part. I don't have any ideas as good as the [CSS
 
 The key is going to be setting low expectations and building up steam, I think.
 
-![](https://cdn.ivanish.ca/december-adventure/trees.webp)
+<img src="cdn://december-adventure/trees.webp" width="100%">
 
 <style>
   .js-stars { filter: hue-rotate(-90deg) saturate(50%); }
   body { color: black; background: hsl(216, 39%, 83%) }
   main { font-weight: bold; }
-  img { width: 100%; max-width: 600px; }
+  img { max-width: 600px; }
   a { text-shadow: 0 0 3px #f0f2; }
+  ul { padding-left: 1rem; }
+  li { margin-block: 1rem; }
+  li p { margin-block: 0 .5rem; }
+  li li { margin-block: .5rem }
+  .marse { width: 200px; float: right; border-radius: 3px; border: 2px solid #964750 }
 </style>
 
 </section>
@@ -71,6 +90,7 @@ I'm currently doing my first [December Adventure](https://eli.li/december-advent
 
 Some ideas for things I might work on next:
 
+* Fix Please Reload (using the stuff Keelan suggested)
 * [Visual Programming Codex](/codex) needs an overhaul, probably using the same approach as the [Future of Coding wiki](https://wiki.futureofcoding.org).
 * Speaking of: fix some bugs in the FoC Wiki
 * Hest and/or Dust
@@ -81,10 +101,10 @@ Some ideas for things I might work on next:
 * general cleanup of this website — the various `<canvas>` JS files are a mess, and I could probably refactor them and make a shared std lib that they all build on.
 * PPLs stuff! Oh no forgot about that.
 * Did I ever make a page for Salamander?
-* Knob
 * Tone Dome and FOUR FOUR need writeups (hey… that's not coding!)
 * Need to make music for Lu's TORN LEAF thing (what is happening to this list?)
 * Edit the two FoC Episodes (get the fuck out of here, non-coding stuff)
 * Really need to watch The Thing at som- (okay, I'm cutting you off)
+
 
 </section>

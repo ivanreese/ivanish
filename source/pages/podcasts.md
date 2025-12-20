@@ -1,6 +1,6 @@
 type: Blog
 time: 2025
-publish: 2025-05-26
+publish: 2025-12-20
 ---
 
 <style>
@@ -13,77 +13,56 @@ code { font-size: 12px; line-height: 23px; position: absolute; right: calc(100% 
 
 ! Podcasts
 
-Sometimes people ask what podcasts I listen to. Here's a list.
+Sometimes people ask what podcasts I listen to. Here's a list of podcasts I recommend.
 
 <div class="legend">
 
 Legend:
 * `★` A personal favourite.
 * `$` I pay to support this one.
-* `B` I'm working through the backlog.
-* `N` Only just started this one, not sure if I like it.
 
 </div>
 
 # Game Development
 * `★` Designer Notes
 * Draknek & Friends Official Podcast
-* Digital Foundry Direct Weekly
-* `N` Play, Watch, Listen
-* `B` Eggplant: The Secret Lives of Games
-* `B` The AIAS Game Maker's Notebook
 
 # Gaming News & Criticism
-* `★$` Triple Click
-* `★$` The Besties
-* `$N` Post Games
-* Journal Updated
-* `B` Abnormal Mapping
-* `B` Kotaku Splitscreen
-* `N` Remap Radio
-* `N` You Are Error
-* `N` Aftermath Hours
+* `$` Triple Click
+* `$` The Besties
+* `$` Post Games — this one is *fantastic*
 
 # Software Development
 * `★` Igalia Chats
-* `★` Off the Main Thread
-* Panic Podcast
-* Playdate Podcast
-* `B` Simple Beep
-* `NB` Advent of Computing
-* Under the Radar
-* Causal Islands
-* Build Software Quickly
-* Localfirst.fm
-* `N` Dead Code
+* Off the Main Thread — inactive, sadly
+* Advent of Computing
 
 # Tech News
-* `★$` Accidental Tech Podcast
-* `★$` Connected
-* `★$` Dithering
+* `$` Accidental Tech Podcast
+* `$` Dithering
 * The Talk Show with John Gruber
 
 # Comedy
-* `★$B` The Flop House
-* `★$` My Brother, My Brother And Me
-* `★` You Look Nice Today
+* `$` Stores — quite new, and probably not for most people, but I really love it.
+* `$` My Brother, My Brother And Me
 * `$` The Adventure Zone
-* California King
+* `★` You Look Nice Today — inactive, but worth listening from the start
+* The 30 Second Podcast — Westin Meme's patent nonsense, beware
 
 # Philo
-* `★` Very Bad Wizards
+* `★` Very Bad Wizards — I only listen to the opening segments.
 
 # Music
-* `★B` Strong Songs
+* Strong Songs
 
 # Various Johns
-* `★$` Reconcilable Differences
-* `B` Roderick on the Line
+* `$` Reconcilable Differences — one of my "being a dad" podcasts
+* Roderick on the Line — gotta listen to this one from the start
 * Robot or Not
-* `B` Road Work
 
 # …Are Friends
-* `★$` Todepond Pondcast
+* `$` Todepond Pondcast
+
 
 <br><br>
 
