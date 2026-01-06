@@ -18,13 +18,12 @@ Sometimes people ask what podcasts I listen to. Here's a list of podcasts I reco
 <div class="legend">
 
 Legend:
-* `★` A personal favourite.
 * `$` I pay to support this one.
 
 </div>
 
 # Game Development
-* `★` Designer Notes
+* Designer Notes
 * Draknek & Friends Official Podcast
 
 # Gaming News & Criticism
@@ -33,7 +32,7 @@ Legend:
 * `$` Post Games — this one is *fantastic*
 
 # Software Development
-* `★` Igalia Chats
+* Igalia Chats
 * Off the Main Thread — inactive, sadly
 * Advent of Computing
 
@@ -46,11 +45,11 @@ Legend:
 * `$` Stores — quite new, and probably not for most people, but I really love it.
 * `$` My Brother, My Brother And Me
 * `$` The Adventure Zone
-* `★` You Look Nice Today — inactive, but worth listening from the start
+* You Look Nice Today — inactive, but worth listening from the start
 * The 30 Second Podcast — Westin Meme's patent nonsense, beware
 
 # Philo
-* `★` Very Bad Wizards — I only listen to the opening segments.
+* Very Bad Wizards — I only listen to the opening segments.
 
 # Music
 * Strong Songs
