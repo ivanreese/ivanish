@@ -187,7 +187,9 @@ compilePage = ({head, header, path, frontmatter, body})->
   pageHeader = head
 
   # If we have a description, it goes in the <head>
-  pageHeader += "  <meta name=\"description\" content=\"#{frontmatter.desc}\">" if frontmatter.desc
+  if frontmatter.desc
+    pageHeader += "  <meta name=\"description\" content=\"#{frontmatter.desc}\">"
+    pageHeader += "  <meta name=\"og:description\" content=\"#{frontmatter.desc}\">"
 
   # TODO: If we have an image we can use for rich previews, it goes in the <head>
   frontmatter.image ?= "assets/og.jpg"
