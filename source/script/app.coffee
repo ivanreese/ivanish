@@ -20,6 +20,6 @@
 
 @hash = (string, range, hash = 0) ->
   hash = (hash * 31 + ch.charCodeAt(0)) | 0 for ch in string
-  mod(hash, range + 1)
+  mod hash, range + 1
 
 window.reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches

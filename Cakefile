@@ -422,12 +422,25 @@ cypher = "IiÌÍÎÏĨĪĬĮİƁƊƑƘƝƴȈȊɱʈʋʯϒӇӻӼԒḮỈỊ⌁⌃�
 
 olRegex = /^\d+\.\s/
 
+mod = (input, max)-> (input % max + max) % max
+
+hash = (string, range, h = 0) ->
+  h = (h * 31 + ch.charCodeAt(0)) | 0 for ch in string
+  mod h, range + 1
+
+seededRandom = (seed)->
+  s = hash seed, 0x7fffffff
+  ()-> s = (s * 0xCAFEBABE + 2222) & 0x7fffffff; s / 0x7fffffff
+
 task "encrypt", "We're telling secrets.", ()->
   compile "encrypt", "journal/**/*", (path)->
 
     # Derive the encryption key based on the slug and password
     slug = "/" + replace path, ".md": "/"
     key = pbkdf2Sync password, slug, 300000, 32, "sha256"
+
+    # RNG for generating spaces between the encrypted words, seeded so that we don't make git noise
+    random = seededRandom slug
 
     # Load the page and extract the body
     { frontmatter, body } = loadPage path
@@ -488,7 +501,7 @@ task "encrypt", "We're telling secrets.", ()->
 
         # Break the encrypted text into word-sized pieces
         words = while encrypted.length > 0
-          len = Math.min encrypted.length, 2 + Math.random() ** 2 * 9 | 0
+          len = Math.min encrypted.length, 2 + random() ** 2 * 9 | 0
           word = encrypted.slice 0, len
           encrypted = encrypted.slice len
           word
