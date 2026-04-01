@@ -448,7 +448,7 @@ task "encrypt", "We're telling secrets.", ()->
     { frontmatter, body } = loadPage path
 
     # Add special frontmatter for journals
-    frontmatter.main ||= "journal"
+    frontmatter.main ||= "secret-journal"
 
     # Merge consecutive plain lines into single blocks
     # TODO: Could probably clean this up a bunch. Meh.

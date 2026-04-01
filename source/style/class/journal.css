@@ -1,3 +1,11 @@
+main[secret-journal] {
+
+  p {
+    margin-bottom: 1em;
+  }
+
+}
+
 .journal-password {
   margin: -8vh auto 8vh;
   max-width: max-content;

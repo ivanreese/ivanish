@@ -1,6 +1,6 @@
 type: Journal
 publish: 2026-03-31
-main: journal
+main: secret-journal
 ---
 <form class="journal-password"><input autofocus="true" type="password" name="password" class="visible-password" autocomplete="current-password"></form>
 <div encrypted-post>
