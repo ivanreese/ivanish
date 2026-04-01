@@ -1,5 +1,7 @@
 require "sweetbread"
 
+{ createHash, createCipheriv, pbkdf2Sync } = require "crypto"
+
 coffeescript = require "coffeescript"
 coffee = (code)-> coffeescript.compile code, bare: true
 
@@ -15,6 +17,7 @@ typePages =
   Blog: "blog"
   Game: "code#game"
   Interactive: "code#interactive"
+  Journal: "uncategorized"
   Performance: "performance"
   Photography: "art#photography"
   "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?
@@ -65,11 +68,12 @@ expandMacros = (path, text, frontmatter, limit = 10)->
   if limit-- then expandMacros path, text, frontmatter, limit else throw "What the fuck are you doing?"
 
 compact = (arr)-> arr.filter (v)-> v
-indent = (str="", spaces="  ")-> splitLines(str).map((line)-> spaces + line).join "\n"
+indent = (str="", spaces="  ")-> joinLines splitLines(str).map (line)-> spaces + line
 splitOnce = (str, sep)->
   i = str.indexOf sep
   if i is -1 then [str] else [str.slice(0, i), str.slice(i + sep.length)]
 splitLines = (str)-> str.split "\n"
+joinLines = (...a)-> a.flat(Infinity).join "\n"
 trim = (s)-> s.trim()
 trimAll = (arr)-> arr.map trim
 
@@ -148,7 +152,7 @@ tidy = (path, source)->
 loadPage = (path)->
 
   # Load the page source, and split it up
-  parts = read(path).split "---"
+  parts = read(path).split "---\n"
 
   # Initially, we assume pages have no frontmatter section
   frontmatter = {}
@@ -159,7 +163,7 @@ loadPage = (path)->
     for line in splitLines parts[0]
       [k, v] = line.split /\s*:\s*/
       frontmatter[k] = trim v if v
-    body = parts[1...].join "---"
+    body = parts[1...].join "---\n"
 
   { frontmatter, body }
 
@@ -222,12 +226,12 @@ compilePage = ({head, header, path, frontmatter, body})->
 
   # Process markdown in <md> tags
   body = body.replaceAll /( *)<md>(.+?)<\/md>/gs, (match, spaces, md)->
-    return [ # This return needs to be explicit for some reason I don't understand
+    joinLines [
       "#{spaces}<p>"
       compact splitLines markdownit.renderInline md
         .map (v)-> "#{spaces}  #{v}"
       "#{spaces}</p>"
-    ].flat().join "\n"
+    ]
 
   # Warn if we encountered a pre, because that probably means markdown goofed
   log "warning: <pre> from #{green path}" if body.includes "<pre"
@@ -410,6 +414,112 @@ task "build", "Compile everything", ()->
     compile "static", "source/**/*.!(coffee|html|md|css)", "source/404.html", (path)->
       copy path, replace path, "source/":"public/", "/pages/":"/"
 
+blockMarkers = ["#### ", "### ", "## ", "# ", "- ", "* ", "! ", "> "]
+
+password = trim read ".secret"
+
+cypher = "IiÌÍÎÏĨĪĬĮİƁƊƑƘƝƴȈȊɱʈʋʯϒӇӻӼԒḮỈỊ⌁⌃⌅⌆⌐⌑⌒⌓⌔⌗⌙⌠⌡⌬⌭⌱⌷⌸⌹⌺⌻⌽⌾⍀⍁⍂⍃⍄⍅⍆⍇⍈⍉⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍙⍚⍛⍜⍝⍞⍟⍡⍢⍣⍤⍥⍦⍧⍨⍩⍫⍬⍭⍳⍴⍵⍶⍷⍸⍹⍺⍾⎄⎆⎈⎐⎚⎛⎝⎞⎠⎡⎣⎤⎦⎧⎨⎩⎫⎬⎭⎰⎱⎲⎳⏀⏂⏃⏅⏇⏚⏣␥⑄▁▂▃▄▅▆▇█▲△▴▵▶▷▸►▼▽▾▿◀◁◃◄◆◉◍◐◑◒◓◔◕◖◗◴◵◶◷☰☱☲☳☴☵☶☷⚌⚍⚎⚏⚙⦿Ɱ䷀䷁䷂䷃䷄䷅䷆䷇䷈䷉䷊䷋䷌䷍䷎䷏䷐䷑䷒䷓䷔䷕䷖䷗䷘䷙䷚䷛䷜䷝䷞䷟䷠䷡䷢䷣䷤䷥䷦䷧䷨䷩䷪䷫䷬䷭䷮䷯䷰䷱䷲䷳䷴䷵䷶䷷䷸䷹䷺䷻䷼䷽䷾䷿"
+
+olRegex = /^\d+\.\s/
+
+task "encrypt", "We're telling secrets.", ()->
+  compile "encrypt", "journal/**/*", (path)->
+
+    # Derive the encryption key based on the slug and password
+    slug = "/" + replace path, ".md": "/"
+    key = pbkdf2Sync password, slug, 300000, 32, "sha256"
+
+    # Load the page and extract the body
+    { frontmatter, body } = loadPage path
+
+    # Add special frontmatter for journals
+    frontmatter.main ||= "journal"
+
+    # Merge consecutive plain lines into single blocks
+    # TODO: Could probably clean this up a bunch. Meh.
+    lines = splitLines body
+    merged = []
+    buffer = []
+    flush = ()->
+      if buffer.length > 0
+        merged.push buffer.join " "
+        buffer = []
+    for line in lines
+      isBlank = line.trim() is ""
+      hasMarker = !isBlank and (blockMarkers.some((s)-> line.startsWith s) or olRegex.test line)
+      if isBlank or hasMarker
+        flush()
+        merged.push line
+      else
+        buffer.push line
+    flush()
+
+    # Derive the IV from the slug
+    iv = createHash("sha256").update(slug).digest().slice 0, 16
+
+    # Single cypher for the whole page — one continuous keystream
+    encrypter = createCipheriv "aes-256-ctr", key, iv
+
+    # Encrypt each line
+    body = for line in merged
+
+      # Skip blank lines
+      if line.trim() is "" then line
+
+      else
+        # Detect most blocks
+        marker = blockMarkers.find (s)-> line.startsWith s
+        if marker then line = line.substring marker.length
+        # Detect lists
+        else if olRegex.test line
+          marker = "1. "
+          [, line] = splitOnce line, ". "
+        # If there is no block, just use an empty string
+        else marker = ""
+
+        # Strip marker, render
+        line = markdownit.renderInline line
+
+        # Encrypt this block as part of the continuous stream
+        encrypted = encrypter.update line, "utf8"
+
+        # Map each byte to a cypher char
+        encrypted = (cypher[byte] for byte from encrypted).join ""
+
+        # Break the encrypted text into word-sized pieces
+        words = while encrypted.length > 0
+          len = Math.min encrypted.length, 2 + Math.random() ** 2 * 9 | 0
+          word = encrypted.slice 0, len
+          encrypted = encrypted.slice len
+          word
+
+        # Join the encrypted words, prepend the marker
+        marker + words.join " "
+
+    # Append magic bytes (four 0s) to the last block for verification
+    magic = encrypter.update Buffer.alloc 4
+    magic = (cypher[byte] for byte from magic).join ""
+    for i in [body.length - 1..0]
+      if body[i].trim() isnt ""
+        body[i] += magic
+        break
+
+    encrypter.final()
+    body = joinLines body
+
+    # Rebuild the frontmatter
+    frontmatter = joinLines(k + ": " + v for k, v of frontmatter)
+
+    input = '<form class="journal-password"><input autofocus="true" type="password" name="password" class="visible-password" autocomplete="current-password"></form>'
+
+    open = '<div encrypted-post>'
+    close = '</div>'
+
+    # Rebuild the page, get the dest, write
+    page = joinLines frontmatter, "---", input, open, body, close
+    dest = replace path, "journal/":"source/pages/journal/"
+    write dest, page
+
 task "diff", "Test build system changes.", ()->
   invoke "build"
   execSync "git diff --no-index public-snapshot public || true"
@@ -419,12 +529,14 @@ task "kiss", "Save current public as known-good.", ()->
   execSync "cp -r public public-snapshot"
 
 task "watch", "Recompile on changes.", ()->
+  watch "journal", "encrypt"
   watch "source", "build", reload
 
 task "serve", "Spin up a live reloading server.", ()->
   serve "public"
 
 task "start", "Build, watch, and serve.", ()->
+  invoke "encrypt"
   invoke "build"
   invoke "watch"
   invoke "serve"

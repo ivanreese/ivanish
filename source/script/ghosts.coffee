@@ -2,6 +2,9 @@ do ()->
   # 1 in 10 chance to run ghosts
   return if Math.random() > (1 / 10)
 
+  # Don't run ghosts on encrypted posts
+  return if document.querySelector "[encrypted-post]"
+
   # Grab the last paragraph
   return unless elm = Array.from(document.getElementsByTagName("p")).at(-1)
 

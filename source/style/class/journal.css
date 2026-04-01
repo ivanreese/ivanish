@@ -1,0 +1,32 @@
+.journal-password {
+  margin: -8vh auto 8vh;
+  max-width: max-content;
+  font-size: 1.5em;
+  padding: 1rem;
+  text-align: center;
+  background: hsl(311, 70%, 98%);
+  border-radius: 0 0 8px 8px;
+
+  input {
+    font: inherit;
+    padding: 0 .3em;
+    width: 10em;
+    text-align: center;
+    -webkit-text-security: none;
+    input-security: none;
+    border: 2px solid currentcolor;
+    outline-offset: 0px;
+    color: inherit;
+    background: transparent;
+    border-radius: 1px;
+    &:focus {
+      outline: 2px solid currentcolor;
+    }
+  }
+}
+
+/* There's a FOET (flash of encrypted text) when someone has already typed a correct password. */
+/* It's ugly, so we hide it with a lil fade. Whatever. */
+[encrypted-post] {
+  animation: fade-in 0s .3s linear both;
+}
