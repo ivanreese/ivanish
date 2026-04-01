@@ -1,9 +1,7 @@
 main[secret-journal] {
-
   p {
     margin-bottom: 1em;
   }
-
 }
 
 .journal-password {
@@ -37,4 +35,10 @@ main[secret-journal] {
 /* It's ugly, so we hide it with a lil fade. Whatever. */
 [encrypted-post] {
   animation: fade-in 0s .3s linear both;
+}
+
+/* The cyphered text doesn't kern, so it's too big */
+html:not([journal-decrypted]) [encrypted-post] {
+  /* font-size: .8em; */
+  letter-spacing: -.33em;
 }

@@ -14,6 +14,13 @@ do ()->
   # Each byte maps to one cypher char
   cypher = "IiÌÍÎÏĨĪĬĮİƁƊƑƘƝƴȈȊɱʈʋʯϒӇӻӼԒḮỈỊ⌁⌃⌅⌆⌐⌑⌒⌓⌔⌗⌙⌠⌡⌬⌭⌱⌷⌸⌹⌺⌻⌽⌾⍀⍁⍂⍃⍄⍅⍆⍇⍈⍉⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍙⍚⍛⍜⍝⍞⍟⍡⍢⍣⍤⍥⍦⍧⍨⍩⍫⍬⍭⍳⍴⍵⍶⍷⍸⍹⍺⍾⎄⎆⎈⎐⎚⎛⎝⎞⎠⎡⎣⎤⎦⎧⎨⎩⎫⎬⎭⎰⎱⎲⎳⏀⏂⏃⏅⏇⏚⏣␥⑄▁▂▃▄▅▆▇█▲△▴▵▶▷▸►▼▽▾▿◀◁◃◄◆◉◍◐◑◒◓◔◕◖◗◴◵◶◷☰☱☲☳☴☵☶☷⚌⚍⚎⚏⚙⦿Ɱ䷀䷁䷂䷃䷄䷅䷆䷇䷈䷉䷊䷋䷌䷍䷎䷏䷐䷑䷒䷓䷔䷕䷖䷗䷘䷙䷚䷛䷜䷝䷞䷟䷠䷡䷢䷣䷤䷥䷦䷧䷨䷩䷪䷫䷬䷭䷮䷯䷰䷱䷲䷳䷴䷵䷶䷷䷸䷹䷺䷻䷼䷽䷾䷿"
 
+  # RNG for generating spaces between the encrypted words
+  seededRandom = (seed)->
+    s = @hash seed, 0x7fffffff
+    ()-> s = (s * 0xCAFEBABE + 2222) & 0x7fffffff; s / 0x7fffffff
+  random = seededRandom slug
+
+  # Lil easter egger
   makeName = ()-> (cypher[Math.random() * cypher.length | 0] for i in [0...4]).join ""
 
   # On first run, parse each element's displayed cypher text back into raw cyphertext bytes.
@@ -42,6 +49,7 @@ do ()->
 
   update = ()->
     return pending = true if running
+    random = seededRandom slug # reset RNG so word breaks are consistent across keystrokes
     running = true
 
     initChunks()
@@ -87,10 +95,13 @@ do ()->
         chunk.elm.innerHTML = new TextDecoder().decode result.slice offset, offset + len
         offset += len
 
-      # Lil bonus
+      document.documentElement.setAttribute "journal-decrypted", ""
+
+      # Lil easter egger
       document.querySelector("be-enticed .home-link").textContent = makeName() + " " + makeName()
 
     else
+      document.documentElement.removeAttribute "journal-decrypted"
 
       # Wrong password — the decrypted bytes are garbage. Map each chunk byte to a cypher char.
       offset = 0
@@ -103,7 +114,7 @@ do ()->
 
         # Break into word-sized pieces so it wraps nicely
         words = while text.length > 0
-          len = Math.min text.length, 2 + Math.random() ** 2 * 9 | 0
+          len = Math.min text.length, 2 + random() ** 2 * 9 | 0
           word = text.slice 0, len
           text = text.slice len
           word
