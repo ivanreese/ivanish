@@ -2,7 +2,7 @@ type: Journal
 publish: 2026-03-31
 main: secret-journal
 ---
-<form class="journal-password"><input autofocus="true" type="password" name="password" class="visible-password" autocomplete="current-password"></form>
+<form class="journal-password"><input type="text"></form>
 <div encrypted-post>
 
 ! ⌽⍩ ▇▃◐⍅⌗⍁I▽▅ Ƒ⍖I
@@ -31,6 +31,6 @@ main: secret-journal
 
 ⍸⍕ ⌙䷸ ䷤⍉◆ ䷥䷷Ĭ ☲⎧⍇▿ƴ⎳ ⎆▂⍧䷠
 
-Ɗ䷖⍚⍳⍬◴▆⍝
+Ɗ䷖⍚⍳ʯ䷛䷶⎠⌒䷡䷂䷝⍏⌒⍝⍇⍜
 
 </div>

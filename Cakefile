@@ -416,8 +416,8 @@ task "build", "Compile everything", ()->
 
 blockMarkers = ["#### ", "### ", "## ", "# ", "- ", "* ", "! ", "> "]
 
-password = read ".secret"
-password = trim password if password?
+secret = read ".secret"
+[password, easterEgg] = (trim line for line in splitLines secret) if secret
 
 cypher = "IiÌÍÎÏĨĪĬĮİƁƊƑƘƝƴȈȊɱʈʋʯϒӇӻӼԒḮỈỊ⌁⌃⌅⌆⌐⌑⌒⌓⌔⌗⌙⌠⌡⌬⌭⌱⌷⌸⌹⌺⌻⌽⌾⍀⍁⍂⍃⍄⍅⍆⍇⍈⍉⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍙⍚⍛⍜⍝⍞⍟⍡⍢⍣⍤⍥⍦⍧⍨⍩⍫⍬⍭⍳⍴⍵⍶⍷⍸⍹⍺⍾⎄⎆⎈⎐⎚⎛⎝⎞⎠⎡⎣⎤⎦⎧⎨⎩⎫⎬⎭⎰⎱⎲⎳⏀⏂⏃⏅⏇⏚⏣␥⑄▁▂▃▄▅▆▇█▲△▴▵▶▷▸►▼▽▾▿◀◁◃◄◆◉◍◐◑◒◓◔◕◖◗◴◵◶◷☰☱☲☳☴☵☶☷⚌⚍⚎⚏⚙⦿Ɱ䷀䷁䷂䷃䷄䷅䷆䷇䷈䷉䷊䷋䷌䷍䷎䷏䷐䷑䷒䷓䷔䷕䷖䷗䷘䷙䷚䷛䷜䷝䷞䷟䷠䷡䷢䷣䷤䷥䷦䷧䷨䷩䷪䷫䷬䷭䷮䷯䷰䷱䷲䷳䷴䷵䷶䷷䷸䷹䷺䷻䷼䷽䷾䷿"
 
@@ -459,8 +459,21 @@ task "encrypt", "We're telling secrets.", ()->
       if buffer.length > 0
         merged.push buffer.join " "
         buffer = []
+    passthrough = false
     for line in lines
       isBlank = line.trim() is ""
+
+      # Detect <style> and <script> blocks — pass through without merging or encrypting
+      if /^<(style|script)/i.test line.trim()
+        flush()
+        passthrough = []
+      if passthrough
+        passthrough.push line
+        if /<\/(style|script)>/i.test line
+          merged.push passthrough.join "\n"
+          passthrough = false
+        continue
+
       hasMarker = !isBlank and (blockMarkers.some((s)-> line.startsWith s) or olRegex.test line)
       if isBlank or hasMarker
         flush()
@@ -478,8 +491,8 @@ task "encrypt", "We're telling secrets.", ()->
     # Encrypt each line
     body = for line in merged
 
-      # Skip blank lines
-      if line.trim() is "" then line
+      # Skip blank lines and <style>/<script> blocks
+      if line.trim() is "" or /^<(style|script)/i.test line.trim() then line
 
       else
         # Detect most blocks
@@ -511,8 +524,8 @@ task "encrypt", "We're telling secrets.", ()->
         # Join the encrypted words, prepend the marker
         marker + words.join " "
 
-    # Append magic bytes (four 0s) to the last block for verification
-    magic = encrypter.update Buffer.alloc 4
+    # Append the easter egg + magic bytes (four 0s) to the last block for verification
+    magic = encrypter.update Buffer.from easterEgg + "\0\0\0\0"
     magic = (cypher[byte] for byte from magic).join ""
     for i in [body.length - 1..0]
       if body[i].trim() isnt ""
@@ -525,7 +538,7 @@ task "encrypt", "We're telling secrets.", ()->
     # Rebuild the frontmatter
     frontmatter = joinLines(k + ": " + v for k, v of frontmatter)
 
-    input = '<form class="journal-password"><input autofocus="true" type="password" name="password" class="visible-password" autocomplete="current-password"></form>'
+    input = '<form class="journal-password"><input type="text"></form>'
 
     open = '<div encrypted-post>'
     close = '</div>'

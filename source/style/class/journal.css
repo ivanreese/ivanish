@@ -14,12 +14,10 @@ main[secret-journal] {
   border-radius: 0 0 8px 8px;
 
   input {
-    font: inherit;
-    padding: 0 .3em;
     width: 10em;
+    padding: .1em .3em 0;
+    font: inherit;
     text-align: center;
-    -webkit-text-security: none;
-    input-security: none;
     border: 2px solid currentcolor;
     outline-offset: 0px;
     color: inherit;
@@ -40,5 +38,6 @@ main[secret-journal] {
 /* The cyphered text doesn't kern, so it's too big */
 html:not([journal-decrypted]) [encrypted-post] {
   /* font-size: .8em; */
-  letter-spacing: -.33em;
+  /* letter-spacing: -.33em; */
+  font-size-adjust: .5;
 }

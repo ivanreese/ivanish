@@ -11,7 +11,7 @@
 }
 
 :root {
-  --maxLineLength: 56em;
+  --maxLineLength: 48em; /* changed from 56em for the sake of the journal — RIP? */
   --link-hover: hsl(311, 100%, 25%);
   --black: hsl(311, 100%, 10%);
 }

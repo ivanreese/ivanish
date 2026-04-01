@@ -9,7 +9,7 @@ do ()->
   slug = window.location.pathname
 
   # These are the elements that can contain encrypted text
-  blocks = ["title", "p", "h1", "h2", "h3", "h4", "li", "blockquote"]
+  blocks = ["title", "p", "h1", "h2", "h3", "h4", "li"]
 
   # Each byte maps to one cypher char
   cypher = "IiÌÍÎÏĨĪĬĮİƁƊƑƘƝƴȈȊɱʈʋʯϒӇӻӼԒḮỈỊ⌁⌃⌅⌆⌐⌑⌒⌓⌔⌗⌙⌠⌡⌬⌭⌱⌷⌸⌹⌺⌻⌽⌾⍀⍁⍂⍃⍄⍅⍆⍇⍈⍉⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍙⍚⍛⍜⍝⍞⍟⍡⍢⍣⍤⍥⍦⍧⍨⍩⍫⍬⍭⍳⍴⍵⍶⍷⍸⍹⍺⍾⎄⎆⎈⎐⎚⎛⎝⎞⎠⎡⎣⎤⎦⎧⎨⎩⎫⎬⎭⎰⎱⎲⎳⏀⏂⏃⏅⏇⏚⏣␥⑄▁▂▃▄▅▆▇█▲△▴▵▶▷▸►▼▽▾▿◀◁◃◄◆◉◍◐◑◒◓◔◕◖◗◴◵◶◷☰☱☲☳☴☵☶☷⚌⚍⚎⚏⚙⦿Ɱ䷀䷁䷂䷃䷄䷅䷆䷇䷈䷉䷊䷋䷌䷍䷎䷏䷐䷑䷒䷓䷔䷕䷖䷗䷘䷙䷚䷛䷜䷝䷞䷟䷠䷡䷢䷣䷤䷥䷦䷧䷨䷩䷪䷫䷬䷭䷮䷯䷰䷱䷲䷳䷴䷵䷶䷷䷸䷹䷺䷻䷼䷽䷾䷿"
@@ -19,9 +19,6 @@ do ()->
     s = @hash seed, 0x7fffffff
     ()-> s = (s * 0xCAFEBABE + 2222) & 0x7fffffff; s / 0x7fffffff
   random = seededRandom slug
-
-  # Lil easter egger
-  makeName = ()-> (cypher[Math.random() * cypher.length | 0] for i in [0...4]).join ""
 
   # On first run, parse each element's displayed cypher text back into raw cyphertext bytes.
   # We cache this because the DOM text gets overwritten on each keystroke.
@@ -80,25 +77,26 @@ do ()->
     # Decrypt the page
     result = new Uint8Array await crypto.subtle.decrypt {name: "AES-CTR", counter: iv, length: 64}, key, allCyphertext
 
-    # The last 4 bytes are magic (all zeros if the password is correct)
+    # The last 13 bytes are the easter egg (9 bytes) + magic (4 zero bytes)
     magic = result.slice result.length - 4
+    easterEgg = new TextDecoder().decode result.slice result.length - 13, result.length - 4
 
     if magic.every (b)-> b is 0
 
       # Password is correct — distribute the decrypted HTML back to each element.
       # Each chunk's plaintext length matches its cyphertext length,
-      # except the last chunk which has 4 extra bytes (the magic).
+      # except the last chunk which has 13 extra bytes (easter egg + magic).
       offset = 0
       for chunk, i in chunks
-        isMagic = if i is chunks.length - 1 then 4 else 0
-        len = chunk.bytes.length - isMagic
+        tail = if i is chunks.length - 1 then 13 else 0
+        len = chunk.bytes.length - tail
         chunk.elm.innerHTML = new TextDecoder().decode result.slice offset, offset + len
         offset += len
 
       document.documentElement.setAttribute "journal-decrypted", ""
 
       # Lil easter egger
-      document.querySelector("be-enticed .home-link").textContent = makeName() + " " + makeName()
+      document.querySelector("be-enticed .home-link").textContent = easterEgg
 
     else
       document.documentElement.removeAttribute "journal-decrypted"
