@@ -40,5 +40,6 @@ main[secret-journal] {
 /* The cyphered text doesn't kern, so it's too big */
 html:not([journal-decrypted]) [encrypted-post] {
   /* font-size: .8em; */
-  letter-spacing: -.33em;
+  /* letter-spacing: -.33em; */
+  font-size-adjust: .5;
 }
