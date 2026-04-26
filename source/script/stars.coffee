@@ -64,7 +64,7 @@ do ()->
         dScale = 0
         dScaleHalfDpi = 0
         accel = 0
-        vel = 25
+        vel = 30
         maxVel = defaultMaxVel = if isInfinite then 4 else .3 # Multiplied by root of the screen height
         scaledVel = 0
         pos = 0
