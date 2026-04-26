@@ -30,10 +30,10 @@ do ()->
   # For these, the first element is the base value and the second is the random offset from it
   styles =
     normal:
-      stars:      h: [200, 200], s: 100,      l: [60, 20]
-      blueBlobs:  h: [207, 55],  s: [30, 70], l: [1, 74]
-      redBlobs:   h: [330, 55],  s: [30, 70], l: [25, 40]
-      blackBlobs: h: 290,        s: 100,      l: [3, 2]
+      stars:      h: [15, 40],   s: 35,       l: [50, 80]
+      blueBlobs:  h: [205, 25],  s: [40, 10], l: [45, 10]
+      redBlobs:   h: [350, 40],  s: [40, 10], l: [65, 10]
+      blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bio:
       stars:      h: [15, 40],   s: 35,       l: [50, 80]
       blueBlobs:  h: [205, 25],  s: [40, 10], l: [45, 10]
