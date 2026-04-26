@@ -35,9 +35,9 @@ do ()->
       redBlobs:   h: [330, 55],  s: [30, 70], l: [25, 40]
       blackBlobs: h: 290,        s: 100,      l: [3, 2]
     bio:
-      stars:      h: [15, 40],   s: 35,       l: [20, 80]
-      blueBlobs:  h: [200, 20],  s: [40, 10], l: [40, 20]
-      redBlobs:   h: [350, 10],  s: [30, 20], l: [60, 20]
+      stars:      h: [15, 40],   s: 35,       l: [50, 80]
+      blueBlobs:  h: [205, 25],  s: [40, 10], l: [45, 10]
+      redBlobs:   h: [350, 40],  s: [40, 10], l: [65, 10]
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bw:
       stars:      h: [0, 0],     s: 0,        l: [0, 0]
@@ -64,7 +64,7 @@ do ()->
         dScale = 0
         dScaleHalfDpi = 0
         accel = 0
-        vel = 0
+        vel = 25
         maxVel = defaultMaxVel = if isInfinite then 4 else .3 # Multiplied by root of the screen height
         scaledVel = 0
         pos = 0
