@@ -36,8 +36,8 @@ do ()->
       blackBlobs: h: 290,        s: 100,      l: [3, 2]
     bio:
       stars:      h: [15, 40],   s: 35,       l: [20, 80]
-      blueBlobs:  h: [220, 20],  s: [15, 10], l: [40, 20]
-      redBlobs:   h: [5, 10],    s: [40, 20], l: [25, 40]
+      blueBlobs:  h: [200, 20],  s: [40, 10], l: [40, 20]
+      redBlobs:   h: [350, 10],  s: [30, 20], l: [60, 20]
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bw:
       stars:      h: [0, 0],     s: 0,        l: [0, 0]
