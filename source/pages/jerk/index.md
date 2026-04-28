@@ -405,7 +405,7 @@ I'll probably come back to this idea again. I don't want to make music that only
 And unlike the tower game, (and the other ideas we had, some of which have [appeared](https://en.wikipedia.org/wiki/Everything_(video_game)) elsewhere), I haven't seen anyone do a shrinking game. So I'll probably come back to that too.
 
 <footer>
-  <a href="/music#song">Song</a> from <a href="/2024">2024</a>.
+  <a href="/music#song">Song</a> from <a href="/time#2024">2024</a>.
 
   This post [was discussed](https://news.ycombinator.com/item?id=41154895) on [Hacker News](/hawker-news).
 </footer>
