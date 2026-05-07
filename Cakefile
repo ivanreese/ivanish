@@ -17,7 +17,7 @@ typePages =
   Blog: "blog"
   Game: "code#game"
   Interactive: "code#interactive"
-  Journal: "uncategorized"
+  Journal: "journal"
   Performance: "performance"
   Photography: "art#photography"
   "Procedural Music": "code" # not sure this makes sense — is this more music-y, or more code-y?

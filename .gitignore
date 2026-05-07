@@ -1,6 +1,7 @@
 .nova
 .secret
 /journal
+/journal-draft
 /public
 /public-snapshot
 /resources
