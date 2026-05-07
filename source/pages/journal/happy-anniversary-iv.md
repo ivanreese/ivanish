@@ -1,5 +1,5 @@
 type: Journal
-publish: 2026-05-04
+publish: 2026-05-06
 main: secret-journal
 ---
 <form class="journal-password"><input type="text"></form>
