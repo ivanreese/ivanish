@@ -16,11 +16,11 @@ do ()->
     opacity = Math.min 1, Math.max 0, opacity
     headerTarget = opacity
 
-    if scrollTop > 700 and stars?
-      quipImg?.style.filter = "invert(1) saturate(0)"
-      main.setAttribute "spooky", ""
-      document.spooky = true
-      stars = null
+#     if scrollTop > 700 and stars?
+#       quipImg?.style.filter = "invert(1) saturate(0)"
+#       main.setAttribute "spooky", ""
+#       document.spooky = true
+#       stars = null
 
 
   update = ()->
