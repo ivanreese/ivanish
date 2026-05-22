@@ -47,7 +47,7 @@ time: 2021-onward
   <img src="https://cdn.ivanish.ca/hest/podcast/art.png">
 </p>
 
-I occasionally record a podcast about [Hest](/hest), my ongoing graphical programming project. To subscribe use [this hand-crafted RSS feed](/hest.rss), or search for **Hest** or **Ivan Reese** in your podcast player of choice (except Spotify, which doesn't admit self-published podcasts, because they're a walled garden).
+I occasionally record a podcast about [Hest](/hest), my ongoing graphical programming project. To subscribe use [this hand-crafted RSS feed](/hest.rss), or search for **Hest** or **Ivy Reese** in your podcast player of choice (except Spotify, which doesn't admit self-published podcasts, because they're a walled garden).
 
 I recommend listening to the show from the beginning. But, for the benefit of folks who are all caught up, the below episodes are listed in reverse order.
 

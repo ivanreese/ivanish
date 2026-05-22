@@ -4,15 +4,15 @@ type: Blog
 
 <img alt="THIS POST IS A DRAFT" src="cdn://assets/draft.webp" width="200" style="rotate:135deg; float: right; margin: 1em;">
 
-! Future of the Future of Coding Community
+! Future of the Feeling of Computing Community
 
 # History
 
-The Future of Coding community started in June 2017. Seven years ago! You can see Steve's first commit on the website [here](https://github.com/futureofcoding/futureofcoding.org/commit/6db953a511fcbb3cc295ea37be2e83e897b50a91).
+The Feeling of Computing community started in June 2017. Seven years ago! You can see Steve's first commit on the website [here](https://github.com/futureofcoding/futureofcoding.org/commit/6db953a511fcbb3cc295ea37be2e83e897b50a91).
 
 Steve moved on and I came in as self-professed "steward" in January of 2020.
 
-At the time, there was growing dissatisfaction with Slack. We ran a community survey, both to collect general statistics about our membership and to gauge interest in moving our discussions off of Slack to a different platform. The results of the survey were presented in [Episode 46](https://futureofcoding.org/episodes/046) of the podcast.
+At the time, there was growing dissatisfaction with Slack. We ran a community survey, both to collect general statistics about our membership and to gauge interest in moving our discussions off of Slack to a different platform. The results of the survey were presented in [Episode 46](https://feelingof.com/046) of the podcast.
 
 Only 29% of people prefer Slack. 28% were ambivalent. 43% preferred moving off of Slack, but didn't agree on where to move.
 

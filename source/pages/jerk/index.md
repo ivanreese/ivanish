@@ -57,7 +57,7 @@ Music! I realized that this idea, you could do this with music, too! And, _of co
 
 I prototyped _a system_, a little music system, in Unity, and it worked!
 
-<iframe style="width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=3854177444/size=large/bgcol=ffffff/linkcol=de270f/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://spiralganglion.bandcamp.com/album/a-shrinking-feeling">A Shrinking Feeling by Ivan Reese</a></iframe>
+<iframe style="width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=3854177444/size=large/bgcol=ffffff/linkcol=de270f/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://spiralganglion.bandcamp.com/album/a-shrinking-feeling">A Shrinking Feeling by Ivy Reese</a></iframe>
 
 That plan sucked. We figured it'd take us months, maybe a year or more, to make this game any good. We didn't have enough money.
 

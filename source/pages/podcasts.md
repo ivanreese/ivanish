@@ -65,4 +65,4 @@ Legend:
 
 <br><br>
 
-And no, I haven't listed [any](https://patreon.com/futureofcoding) of [my](/hest/podcast) own [podcasts](/future-of-coding-podcast).
+And no, I haven't listed [any](https://feelingoff.com) of [my](/hest/podcast) own [podcasts](/feeling-of-computing-podcast).

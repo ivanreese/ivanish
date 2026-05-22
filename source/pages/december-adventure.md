@@ -91,7 +91,7 @@ I'm currently doing my first [December Adventure](https://eli.li/december-advent
 Some ideas for things I might work on next:
 
 * Fix Please Reload (using the stuff Keelan suggested)
-* [Visual Programming Codex](/codex) needs an overhaul, probably using the same approach as the [Future of Coding wiki](https://wiki.futureofcoding.org).
+* [Visual Programming Codex](/codex) needs an overhaul, probably using the same approach as the [Feeling of Computing wiki](https://wiki.feelingof.com).
 * Speaking of: fix some bugs in the FoC Wiki
 * Hest and/or Dust
 * Get my [Blog](/blog) figured out

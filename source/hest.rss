@@ -3,14 +3,14 @@
   <channel>
     <title>Hest</title>
     <link>https://ivanish.ca/hest/podcast</link>
-    <itunes:author>Ivan Reese</itunes:author>
-    <description>Ivan Reese thinks out loud about the design of his esoteric graphical programming system.</description>
-    <itunes:subtitle>Ivan Reese thinks out loud about the design of his esoteric graphical programming system.</itunes:subtitle>
+    <itunes:author>Ivy Reese</itunes:author>
+    <description>Ivy Reese thinks out loud about the design of his esoteric graphical programming system.</description>
+    <itunes:subtitle>Ivy Reese thinks out loud about the design of his esoteric graphical programming system.</itunes:subtitle>
     <language>en</language>
     <itunes:category text="Technology"/>
     <itunes:explicit>yes</itunes:explicit>
     <itunes:image href="https://cdn.ivanish.ca/hest/podcast/art.png"/>
-    <itunes:owner><itunes:name>Ivan Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
+    <itunes:owner><itunes:name>Ivy Reese</itunes:name><itunes:email>ivanreese@gmail.com</itunes:email></itunes:owner>
     <copyright>Copyright should be abolished.</copyright>
 
     <item>

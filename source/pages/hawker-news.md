@@ -5,7 +5,7 @@ time: 2024
 
 ! Hawker News
 
-One of our [podcast episodes](https://futureofcoding.org/episodes/061) inspired someone to write [a blog post](https://johnwhiles.com/posts/programming-as-theory).
+One of our [podcast episodes](https://feelingof.com/episodes/061) inspired someone to write [a blog post](https://johnwhiles.com/posts/programming-as-theory).
 
 It did okay on Hacker News.
 
@@ -27,4 +27,4 @@ Here you can listen to two versions — an instrumental, and one with these fuck
 
 Kudos to Lu for ["Oh, Berd"](https://www.youtube.com/watch?v=WMJ1H3Ai-qs)
 
-This song appears in [Future of Coding 70](https://futureofcoding.org/episodes/70).
+This song appears in [Feeling of Computing 70](https://feelingof.com/episodes/70).

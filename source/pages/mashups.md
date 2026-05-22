@@ -30,6 +30,6 @@ August 2018 — **[Erlang: The Movie](https://www.youtube.com/watch?v=BXmOlCy0oB
 
 <br>
 
-April 2023 — Finally, here's something lighter, a little joke about [Jimmy](/future-of-coding-podcast)'s choice of commit message.
+April 2023 — Finally, here's something lighter, a little joke about [Jimmy](/feeling-of-computing-podcast)'s choice of commit message.
 
 <iframe class="youtube" src="https://www.youtube-nocookie.com/embed/Z_esu9CyJxU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
