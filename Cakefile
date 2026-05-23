@@ -417,7 +417,7 @@ task "build", "Compile everything", ()->
 blockMarkers = ["#### ", "### ", "## ", "# ", "- ", "* ", "! ", "> "]
 
 secret = read ".secret"
-[password, easterEgg] = (trim line for line in splitLines secret) if secret
+password = trim(secret) if secret
 
 cypher = "IiÌÍÎÏĨĪĬĮİƁƊƑƘƝƴȈȊɱʈʋʯϒӇӻӼԒḮỈỊ⌁⌃⌅⌆⌐⌑⌒⌓⌔⌗⌙⌠⌡⌬⌭⌱⌷⌸⌹⌺⌻⌽⌾⍀⍁⍂⍃⍄⍅⍆⍇⍈⍉⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍙⍚⍛⍜⍝⍞⍟⍡⍢⍣⍤⍥⍦⍧⍨⍩⍫⍬⍭⍳⍴⍵⍶⍷⍸⍹⍺⍾⎄⎆⎈⎐⎚⎛⎝⎞⎠⎡⎣⎤⎦⎧⎨⎩⎫⎬⎭⎰⎱⎲⎳⏀⏂⏃⏅⏇⏚⏣␥⑄▁▂▃▄▅▆▇█▲△▴▵▶▷▸►▼▽▾▿◀◁◃◄◆◉◍◐◑◒◓◔◕◖◗◴◵◶◷☰☱☲☳☴☵☶☷⚌⚍⚎⚏⚙⦿Ɱ䷀䷁䷂䷃䷄䷅䷆䷇䷈䷉䷊䷋䷌䷍䷎䷏䷐䷑䷒䷓䷔䷕䷖䷗䷘䷙䷚䷛䷜䷝䷞䷟䷠䷡䷢䷣䷤䷥䷦䷧䷨䷩䷪䷫䷬䷭䷮䷯䷰䷱䷲䷳䷴䷵䷶䷷䷸䷹䷺䷻䷼䷽䷾䷿"
 
@@ -524,8 +524,8 @@ task "encrypt", "We're telling secrets.", ()->
         # Join the encrypted words, prepend the marker
         marker + words.join " "
 
-    # Append the easter egg + magic bytes (four 0s) to the last block for verification
-    magic = encrypter.update Buffer.from easterEgg + "\0\0\0\0"
+    # Append the magic bytes (four 0s) to the last block for verification
+    magic = encrypter.update Buffer.from "\0\0\0\0"
     magic = (cypher[byte] for byte from magic).join ""
     for i in [body.length - 1..0]
       if body[i].trim() isnt ""

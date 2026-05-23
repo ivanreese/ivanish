@@ -77,26 +77,22 @@ do ()->
     # Decrypt the page
     result = new Uint8Array await crypto.subtle.decrypt {name: "AES-CTR", counter: iv, length: 64}, key, allCyphertext
 
-    # The last 13 bytes are the easter egg (9 bytes) + magic (4 zero bytes)
+    # The last 4 bytes are the magic (4 zero bytes)
     magic = result.slice result.length - 4
-    easterEgg = new TextDecoder().decode result.slice result.length - 13, result.length - 4
 
     if magic.every (b)-> b is 0
 
       # Password is correct — distribute the decrypted HTML back to each element.
       # Each chunk's plaintext length matches its cyphertext length,
-      # except the last chunk which has 13 extra bytes (easter egg + magic).
+      # except the last chunk which has 4 extra bytes (magic).
       offset = 0
       for chunk, i in chunks
-        tail = if i is chunks.length - 1 then 13 else 0
+        tail = if i is chunks.length - 1 then 4 else 0
         len = chunk.bytes.length - tail
         chunk.elm.innerHTML = new TextDecoder().decode result.slice offset, offset + len
         offset += len
 
       document.documentElement.setAttribute "journal-decrypted", ""
-
-      # Lil easter egger
-      document.querySelector("be-enticed .home-link").textContent = easterEgg
 
     else
       document.documentElement.removeAttribute "journal-decrypted"
