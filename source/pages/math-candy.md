@@ -9,9 +9,9 @@ time: 2009
 <section>
 
 <div class="hero">
-  <object data="https://cdn.ivanish.ca/math-candy/ghosts-and.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
+  <object data="https://cdn.ivy.boo/math-candy/ghosts-and.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
     <div class="flash-fallback">
-      <img src="https://cdn.ivanish.ca/math-candy/ghosts-and.jpg">
+      <img src="https://cdn.ivy.boo/math-candy/ghosts-and.jpg">
     </div>
   </object>
 </div>
@@ -37,9 +37,9 @@ Adorable, innit.
 <section>
 
 <div class="hero">
-  <object data="https://cdn.ivanish.ca/math-candy/stained-glass.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
+  <object data="https://cdn.ivy.boo/math-candy/stained-glass.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
     <div class="flash-fallback">
-      <img src="https://cdn.ivanish.ca/math-candy/stained-glass.jpg">
+      <img src="https://cdn.ivy.boo/math-candy/stained-glass.jpg">
     </div>
   </object>
 </div>
@@ -56,9 +56,9 @@ Another one.
 ## Eigenvectors
 
 <div class="hero">
-  <object data="https://cdn.ivanish.ca/math-candy/eigenvectors.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
+  <object data="https://cdn.ivy.boo/math-candy/eigenvectors.swf" wmode="direct" quality="high" menu="false" type="application/x-shockwave-flash">
     <div class="flash-fallback">
-      <img src="https://cdn.ivanish.ca/math-candy/eigenvectors.jpg">
+      <img src="https://cdn.ivy.boo/math-candy/eigenvectors.jpg">
     </div>
   </object>
 </div>
@@ -240,7 +240,7 @@ return dist;
 </style>
 
 
-<script src="https://cdn.ivanish.ca/assets/ruffle/ruffle.js"></script>
+<script src="https://cdn.ivy.boo/assets/ruffle/ruffle.js"></script>
 <script>
   window.RufflePlayer = window.RufflePlayer || {};
   window.RufflePlayer.config = {

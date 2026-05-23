@@ -197,7 +197,7 @@ compilePage = ({head, header, path, frontmatter, body})->
 
   # TODO: If we have an image we can use for rich previews, it goes in the <head>
   frontmatter.image ?= "assets/og.jpg"
-  pageHeader += "  <meta property=\"og:image\" content=\"https://cdn.ivanish.ca/#{frontmatter.image}\">"
+  pageHeader += "  <meta property=\"og:image\" content=\"https://cdn.ivy.boo/#{frontmatter.image}\">"
 
   # The <head> is now done
   pageHeader += "</head>\n<body>"
@@ -218,7 +218,7 @@ compilePage = ({head, header, path, frontmatter, body})->
   body = body.replaceAll /^\s*\/\/.*$/gm, ""
 
   # Process custom cdn syntax
-  body = body.replaceAll "cdn://", "https://cdn.ivanish.ca/"
+  body = body.replaceAll "cdn://", "https://cdn.ivy.boo/"
 
 
   # Process markdown pages
