@@ -36,8 +36,8 @@ do ()->
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bio:
       stars:      h: [15, 40],   s: 35,       l: [50, 80]
-      blueBlobs:  h: [205, 25],  s: [40, 10], l: [45, 10]
-      redBlobs:   h: [350, 40],  s: [40, 10], l: [65, 10]
+      blueBlobs:  h: [60, 10],   s: [20, 10], l: [60, 10]
+      redBlobs:   h: [350, 30],  s: [40, 30], l: [60, 10]
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bw:
       stars:      h: [0, 0],     s: 0,        l: [0, 0]
@@ -217,7 +217,14 @@ do ()->
             maxBlueBlobs = 0
             maxRedBlobs = 0
             maxBlackBlobs = 0
-          else if bio or isInfinite
+          else if bio
+            maxPixelStars = 300
+            maxStars = 60
+            maxSmallGlowingStars = 60
+            maxBlueBlobs = 40
+            maxRedBlobs = 80
+            maxBlackBlobs = 5
+          else if isInfinite
             maxPixelStars = 300
             maxStars = 60
             maxSmallGlowingStars = 120
@@ -261,7 +268,9 @@ do ()->
               r = r / randTableSize * 1 + .5
               normalDrawCall x, y, 3 * r * dScaleHalfDpi, "hsl(0 0% 100% / #{o})", 10 + 10 * absVel * increase
               i++
-            return
+
+            first = false
+            return null
 
           # Pixel Stars
           i = 0
@@ -337,7 +346,6 @@ do ()->
 
             i++
 
-          return first = false if first
 
 
           # For blobs
@@ -415,4 +423,5 @@ do ()->
             drawCall x, y, r * dScaleHalfDpi, "hsl(#{style.blackBlobs.h} #{style.blackBlobs.s}% #{l}% / #{alpha})", velScale
             i++
 
+          first = false
           null
