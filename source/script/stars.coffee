@@ -246,7 +246,7 @@ do ()->
 
           if document.spooky
             i = 0
-            context.fillStyle = "#bbb"
+            context.fillStyle = "#000"
             context.fillRect 0, 0, width, height
             scaledVel = -1
             while i < nPixelStars
@@ -259,7 +259,7 @@ do ()->
               y = mod y * height / randTableSize - pos * increase, height
               o = o / randTableSize * 1 + 0.01
               r = r / randTableSize * 1 + .5
-              normalDrawCall x, y, 3 * r * dScaleHalfDpi, "hsl(0 0% 0% / #{o})", 10 + 10 * absVel * increase
+              normalDrawCall x, y, 3 * r * dScaleHalfDpi, "hsl(0 0% 100% / #{o})", 10 + 10 * absVel * increase
               i++
             return
 

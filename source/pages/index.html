@@ -58,22 +58,28 @@ publish: 2016-01-01
     bottom: calc(-0.5 * var(--size));
     left: calc(50vw - 0.5 * var(--size));
     width: var(--size);
+    height: var(--size);
     z-index: 11; /* header is 10 */
     border: var(--border-width) solid white;
     background: white;
     border-radius: 100%;
+    contain: paint;
 
     /* This inner element is the actual profile pic image, which fades in and out. */
-    img {
+    div {
+      position: relative;
+    }
+
+    canvas, img {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      border-radius: 100%;
-      background-color: #ccc9cd;
+    }
+
+    canvas + img {
+      visibility: hidden;
     }
   }
-
-  .spook { display: none }
-  #index[spooky] .color { display: none; }
-  #index[spooky] .spook { display: block; }
 
   #index h1 {
     margin: 50vh 0 4vh;
@@ -138,29 +144,12 @@ publish: 2016-01-01
 !- Ivy Reese
 
 <profile-pic>
-  <picture class="color">
-    <source
-      srcset="https://cdn.ivy.boo/assets/think-1600.png"
-      media="(min-width: 800px) and (min-height: 800px)">
-    <source
-      srcset="https://cdn.ivy.boo/assets/think-1200.png"
-      media="(min-width: 600px) and (min-height: 600px)">
+  <div>
     <img
-      width="800" height="800"
+      width="800" height="800" crossorigin="anonymous"
       alt="Photo of Ivy with her finger on her lips, brightly colored and grainy like a GIF in a dream"
-      src="https://cdn.ivy.boo/assets/think-800.png">
-  </picture>
-
-  <picture class="spook">
-    <source
-      srcset="https://cdn.ivy.boo/assets/bird-bw-1800.webp"
-      media="(min-width: 600px) and (min-height: 600px)">
-    <img
-      loading="lazy"
-      width="1200" height="1200"
-      alt="Spooky black and white photo of Ivy wearing a bird mask"
-      src="https://cdn.ivy.boo/assets/bird-bw-1200.webp">
-  </picture>
+      src="https://cdn.ivy.boo/assets/think.webp">
+  </div>
 </profile-pic>
 
 <section id="about">
@@ -247,21 +236,23 @@ publish: 2016-01-01
   </div>
 
   <div class="label">What I Look Like Online</div>
-  <p>Sometimes this, <br><a href="/todd-portraits">
+  <p>Sometimes this, <br>
     <img
       class="thumb"
       loading="lazy"
       width="100" height="100"
-      src="https://cdn.ivy.boo/todd-portraits/thumb.jpg"
-      alt="My old profile picture — a high contrast black and white double exposure of my face, one where I'm looking up and to the right, and a second where I'm looking up to the left. The left-looking face is somewhat covered by the hair of the right-looking face. I have some stubble in this photo, which makes me feel dysphoric now.">
-  </a></p>
-  <p>sometimes that, <br>
-    <img
-      class="thumb"
-      loading="lazy"
-      width="100" height="100"
-      src="https://cdn.ivy.boo/assets/think-800.png"
+      src="https://cdn.ivy.boo/assets/think-posterized.png"
       alt="My new profile picture — a hyper-colorful, dithered photo of my face with a finger held to my lips. I look more feminine in this photo, which is why I like it better than the old one.">
+  </p>
+  <p>sometimes that, <br>
+    <a href="/todd-portraits">
+      <img
+        class="thumb"
+        loading="lazy"
+        width="100" height="100"
+        src="https://cdn.ivy.boo/todd-portraits/thumb.jpg"
+        alt="My old profile picture — a high contrast black and white double exposure of my face, one where I'm looking up and to the right, and a second where I'm looking up to the left. The left-looking face is somewhat covered by the hair of the right-looking face. I have some stubble in this photo, which makes me feel dysphoric now.">
+    </a>
   </p>
   <p>depends where my head is at.</p>
 
