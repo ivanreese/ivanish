@@ -134,7 +134,7 @@ withTrailingSlash = (path)-> if path.endsWith "/" then path else path + "/"
 withOuterSlashes = (path)-> withLeadingSlash withTrailingSlash path
 
 toFullUrl = (path)->
-  path = if path.startsWith "http" then path else "https://ivanish.ca" + withLeadingSlash path
+  path = if path.startsWith "http" then path else "https://ivy.boo" + withLeadingSlash path
   segs = path.split "/"
   path = if segs.at(-1).includes "." then path else withTrailingSlash path
   path
@@ -307,7 +307,7 @@ feedItem = (title, link, published, body)->
   indent """
     <item>
       <title>#{title}</title>
-      <link>https://ivanish.ca/#{link}</link>
+      <link>https://ivy.boo/#{link}</link>
       <guid isPermaLink="false">/#{link}</guid>
       <pubDate>#{published}</pubDate>
       <description>

@@ -2,7 +2,7 @@
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
   <channel>
     <title>Hest</title>
-    <link>https://ivanish.ca/hest/podcast</link>
+    <link>https://ivy.boo/hest/podcast</link>
     <itunes:author>Ivy Reese</itunes:author>
     <description>Ivy Reese thinks out loud about the design of his esoteric graphical programming system.</description>
     <itunes:subtitle>Ivy Reese thinks out loud about the design of his esoteric graphical programming system.</itunes:subtitle>
@@ -240,11 +240,11 @@ Also — hi! I'm writing a much longer description than normal because my explan
         A real grab bag episode. Closing some threads on fibers, fine find and replace, how this show gets made, and what we get to look forward to next.
       </itunes:subtitle>
       <description><![CDATA[
-        My blog post about different approaches to rewind: https://ivanish.ca/hest/time-travel
+        My blog post about different approaches to rewind: https://ivy.boo/hest/time-travel
 
 Enso: https://enso.org
 
-Places to contact me with feedback: https://ivanish.ca#contact
+Places to contact me with feedback: https://ivy.boo#contact
       ]]></description>
     </item>
 
@@ -665,10 +665,10 @@ Places to contact me with feedback: https://ivanish.ca#contact
       <enclosure url="https://cdn.ivy.boo/hest/podcast/mp3/37.mp3" length="85488057" type="audio/mpeg"/>
       <itunes:explicit>yes</itunes:explicit>
       <itunes:subtitle><![CDATA[
-        As promised at the end of the previous episode, this one breaks the format a little. Granted, if this is going to be a once-a-year affair, I think it's reasonable to have <a href="https://ivanish.ca/wormhole">a bit of fun</a> with it, mmm?
+        As promised at the end of the previous episode, this one breaks the format a little. Granted, if this is going to be a once-a-year affair, I think it's reasonable to have <a href="https://ivy.boo/wormhole">a bit of fun</a> with it, mmm?
       ]]></itunes:subtitle>
       <description><![CDATA[
-        As promised at the end of the previous episode, this one breaks the format a little. Granted, if this is going to be a once-a-year affair, I think it's reasonable to have <a href="https://ivanish.ca/wormhole">a bit of fun</a> with it, mmm?
+        As promised at the end of the previous episode, this one breaks the format a little. Granted, if this is going to be a once-a-year affair, I think it's reasonable to have <a href="https://ivy.boo/wormhole">a bit of fun</a> with it, mmm?
       ]]></description>
     </item>
 

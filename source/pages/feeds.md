@@ -29,14 +29,14 @@ There are two ways to consume my website via your feed reader of choice:
 
 <section>
 
-## My RSS feed: [ivanish.ca/rss](/rss)
+## My RSS feed: [ivy.boo/rss](/rss)
 This is a normal-ass RSS feed. Whenever I publish a new page / post on my site, it goes in the feed. When I substantially update an existing page / post, it gets a fresh date and rolls in at the top of the feed.
 
 Syndicated gardening!
 
 </section><section>
 
-## My CSS feed: [ivanish.ca/css](/css)
+## My CSS feed: [ivy.boo/css](/css)
 This is the sicko-mode RSS feed, for real web-heads. It's mostly the same as the RSS feed, but instead of publishing the *content* of each post / page, it just publishes the <span class="easter-egg">custom style rules.</span>
 
 It's my love letter to CSS, my favourite programming language.
