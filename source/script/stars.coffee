@@ -183,7 +183,7 @@ do ()->
           time = performance.now()
           dt = Math.min 1/60, (time - lastTime)/1000
           lastTime = time
-          timeScale = 60 * dt # the below is all still written assuming 60 fps
+          timeScale = 30 * dt # the below is all still written assuming 60 fps, but i've slowed it down for aesthetics
 
           if keyboardDown and not keyboardUp
             accel = +keyboardAccel
@@ -203,6 +203,7 @@ do ()->
 
           scaledVel = vel * dpi * dScale
           pos -= scaledVel * timeScale
+          oldAbsPos = absPos
           absPos -= Math.abs scaledVel * timeScale
 
           absVel = Math.abs vel
@@ -406,22 +407,28 @@ do ()->
           # Black Blobs
           alpha = 0.002 + 0.05 * Math.sqrt absVel
 
-          i = 0
-          while i < nBlackBlobs
-            increase = i/maxBlackBlobs
-            decrease = 1 - increase
-            x = randTable[(i + 771) % randTableSize]
-            y = randTable[x]
-            l = randTable[y]
-            f = randTable[l]
-            p = randTable[f]
-            l = l / randTableSize * style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
-            r = 100 * increase * increase * density + 40
-            velScale = 600 / r / r + 10 / r
-            y = mod(r + y / randTableSize * height + absPos * velScale, height+r*2)-r
-            x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-absPos * velScale / 2000 * f / randTableSize + p / randTableSize)
-            drawCall x, y, r * dScaleHalfDpi, "hsl(#{style.blackBlobs.h} #{style.blackBlobs.s}% #{l}% / #{alpha})", velScale
-            i++
+
+          deltaPos = absPos - oldAbsPos
+          steps = 4
+          for q in [0...steps]
+            blobPos = oldAbsPos + q * (deltaPos / steps)
+
+            i = 0
+            while i < nBlackBlobs
+                increase = i/maxBlackBlobs
+                decrease = 1 - increase
+                x = randTable[(i + 771) % randTableSize]
+                y = randTable[x]
+                l = randTable[y]
+                f = randTable[l]
+                p = randTable[f]
+                l = l / randTableSize * style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
+                r = 100 * increase * increase * density + 40
+                velScale = 600 / r / r + 10 / r
+                y = mod(r + y / randTableSize * height + blobPos * velScale, height+r*2)-r
+                x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-blobPos * velScale / 2000 * f / randTableSize + p / randTableSize)
+                drawCall x, y, r * dScaleHalfDpi, "hsl(#{style.blackBlobs.h} #{style.blackBlobs.s}% #{l}% / #{alpha})", velScale
+                i++
 
           first = false
           null
