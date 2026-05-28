@@ -36,8 +36,8 @@ do ()->
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bio:
       stars:      h: [15, 40],   s: 35,       l: [50, 80]
-      blueBlobs:  h: [60, 10],   s: [20, 10], l: [60, 10]
-      redBlobs:   h: [350, 30],  s: [40, 30], l: [60, 10]
+      blueBlobs:  h: [80, 10],   s: [20, 10], l: [60, 10]
+      redBlobs:   h: [350, 50],  s: [50, 30], l: [60, 10]
       blackBlobs: h: 11,         s: 41,       l: [3, 2]
     bw:
       stars:      h: [0, 0],     s: 0,        l: [0, 0]
@@ -219,12 +219,12 @@ do ()->
             maxRedBlobs = 0
             maxBlackBlobs = 0
           else if bio
-            maxPixelStars = 300
+            maxPixelStars = 600
             maxStars = 60
-            maxSmallGlowingStars = 60
-            maxBlueBlobs = 40
-            maxRedBlobs = 80
-            maxBlackBlobs = 5
+            maxSmallGlowingStars = 40
+            maxBlueBlobs = 5
+            maxRedBlobs = 30
+            maxBlackBlobs = 10
           else if isInfinite
             maxPixelStars = 300
             maxStars = 60
@@ -423,7 +423,7 @@ do ()->
                 f = randTable[l]
                 p = randTable[f]
                 l = l / randTableSize * style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
-                r = 100 * increase * increase * density + 40
+                r = 60 * increase * increase * density + 40
                 velScale = 600 / r / r + 10 / r
                 y = mod(r + y / randTableSize * height + blobPos * velScale, height+r*2)-r
                 x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-blobPos * velScale / 2000 * f / randTableSize + p / randTableSize)
