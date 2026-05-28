@@ -219,12 +219,12 @@ do ()->
             maxRedBlobs = 0
             maxBlackBlobs = 0
           else if bio
-            maxPixelStars = 600
-            maxStars = 60
-            maxSmallGlowingStars = 40
-            maxBlueBlobs = 5
-            maxRedBlobs = 30
-            maxBlackBlobs = 10
+            maxPixelStars = 500
+            maxStars = 40
+            maxSmallGlowingStars = 30
+            maxBlueBlobs = 8
+            maxRedBlobs = 35
+            maxBlackBlobs = 6
           else if isInfinite
             maxPixelStars = 300
             maxStars = 60
