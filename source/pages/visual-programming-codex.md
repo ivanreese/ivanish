@@ -18,7 +18,7 @@ I've long been fond of visual programming languages. In my early years, I spent 
 
 I work as a programmer, writing textual code. But I yearn for more visual approaches to programming. I'd love to work professionally in a spatial programming tool, with color and animation and icons to express meaning.
 
-So I made a GitHub repo called the [Visual Programming Codex](http://github.com/ivanreese/visual-programming-codex) to collect all the beautiful and weird and inspiring and ancient approaches to programming that stretch beyond the confines of text.
+So I made a GitHub repo called the [Visual Programming Codex](http://github.com/ivyreese/visual-programming-codex) to collect all the beautiful and weird and inspiring and ancient approaches to programming that stretch beyond the confines of text.
 
 It's been quite warmly received by the broader community, which is lovely.
 

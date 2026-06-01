@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "coffeescript": "2.7.0",
-    "markdown-it": "^14.1.0",
-    "sweetbread": "^0.4.3"
+    "markdown-it": "^14.2.0",
+    "sweetbread": "^0.5.0"
   }
 }

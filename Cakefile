@@ -558,7 +558,10 @@ task "kiss", "Save current public as known-good.", ()->
 
 task "watch", "Recompile on changes.", ()->
   watch "journal", "encrypt"
-  watch "source", "build", reload
+  watch "source", "build", ()->
+    log "reload?"
+    reload()
+
 
 task "serve", "Spin up a live reloading server.", ()->
   serve "public"
