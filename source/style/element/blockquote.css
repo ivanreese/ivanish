@@ -1,6 +1,6 @@
 blockquote {
   margin: 2vh 0;
-  padding-left: 2em;
+  padding-top: .25em;
+  padding-left: 1em;
   border-left: 2px solid var(--black);
-  font-style: italic;
 }

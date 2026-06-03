@@ -5,6 +5,7 @@ publish: 2026-03-31
 
 1. [Dead In The Eye](/journal/dead-in-the-eye)
 2. [Happy Anniversary IV](/journal/happy-anniversary-iv)
+3. [Nobody Can Take This Away From Me](/journal/nobody-can-take-this-away-from-me)
 
 ---
 
