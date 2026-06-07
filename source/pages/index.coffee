@@ -60,10 +60,20 @@ do ()->
 
 
   scroll = ()->
-    # Update if scrolling
-    scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop - img.offsetHeight * 1.5
+    # scroll position of the page
+    scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
+
+    # save the old value of fadeTarget before we update it
     lastTarget = fadeTarget
-    fadeTarget = @scale scrollTop, 0, img.offsetHeight * 1, 0, 1, true
+
+    # fadeTarget is normalized 0-1 as the scroll goes up ~1 window height
+    fadeTarget = @scale scrollTop, 0, window.innerHeight, 0, .9
+    # fadeTarget is clipped to go slightly past 1 so that we fade all the way
+    # to white, even when spooky (cuz it sometimes darkens the photo).
+    # (we need to clip so that we're not re-rendering when way offscreen)
+    fadeTarget = @clip fadeTarget, 0, 1.1
+
+    # Update if scrolling
     render() if fadeTarget isnt lastTarget
 
     # Update if spooking
@@ -81,17 +91,28 @@ do ()->
   doRender = (t)->
     dirty = false
 
-    fade += (fadeTarget - fade) / 8
-    render() if Math.abs(fadeTarget - fade) > .01
+    dt = Math.min(t - lastT, 30) / 1000
+    lastT = t
+
+    # Gradually approach fadeTarget
+    err = fadeTarget - fade
+    absErr = Math.abs err
+    fade += err * 5 * dt
+
+    # Queue another render if we've still not at the target
+    render() if absErr > .001
 
     if document.spooky
-      phase += Math.min(t - lastT, 30) / 1000
-      lastT = t
-      posterize = @scale Math.sin(phase) * .5 + .5, -1, 1, 1.5, 4
+      # When spooky, the posterization cycles in a way that looks more random
+      phase += dt * absErr
+      posterize = @scale Math.sin(phase), -2, 2, 1.5, 4
 
-    light = 255 * fade ** 2
+    light = 255 * fade ** 4
     step = 255 / (posterize - 1)
     invStep = 1/step
+
+    mix = (@scale fade, 0, .5, 0, 1, true) ** 2
+    unmix = 1 - mix
 
     for k in [0...noise.length]
       bias[k] = noise[k] * step * dither + light
@@ -102,9 +123,9 @@ do ()->
 
     if not document.spooky
       while i < source.length
-        out[i+0] = round((source[i+0] + bias[p++ & bitmask]) * invStep) * step
-        out[i+1] = round((source[i+1] + bias[p++ & bitmask]) * invStep) * step
-        out[i+2] = round((source[i+2] + bias[p++ & bitmask]) * invStep) * step
+        out[i+0] = unmix * source[i+0] + mix * round((source[i+0] + bias[p++ & bitmask]) * invStep) * step
+        out[i+1] = unmix * source[i+1] + mix * round((source[i+1] + bias[p++ & bitmask]) * invStep) * step
+        out[i+2] = unmix * source[i+2] + mix * round((source[i+2] + bias[p++ & bitmask]) * invStep) * step
         i += 4
     else
       div = 1 / 255 ** 3 # exponent should be 1 less than the number of q's below
