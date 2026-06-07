@@ -107,7 +107,7 @@ do ()->
       phase += dt * absErr
       posterize = @scale Math.sin(phase), -2, 2, 1.5, 4
 
-    light = 255 * fade ** 4
+    light = 255 * fade ** (if document.spooky then 2 else 8)
     step = 255 / (posterize - 1)
     invStep = 1/step
 

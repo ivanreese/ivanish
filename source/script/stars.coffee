@@ -64,7 +64,7 @@ do ()->
         dScale = 0
         dScaleHalfDpi = 0
         accel = 0
-        vel = 30
+        vel = 40
         maxVel = defaultMaxVel = if isInfinite then 4 else .3 # Multiplied by root of the screen height
         scaledVel = 0
         pos = 0
@@ -94,6 +94,7 @@ do ()->
           dScaleHalfDpi = dScale * dpi/2
           maxVel = defaultMaxVel * Math.sqrt window.innerHeight # Scale the velocity based on the height of the screen
           first = true
+          vel = 40 if Math.abs(vel) < 40
 
         doRender = ()->
           renderRequested = false
@@ -417,17 +418,39 @@ do ()->
             while i < nBlackBlobs
                 increase = i/maxBlackBlobs
                 decrease = 1 - increase
+
                 x = randTable[(i + 771) % randTableSize]
                 y = randTable[x]
                 l = randTable[y]
                 f = randTable[l]
                 p = randTable[f]
-                l = l / randTableSize * style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
-                r = 60 * increase * increase * density + 40
-                velScale = 600 / r / r + 10 / r
-                y = mod(r + y / randTableSize * height + blobPos * velScale, height+r*2)-r
-                x = x / randTableSize * width * .8 + width * .1 + width/6 * velScale * Math.cos(-blobPos * velScale / 2000 * f / randTableSize + p / randTableSize)
-                drawCall x, y, r * dScaleHalfDpi, "hsl(#{style.blackBlobs.h} #{style.blackBlobs.s}% #{l}% / #{alpha})", velScale
+
+                x /= randTableSize
+                y /= randTableSize
+                l /= randTableSize
+                f /= randTableSize
+                p /= randTableSize
+
+                # lightness
+                l *= style.blackBlobs.l[1] + style.blackBlobs.l[0] * increase + 2
+                color = "hsl(#{style.blackBlobs.h} #{style.blackBlobs.s}% #{l}% / #{alpha})"
+
+                # radius
+                r = 100 * increase * increase * density + 40
+
+                # stuff like velocity is proportional to radius (bigger = slower)
+                rScale = (600 / r / r) + (10 / r)
+
+                # go past the edge before looping
+                y = mod(r + y * height + blobPos * rScale, height+r*2) - r
+
+                # wiggle, and don't touch the edges
+                wiggle = (100 + width/20) * rScale * Math.cos(-blobPos * rScale / 2000 * f + p)
+                minX = width * .1
+                rangeX = width * .8
+                x = wiggle + minX + rangeX * x
+
+                drawCall x, y, r * dScaleHalfDpi, color, velScale
                 i++
 
           first = false
