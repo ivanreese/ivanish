@@ -7,8 +7,8 @@
 .full-width {
   /* Undo the main column padding, so we pull to the left edge of the screen. */
   /* BUG: This doesn't account for fixed scrollbars */
-  margin: 10vh 0 10vh calc(26rem - 50vw);
-  @media (max-width: 56rem) { margin-left: -3vw; }
+  margin: 10vh 0 10vh calc(24rem - 2rem - 50vw);
+  @media (max-width: 48rem) { margin-left: -3vw; }
 
   /* Definitely fill the full width, hey? */
   & > * {
