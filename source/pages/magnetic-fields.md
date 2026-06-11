@@ -54,7 +54,9 @@ And it super doesn't!
 
 For instance, the glows around wires (showing field intensity) now incorporates a bit of info about polarity. But it's wrong!
 
-So I did a bunch more research, rewrote the code so that it runs on the GPU, and set up a rough SDF model of an electric motor:
+So I did a bunch more research, rewrote the code so that it runs on the GPU, and set up a rough SDF model of an electric motor.
+
+(Again, sorry folks on phones — this is just a quick prototype, so it's not smart about viewport scaling. Check it out on your desktop!)
 
 <div class="full-width">
   <iframe frame-src="https://cdn.ivy.boo/magnetic-fields/rmf/index.html"></iframe>
