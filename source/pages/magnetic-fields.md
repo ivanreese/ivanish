@@ -17,7 +17,7 @@ I tried to learn how magnets work by making them from scratch.
 
 ---
 
-In the below simulation, you can drag the white dot at the center.
+In the below simulation, you can drag the white dot at the center. (Desktop only 🤷‍♀️. Mobile folks, just enjoy the pretty!)
 
 <div class="full-width">
   <iframe frame-src="https://cdn.ivy.boo/magnetic-fields/wire/index.html"></iframe>
