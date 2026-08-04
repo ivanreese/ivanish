@@ -1,2 +1,4 @@
 /hest-podcast      /hest/podcast
 /hest-time-travel  /hest/time-travel
+
+/spiralganglion    https://spiralganglion.bandcamp.com
