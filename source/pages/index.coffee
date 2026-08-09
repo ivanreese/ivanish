@@ -60,14 +60,20 @@ do ()->
 
 
   scroll = ()->
+
     # scroll position of the page
     scrollTop = document.body.scrollTop + document.body.parentNode.scrollTop
+
+    # normalize scrollTop to n window heights
+    scrollTop /= window.innerHeight
 
     # save the old value of fadeTarget before we update it
     lastTarget = fadeTarget
 
-    # fadeTarget is normalized 0-1 as the scroll goes up ~1 window height
-    fadeTarget = @scale scrollTop, 0, window.innerHeight, 0, .9
+    # the fade kicks in after a lil scrolling,
+    # and then hits full strength after scrolling just over one full window height.
+    fadeTarget = @scale scrollTop, .3, 1.1
+
     # fadeTarget is clipped to go slightly past 1 so that we fade all the way
     # to white, even when spooky (cuz it sometimes darkens the photo).
     # (we need to clip so that we're not re-rendering when way offscreen)
@@ -77,10 +83,10 @@ do ()->
     render() if fadeTarget isnt lastTarget
 
     # Update if spooking
-    if not document.spooky and scrollTop > window.innerHeight * 2
+    if not document.spooky and scrollTop > 2
       document.spooky = true
-      render()
-
+      img.src = "https://cdn.ivy.boo/assets/think.webp"
+      img.addEventListener "load", (()-> resize()), once: true
 
   render = ()->
     return if dirty
@@ -107,7 +113,7 @@ do ()->
       phase += dt * absErr
       posterize = @scale Math.sin(phase), -2, 2, 1.5, 4
 
-    light = 255 * fade ** (if document.spooky then 2 else 8)
+    light = 255 * fade ** (if document.spooky then 1 else 5)
     step = 255 / (posterize - 1)
     invStep = 1/step
 
