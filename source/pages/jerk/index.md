@@ -61,7 +61,7 @@ I prototyped _a system_, a little music system, in Unity, and it worked!
 
 That plan sucked. We figured it'd take us months, maybe a year or more, to make this game any good. We didn't have enough money.
 
-So we put it aside, and tried to make something else. Something simple, that we could make and release within a month, hell, a week, just to prove that we could. We made it. [And it was… fine](/breakin). But we never released it. We grew to resent each other and, due to the very human emotional mess of it all, with its many complications (like, say, the fact that I was dating his brother), Sterling and I parted ways… almost amicably. I went back to my old job. He went off and worked at big tech companies (eventually joining Apple Vision around the time it was just getting started).
+So we put it aside, and tried to make something else. Something simple, that we could make and release within a month, hell, a week, just to prove that we could. We made it. [And it was… fine](/breakin). But we never released it. We grew to resent each other and, due to the very human emotional mess of it all, with its many complications (like, say, the fact that I was dating his sibling), Sterling and I parted ways… almost amicably. I went back to my old job. He went off and worked at big tech companies (eventually joining Apple Vision around the time it was just getting started).
 
 But I couldn't let go of this idea.
 
