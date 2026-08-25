@@ -54,7 +54,7 @@ What makes a good programming tool?
 
 None of these satisfy.
 
-The first few are about how the tool slots in to your life. They assuming the framing of programming as a job. The programming tool is a means to an end.
+The first few are about how the tool slots in to your life. They assume the framing of programming as productive work. The programming tool is a means to an end.
 
 Music, movies, and games are a means to an end too. I know a lot of people who prefer instrumental music because it doesn't distract them. I know people who like movies with an engaging story or world they can get wrapped up in. It sometimes feels like every game is an escapist fantasy, whether it's some visceral shooter or cozy fishing & farming life sim or daily crossword or hoard mode multiplayer hangout with friends. You hire these works of art to do a job for you. I do too.
 
