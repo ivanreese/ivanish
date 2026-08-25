@@ -58,7 +58,7 @@ The first few are about how the tool slots in to your life. They assume the fram
 
 Music, movies, and games are a means to an end too. I know a lot of people who prefer instrumental music because it doesn't distract them. I know people who like movies with an engaging story or world they can get wrapped up in. It sometimes feels like every game is an escapist fantasy, whether it's some visceral shooter or cozy fishing & farming life sim or daily crossword or hoard mode multiplayer hangout with friends. You hire these works of art to do a job for you. I do too.
 
-The later few are better. I'm not sure what it means to "express my intent", but that's something programmers say all the time. I think my intent is to be surprised because I made something beautiful, so no surprise that this itch isn't scratched by datalog, tailwind, racket, pytorch, html, tcl, svelte, guix, grails, typescript, or emacs.
+The later few are better. I'm not sure what it means to "express my intent", but that's something programmers say all the time. I think my intent is to be surprised because I made something beautiful, so it's no surprise that this itch isn't scratched by datalog, tailwind, racket, pytorch, html, tcl, svelte, guix, grails, typescript, or emacs. None of these tools strive to surprise you with your own humanity.
 
 What tools do I enjoy working with? How do they help me make the things I want to make? Getting warmer. But I'd like to go further, off this end of the scale.
 
@@ -66,4 +66,3 @@ What tools do I enjoy working with? How do they help me make the things I want t
 * It changes the sort of things I want to make.
 * It helps me understand myself, my friends and family, or my place in the world.
 * It is art.
-
